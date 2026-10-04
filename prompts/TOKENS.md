@@ -55,6 +55,11 @@ açığa sıralama: Mürekkep `#101418` → Ana Lacivert `#37435B` → Gövde Me
 | `Tipografi / İkincil Metin (sm)` | `C0OZ8W7vYS` | `_C0OZ8W7vYS` |
 | `Tipografi / Etiket ve Rozet (xs)` | `eZyocyyd0F` | `_eZyocyyd0F` |
 | `Tipografi / Mobil Duyuru Metni` | `8BUF3YKi2n` | `_8BUF3YKi2n` |
+| `Tipografi / Açıklama (Onest)` | `1F5G4mKZxn` | `_1F5G4mKZxn` |
+| `Tipografi / Küçük Vurgu (Onest)` | `UUwzwdlJyq` | `_UUwzwdlJyq` |
+| `Tipografi / Marka (Onest)` | `yO6jM73J3h` | `_yO6jM73J3h` |
+| `Tipografi / Etiket Vurgulu (xs)` | `IQOhDPH9FJ` | `_IQOhDPH9FJ` |
+| `Tipografi / Etiket Kalın (xs)` | `Gcs8grVLXd` | `_Gcs8grVLXd` |
 
 ---
 

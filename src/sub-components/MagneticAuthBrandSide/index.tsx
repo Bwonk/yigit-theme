@@ -28,7 +28,7 @@ export function MagneticAuthBrandSide({
     <aside className="ikas-mgauth__brand-side">
       {brandKicker && (
         <a
-          className="ikas-mgauth__brand _eZyocyyd0F"
+          className="ikas-mgauth__brand _Gcs8grVLXd"
           href="/"
           onClick={(e) => {
             e.preventDefault();

@@ -302,11 +302,10 @@
 }
 
 .ikas-testimonials__author {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: 13px;
   letter-spacing: 0.04em;
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  line-height: 25.2px; /* önceki token'dan miras alınan değer korunuyor */
 }
 
 .ikas-testimonials__stars {

@@ -172,7 +172,6 @@
 }
 
 .ikas-mgauth__panel-wordmark {
-  font-weight: 600;
   letter-spacing: 0.24em;
   color: var(--24KlcgGmm9, #fff);
 }
@@ -230,7 +229,6 @@
 
 .ikas-mgauth__panel-form-wordmark {
   display: none;
-  font-weight: 600;
   letter-spacing: 0.24em;
   color: var(--pxNuSoudLn, #37435b);
 }

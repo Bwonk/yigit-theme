@@ -690,7 +690,7 @@ export function MagneticAuthSection({
             )}
             <div className="ikas-mgauth__panel-brand-top">
               {brandKicker && (
-                <span className="ikas-mgauth__panel-wordmark _eZyocyyd0F">
+                <span className="ikas-mgauth__panel-wordmark _Gcs8grVLXd">
                   {upper(brandKicker)}
                 </span>
               )}
@@ -717,7 +717,7 @@ export function MagneticAuthSection({
 
           <div className="ikas-mgauth__panel-form">
             <div className="ikas-mgauth__panel-head">
-              <span className="ikas-mgauth__panel-form-wordmark _eZyocyyd0F">
+              <span className="ikas-mgauth__panel-form-wordmark _Gcs8grVLXd">
                 {upper(brandKicker)}
               </span>
               <CloseButton

@@ -88,7 +88,7 @@ export function SearchResultsGrid({
             </h2>
           )}
           {productCountText && (
-            <span className="geeny-search-results__count-badge _eZyocyyd0F">
+            <span className="geeny-search-results__count-badge _IQOhDPH9FJ">
               {productCountText.replace("{count}", String(totalCount))}
             </span>
           )}

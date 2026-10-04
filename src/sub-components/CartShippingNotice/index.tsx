@@ -22,7 +22,7 @@ export function CartShippingNotice({
       style={{ "--shipping-bar-radius": shippingBarRadius } as any}
       lang="tr"
     >
-      <p className="ikas-cart-shipping-notice__text _eZyocyyd0F">{notice}</p>
+      <p className="ikas-cart-shipping-notice__text _IQOhDPH9FJ">{notice}</p>
       <div className="ikas-cart-shipping-notice__progress-bg">
         <div
           className="ikas-cart-shipping-notice__progress-fill"

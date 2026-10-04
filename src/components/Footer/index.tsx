@@ -123,7 +123,7 @@ export function Footer({
           {/* SOL MARKA BLOĞU */}
           <div className="ikas-footer__brand">
             {brandTitle && (
-              <div className="ikas-footer__brand-title _sKAMD8d1LA">
+              <div className="ikas-footer__brand-title _yO6jM73J3h">
                 {brandTitle}
               </div>
             )}

@@ -60,7 +60,7 @@ const RecoverForm = observer(function RecoverForm({
     <div className="ikas-recover__panel">
       <header className="ikas-recover__header">
         <h1 className="ikas-recover__heading _DusX6I08Pv">{title}</h1>
-        <p className="ikas-recover__intro _VcfI5D07Nt">{subtitle}</p>
+        <p className="ikas-recover__intro _1F5G4mKZxn">{subtitle}</p>
       </header>
 
       {recoverForm.isSuccess && (

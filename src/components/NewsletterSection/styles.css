@@ -208,7 +208,6 @@
   border-radius: 16px;
   font-size: 15px;
   line-height: 1.5;
-  font-family: var(--font-heading);
 }
 
 /* Label ekranda görünmesin ama input ile ilişkili kalsın (form-row hizasını bozmasın). */

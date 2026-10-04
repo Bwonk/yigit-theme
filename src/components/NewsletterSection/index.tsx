@@ -147,7 +147,7 @@ export function NewsletterSection({
             )}
 
             {isSuccess ? (
-              <div className="ikas-newsletter__success-msg _VcfI5D07Nt" role="alert">
+              <div className="ikas-newsletter__success-msg _1F5G4mKZxn" role="alert">
                 {newsletterForm?.responseMessage || successText}
               </div>
             ) : (

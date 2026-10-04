@@ -20,7 +20,6 @@
 .ikas-mgauth__brand {
   color: var(--pxNuSoudLn, #37435b);
   text-decoration: none;
-  font-weight: 600;
   letter-spacing: 0.26em;
   width: fit-content;
 }

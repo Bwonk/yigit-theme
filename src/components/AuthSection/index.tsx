@@ -203,7 +203,7 @@ export function AuthSection({
               {heading && (
                 <h1 className="ikas-auth__heading _DusX6I08Pv">{heading}</h1>
               )}
-              {intro && <p className="ikas-auth__intro _VcfI5D07Nt">{intro}</p>}
+              {intro && <p className="ikas-auth__intro _1F5G4mKZxn">{intro}</p>}
             </header>
 
             <div

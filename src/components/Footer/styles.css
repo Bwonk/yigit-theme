@@ -56,10 +56,10 @@
 }
 
 .ikas-footer__brand-title {
-  font-weight: 700;
   font-size: 17px;
   letter-spacing: 0.2em;
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  line-height: 46.8px; /* önceki token'dan miras alınan değer korunuyor */
 }
 
 .ikas-footer__brand-desc {

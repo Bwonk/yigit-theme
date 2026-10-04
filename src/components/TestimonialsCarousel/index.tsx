@@ -117,7 +117,7 @@ export function TestimonialsCarousel({
                   dangerouslySetInnerHTML={{ __html: review1Text ?? "" }}
                 />
                 <div className="ikas-testimonials__card-footer">
-                  <div className="ikas-testimonials__author _VcfI5D07Nt">
+                  <div className="ikas-testimonials__author _UUwzwdlJyq">
                     {review1Author}
                   </div>
                   <div className="ikas-testimonials__stars" aria-hidden="true">
@@ -142,7 +142,7 @@ export function TestimonialsCarousel({
                   dangerouslySetInnerHTML={{ __html: review2Text ?? "" }}
                 />
                 <div className="ikas-testimonials__card-footer">
-                  <div className="ikas-testimonials__author _VcfI5D07Nt">
+                  <div className="ikas-testimonials__author _UUwzwdlJyq">
                     {review2Author}
                   </div>
                   <div className="ikas-testimonials__stars" aria-hidden="true">
@@ -199,7 +199,7 @@ export function TestimonialsCarousel({
                   dangerouslySetInnerHTML={{ __html: review3Text ?? "" }}
                 />
                 <div className="ikas-testimonials__card-footer">
-                  <div className="ikas-testimonials__author _VcfI5D07Nt">
+                  <div className="ikas-testimonials__author _UUwzwdlJyq">
                     {review3Author}
                   </div>
                   <div className="ikas-testimonials__stars" aria-hidden="true">
@@ -224,7 +224,7 @@ export function TestimonialsCarousel({
                   dangerouslySetInnerHTML={{ __html: review4Text ?? "" }}
                 />
                 <div className="ikas-testimonials__card-footer">
-                  <div className="ikas-testimonials__author _VcfI5D07Nt">
+                  <div className="ikas-testimonials__author _UUwzwdlJyq">
                     {review4Author}
                   </div>
                   <div className="ikas-testimonials__stars" aria-hidden="true">

@@ -99,6 +99,16 @@ export const ThemeType = {
   bodySm: "_C0OZ8W7vYS",
   label: "_eZyocyyd0F",
   announcement: "_8BUF3YKi2n",
+  /** Onest 400 — form/sayfa açıklamaları */
+  descriptionOnest: "_1F5G4mKZxn",
+  /** Onest 600 — küçük vurgu (yorum yazarı) */
+  smallEmphasis: "_UUwzwdlJyq",
+  /** Onest 700 — marka/wordmark */
+  brand: "_yO6jM73J3h",
+  /** Roboto Mono 500 — vurgulu etiket */
+  labelMedium: "_IQOhDPH9FJ",
+  /** Roboto Mono 600 — kalın etiket */
+  labelBold: "_Gcs8grVLXd",
 } as const;
 
 /**
