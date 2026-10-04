@@ -68,4 +68,6 @@ export interface Props {
   bundleSubtitle?: string;
   bundleQtyLabel?: string;
   reviewsAnchorLabel?: string;
+  galleryPauseAriaLabel?: string;
+  galleryPlayAriaLabel?: string;
 }

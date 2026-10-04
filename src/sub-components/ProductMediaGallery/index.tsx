@@ -25,6 +25,8 @@ export interface Props {
   storyDurationMs?: number;
   galleryPrevAriaLabel?: string;
   galleryNextAriaLabel?: string;
+  galleryPauseAriaLabel?: string;
+  galleryPlayAriaLabel?: string;
   galleryThumbsUpAriaLabel?: string;
   galleryThumbsDownAriaLabel?: string;
   className?: string;
@@ -166,6 +168,8 @@ export function ProductMediaGallery({
   storyDurationMs = DEFAULT_STORY_MS,
   galleryPrevAriaLabel = "Önceki görsel",
   galleryNextAriaLabel = "Sonraki görsel",
+  galleryPauseAriaLabel = "Otomatik geçişi duraklat",
+  galleryPlayAriaLabel = "Otomatik geçişi başlat",
   galleryThumbsUpAriaLabel = "Yukarı kaydır",
   galleryThumbsDownAriaLabel = "Aşağı kaydır",
   className = "",
@@ -176,6 +180,8 @@ export function ProductMediaGallery({
   // Kullanıcı galeriyle etkileşirken (hover / klavye odağı / dokunma) otomatik
   // geçiş durur — WCAG 2.2.2 Pause, Stop, Hide.
   const [storyPaused, setStoryPaused] = useState(false);
+  // Kullanıcının butonla açıkça durdurması (hover/odak duraklamasından bağımsız).
+  const [userPaused, setUserPaused] = useState(false);
   const [slideDir, setSlideDir] = useState<"next" | "prev" | "none">("none");
   const [thumbsOverflow, setThumbsOverflow] = useState(false);
   const [thumbsFade, setThumbsFade] = useState({ top: false, bottom: false });
@@ -352,7 +358,7 @@ export function ProductMediaGallery({
   useEffect(() => {
     if (!storyEnabled) return;
     if (reduceMotionRef.current) return;
-    if (storyPaused) return;
+    if (storyPaused || userPaused) return;
 
     const timer = window.setTimeout(() => {
       setSelectedIndex((prev) => (prev + 1) % imageCount);
@@ -360,7 +366,15 @@ export function ProductMediaGallery({
     }, storyMs);
 
     return () => window.clearTimeout(timer);
-  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick, storyPaused]);
+  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick, storyPaused, userPaused]);
+
+  const toggleUserPause = () => {
+    setUserPaused((was) => {
+      // Devam ederken ilerleme çubuğu ve zamanlayıcı baştan başlar.
+      if (was) setStoryTick((t) => t + 1);
+      return !was;
+    });
+  };
 
   const pauseStory = () => setStoryPaused(true);
   // Devam ederken ilerleme çubuğu baştan başlar (zamanlayıcı da baştan kurulur).
@@ -621,10 +635,32 @@ export function ProductMediaGallery({
         )}
 
         <div className="ikas-media-gallery__main-col">
+          {/* Görünür duraklat/başlat (WCAG 2.2.2). Stage mobilde yatay kaydırılan
+              bir şerit olduğu için buton stage'in DIŞINDA, ana kolona sabitlenir. */}
+          {storyEnabled && !reduceMotionRef.current && (
+            <button
+              type="button"
+              className="ikas-media-gallery__pause ikas-tap-44"
+              onClick={toggleUserPause}
+              aria-pressed={userPaused}
+              aria-label={userPaused ? galleryPlayAriaLabel : galleryPauseAriaLabel}
+            >
+              {userPaused ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M7 4.5v15l13-7.5z" />
+                </svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <rect x="6" y="4.5" width="4" height="15" rx="1" />
+                  <rect x="14" y="4.5" width="4" height="15" rx="1" />
+                </svg>
+              )}
+            </button>
+          )}
           <div
             ref={stageRef}
             className={`ikas-media-gallery__stage${
-              storyPaused ? " ikas-media-gallery__stage--paused" : ""
+              storyPaused || userPaused ? " ikas-media-gallery__stage--paused" : ""
             }`}
             onMouseEnter={storyEnabled ? pauseStory : undefined}
             onMouseLeave={storyEnabled ? resumeStory : undefined}

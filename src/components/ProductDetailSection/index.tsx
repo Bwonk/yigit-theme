@@ -63,6 +63,8 @@ export function ProductDetailSection({
   crossSellSelectedLabel = "Seçildi",
   galleryPrevAriaLabel = "Önceki görsel",
   galleryNextAriaLabel = "Sonraki görsel",
+  galleryPauseAriaLabel,
+  galleryPlayAriaLabel,
   galleryThumbsUpAriaLabel = "Yukarı kaydır",
   galleryThumbsDownAriaLabel = "Aşağı kaydır",
   favoriteAriaLabel = "Favorilere ekle",
@@ -121,6 +123,8 @@ export function ProductDetailSection({
               product={product}
               galleryPrevAriaLabel={galleryPrevAriaLabel}
               galleryNextAriaLabel={galleryNextAriaLabel}
+              galleryPauseAriaLabel={galleryPauseAriaLabel}
+              galleryPlayAriaLabel={galleryPlayAriaLabel}
               galleryThumbsUpAriaLabel={galleryThumbsUpAriaLabel}
               galleryThumbsDownAriaLabel={galleryThumbsDownAriaLabel}
             />

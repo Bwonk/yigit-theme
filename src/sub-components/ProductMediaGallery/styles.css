@@ -209,6 +209,7 @@
 }
 
 .ikas-media-gallery__main-col {
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -296,6 +297,37 @@
 }
 
 /* Instagram tap zones — sol %32 önceki, sağ %68 sonraki */
+/* Otomatik geçiş duraklat/başlat — story çubuklarının altında, sağ üst */
+.ikas-media-gallery__pause {
+  position: absolute;
+  top: 24px;
+  right: 12px;
+  z-index: 7;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--24KlcgGmm9);
+  background-color: color-mix(in srgb, var(--pxNuSoudLn) 55%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ikas-media-gallery__pause:hover {
+  background-color: var(--pxNuSoudLn);
+}
+
+.ikas-media-gallery__pause:focus-visible {
+  outline: 2px solid var(--sy8ZnXZdoG);
+  outline-offset: 2px;
+}
+
 .ikas-media-gallery__taps {
   position: absolute;
   inset: 0;

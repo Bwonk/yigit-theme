@@ -2592,6 +2592,22 @@
           "required": false,
           "defaultValue": "Değerlendirmelere git",
           "groupId": "buybox"
+        },
+        {
+          "name": "galleryPauseAriaLabel",
+          "displayName": "Galeri Duraklat Etiketi (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Otomatik geçişi duraklat",
+          "groupId": "gallery"
+        },
+        {
+          "name": "galleryPlayAriaLabel",
+          "displayName": "Galeri Başlat Etiketi (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Otomatik geçişi başlat",
+          "groupId": "gallery"
         }
       ],
       "propGroups": [
