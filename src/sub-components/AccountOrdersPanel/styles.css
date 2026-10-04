@@ -1,1 +1,65 @@
-/* Styles live in AccountDashboard/styles.css (shared account shell). */
+/* AccountOrdersPanel — yalnızca AccountDashboard içinde kullanılır; kabuk stilleri
+ * (.ikas-account__*) AccountDashboard/styles.css içinde kalır. */
+
+.ikas-account-orders {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ikas-account-orders__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 20px;
+  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 16px;
+}
+
+.ikas-account-orders__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ikas-account-orders__no {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.ikas-account-orders__date {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-account-orders__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: baseline;
+}
+
+.ikas-account-orders__status {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ikas-account-orders__count,
+.ikas-account-orders__price {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-account-orders__price {
+  margin-left: auto;
+  color: var(--pxNuSoudLn);
+  font-weight: 600;
+}

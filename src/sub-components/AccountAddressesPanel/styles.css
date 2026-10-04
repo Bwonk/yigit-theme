@@ -1,1 +1,108 @@
-/* Styles live in AccountDashboard/styles.css (shared account shell). */
+/* AccountAddressesPanel — yalnızca AccountDashboard içinde kullanılır; kabuk stilleri
+ * (.ikas-account__*) AccountDashboard/styles.css içinde kalır. */
+
+.ikas-account-addrs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: calc(bp(HDRapYMzn7) + 1px)) {
+  .ikas-account-addrs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ikas-account-addrs__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 16px;
+}
+
+.ikas-account-addrs__title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-account-addrs__text {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ikas-account-addrs__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ikas-addr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ikas-addr-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: color-mix(in srgb, var(--pxNuSoudLn) 45%, transparent);
+  cursor: pointer;
+}
+
+.ikas-addr-modal__sheet {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  max-height: min(90vh, 760px);
+  overflow: auto;
+  background: var(--24KlcgGmm9, #fff);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 16px 48px color-mix(in srgb, var(--pxNuSoudLn) 18%, transparent);
+}
+
+.ikas-addr-modal__sheet--sm {
+  width: min(400px, 100%);
+}
+
+.ikas-addr-modal__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+.ikas-addr-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ikas-addr-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
