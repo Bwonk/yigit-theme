@@ -531,15 +531,22 @@ export function MagneticAuthSection({
     measure();
   }, [count, barLabels]);
 
+  // Listener'lar bir kez kurulur; en güncel measure/closePanel ref'ten okunur
+  // (editörde bar sayısı değişince ilk render'ın kapanışında kalmasın).
+  const measureRef = useRef(measure);
+  measureRef.current = measure;
+  const closePanelRef = useRef(closePanel);
+  closePanelRef.current = closePanel;
+
   useEffect(() => {
     let resizeRaf = 0;
     const onResize = () => {
       if (eng.current.open || eng.current.closing) return;
       cancelAnimationFrame(resizeRaf);
-      resizeRaf = requestAnimationFrame(measure);
+      resizeRaf = requestAnimationFrame(() => measureRef.current());
     };
     const onKeyDown = (ev: KeyboardEvent) => {
-      if (ev.key === "Escape" && eng.current.open) closePanel();
+      if (ev.key === "Escape" && eng.current.open) closePanelRef.current();
     };
     window.addEventListener("resize", onResize);
     document.addEventListener("keydown", onKeyDown);

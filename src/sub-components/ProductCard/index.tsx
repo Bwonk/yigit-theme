@@ -214,6 +214,9 @@ export function ProductCard({
       className={`ikas-product-card ${overlayQuickAdd ? "ikas-product-card--overlay-mode" : ""} ${className}`.trim()}
       style={inlineStyles as any}
     >
+      {/* Medya kapsayıcı: buton <a> içinde olamaz (geçersiz HTML, iç içe
+          etkileşimli öğe) → overlay link'in kardeşi olarak konumlanır. */}
+      <div className="ikas-product-card__media">
       <a
         href={href}
         className="ikas-product-card__image-wrapper"
@@ -251,14 +254,10 @@ export function ProductCard({
           )}
         </div>
 
+      </a>
+
         {showQuickAdd && overlayQuickAdd && (
-          <div
-            className="ikas-product-card__overlay-quick-add"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
+          <div className="ikas-product-card__overlay-quick-add">
             <Button
               text={buttonText}
               variant="PILL_PRIMARY"
@@ -271,7 +270,7 @@ export function ProductCard({
             />
           </div>
         )}
-      </a>
+      </div>
 
       <div className="ikas-product-card__content">
         {showRating && averageRating && (

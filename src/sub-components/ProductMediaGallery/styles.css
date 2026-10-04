@@ -282,6 +282,10 @@
   width: 0%;
 }
 
+.ikas-media-gallery__stage--paused .ikas-media-gallery__story-seg--active .ikas-media-gallery__story-fill {
+  animation-play-state: paused;
+}
+
 @keyframes ikas-story-fill {
   from {
     width: 0%;

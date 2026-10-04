@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useId, useState } from "preact/hooks";
 import {
   setRegisterFormFirstName,
   setRegisterFormLastName,
@@ -101,6 +101,8 @@ export function AuthRegisterForm({
   showPasswordLabel = "Şifreyi göster",
   hidePasswordLabel = "Şifreyi gizle",
 }: Props) {
+  // Aynı sayfada iki form olursa label/input eşleşmesi çakışmasın.
+  const uid = `auth-register-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const [fullName, setFullName] = useState(() => {
     const first = registerForm.firstName?.value || "";
     const last = registerForm.lastName?.value || "";
@@ -144,10 +146,10 @@ export function AuthRegisterForm({
         </div>
       )}
 
-      <label className="ikas-auth__field" htmlFor="auth-register-name">
+      <label className="ikas-auth__field" htmlFor={`${uid}-name`}>
         <span className="ikas-auth__label">{fullNameLabel}</span>
         <input
-          id="auth-register-name"
+          id={`${uid}-name`}
           className={`ikas-auth__input${
             registerForm.firstName?.hasError || registerForm.lastName?.hasError
               ? " ikas-auth__input--error"
@@ -167,10 +169,10 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-email">
+      <label className="ikas-auth__field" htmlFor={`${uid}-email`}>
         <span className="ikas-auth__label">{emailLabel}</span>
         <input
-          id="auth-register-email"
+          id={`${uid}-email`}
           className={`ikas-auth__input${
             registerForm.email?.hasError ? " ikas-auth__input--error" : ""
           }`}
@@ -191,11 +193,11 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-password">
+      <label className="ikas-auth__field" htmlFor={`${uid}-password`}>
         <span className="ikas-auth__label">{passwordLabel}</span>
         <div className="ikas-auth__input-wrap">
           <input
-            id="auth-register-password"
+            id={`${uid}-password`}
             className={`ikas-auth__input${
               registerForm.password?.hasError ? " ikas-auth__input--error" : ""
             }`}
@@ -249,10 +251,10 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-password2">
+      <label className="ikas-auth__field" htmlFor={`${uid}-password2`}>
         <span className="ikas-auth__label">{passwordConfirmLabel}</span>
         <input
-          id="auth-register-password2"
+          id={`${uid}-password2`}
           className={`ikas-auth__input${
             confirmError ? " ikas-auth__input--error" : ""
           }`}

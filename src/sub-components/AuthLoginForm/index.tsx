@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useId, useState } from "preact/hooks";
 import {
   setLoginFormEmail,
   setLoginFormPassword,
@@ -35,6 +35,8 @@ export function AuthLoginForm({
   showPasswordLabel = "Şifreyi göster",
   hidePasswordLabel = "Şifreyi gizle",
 }: Props) {
+  // Aynı sayfada iki form olursa label/input eşleşmesi çakışmasın.
+  const uid = `auth-login-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: Event) => {
@@ -57,10 +59,10 @@ export function AuthLoginForm({
         </div>
       )}
 
-      <label className="ikas-auth__field" htmlFor="auth-login-email">
+      <label className="ikas-auth__field" htmlFor={`${uid}-email`}>
         <span className="ikas-auth__label">{emailLabel}</span>
         <input
-          id="auth-login-email"
+          id={`${uid}-email`}
           className={`ikas-auth__input${
             loginForm.email?.hasError ? " ikas-auth__input--error" : ""
           }`}
@@ -78,11 +80,11 @@ export function AuthLoginForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-login-password">
+      <label className="ikas-auth__field" htmlFor={`${uid}-password`}>
         <span className="ikas-auth__label">{passwordLabel}</span>
         <div className="ikas-auth__input-wrap">
           <input
-            id="auth-login-password"
+            id={`${uid}-password`}
             className={`ikas-auth__input${
               loginForm.password?.hasError ? " ikas-auth__input--error" : ""
             }`}

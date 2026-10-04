@@ -227,6 +227,9 @@ export function AccountDashboard({
   cityLabel = "ŞEHİR",
   postalCodeLabel = "POSTA KODU",
   countryLabel = "ÜLKE",
+  stateLabel,
+  districtLabel,
+  regionLabel,
   className = "",
 }: AccountDashboardProps) {
   const [ready, setReady] = useState(false);
@@ -382,6 +385,9 @@ export function AccountDashboard({
               cityLabel={cityLabel}
               postalCodeLabel={postalCodeLabel}
               countryLabel={countryLabel}
+              stateLabel={stateLabel}
+              districtLabel={districtLabel}
+              regionLabel={regionLabel}
             />
           ) : (
             <AccountFavoritesPanel

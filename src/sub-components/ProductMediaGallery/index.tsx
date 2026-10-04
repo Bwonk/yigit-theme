@@ -172,6 +172,9 @@ export function ProductMediaGallery({
   const [selectedIndex, setSelectedIndex] = useState(0);
   /** Story animasyonunu restart etmek için (thumb seçiminde) */
   const [storyTick, setStoryTick] = useState(0);
+  // Kullanıcı galeriyle etkileşirken (hover / klavye odağı / dokunma) otomatik
+  // geçiş durur — WCAG 2.2.2 Pause, Stop, Hide.
+  const [storyPaused, setStoryPaused] = useState(false);
   const [slideDir, setSlideDir] = useState<"next" | "prev" | "none">("none");
   const [thumbsOverflow, setThumbsOverflow] = useState(false);
   const [thumbsFade, setThumbsFade] = useState({ top: false, bottom: false });
@@ -348,6 +351,7 @@ export function ProductMediaGallery({
   useEffect(() => {
     if (!storyEnabled) return;
     if (reduceMotionRef.current) return;
+    if (storyPaused) return;
 
     const timer = window.setTimeout(() => {
       setSelectedIndex((prev) => (prev + 1) % imageCount);
@@ -355,7 +359,16 @@ export function ProductMediaGallery({
     }, storyMs);
 
     return () => window.clearTimeout(timer);
-  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick]);
+  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick, storyPaused]);
+
+  const pauseStory = () => setStoryPaused(true);
+  // Devam ederken ilerleme çubuğu baştan başlar (zamanlayıcı da baştan kurulur).
+  const resumeStory = () => {
+    setStoryPaused((was) => {
+      if (was) setStoryTick((t) => t + 1);
+      return false;
+    });
+  };
 
   // Mobil yatay snap ile seçili index senkron
   useEffect(() => {
@@ -609,7 +622,22 @@ export function ProductMediaGallery({
         <div className="ikas-media-gallery__main-col">
           <div
             ref={stageRef}
-            className="ikas-media-gallery__stage"
+            className={`ikas-media-gallery__stage${
+              storyPaused ? " ikas-media-gallery__stage--paused" : ""
+            }`}
+            onMouseEnter={storyEnabled ? pauseStory : undefined}
+            onMouseLeave={storyEnabled ? resumeStory : undefined}
+            onFocusIn={storyEnabled ? pauseStory : undefined}
+            onFocusOut={
+              storyEnabled
+                ? (e: FocusEvent) => {
+                    const next = e.relatedTarget as Node | null;
+                    if (!next || !stageRef.current?.contains(next)) resumeStory();
+                  }
+                : undefined
+            }
+            onTouchStart={storyEnabled ? pauseStory : undefined}
+            onTouchEnd={storyEnabled ? resumeStory : undefined}
             role="region"
             aria-roledescription="carousel"
             aria-label={product.name}

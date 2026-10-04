@@ -39,6 +39,10 @@
 }
 
 /* 1. GÖRSEL KONTEYNERİ (1:1 Aspect Ratio, 24px Yuvarlak Köşe) */
+.ikas-product-card__media {
+  position: relative;
+}
+
 .ikas-product-card__image-wrapper {
   display: block;
   position: relative;
@@ -124,8 +128,9 @@
   pointer-events: none;
 }
 
-.ikas-product-card__image-wrapper:hover .ikas-product-card__overlay-quick-add,
-.ikas-product-card:hover .ikas-product-card__overlay-quick-add {
+.ikas-product-card__media:hover .ikas-product-card__overlay-quick-add,
+.ikas-product-card:hover .ikas-product-card__overlay-quick-add,
+.ikas-product-card__overlay-quick-add:focus-within {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;

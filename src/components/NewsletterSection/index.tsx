@@ -45,6 +45,7 @@ export function NewsletterSection({
 }: NewsletterSectionProps) {
   // Bölüm bir sayfada birden fazla kez kullanılabilir → label/input eşleşmesi benzersiz olmalı.
   const emailInputId = `ikas-newsletter-email-${useId()}`;
+  const patternId = `ikas-newsletter-pat-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const sectionRef = useRef<HTMLElement>(null);
   const reveal = useReveal(sectionRef, { threshold: 0.15 });
   const newsletterForm = getNewsletterSubscriptionForm(customerStore);
@@ -108,7 +109,7 @@ export function NewsletterSection({
           <svg aria-hidden="true" className="ikas-newsletter__pattern">
             <defs>
               <pattern
-                id="cta-pat"
+                id={patternId}
                 width="104"
                 height="104"
                 patternUnits="userSpaceOnUse"
@@ -123,7 +124,7 @@ export function NewsletterSection({
                 </g>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#cta-pat)" />
+            <rect width="100%" height="100%" fill={`url(#${patternId})`} />
           </svg>
 
           {/* SAĞ ÜST DEKORATİF ACCENT TAKOZ */}

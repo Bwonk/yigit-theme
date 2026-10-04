@@ -125,7 +125,7 @@ export function ProductDetailSection({
             />
           </div>
 
-          <div className="ikas-pdp__right" id="product-buy-box-target">
+          <div className="ikas-pdp__right">
             <ProductBuyBox
               product={product}
               seriesTag={seriesTag}

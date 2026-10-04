@@ -44,4 +44,7 @@ export interface Props {
   countryLabel?: string;
   discountBadgeText?: string;
   quickAddAriaLabel?: string;
+  stateLabel?: string;
+  districtLabel?: string;
+  regionLabel?: string;
 }

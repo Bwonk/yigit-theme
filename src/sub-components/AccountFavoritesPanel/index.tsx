@@ -39,6 +39,8 @@ export function AccountFavoritesPanel({
       try {
         const products = await getFavoriteProducts(customerStore);
         if (!cancelled) setFavorites(products || []);
+      } catch (err) {
+        console.error("Favoriler yüklenemedi:", err);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -49,9 +51,13 @@ export function AccountFavoritesPanel({
   }, []);
 
   const handleRemove = async (product: IkasProduct) => {
-    const ok = await removeIkasProductFromFavorites(product);
-    if (ok) {
-      setFavorites((prev) => prev.filter((p) => p.id !== product.id));
+    try {
+      const ok = await removeIkasProductFromFavorites(product);
+      if (ok) {
+        setFavorites((prev) => prev.filter((p) => p.id !== product.id));
+      }
+    } catch (err) {
+      console.error("Favoriden çıkarma hatası:", err);
     }
   };
 
