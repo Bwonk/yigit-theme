@@ -46,15 +46,14 @@
   background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
   border-radius: clamp(20px, 2.6vw, 36px);
   box-shadow: 0 26px 60px rgba(55, 67, 91, 0.22);
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.25, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.25, 1);
   z-index: 2;
 }
 
-.ikas-newsletter--visible .ikas-newsletter__card {
-  opacity: 1;
-  transform: translateY(0);
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-newsletter--armed .ikas-newsletter__card {
+  opacity: 0;
+  transform: translateY(28px);
 }
 
 /* ARKA PLAN KATMANLARI (Görsel + Gradient + SVG Pattern + Takoz) */

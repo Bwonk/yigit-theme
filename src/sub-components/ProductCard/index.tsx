@@ -65,6 +65,9 @@ export interface Props {
   addToCartText?: string;
   addingToCartText?: string;
   soldOutText?: string;
+  discountBadgeText?: string;
+  /** `{title}` yer tutucusu ürün adıyla değiştirilir. */
+  quickAddAriaLabel?: string;
   /**
    * Kartın belge başlık ağacındaki seviyesi. Kart, kapsayan bölümün başlığının
    * bir alt seviyesinde olmalıdır: sayfa başlığı h1 olan listelerde 2, kendi
@@ -86,6 +89,8 @@ export function ProductCard({
   addToCartText = "SEPETE EKLE",
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
+  discountBadgeText = "İNDİRİM",
+  quickAddAriaLabel = "{title} ürününü sepete ekle",
   className = "",
 }: Props) {
   const [isAdding, setIsAdding] = useState(false);
@@ -184,8 +189,11 @@ export function ProductCard({
 
     setIsAdding(true);
     try {
-      await addItemToCart(variant, product, 1);
-      window.dispatchEvent(new CustomEvent("geeny:cart-drawer:open"));
+      const result = await addItemToCart(variant, product, 1);
+      // Stok yetersiz / geçersiz seçenek gibi hatalarda çekmece açılmasın.
+      if (result.success) {
+        window.dispatchEvent(new CustomEvent("geeny:cart-drawer:open"));
+      }
     } catch (err) {
       console.error("Quick add to cart error:", err);
     } finally {
@@ -238,7 +246,7 @@ export function ProductCard({
             </span>
           ) : (
             hasDiscount && (
-              <span className="ikas-product-card__badge">İNDİRİM</span>
+              <span className="ikas-product-card__badge">{discountBadgeText}</span>
             )
           )}
         </div>
@@ -259,7 +267,7 @@ export function ProductCard({
               disabled={!inStock || isAdding}
               loading={isAdding}
               onClick={handleQuickAdd}
-              ariaLabel={`${title} ürününü sepete ekle`}
+              ariaLabel={quickAddAriaLabel.replace("{title}", title)}
             />
           </div>
         )}
@@ -325,7 +333,7 @@ export function ProductCard({
               disabled={!inStock || isAdding}
               loading={isAdding}
               onClick={handleQuickAdd}
-              ariaLabel={`${title} ürününü sepete ekle`}
+              ariaLabel={quickAddAriaLabel.replace("{title}", title)}
             />
           </div>
         )}

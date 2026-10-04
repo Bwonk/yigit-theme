@@ -63,8 +63,6 @@
 }
 
 .ikas-related__reveal {
-  opacity: 0;
-  transform: translateY(14px);
   transition:
     opacity var(--related-fade, 0.55s cubic-bezier(0.22, 1, 0.36, 1)),
     transform var(--related-fade, 0.55s cubic-bezier(0.22, 1, 0.36, 1));
@@ -74,9 +72,10 @@
   transition-delay: 70ms;
 }
 
-.ikas-related--inview .ikas-related__reveal {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-related--armed .ikas-related__reveal {
+  opacity: 0;
+  transform: translateY(14px);
 }
 
 .ikas-related__nav {

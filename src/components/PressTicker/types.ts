@@ -10,4 +10,7 @@ export interface Props {
   speed?: number;
   /** Bölüm zemin rengi */
   backgroundColor?: string;
+  textLogos?: string;
+  ariaLabel?: string;
+  logoAltText?: string;
 }

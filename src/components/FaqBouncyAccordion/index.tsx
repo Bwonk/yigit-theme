@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useId, useRef } from "preact/hooks";
 import { IkasComponentRenderer } from "@ikas/bp-storefront";
 import {
   applyLayoutTokens,
@@ -6,6 +6,7 @@ import {
   ThemeType,
   readSetting,
 } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import { Props } from "./types";
 
 export function FaqBouncyAccordion(props: Props) {
@@ -19,8 +20,9 @@ export function FaqBouncyAccordion(props: Props) {
   } = props;
 
   const sectionRef = useRef<HTMLElement>(null);
-  const groupIdRef = useRef(`faq-${Math.random().toString(36).slice(2, 10)}`);
-  const [headVisible, setHeadVisible] = useState(false);
+  // useId: SSR ve client'ta aynı id → hydration uyumsuzluğu yok.
+  const groupId = `faq-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  const reveal = useReveal(sectionRef, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
 
   const springEase = readSetting(
     ThemeSetting.qtyStepper,
@@ -38,28 +40,6 @@ export function FaqBouncyAccordion(props: Props) {
     includeSiteWidth: true,
   });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setHeadVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setHeadVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   const itemList = Array.isArray(items)
     ? items
@@ -79,9 +59,9 @@ export function FaqBouncyAccordion(props: Props) {
   return (
     <section
       ref={sectionRef}
-      className={`ikas-faq${headVisible ? " ikas-faq--inview" : ""}`}
+      className={`ikas-faq ${revealClasses("ikas-faq", reveal)}`.trim()}
       style={inlineStyles}
-      data-faq-group={groupIdRef.current}
+      data-faq-group={groupId}
       lang="tr"
     >
       <div className="ikas-faq__inner">

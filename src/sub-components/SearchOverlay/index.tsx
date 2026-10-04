@@ -14,27 +14,50 @@ import { observer } from "@ikas/component-utils";
 import Button from "../Button";
 import CloseButton from "../CloseButton";
 import PortalScope from "../PortalScope";
-import { useFocusTrap } from "../../utils/a11y";
+import { useFocusTrap, useBodyScrollLock } from "../../utils/a11y";
+
+/** Panel metinleri — Header'ın "Arama Paneli" prop grubundan gelir. */
+export interface SearchOverlayTexts {
+  dialogLabel?: string;
+  placeholder?: string;
+  inputLabel?: string;
+  clearText?: string;
+  clearLabel?: string;
+  closeLabel?: string;
+  loadingText?: string;
+  /** `{count}` yer tutucusu sonuç sayısıyla değiştirilir. */
+  resultsText?: string;
+  featuredText?: string;
+  noResultsText?: string;
+  quickFiltersTitle?: string;
+  /** Virgülle ayrılmış filtre listesi. */
+  quickFilters?: string;
+  /** `{count}` yer tutucusu sonuç sayısıyla değiştirilir. */
+  resultCountText?: string;
+  idleText?: string;
+  viewAllText?: string;
+}
 
 export interface Props {
   isOpen?: boolean;
   onClose?: () => void;
   className?: string;
+  texts?: SearchOverlayTexts;
 }
 
-const QUICK_FILTERS = [
-  "Yastıklar",
-  "Uyku Bandı",
-  "Aksesuar",
-  "Seyahat Seti",
-  "İndirimdekiler",
-];
+const withCount = (template: string | undefined, count: number) =>
+  (template ?? "").replace("{count}", String(count));
 
 export function SearchOverlay({
   isOpen: propIsOpen = false,
   onClose,
   className = "",
+  texts = {},
 }: Props) {
+  const quickFilters = (texts.quickFilters ?? "")
+    .split(",")
+    .map((f) => f.trim())
+    .filter(Boolean);
   const [isOpen, setIsOpen] = useState(propIsOpen);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +68,7 @@ export function SearchOverlay({
 
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const searchRequestIdRef = useRef(0);
   const debounceTimerRef = useRef<any>(null);
 
   // Read live global settings via getThemeSetting
@@ -74,16 +98,7 @@ export function SearchOverlay({
   }, []);
 
   // Body scroll lock when open — odak yönetimi useFocusTrap'e ait.
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  useBodyScrollLock(isOpen);
 
   // Initial load for featured products (empty search state)
   useEffect(() => {
@@ -120,6 +135,8 @@ export function SearchOverlay({
   const performSearch = useCallback(async (keyword: string, filterName: string = "") => {
     const trimmed = keyword.trim();
     const effectiveQuery = filterName ? `${trimmed} ${filterName}`.trim() : trimmed;
+    // Yalnızca en son isteğin cevabı state'e yazılır (eski cevap yenisini ezmesin).
+    const requestId = ++searchRequestIdRef.current;
 
     if (!effectiveQuery) {
       setSearchResults([]);
@@ -139,6 +156,7 @@ export function SearchOverlay({
         },
       } as any);
 
+      if (requestId !== searchRequestIdRef.current) return;
       const rawData = response?.data;
       const list: IkasProduct[] = rawData?.data ?? [];
       const count: number = rawData?.totalCount ?? rawData?.count ?? list.length;
@@ -146,13 +164,22 @@ export function SearchOverlay({
       setSearchResults(list);
       setTotalCount(count);
     } catch (error) {
+      if (requestId !== searchRequestIdRef.current) return;
       console.error("[SearchOverlay] apiSearchProducts error:", error);
       setSearchResults([]);
       setTotalCount(0);
     } finally {
-      setIsLoading(false);
+      if (requestId === searchRequestIdRef.current) setIsLoading(false);
     }
   }, []);
+
+  // Unmount'ta bekleyen debounce'u temizle.
+  useEffect(
+    () => () => {
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    },
+    []
+  );
 
   const handleInputChange = (e: any) => {
     const value = e.target.value;
@@ -175,6 +202,8 @@ export function SearchOverlay({
   };
 
   const handleClearInput = () => {
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    searchRequestIdRef.current++;
     setSearchQuery("");
     setActiveFilter("");
     setSearchResults([]);
@@ -196,6 +225,8 @@ export function SearchOverlay({
   const handleFilterClick = (filterLabel: string) => {
     const nextFilter = activeFilter === filterLabel ? "" : filterLabel;
     setActiveFilter(nextFilter);
+    // Bekleyen debounce eski filtreyle çalışıp bu sonucu ezmesin.
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
     performSearch(searchQuery, nextFilter);
   };
 
@@ -263,7 +294,7 @@ export function SearchOverlay({
         className="geeny-search-overlay__panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Canlı Arama Paneli"
+        aria-label={texts.dialogLabel}
       >
         {/* 1. ÜST PILL ARAMA GİRDİ BARI */}
         <div className="geeny-search-overlay__header-pill">
@@ -285,9 +316,9 @@ export function SearchOverlay({
             type="text"
             className="geeny-search-overlay__input"
             value={searchQuery}
-            placeholder="Ürün, renk ya da ihtiyaç ara..."
+            placeholder={texts.placeholder}
             onInput={handleInputChange}
-            aria-label="Ürün ara"
+            aria-label={texts.inputLabel}
           />
 
           {hasQuery && (
@@ -295,14 +326,14 @@ export function SearchOverlay({
               type="button"
               className="geeny-search-overlay__clear-btn"
               onClick={handleClearInput}
-              aria-label="Aramayı Temizle"
+              aria-label={texts.clearLabel}
             >
-              TEMİZLE
+              {texts.clearText}
             </button>
           )}
 
           <CloseButton
-            ariaLabel="Aramayı Kapat (ESC)"
+            ariaLabel={texts.closeLabel ?? ""}
             onClick={handleCloseOverlay}
             tone="onDark"
           />
@@ -315,7 +346,7 @@ export function SearchOverlay({
           {isLoading && (
             <div className="geeny-search-overlay__content-block">
               <div className="geeny-search-overlay__section-label">
-                ÜRÜNLER · ARANIYOR...
+                {texts.loadingText}
               </div>
               <div className="geeny-search-overlay__results-list">
                 {[1, 2, 3, 4].map((idx) => (
@@ -336,7 +367,7 @@ export function SearchOverlay({
           {showResults && (
             <div className="geeny-search-overlay__content-block">
               <div className="geeny-search-overlay__section-label">
-                ÜRÜNLER · CANLI SONUÇLAR ({totalCount || searchResults.length})
+                {withCount(texts.resultsText, totalCount || searchResults.length)}
               </div>
               <div className="geeny-search-overlay__results-list">
                 {searchResults.map((product, idx) => {
@@ -355,7 +386,7 @@ export function SearchOverlay({
                     >
                       <div className="geeny-search-overlay__item-thumb">
                         {imageSrc ? (
-                          <img src={imageSrc} alt={product.name || "Ürün"} />
+                          <img src={imageSrc} alt={product.name || ""} />
                         ) : (
                           <div className="geeny-search-overlay__item-thumb-placeholder" />
                         )}
@@ -380,7 +411,7 @@ export function SearchOverlay({
           {showDefaultState && (
             <div className="geeny-search-overlay__content-block">
               <div className="geeny-search-overlay__section-label">
-                ÜRÜNLER · ÖNE ÇIKANLAR
+                {texts.featuredText}
               </div>
               <div className="geeny-search-overlay__results-list">
                 {featuredProducts.map((product, idx) => {
@@ -399,7 +430,7 @@ export function SearchOverlay({
                     >
                       <div className="geeny-search-overlay__item-thumb">
                         {imageSrc ? (
-                          <img src={imageSrc} alt={product.name || "Ürün"} />
+                          <img src={imageSrc} alt={product.name || ""} />
                         ) : (
                           <div className="geeny-search-overlay__item-thumb-placeholder" />
                         )}
@@ -423,15 +454,18 @@ export function SearchOverlay({
           {/* DURUM 4: SONUÇ YOK */}
           {showNoResults && (
             <div className="geeny-search-overlay__empty-notice">
-              Eşleşen ürün bulunamadı — “boyun”, “bant” ya da “kılıf” kelimelerini deneyebilirsiniz.
+              {texts.noResultsText}
             </div>
           )}
 
           {/* HIZLI FİLTRELER BÖLÜMÜ */}
+          {quickFilters.length > 0 && (
           <div className="geeny-search-overlay__filters-section">
-            <div className="geeny-search-overlay__section-label">HIZLI FİLTRELER</div>
+            {texts.quickFiltersTitle && (
+              <div className="geeny-search-overlay__section-label">{texts.quickFiltersTitle}</div>
+            )}
             <div className="geeny-search-overlay__filters-list">
-              {QUICK_FILTERS.map((filterLabel, idx) => {
+              {quickFilters.map((filterLabel, idx) => {
                 const isActive = activeFilter === filterLabel;
                 return (
                   <button
@@ -449,16 +483,17 @@ export function SearchOverlay({
               })}
             </div>
           </div>
+          )}
 
           {/* 3. ALT EYLEM BARI */}
           <div className="geeny-search-overlay__footer-bar">
             <span className="geeny-search-overlay__footer-note">
               {hasQuery
-                ? `${totalCount || searchResults.length} SONUÇ BULUNDU`
-                : "ARAMAYA BAŞLAYIN YA DA BİR FİLTRE SEÇİN"}
+                ? withCount(texts.resultCountText, totalCount || searchResults.length)
+                : texts.idleText}
             </span>
             <Button
-              text="TÜM SONUÇLARI GÖR"
+              text={texts.viewAllText}
               variant="PILL_ACCENT"
               size="NORMAL"
               onClick={handleViewAllResults}

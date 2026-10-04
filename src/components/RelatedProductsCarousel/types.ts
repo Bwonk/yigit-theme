@@ -14,4 +14,6 @@ export interface Props {
   soldOutText?: string;
   prevAriaLabel?: string;
   nextAriaLabel?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
 }

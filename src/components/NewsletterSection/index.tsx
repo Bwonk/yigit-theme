@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useId } from "preact/hooks";
+import { useRef, useEffect, useId } from "preact/hooks";
 import {
   customerStore,
   getNewsletterSubscriptionForm,
@@ -8,6 +8,7 @@ import {
   getDefaultSrc,
 } from "@ikas/bp-storefront";
 import { applyLayoutTokens } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import Button from "../../sub-components/Button";
 import { Props } from "./types";
 
@@ -45,7 +46,7 @@ export function NewsletterSection({
   // Bölüm bir sayfada birden fazla kez kullanılabilir → label/input eşleşmesi benzersiz olmalı.
   const emailInputId = `ikas-newsletter-email-${useId()}`;
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reveal = useReveal(sectionRef, { threshold: 0.15 });
   const newsletterForm = getNewsletterSubscriptionForm(customerStore);
 
   useEffect(() => {
@@ -54,33 +55,6 @@ export function NewsletterSection({
     }
   }, [newsletterForm]);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   const layoutTokens = applyLayoutTokens({ includePy: true, includePx: true, includeSiteWidth: true });
 
   const inlineStyles = {
@@ -99,7 +73,7 @@ export function NewsletterSection({
   const errorMessage = emailField?.message || errorText;
   const isSuccess = newsletterForm?.isSuccess;
   const bgImgUrl = backgroundImage ? getDefaultSrc(backgroundImage) : null;
-  const visibleClass = isVisible ? "ikas-newsletter--visible" : "";
+  const visibleClass = revealClasses("ikas-newsletter", reveal);
 
   const arrowIcon = (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -210,6 +184,7 @@ export function NewsletterSection({
 
                   <div className="ikas-newsletter__button-wrapper">
                     <Button
+                      type="submit"
                       text={newsletterForm?.isSubmitting ? submittingButtonText : buttonText}
                       variant="PILL_PRIMARY"
                       size="NORMAL"

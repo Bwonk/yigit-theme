@@ -42,4 +42,6 @@ export interface Props {
   cityLabel?: string;
   postalCodeLabel?: string;
   countryLabel?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
 }

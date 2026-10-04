@@ -1,4 +1,5 @@
-import { useId } from "preact/hooks";
+import { useEffect, useId, useState } from "preact/hooks";
+import { prefersReducedMotion } from "../../utils/reveal";
 import { Props } from "./types";
 
 export interface CurvedMarqueeProps extends Props {
@@ -31,8 +32,10 @@ export function CurvedMarquee({
   backgroundColor,
   className = "",
 }: CurvedMarqueeProps) {
-  // Aynı sayfada birden fazla kez kullanılabildiği için textPath referansı benzersiz olmalı.
-  const pathId = `ikas-curved-path-${useId()}`;
+  // SMIL <animate> CSS reduced-motion kuralından etkilenmez → JS ile kapat.
+  const [reduceMotion, setReduceMotion] = useState(false);
+  useEffect(() => setReduceMotion(prefersReducedMotion()), []);
+  const reactId = useId();
 
   const baseText = text?.trim() ? text.trim().toLocaleUpperCase("tr-TR") : "";
 
@@ -69,6 +72,11 @@ export function CurvedMarquee({
   const baseLineY = yMid + 0.25 * numCurve;
   const controlY = baseLineY - numCurve;
   const pathD = `M -200 ${baseLineY} Q 800 ${controlY} 1800 ${baseLineY}`;
+
+  // textPath referansı benzersiz olmalı. Section'lar ayrı Preact kökleri
+  // olarak render edilebildiğinden useId tek başına çakışabilir; eğri
+  // geometrisini de anahtara katarız → çakışsa bile aynı path'i işaret eder.
+  const pathId = `ikas-curved-path-${reactId.replace(/[^a-zA-Z0-9_-]/g, "")}-${baseLineY}-${controlY}`.replace(/\./g, "_");
 
   // Metin boyutu
   const numFontSize = typeof fontSize === "number" && fontSize > 0 ? fontSize : 38;
@@ -112,6 +120,7 @@ export function CurvedMarquee({
         >
           <textPath href={`#${pathId}`} startOffset="0%">
             {fullText}
+            {!reduceMotion && (
             <animate
               attributeName="startOffset"
               from={fromOffset}
@@ -119,6 +128,7 @@ export function CurvedMarquee({
               dur={animDur}
               repeatCount="indefinite"
             />
+            )}
           </textPath>
         </text>
       </svg>

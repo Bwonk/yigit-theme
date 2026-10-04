@@ -56,6 +56,7 @@
   --font-mono: 'Roboto Mono', ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
   --z-index-base: 1;
   --z-index-dropdown: 50;
+  --z-index-filter-bar: 50;
   --z-index-announcement: 100;
   --z-index-header: 100;
   --z-index-header-drawer: 800;
@@ -76,11 +77,12 @@
    * Shared layout system — Header pill + HeroBanner aynı ölçü dilini konuşur:
    *   --max-site-width  → bileşenler getThemeSetting(_l6CcMRzdeZ) ile yazar
    *   --site-gutter     → yatay kenar (yukarıda)
-   *   --nav-pill-max    → masaüstü pill tavanı (site max'ın yarısı; sabit 780 yok)
+   *   --nav-pill-max    → masaüstü pill tavanı (site max'ın yarısı). Header
+   *                       inline style'ında hesaplanır: burada (:root → wrapper)
+   *                       --max-site-width henüz tanımsız olduğundan hep 780px'e düşerdi.
    * Sağ kenar hizası: her iki wrapper content-box'ının sağ kenarı aynıdır;
    * pill margin-left:auto ile o kenara yaslanır, hero görseli sağ kolonu doldurur.
    */
-  --nav-pill-max: calc(var(--max-site-width, 1560px) / 2);
   --hero-grid-gap: clamp(16px, 2.8vw, 48px);
 
   /* Varyant Renk Swatch Boyutu */

@@ -30,8 +30,6 @@
   box-sizing: border-box;
   min-width: 0;
   border-left: 1px solid var(--8ARbeTYsmD, #e4e7e8);
-  opacity: 0;
-  transform: translateY(18px);
   transition:
     opacity var(--features-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1)),
     transform var(--features-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1));
@@ -53,9 +51,10 @@
   transition-delay: 210ms;
 }
 
-.ikas-features--visible .ikas-features__col {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-features--armed .ikas-features__col {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .ikas-features__icon {

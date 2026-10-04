@@ -39,9 +39,13 @@ export function AuthLoginForm({
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    const success = await submitLoginForm(loginForm);
-    if (success) {
-      Router.navigateToPage("ACCOUNT");
+    // Enter ile tekrar gönderim: buton disabled olsa da form submit tetiklenir.
+    if (loginForm.isSubmitting) return;
+    try {
+      const success = await submitLoginForm(loginForm);
+      if (success) Router.navigateToPage("ACCOUNT");
+    } catch (err) {
+      console.error("Giriş hatası:", err);
     }
   };
 

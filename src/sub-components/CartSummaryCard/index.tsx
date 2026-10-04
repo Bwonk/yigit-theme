@@ -93,10 +93,10 @@ export function CartSummaryCard({
 
   const formattedSubtotal = activeCart
     ? getIkasOrderFormattedTotalPrice(activeCart)
-    : "₺ 0";
+    : "";
   const formattedTotal = activeCart
     ? getIkasOrderFormattedTotalFinalPrice(activeCart)
-    : "₺ 0";
+    : "";
   const couponAdjustment = activeCart
     ? getIkasOrderCouponAdjustment(activeCart)
     : undefined;

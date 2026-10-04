@@ -238,7 +238,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     /* Header pill ile aynı dar yüzey — kontroller yatay rail’de kalır */
-    max-width: min(100%, calc(var(--nav-pill-max, 50vw) - 120px));
+    max-width: min(100%, calc(var(--nav-pill-max, calc(var(--max-site-width, 1560px) / 2)) - 120px));
   }
 
   .ikas-filter-bar--slim .ikas-filter-bar__desktop-filters::-webkit-scrollbar {

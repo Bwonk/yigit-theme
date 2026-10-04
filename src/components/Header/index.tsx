@@ -13,7 +13,8 @@ import CartDrawer from "../../sub-components/CartDrawer";
 import SearchOverlay from "../../sub-components/SearchOverlay";
 import CloseButton from "../../sub-components/CloseButton";
 import { formatShadow } from "../../utils/theme";
-import { useFocusTrap, inertProps } from "../../utils/a11y";
+import { useFocusTrap, inertProps, useBodyScrollLock } from "../../utils/a11y";
+import { ensureThemeFonts } from "../../utils/fonts";
 import {
   applyTextSelectionStyles,
   clearTextSelectionStyles,
@@ -65,9 +66,25 @@ export function Header({
   brandText,
   mobileMenuTitle,
   menuLabel,
+  closeMenuLabel,
   searchLabel,
   accountLabel,
   cartLabel,
+  searchDialogLabel,
+  searchPlaceholder,
+  searchInputLabel,
+  searchClearText,
+  searchClearLabel,
+  searchCloseLabel,
+  searchLoadingText,
+  searchResultsText,
+  searchFeaturedText,
+  searchNoResultsText,
+  searchQuickFiltersTitle,
+  searchQuickFilters,
+  searchResultCountText,
+  searchIdleText,
+  searchViewAllText,
   cartDrawerTitle,
   emptyCartTitle,
   emptyCartButtonText,
@@ -174,6 +191,10 @@ export function Header({
     selectionFgSetting?.value,
   ]);
 
+  useEffect(() => {
+    ensureThemeFonts();
+  }, []);
+
   // Gerçek layout yüksekliğini + pill alt ofsetini yayınla
   // → Hero kalan 100dvh; sticky filtre bar navbar pill'inin altına oturur
   useEffect(() => {
@@ -246,16 +267,7 @@ export function Header({
   }, []);
 
   // Body scroll lock when mobile drawer is open
-  useEffect(() => {
-    if (isDrawerOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isDrawerOpen]);
+  useBodyScrollLock(isDrawerOpen);
 
   // Drawer modal sözleşmesi: giriş odağı, Tab döngüsü, ESC ve odağın hamburger'a
   // dönmesi. Drawer header'ın içinde (portal değil) yaşadığı için arka plan inert
@@ -303,6 +315,9 @@ export function Header({
   const inlineStyles = {
     // backgroundColor prop API'de kalır; floating island için tam genişlik boyanmaz.
     "--max-site-width": maxSiteWidth,
+    // Pill tavanı = site genişliğinin yarısı. :root'ta hesaplanınca
+    // --max-site-width orada tanımsız olduğu için hep 780px'e düşüyordu.
+    "--nav-pill-max": `calc(${maxSiteWidth} / 2)`,
     "--header-height": headerHeight,
     "--section-padding-x": sectionPadX,
     "--mobile-padding-x": mobilePadX,
@@ -481,7 +496,7 @@ export function Header({
         <div className="ikas-header__drawer-header">
           <span className="ikas-header__logo-text">{mobileMenuTitle}</span>
           <CloseButton
-            ariaLabel={menuLabel || "Menüyü kapat"}
+            ariaLabel={closeMenuLabel ?? ""}
             onClick={() => setIsDrawerOpen(false)}
             tone="onDark"
           />
@@ -537,7 +552,25 @@ export function Header({
         cartUpsellProduct3={cartUpsellProduct3}
         cartUpsellProduct4={cartUpsellProduct4}
       />
-      <SearchOverlay />
+      <SearchOverlay
+        texts={{
+          dialogLabel: searchDialogLabel,
+          placeholder: searchPlaceholder,
+          inputLabel: searchInputLabel,
+          clearText: searchClearText,
+          clearLabel: searchClearLabel,
+          closeLabel: searchCloseLabel,
+          loadingText: searchLoadingText,
+          resultsText: searchResultsText,
+          featuredText: searchFeaturedText,
+          noResultsText: searchNoResultsText,
+          quickFiltersTitle: searchQuickFiltersTitle,
+          quickFilters: searchQuickFilters,
+          resultCountText: searchResultCountText,
+          idleText: searchIdleText,
+          viewAllText: searchViewAllText,
+        }}
+      />
     </header>
   );
 }

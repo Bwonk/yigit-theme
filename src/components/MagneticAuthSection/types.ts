@@ -1,5 +1,5 @@
 // This file is auto-generated — do not edit manually.
-import type { IkasImageList, IkasImage } from "@ikas/bp-storefront";
+import type { IkasImageList, IkasImage, IkasNavigationLink } from "@ikas/bp-storefront";
 import type { ObjectFit } from "../../global-types";
 
 export interface Props {
@@ -47,4 +47,8 @@ export interface Props {
   panelBrandImage?: IkasImage | null;
   panelObjectFit?: ObjectFit;
   showPanelImageOverlay?: boolean;
+  termsLinkText?: string;
+  privacyLinkText?: string;
+  termsLink?: IkasNavigationLink | null;
+  privacyLink?: IkasNavigationLink | null;
 }

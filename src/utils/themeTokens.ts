@@ -228,13 +228,12 @@ export function typeClassById(id: string): string | undefined {
 }
 
 /** Map of Studio keyframe id → runtime token (from getThemeKeyframes). */
-export function keyframesById(): Map<string, { id: string; name: string; ref: string }> {
-  const map = new Map<string, { id: string; name: string; ref: string }>();
+export function keyframesById(): Map<string, { id: string; ref: string }> {
+  const map = new Map<string, { id: string; ref: string }>();
   for (const kf of getThemeKeyframes() ?? []) {
     if (!kf?.id) continue;
     map.set(kf.id, {
       id: kf.id,
-      name: kf.name ?? kf.id,
       ref: kf.ref ?? `_${kf.id}`,
     });
   }

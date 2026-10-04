@@ -36,7 +36,10 @@
   overflow: hidden;
   overflow-x: clip;
 
-  min-height: calc(100dvh - var(--hero-chrome));
+  /* İlk ekranı doldur ama piksel sınırları içinde kal: editör iframe'i
+     içerik yüksekliğine göre boyutlanabildiğinden saf 100dvh orada sonsuz
+     büyür / çok kısa kalır. */
+  min-height: clamp(480px, calc(100svh - var(--hero-chrome)), 960px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,10 +157,14 @@
   position: relative;
   width: 100%;
   max-width: 100%;
-  /* 4/5 oran VEYA kalan viewport — hangisi küçükse. Genişlik her zaman %100. */
-  height: min(
-    calc(100cqw * 5 / 4),
-    calc(100dvh - var(--hero-chrome) - (2 * var(--hero-pad-block)) - 8px)
+  /* 4/5 oran; viewport'a göre tavan ama piksel tabanı var → kısa/iframe
+     viewport'larda şerit gibi çökmez. Genişlik her zaman %100. */
+  height: auto;
+  aspect-ratio: 4 / 5;
+  max-height: clamp(
+    360px,
+    calc(100svh - var(--hero-chrome) - (2 * var(--hero-pad-block)) - 8px),
+    820px
   );
   border-radius: clamp(18px, 2.2vw, 34px);
   overflow: hidden;
@@ -298,9 +305,10 @@
   }
 
   .ikas-hero__media-wrapper {
-    height: min(
-      calc(100cqw * 5 / 4),
-      calc(100dvh - var(--hero-chrome) - (2 * var(--hero-pad-block)) - 4px)
+    max-height: clamp(
+      360px,
+      calc(100svh - var(--hero-chrome) - (2 * var(--hero-pad-block)) - 4px),
+      820px
     );
   }
 }
@@ -328,11 +336,8 @@
   }
 
   .ikas-hero__media-wrapper {
-    height: min(
-      calc(100cqw * 9 / 16),
-      340px,
-      calc(100dvh - var(--hero-chrome) - 220px)
-    );
+    aspect-ratio: 16 / 9;
+    max-height: 340px;
     border-radius: 24px;
   }
 
@@ -424,11 +429,8 @@
   }
 
   .ikas-hero__media-wrapper {
-    height: min(
-      calc(100cqw * 10 / 16),
-      200px,
-      calc(100dvh - var(--hero-chrome) - 280px)
-    );
+    aspect-ratio: 16 / 10;
+    max-height: 220px;
     border-radius: 18px;
   }
 
@@ -469,7 +471,8 @@
   }
 
   .ikas-hero__media-wrapper {
-    height: min(calc(100cqw * 1 / 2), 160px, 22dvh);
+    aspect-ratio: 2 / 1;
+    max-height: 160px;
   }
 }
 

@@ -49,8 +49,6 @@
 }
 
 .ikas-faq__reveal {
-  opacity: 0;
-  transform: translateY(16px);
   transition:
     opacity var(--faq-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1)),
     transform var(--faq-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1));
@@ -64,9 +62,10 @@
   transition-delay: 130ms;
 }
 
-.ikas-faq--inview .ikas-faq__reveal {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-faq--armed .ikas-faq__reveal {
+  opacity: 0;
+  transform: translateY(16px);
 }
 
 .ikas-faq__list {

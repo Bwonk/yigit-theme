@@ -5,6 +5,7 @@ import {
   IkasCustomerReview,
 } from "@ikas/bp-storefront";
 import { applyLayoutTokens, ThemeSetting, readSetting } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import { Props } from "./types";
 
 export interface CustomerReviewsSectionProps extends Props {
@@ -40,8 +41,12 @@ export function CustomerReviewsSection({
   const [listCount, setListCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [cardsVisible, setCardsVisible] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+  const cardsReveal = useReveal(gridRef, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -4% 0px",
+    enabled: !loading && !error && reviews.length > 0,
+  });
 
   const layoutTokens = applyLayoutTokens({
     includePy: true,
@@ -86,28 +91,6 @@ export function CustomerReviewsSection({
     };
   }, [product?.id]);
 
-  useEffect(() => {
-    const el = gridRef.current;
-    if (!el || reviews.length === 0) return;
-
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setCardsVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setCardsVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [reviews.length]);
 
   const avgRating =
     typeof product?.averageRating === "number" && product.averageRating > 0
@@ -188,9 +171,7 @@ export function CustomerReviewsSection({
         {!loading && !error && reviews.length > 0 && (
           <div
             ref={gridRef}
-            className={`ikas-reviews__grid${
-              cardsVisible ? " ikas-reviews__grid--inview" : ""
-            }`}
+            className={`ikas-reviews__grid ${revealClasses("ikas-reviews__grid", cardsReveal)}`.trim()}
           >
             {reviews.map((rev, idx) => {
               const author = authorLabel(rev);

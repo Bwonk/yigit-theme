@@ -21,6 +21,9 @@ export function PressTicker({
   title = "BASINDA BİZ",
   logos,
   speed = 25,
+  textLogos,
+  ariaLabel,
+  logoAltText,
   backgroundColor,
   className = "",
 }: PressTickerProps) {
@@ -42,28 +45,27 @@ export function PressTicker({
     "--hover-transition": hoverAnim,
   } as Record<string, string | undefined>;
 
-  const defaultPressLogos = [
-    "FORBES",
-    "BLOOMBERG",
-    "GQ MAGAZINE",
-    "VOGUE",
-    "WIRED",
-    "TRAVEL + LEISURE",
-  ];
-
-  const logoAssets = logos?.images || [];
+  // Görsel logolar öncelikli; yoksa merchant'ın girdiği metin logolar.
+  // İkisi de boşsa bölüm render edilmez (sahte basın logosu gösterilmez).
+  const logoAssets = (logos?.images || []).filter((img) => Boolean(getDefaultSrc(img)));
   const hasLogos = logoAssets.length > 0;
+  const textItems = (textLogos ?? "")
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean);
 
-  // Duplicate for seamless 100% loop
-  const displayItems = hasLogos
-    ? [...logoAssets, ...logoAssets]
-    : [...defaultPressLogos, ...defaultPressLogos];
+  const baseItems: Array<(typeof logoAssets)[number] | string> = hasLogos ? logoAssets : textItems;
+  if (baseItems.length === 0) return null;
+
+  // Sorunsuz döngü için liste ikiye katlanır; kopya yardımcı teknolojilerden gizlenir.
+  const displayItems = [...baseItems, ...baseItems];
+  const half = baseItems.length;
 
   return (
     <section
       className={`ikas-press-ticker ${className}`.trim()}
       style={inlineStyles}
-      aria-label="Basın Logoları"
+      aria-label={ariaLabel}
       lang="tr"
     >
       {title && (
@@ -78,25 +80,29 @@ export function PressTicker({
           style={{ animationName: ThemeKeyframeRef.marquee }}
         >
           {displayItems.map((item, idx) => {
-            if (hasLogos && typeof item !== "string") {
-              const src = getDefaultSrc(item);
+            const isClone = idx >= half;
+            if (typeof item !== "string") {
               return (
-                <div key={idx} className="ikas-press-ticker__logo-item">
-                  {src ? (
-                    <img
-                      src={src}
-                      alt={`Basın Logosu ${idx + 1}`}
-                      className="ikas-press-ticker__logo-img"
-                    />
-                  ) : (
-                    <span className="ikas-press-ticker__logo-text">PRESS</span>
-                  )}
+                <div
+                  key={idx}
+                  className="ikas-press-ticker__logo-item"
+                  aria-hidden={isClone ? "true" : undefined}
+                >
+                  <img
+                    src={getDefaultSrc(item)}
+                    alt={isClone ? "" : (logoAltText ?? "").replace("{index}", String(idx + 1))}
+                    className="ikas-press-ticker__logo-img"
+                  />
                 </div>
               );
             }
 
             return (
-              <div key={idx} className="ikas-press-ticker__logo-item">
+              <div
+                key={idx}
+                className="ikas-press-ticker__logo-item"
+                aria-hidden={isClone ? "true" : undefined}
+              >
                 <span className="ikas-press-ticker__logo-text">
                   {item as string}
                 </span>

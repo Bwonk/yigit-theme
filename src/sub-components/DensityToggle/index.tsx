@@ -5,6 +5,7 @@ export interface Props {
   onDensityChange: (d: "comfy" | "dense") => void;
   comfyLabel?: string;
   denseLabel?: string;
+  groupLabel?: string;
   className?: string;
 }
 
@@ -13,13 +14,14 @@ function DensityToggle({
   onDensityChange,
   comfyLabel = "Rahat görünüm",
   denseLabel = "Sık görünüm",
+  groupLabel,
   className = "",
 }: Props) {
   return (
     <div
       className={`ikas-density-toggle ${className}`.trim()}
       role="group"
-      aria-label="Görünüm"
+      aria-label={groupLabel}
     >
       <button
         type="button"

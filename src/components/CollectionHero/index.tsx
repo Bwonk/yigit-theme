@@ -12,6 +12,7 @@ export interface CollectionHeroProps extends Props {
 export function CollectionHero({
   title = "",
   description = "",
+  fallbackTitle,
   kickLabel = "KOLEKSİYON · 2026",
   image,
   imageAlt = "Koleksiyon görseli",
@@ -44,7 +45,7 @@ export function CollectionHero({
     null;
 
   // Boş title/description → kategori page data; override varsa merchant metni kazanır.
-  const displayTitle = (title && title.trim()) || cat?.name || "Tüm Ürünler";
+  const displayTitle = (title && title.trim()) || cat?.name || fallbackTitle || "";
   const displayDesc = (description && description.trim()) || cat?.description || "";
   const categoryImage = image || cat?.image || null;
   const imgSrc = categoryImage ? getDefaultSrc(categoryImage) : null;

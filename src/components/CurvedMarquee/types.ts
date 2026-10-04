@@ -1,4 +1,6 @@
 // This file is auto-generated — do not edit manually.
+import type { VelocityBeltDirection } from "../../global-types";
+
 export interface Props {
   /** SVG eğrisi üzerinde akacak kampanya metni */
   text?: string;
@@ -7,7 +9,7 @@ export interface Props {
   /** Tur süresi saniye (düşük = hızlı, yüksek = yavaş) */
   speed?: number;
   /** Metnin kayma yönü (Sola / Sağa) */
-  direction?: string;
+  direction?: VelocityBeltDirection;
   /** Eğrinin kavis miktarı (-120 ile +120 arası, 0 = Düz çizgi, 20 = Hafif zarif kavis) */
   curveAmount?: number;
   /** Font punto büyüklüğü (px) */

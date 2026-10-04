@@ -11,10 +11,23 @@ export interface SearchPageSectionProps extends Props {
 export function SearchPageSection({
   productList,
   title,
-  searchPlaceholder = "Ürün veya kategori ara...",
-  searchButtonText = "Ara",
+  searchPlaceholder,
+  searchButtonText,
   emptyTitle,
   emptyDescription,
+  resultsTitleWithKeyword,
+  productCountText,
+  emptyTitleWithKeyword,
+  suggestedKeywordsTitle,
+  suggestedKeywords,
+  suggestionAriaLabel,
+  searchInputLabel,
+  searchClearLabel,
+  loadingLabel,
+  loadMoreText,
+  loadingMoreText,
+  discountBadgeText,
+  quickAddAriaLabel,
   backgroundColor,
   className = "",
 }: SearchPageSectionProps) {
@@ -72,24 +85,34 @@ export function SearchPageSection({
             productList={productList}
             placeholder={searchPlaceholder}
             buttonText={searchButtonText}
+            inputLabel={searchInputLabel}
+            clearLabel={searchClearLabel}
             onSearch={handleSearch}
           />
         </div>
 
         {/* 2. YÜKLEME DURUMU (LOADING INDICATOR / SKELETON) */}
-        {isLoading && (
-          <div className="geeny-search-page__loading" aria-label="Arama sonuçları yükleniyor">
+        {/* Sonraki sayfa yüklenirken (load more) grid yerinde kalır; tam sayfa
+            spinner yalnızca henüz gösterilecek ürün yokken. */}
+        {isLoading && !hasProducts && (
+          <div className="geeny-search-page__loading" aria-label={loadingLabel}>
             <div className="geeny-search-page__spinner" />
           </div>
         )}
 
         {/* 3. ARAMA SONUÇLARI IZGARASI (SONUÇ VARSA) */}
-        {!isLoading && showGrid && (
+        {showGrid && (
           <SearchResultsGrid
             productList={productList}
             products={displayProducts}
             searchKeyword={searchKeyword}
             title={title}
+            titleWithKeyword={resultsTitleWithKeyword}
+            productCountText={productCountText}
+            loadMoreText={loadMoreText}
+            loadingMoreText={loadingMoreText}
+            discountBadgeText={discountBadgeText}
+            quickAddAriaLabel={quickAddAriaLabel}
           />
         )}
 
@@ -99,7 +122,11 @@ export function SearchPageSection({
             productList={productList}
             searchKeyword={searchKeyword}
             title={emptyTitle}
+            titleWithKeyword={emptyTitleWithKeyword}
             description={emptyDescription}
+            suggestedKeywordsTitle={suggestedKeywordsTitle}
+            suggestedKeywords={suggestedKeywords}
+            suggestionAriaLabel={suggestionAriaLabel}
             onSelectKeyword={handleSearch}
           />
         )}

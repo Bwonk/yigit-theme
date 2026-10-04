@@ -78,7 +78,10 @@ const ProfilePanel = observer(function ProfilePanel({
         className="ikas-account__form"
         onSubmit={(e) => {
           e.preventDefault();
-          void submitAccountInfoForm(accountForm);
+          if (accountForm.isSubmitting) return;
+          submitAccountInfoForm(accountForm).catch((err) =>
+            console.error("Hesap bilgisi kaydetme hatası:", err)
+          );
         }}
         noValidate
       >
@@ -216,6 +219,8 @@ export function AccountDashboard({
   deleteConfirmTitle = "Adresi sil",
   deleteConfirmMessage = "Bu adresi silmek istediğine emin misin?",
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
   removeFavoriteText = "FAVORİDEN ÇIKAR",
   addressTitleLabel = "BAŞLIK",
   addressLineLabel = "ADRES",
@@ -384,6 +389,8 @@ export function AccountDashboard({
               emptyText={favoritesEmptyText}
               shopButtonText={shopButtonText}
               addToCartText={addToCartText}
+              discountBadgeText={discountBadgeText}
+              quickAddAriaLabel={quickAddAriaLabel}
               removeFavoriteText={removeFavoriteText}
             />
           )}

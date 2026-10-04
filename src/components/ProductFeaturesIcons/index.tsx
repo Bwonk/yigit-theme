@@ -1,5 +1,6 @@
-import { useRef, useEffect, useState } from "preact/hooks";
+import { useRef } from "preact/hooks";
 import { applyLayoutTokens, ThemeSetting, readSetting } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import { Props } from "./types";
 
 export interface ProductFeaturesIconsProps extends Props {
@@ -75,31 +76,8 @@ export function ProductFeaturesIcons({
   className = "",
 }: ProductFeaturesIconsProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reveal = useReveal(sectionRef, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setIsVisible(true);
-          observer.disconnect();
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const layoutTokens = applyLayoutTokens({
     includePy: true,
@@ -129,7 +107,7 @@ export function ProductFeaturesIcons({
   return (
     <section
       ref={sectionRef}
-      className={`ikas-features${isVisible ? " ikas-features--visible" : ""} ${className}`.trim()}
+      className={`ikas-features ${revealClasses("ikas-features", reveal)} ${className}`.trim()}
       style={inlineStyles}
       lang="tr"
     >

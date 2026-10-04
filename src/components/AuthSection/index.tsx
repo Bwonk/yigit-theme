@@ -65,6 +65,10 @@ export function AuthSection({
   registerSubmitText = "HESAP OLUŞTUR",
   registerSubmittingText = "OLUŞTURULUYOR...",
   agreementConsentText = "Kullanım koşulları ve gizlilik politikasını okudum, onaylıyorum.",
+  termsLinkText,
+  termsLink,
+  privacyLinkText,
+  privacyLink,
   heroImage,
   heroImageAlt = "Infinity seyahat atmosferi",
   heroTag = "SS26 · SEYAHAT SERİSİ",
@@ -264,6 +268,10 @@ export function AuthSection({
                   passwordConfirmPlaceholder={passwordConfirmPlaceholder}
                   passwordMismatchText={passwordMismatchText}
                   agreementConsentText={agreementConsentText}
+                  termsLinkText={termsLinkText}
+                  termsLink={termsLink}
+                  privacyLinkText={privacyLinkText}
+                  privacyLink={privacyLink}
                   submitText={registerSubmitText}
                   submittingText={registerSubmittingText}
                   showPasswordLabel={showPasswordLabel}

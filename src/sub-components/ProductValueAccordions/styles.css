@@ -64,8 +64,6 @@
 
 /* Scroll reveal */
 .ikas-details__reveal {
-  opacity: 0;
-  transform: translateY(18px);
   transition:
     opacity var(--details-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1)),
     transform var(--details-fade, 0.6s cubic-bezier(0.22, 1, 0.36, 1));
@@ -79,9 +77,10 @@
   transition-delay: 140ms;
 }
 
-.ikas-details--inview .ikas-details__reveal {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-details--armed .ikas-details__reveal {
+  opacity: 0;
+  transform: translateY(18px);
 }
 
 .ikas-details__list {

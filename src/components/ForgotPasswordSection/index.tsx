@@ -85,7 +85,10 @@ const ForgotForm = observer(function ForgotForm({
         className="ikas-forgot__form"
         onSubmit={(e) => {
           e.preventDefault();
-          void submitForgotPasswordForm(forgotForm);
+          if (forgotForm.isSubmitting) return;
+          submitForgotPasswordForm(forgotForm).catch((err) =>
+            console.error("Şifre sıfırlama hatası:", err)
+          );
         }}
         noValidate
       >

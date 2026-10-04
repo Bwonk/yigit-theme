@@ -30,7 +30,7 @@ import QuantityStepper from "../QuantityStepper";
 import CartShippingNotice from "../CartShippingNotice";
 import CartCouponForm from "../CartCouponForm";
 import CartLineBundleChildren from "../CartLineBundleChildren";
-import { useFocusTrap, inertProps } from "../../utils/a11y";
+import { useFocusTrap, inertProps, useBodyScrollLock } from "../../utils/a11y";
 
 export interface Props {
   cartDrawerTitle?: string;
@@ -308,16 +308,7 @@ export function CartDrawer({
     onEscape: handleClose,
   });
 
-  useEffect(() => {
-    if (activeOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [activeOpen]);
+  useBodyScrollLock(activeOpen);
 
   const drawerWidthSetting = getThemeSetting("_YDHxutBHyk");
   const checkoutBtnHeightSetting = getThemeSetting("_RtoVmtuDGF");
@@ -367,7 +358,7 @@ export function CartDrawer({
 
   const formattedTotal = cart
     ? getIkasOrderFormattedTotalFinalPrice(cart)
-    : "₺ 0";
+    : "";
   const couponAdjustment = cart
     ? getIkasOrderCouponAdjustment(cart)
     : undefined;
@@ -455,7 +446,7 @@ export function CartDrawer({
                     : null;
                   const imgObj = (variantImage as any)?.image || variantImage;
                   const imgSrc = imgObj ? getDefaultSrc(imgObj) : null;
-                  const title = item.variant?.name || "Ürün";
+                  const title = item.variant?.name || "";
                   const href = item.variant
                     ? getIkasOrderLineVariantHref(item.variant)
                     : undefined;

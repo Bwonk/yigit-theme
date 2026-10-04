@@ -429,8 +429,6 @@
   letter-spacing: 0.12em;
   color: var(--xGFwg5Zqpf, #6e7a8c);
   text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(8px);
   transition:
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -444,9 +442,10 @@
   transition-delay: 140ms;
 }
 
-.ikas-buy-box__trust--inview .ikas-buy-box__trust-item {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-buy-box__trust--armed .ikas-buy-box__trust-item {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 .ikas-buy-box__trust-item svg {

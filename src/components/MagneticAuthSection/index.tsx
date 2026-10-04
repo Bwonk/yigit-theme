@@ -136,6 +136,10 @@ export function MagneticAuthSection({
   passwordConfirmPlaceholder = "Şifreni tekrar gir",
   passwordMismatchText = "Şifreler eşleşmiyor",
   agreementConsentText = "Kullanım koşulları ve gizlilik politikasını okudum, onaylıyorum.",
+  termsLinkText,
+  termsLink,
+  privacyLinkText,
+  privacyLink,
   registerSubmitText = "HESAP OLUŞTUR",
   registerSubmittingText = "OLUŞTURULUYOR...",
   showPasswordLabel = "Şifreyi göster",
@@ -769,6 +773,10 @@ export function MagneticAuthSection({
                     passwordConfirmPlaceholder={passwordConfirmPlaceholder}
                     passwordMismatchText={passwordMismatchText}
                     agreementConsentText={agreementConsentText}
+                    termsLinkText={termsLinkText}
+                    termsLink={termsLink}
+                    privacyLinkText={privacyLinkText}
+                    privacyLink={privacyLink}
                     submitText={registerSubmitText}
                     submittingText={registerSubmittingText}
                     showPasswordLabel={showPasswordLabel}

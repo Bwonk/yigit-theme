@@ -57,6 +57,10 @@
   display: block;
 }
 
+.ikas-video-demo__placeholder {
+  background-color: var(--cdFDkBbKkc);
+}
+
 .ikas-video-demo__overlay {
   position: absolute;
   inset: 0;

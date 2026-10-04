@@ -20,4 +20,5 @@ export interface Props {
   categoryStatLabel?: string;
   customStatLabel?: string;
   customStatValue?: string;
+  fallbackTitle?: string;
 }

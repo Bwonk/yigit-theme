@@ -32,7 +32,7 @@ export interface Props {
  *   PILL_SECONDARY — Pill Grow: beyaz bg, hover → merkezden lacivert grow
  */
 export function Button({
-  text = "İncele",
+  text = "",
   variant = "PRIMARY",
   link,
   fullWidth = false,

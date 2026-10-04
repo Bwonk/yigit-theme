@@ -6,7 +6,6 @@ import {
   getThemeSetting,
 } from "@ikas/bp-storefront";
 import CartItemsList from "../../sub-components/CartItemsList";
-import CartOrderNote from "../../sub-components/CartOrderNote";
 import CartSummaryCard from "../../sub-components/CartSummaryCard";
 import Button from "../../sub-components/Button";
 import { Props } from "./types";
@@ -42,8 +41,6 @@ export function CartPageSection({
   promoPlaceholder = "Kodu gir",
   promoApplyText = "Uygula",
   promoRemoveText = "Kaldır",
-  orderNoteLabel = "Sipariş Notu Ekleyin",
-  orderNotePlaceholder = "Hediyelik paket talebi veya kargo teslimat notlarınızı buraya yazabilirsiniz...",
   backgroundColor,
   className = "",
 }: CartPageSectionProps) {
@@ -112,10 +109,6 @@ export function CartPageSection({
                 decreaseQtyLabel={decreaseQtyLabel}
                 increaseQtyLabel={increaseQtyLabel}
                 bundleQtyLabel={bundleQtyLabel}
-              />
-              <CartOrderNote
-                label={orderNoteLabel}
-                placeholder={orderNotePlaceholder}
               />
             </div>
 

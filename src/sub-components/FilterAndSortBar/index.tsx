@@ -7,6 +7,7 @@ import {
   IkasProductList,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { inertProps } from "../../utils/a11y";
 import FilterDropdown from "../FilterDropdown";
 import SortControl from "../SortControl";
 import DensityToggle from "../DensityToggle";
@@ -25,8 +26,10 @@ export interface Props {
   onDensityChange?: (d: "comfy" | "dense") => void;
   densityComfyLabel?: string;
   densityDenseLabel?: string;
+  densityGroupLabel?: string;
   sheetFiltersTitle?: string;
   sheetSortTitle?: string;
+  sheetCloseLabel?: string;
   onFilterChange?: () => void;
   className?: string;
 }
@@ -43,8 +46,10 @@ export function FilterAndSortBar({
   onDensityChange,
   densityComfyLabel = "Rahat görünüm",
   densityDenseLabel = "Sık görünüm",
+  densityGroupLabel,
   sheetFiltersTitle = "Filtreler",
   sheetSortTitle = "Sıralama",
+  sheetCloseLabel,
   onFilterChange,
   className = "",
 }: Props) {
@@ -229,6 +234,7 @@ export function FilterAndSortBar({
                   onDensityChange={onDensityChange}
                   comfyLabel={densityComfyLabel}
                   denseLabel={densityDenseLabel}
+                  groupLabel={densityGroupLabel}
                 />
               )}
             </div>
@@ -239,7 +245,7 @@ export function FilterAndSortBar({
               className="ikas-filter-bar__chips"
               data-collapsed={slim ? "true" : "false"}
               aria-hidden={slim ? "true" : undefined}
-              {...({ inert: slim ? "" : undefined } as any)}
+              {...inertProps(slim)}
             >
               <div className="ikas-filter-bar__chips-inner">
                 <ActiveFilterChips
@@ -262,6 +268,7 @@ export function FilterAndSortBar({
         onChange={handleChange}
         filtersTitle={sheetFiltersTitle}
         sortTitle={sheetSortTitle}
+        closeLabel={sheetCloseLabel}
         clearAllText={clearAllFiltersText}
         showResultsText={showResultsText}
       />

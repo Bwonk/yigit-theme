@@ -177,6 +177,10 @@ export function ProductMediaGallery({
   const [thumbsFade, setThumbsFade] = useState({ top: false, bottom: false });
   const [mediaReady, setMediaReady] = useState<Record<string, boolean>>({});
   const stageRef = useRef<HTMLDivElement>(null);
+  // Programatik (autoplay / varyant / thumb) kaydırma hedefi. Smooth scroll
+  // sürerken scroll dinleyicisi ara index'leri yazıp hedefi bozmasın.
+  const scrollTargetRef = useRef<number | null>(null);
+  const scrollTargetTimerRef = useRef(0);
   const thumbsRailRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const reduceMotionRef = useRef(false);
@@ -368,6 +372,10 @@ export function ProductMediaGallery({
         const w = stage.clientWidth || 1;
         const idx = Math.round(stage.scrollLeft / w);
         const next = Math.max(0, Math.min(imageCount - 1, idx));
+        if (scrollTargetRef.current !== null) {
+          if (next === scrollTargetRef.current) scrollTargetRef.current = null;
+          return;
+        }
         setSelectedIndex((prev) => {
           if (prev === next) return prev;
           setStoryTick((t) => t + 1);
@@ -379,6 +387,33 @@ export function ProductMediaGallery({
     stage.addEventListener("scroll", onScroll, { passive: true });
     return () => stage.removeEventListener("scroll", onScroll);
   }, [storyEnabled, imageCount]);
+
+  /** Mobil yatay şeritte stage'i verilen görsele kaydırır (masaüstünde no-op). */
+  const scrollStageTo = (index: number) => {
+    const stage = stageRef.current;
+    if (!stage || window.matchMedia("(min-width: 992px)").matches) return;
+    const w = stage.clientWidth || 1;
+    if (Math.round(stage.scrollLeft / w) === index) return;
+    scrollTargetRef.current = index;
+    window.clearTimeout(scrollTargetTimerRef.current);
+    // Kullanıcı smooth scroll'u keserse hedef sonsuza dek beklemesin.
+    scrollTargetTimerRef.current = window.setTimeout(() => {
+      scrollTargetRef.current = null;
+    }, 900);
+    stage.scrollTo({
+      left: index * w,
+      behavior: reduceMotionRef.current ? "auto" : "smooth",
+    });
+  };
+
+  // Autoplay ve varyant senkronu yalnızca index'i değiştirir; mobil şeritte
+  // görünen görsel de o index'e kaysın (yoksa sayaç ilerler, görsel durur).
+  useEffect(() => {
+    scrollStageTo(activeIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex]);
+
+  useEffect(() => () => window.clearTimeout(scrollTargetTimerRef.current), []);
 
   /** Variant seç + window scroll konumunu kilitle (URL yazma) */
   const selectVariantKeepScroll = (vv: IkasVariantValue) => {
@@ -415,13 +450,7 @@ export function ProductMediaGallery({
     setSelectedIndex(next);
     setStoryTick((t) => t + 1);
 
-    const stage = stageRef.current;
-    if (stage && !window.matchMedia("(min-width: 992px)").matches) {
-      stage.scrollTo({
-        left: next * stage.clientWidth,
-        behavior: reduceMotionRef.current ? "auto" : "smooth",
-      });
-    }
+    scrollStageTo(next);
 
     if (syncVariant) {
       const vv = items[next]?.variantValue;

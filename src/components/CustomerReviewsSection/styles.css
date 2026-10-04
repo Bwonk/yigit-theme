@@ -155,8 +155,6 @@
   background-color: var(--24KlcgGmm9);
   min-width: 0;
   box-sizing: border-box;
-  opacity: 0;
-  transform: translateY(14px);
   transition:
     opacity var(--reviews-fade, 0.55s cubic-bezier(0.22, 1, 0.36, 1)),
     transform var(--reviews-fade, 0.55s cubic-bezier(0.22, 1, 0.36, 1)),
@@ -164,9 +162,10 @@
   transition-delay: var(--stagger, 0ms);
 }
 
-.ikas-reviews__grid--inview .ikas-reviews__card {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-reviews__grid--armed .ikas-reviews__card {
+  opacity: 0;
+  transform: translateY(14px);
 }
 
 .ikas-reviews__card-top {

@@ -3,6 +3,7 @@ import { getThemeSetting } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import CloseButton from "../CloseButton";
 import PortalScope from "../PortalScope";
+import { useFocusTrap, useBodyScrollLock } from "../../utils/a11y";
 
 export interface SizeGuideRow {
   label: string;
@@ -17,7 +18,7 @@ export interface Props {
   rows?: SizeGuideRow[];
   note?: string;
   closeLabel?: string;
-  /** Trigger element to restore focus on close */
+  /** @deprecated Odak artık useFocusTrap ile otomatik iade edilir. */
   returnFocusRef?: { current: HTMLElement | null };
 }
 
@@ -29,12 +30,9 @@ export function SizeGuideDrawer({
   rows = [],
   note = "Emin değilsen Standart ile başla; Mini çocuk ve dar koltuklar için.",
   closeLabel = "Kapat",
-  returnFocusRef,
 }: Props) {
   const [mounted, setMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const closeBtnWrapRef = useRef<HTMLDivElement>(null);
-  const wasOpenRef = useRef(false);
   const drawerAnimSetting = getThemeSetting("_rTI75Www8J");
   const drawerAnim =
     drawerAnimSetting?.value ||
@@ -44,42 +42,11 @@ export function SizeGuideDrawer({
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (!open) {
-      if (wasOpenRef.current) {
-        // Odak, kapanış animasyonu (~420ms) bittikten sonra dönsün
-        const target = returnFocusRef?.current;
-        const t = window.setTimeout(() => {
-          if (target && typeof target.focus === "function") target.focus();
-        }, 420);
-        wasOpenRef.current = false;
-        return () => window.clearTimeout(t);
-      }
-      wasOpenRef.current = false;
-      return;
-    }
-
-    wasOpenRef.current = true;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-
-    window.requestAnimationFrame(() => {
-      const btn = closeBtnWrapRef.current?.querySelector(
-        "button"
-      ) as HTMLButtonElement | null;
-      btn?.focus();
-    });
-
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open, onClose, returnFocusRef]);
+  // ESC, Tab döngüsü, arka plan inert ve kapanışta odağın tetikleyiciye
+  // dönmesi useFocusTrap'te. onClose ref üzerinden okunur → ProductBuyBox'ın
+  // her render'da yeni onClose vermesi odağı kapat butonuna geri çalmaz.
+  useFocusTrap({ active: open, containerRef: panelRef, onEscape: onClose });
+  useBodyScrollLock(open);
 
   const visibleRows = (rows || []).filter((r) => r.label && r.value);
 
@@ -113,9 +80,7 @@ export function SizeGuideDrawer({
               {title}
             </h2>
           )}
-          <div ref={closeBtnWrapRef}>
-            <CloseButton ariaLabel={closeLabel} onClick={onClose} />
-          </div>
+          <CloseButton ariaLabel={closeLabel} onClick={onClose} />
         </div>
 
         <div className="ikas-size-guide__body">

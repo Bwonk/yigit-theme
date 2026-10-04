@@ -69,7 +69,7 @@ export function CartItemsList({
           : null;
         const imgObj = (variantImage as any)?.image || variantImage;
         const imgSrc = imgObj ? getDefaultSrc(imgObj) : null;
-        const title = item.variant?.name || "Ürün";
+        const title = item.variant?.name || "";
         const href = item.variant
           ? getIkasOrderLineVariantHref(item.variant)
           : undefined;

@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { applyLayoutTokens } from "../../utils/themeTokens";
 import FilterAndSortBar from "../../sub-components/FilterAndSortBar";
 import ProductGrid from "../../sub-components/ProductGrid";
@@ -34,9 +34,13 @@ export function CollectionSection({
   shownCountLabel = "Gösterilen",
   densityComfyLabel = "Rahat görünüm",
   densityDenseLabel = "Sık görünüm",
+  densityGroupLabel,
   sheetFiltersTitle = "Filtreler",
   sheetSortTitle = "Sıralama",
+  sheetCloseLabel,
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
   className = "",
@@ -50,9 +54,13 @@ export function CollectionSection({
     ...layoutTokens,
   };
 
+  const fadeTimerRef = useRef(0);
+  useEffect(() => () => window.clearTimeout(fadeTimerRef.current), []);
+
   const triggerFade = () => {
     setIsFading(true);
-    window.setTimeout(() => setIsFading(false), 280);
+    window.clearTimeout(fadeTimerRef.current);
+    fadeTimerRef.current = window.setTimeout(() => setIsFading(false), 280);
   };
 
   return (
@@ -74,8 +82,10 @@ export function CollectionSection({
           onDensityChange={setDensity}
           densityComfyLabel={densityComfyLabel}
           densityDenseLabel={densityDenseLabel}
+          densityGroupLabel={densityGroupLabel}
           sheetFiltersTitle={sheetFiltersTitle}
           sheetSortTitle={sheetSortTitle}
+          sheetCloseLabel={sheetCloseLabel}
           onFilterChange={triggerFade}
         />
 
@@ -91,6 +101,8 @@ export function CollectionSection({
           emptyNoProductsTitle={emptyNoProductsTitle}
           emptyNoProductsMessage={emptyNoProductsDescription}
           addToCartText={addToCartText}
+          discountBadgeText={discountBadgeText}
+          quickAddAriaLabel={quickAddAriaLabel}
           addingToCartText={addingToCartText}
           soldOutText={soldOutText}
           showCategoryLabel

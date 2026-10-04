@@ -151,14 +151,9 @@ export function HeroBanner({
                   </svg>
                 }
                 onClick={() => {
-                  const pLink = primaryButtonLink as any;
-                  if (pLink?.href) {
-                    Router.navigate(pLink.href);
-                  } else if (pLink?.pageType) {
-                    Router.navigateToPage(pLink.pageType, pLink.params);
-                  } else {
-                    Router.navigateToPage("CATEGORY");
-                  }
+                  const href = primaryButtonLink?.href;
+                  if (href) Router.navigate(href);
+                  else Router.navigateToPage("CATEGORY");
                 }}
               />
             )}
@@ -169,11 +164,9 @@ export function HeroBanner({
                 className="ikas-hero__secondary-link"
                 text={secondaryButtonText}
                 onClick={() => {
-                  const sLink = secondaryButtonLink as any;
-                  if (sLink?.href) {
-                    Router.navigate(sLink.href);
-                  } else if (sLink?.pageType) {
-                    Router.navigateToPage(sLink.pageType, sLink.params);
+                  const href = secondaryButtonLink?.href;
+                  if (href) {
+                    Router.navigate(href);
                   } else {
                     const el = document.getElementById("hikaye");
                     if (el) el.scrollIntoView({ behavior: "smooth" });

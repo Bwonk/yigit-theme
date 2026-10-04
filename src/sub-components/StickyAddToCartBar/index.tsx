@@ -14,6 +14,7 @@ import {
   IkasProduct,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { inertProps } from "../../utils/a11y";
 import Button from "../Button";
 
 export interface Props {
@@ -166,7 +167,7 @@ export function StickyAddToCartBar({
       style={inlineStyles}
       lang="tr"
       aria-hidden={!isVisible}
-      {...(!isVisible ? ({ inert: "" } as any) : {})}
+      {...inertProps(!isVisible)}
     >
       <div className="ikas-sticky-cart__container">
         <div className="ikas-sticky-cart__thumb">

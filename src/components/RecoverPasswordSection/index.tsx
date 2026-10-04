@@ -47,9 +47,12 @@ const RecoverForm = observer(function RecoverForm({
 }) {
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    const success = await submitRecoverPasswordForm(recoverForm);
-    if (success) {
-      Router.navigateToPage("LOGIN");
+    if (recoverForm.isSubmitting) return;
+    try {
+      const success = await submitRecoverPasswordForm(recoverForm);
+      if (success) Router.navigateToPage("LOGIN");
+    } catch (err) {
+      console.error("Şifre yenileme hatası:", err);
     }
   };
 

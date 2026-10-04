@@ -5,6 +5,14 @@ import PaginationLoadMore from "../PaginationLoadMore";
 
 export interface Props {
   title?: string;
+  /** `{keyword}` yer tutucusu arama kelimesiyle değiştirilir. */
+  titleWithKeyword?: string;
+  /** `{count}` yer tutucusu ürün sayısıyla değiştirilir. */
+  productCountText?: string;
+  loadMoreText?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  loadingMoreText?: string;
   searchKeyword?: string;
   productList?: IkasProductList;
   products?: IkasProduct[];
@@ -15,6 +23,12 @@ export interface Props {
 export function SearchResultsGrid({
   searchKeyword,
   title,
+  titleWithKeyword,
+  productCountText,
+  loadMoreText,
+  discountBadgeText,
+  quickAddAriaLabel,
+  loadingMoreText,
   productList,
   products,
   className = "",
@@ -56,10 +70,9 @@ export function SearchResultsGrid({
     : "";
 
   const headingText =
-    title ||
-    (keywordText
-      ? `${keywordText} İÇİN ARAMA SONUÇLARI`
-      : "ARAMA SONUÇLARI");
+    keywordText && titleWithKeyword
+      ? titleWithKeyword.replace("{keyword}", keywordText)
+      : title;
 
   if (displayProducts.length === 0) {
     return null; // Return null if no products so EmptySearchState handles the empty condition
@@ -69,26 +82,38 @@ export function SearchResultsGrid({
     <section className={`geeny-search-results ${className}`.trim()} style={inlineStyles} lang="tr">
       <div className="geeny-search-results__header">
         <div className="geeny-search-results__title-wrapper">
-          <h2 className="geeny-search-results__title _sKAMD8d1LA">
-            {headingText}
-          </h2>
-          <span className="geeny-search-results__count-badge _eZyocyyd0F">
-            {totalCount} ÜRÜN
-          </span>
+          {headingText && (
+            <h2 className="geeny-search-results__title _sKAMD8d1LA">
+              {headingText}
+            </h2>
+          )}
+          {productCountText && (
+            <span className="geeny-search-results__count-badge _eZyocyyd0F">
+              {productCountText.replace("{count}", String(totalCount))}
+            </span>
+          )}
         </div>
       </div>
 
       <div className="geeny-search-results__grid">
         {displayProducts.map((product) => (
           <div key={product.id} className="geeny-search-results__grid-item">
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              discountBadgeText={discountBadgeText}
+              quickAddAriaLabel={quickAddAriaLabel}
+            />
           </div>
         ))}
       </div>
 
       {hasNextPage && productList && (
         <div className="geeny-search-results__pagination">
-          <PaginationLoadMore productList={productList} />
+          <PaginationLoadMore
+            productList={productList}
+            loadMoreText={loadMoreText}
+            loadingText={loadingMoreText}
+          />
         </div>
       )}
     </section>

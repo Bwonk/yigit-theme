@@ -439,9 +439,9 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
- * RESPONSIVE DÜZENLEME (<760px)
+ * RESPONSIVE DÜZENLEME (<768px — Mobile breakpoint)
  * ═══════════════════════════════════════════════════════════════════════ */
-@media (max-width: 760px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-header__nav {
     display: none;
   }

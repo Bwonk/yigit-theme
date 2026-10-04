@@ -12,7 +12,9 @@ import {
   IkasProductList,
   IkasProductFilter,
 } from "@ikas/bp-storefront";
+import { useRef } from "preact/hooks";
 import { observer } from "@ikas/component-utils";
+import { useFocusTrap } from "../../utils/a11y";
 import CloseButton from "../CloseButton";
 import Button from "../Button";
 
@@ -28,6 +30,7 @@ export interface Props {
   sortTitle?: string;
   clearAllText?: string;
   showResultsText?: string;
+  closeLabel?: string;
   className?: string;
 }
 
@@ -41,8 +44,13 @@ function MobileFilterSheet({
   sortTitle = "Sıralama",
   clearAllText = "TEMİZLE",
   showResultsText = "GÖSTER",
+  closeLabel = "Kapat",
   className = "",
 }: Props) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  // ESC ile kapanma + Tab döngüsü + kapanışta odağı tetikleyiciye iade.
+  useFocusTrap({ active: open, containerRef: panelRef, onEscape: onClose, skipBackgroundInert: true });
+
   if (!open) return null;
 
   const filters = (productList.filters ?? []).filter((f) => {
@@ -168,12 +176,13 @@ function MobileFilterSheet({
       onClick={onClose}
     >
       <div
+        ref={panelRef}
         className="ikas-filter-sheet__panel"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="ikas-filter-sheet__header">
           <span className="ikas-filter-sheet__title _eZyocyyd0F">{title}</span>
-          <CloseButton ariaLabel="Kapat" onClick={onClose} />
+          <CloseButton ariaLabel={closeLabel} onClick={onClose} />
         </div>
 
         <div className="ikas-filter-sheet__body">
@@ -215,7 +224,8 @@ function MobileFilterSheet({
             <Button
               text={`${count} ${showResultsText}`}
               variant="PILL_PRIMARY"
-              size="FULL_WIDTH"
+              size="NORMAL"
+              fullWidth
               onClick={onClose}
             />
           </div>

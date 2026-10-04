@@ -29,4 +29,8 @@ export interface Props {
   emptyNoProductsEyebrow?: string;
   emptyNoProductsTitle?: string;
   emptyNoProductsDescription?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  sheetCloseLabel?: string;
+  densityGroupLabel?: string;
 }

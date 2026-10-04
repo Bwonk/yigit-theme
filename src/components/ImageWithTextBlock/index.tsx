@@ -68,7 +68,7 @@ export function ImageWithTextBlock({
             {imgSrc ? (
               <img
                 src={imgSrc}
-                alt={title || "Detay Görseli"}
+                alt={title || ""}
                 className="ikas-image-text__img"
               />
             ) : (
@@ -99,14 +99,9 @@ export function ImageWithTextBlock({
               variant="PRIMARY"
               size="LARGE"
               onClick={() => {
-                const bLink = buttonLink as any;
-                if (bLink?.href) {
-                  Router.navigate(bLink.href);
-                } else if (bLink?.pageType) {
-                  Router.navigateToPage(bLink.pageType, bLink.params);
-                } else {
-                  Router.navigateToPage("CATEGORY");
-                }
+                const href = buttonLink?.href;
+                if (href) Router.navigate(href);
+                else Router.navigateToPage("CATEGORY");
               }}
             />
           )}

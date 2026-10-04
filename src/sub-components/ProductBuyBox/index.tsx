@@ -16,6 +16,7 @@ import {
   addItemToCart,
   isColorVariantValue,
   IkasProduct,
+  Router,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import Button from "../Button";
@@ -24,6 +25,7 @@ import ProductBundleProducts from "../ProductBundleProducts";
 import ProductCrossSellOffers from "../ProductCrossSellOffers";
 import QuantityStepper from "../QuantityStepper";
 import TextLink from "../TextLink";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import ProductSocialActions from "../ProductSocialActions";
 import PromotionCountdownBar from "../PromotionCountdownBar";
 
@@ -172,8 +174,12 @@ export function ProductBuyBox({
   const [isAdding, setIsAdding] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
-  const [trustVisible, setTrustVisible] = useState(false);
   const trustRef = useRef<HTMLUListElement>(null);
+  const trustReveal = useReveal(trustRef, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -4% 0px",
+    enabled: Boolean(trustShippingText || trustReturnText || trustWarrantyText),
+  });
   const sizeGuideTriggerRef = useRef<HTMLElement | null>(null);
 
   const actionAnimSetting = getThemeSetting("_bNtMCrOBsE"); // Animasyon / Buton ve Hover
@@ -188,26 +194,6 @@ export function ProductBuyBox({
     return () => window.clearTimeout(t);
   }, [justAdded]);
 
-  useEffect(() => {
-    const el = trustRef.current;
-    if (!el) return;
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setTrustVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setTrustVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.2, rootMargin: "0px 0px -4% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   const openSizeGuide = (e?: Event) => {
     const fromEvent = e?.currentTarget as HTMLElement | null;
@@ -273,19 +259,28 @@ export function ProductBuyBox({
         ? addedToCartText
         : addToCartText;
 
-  const handleAddToCart = async () => {
-    if (!variant || isAdding || !canAddToCart) return;
+  /** Sepete ekler; başarılıysa true döner. */
+  const addToCart = async (): Promise<boolean> => {
+    if (!variant || isAdding || !canAddToCart) return false;
     setIsAdding(true);
     try {
       const result = await addItemToCart(variant, product, quantity);
-      if ((result as any)?.success !== false) {
-        setJustAdded(true);
-      }
+      return result.success;
     } catch (err) {
       console.error("Sepete ekleme hatası:", err);
+      return false;
     } finally {
       setIsAdding(false);
     }
+  };
+
+  const handleAddToCart = async () => {
+    if (await addToCart()) setJustAdded(true);
+  };
+
+  // "Hemen Al": sepete ekle → başarılıysa doğrudan ödeme adımına geç.
+  const handleBuyNow = async () => {
+    if (await addToCart()) Router.navigateToPage("CHECKOUT");
   };
 
   const inlineStyles = {
@@ -537,8 +532,8 @@ export function ProductBuyBox({
           variant="PILL_SECONDARY"
           size="LARGE"
           fullWidth
-          disabled={!canAddToCart}
-          onClick={handleAddToCart}
+          disabled={!canAddToCart || isAdding}
+          onClick={handleBuyNow}
         />
       )}
 
@@ -546,9 +541,7 @@ export function ProductBuyBox({
       {(trustShippingText || trustReturnText || trustWarrantyText) && (
         <ul
           ref={trustRef}
-          className={`ikas-buy-box__trust${
-            trustVisible ? " ikas-buy-box__trust--inview" : ""
-          }`}
+          className={`ikas-buy-box__trust ${revealClasses("ikas-buy-box__trust", trustReveal)}`.trim()}
         >
           {trustShippingText && (
             <li className="ikas-buy-box__trust-item">
