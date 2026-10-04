@@ -93,7 +93,7 @@
   text-decoration: line-through;
 }
 
-@media (max-width: 600px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-cart-table__item {
     grid-template-columns: 68px minmax(0, 1fr);
     gap: 12px;

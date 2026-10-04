@@ -138,7 +138,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-forgot {
     padding: 32px var(--mobile-px, 16px) 56px;
     min-height: 60svh;

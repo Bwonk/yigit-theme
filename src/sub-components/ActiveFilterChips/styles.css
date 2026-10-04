@@ -94,7 +94,7 @@
   border-radius: 4px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
   .ikas-filter-chips {
     flex-wrap: wrap;
     overflow: visible;

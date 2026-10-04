@@ -359,7 +359,7 @@
 }
 
 /* ─── Stacked: phones + portrait tablets (< 900) ─── */
-@media (max-width: 899px) {
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-auth {
     display: block;
     justify-content: flex-start;
@@ -460,7 +460,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-auth__form-side {
     padding: 20px var(--mobile-px, 16px) 36px;
   }
@@ -478,7 +478,7 @@
 }
 
 /* Short phones: keep form reachable sooner */
-@media (max-width: 640px) and (max-height: 740px) {
+@media (max-width: bp(HDRapYMzn7)) and (max-height: 740px) {
   .ikas-auth__form-side {
     padding-top: 16px;
   }
@@ -489,7 +489,7 @@
 }
 
 /* Extreme zoom / tiny CSS viewport: keep inputs + CTA in first screen */
-@media (max-width: 899px) and (max-height: 420px) {
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
   .ikas-auth__form-side {
     padding: 12px var(--mobile-px, 16px) 20px;
   }

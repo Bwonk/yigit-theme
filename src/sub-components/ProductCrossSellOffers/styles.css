@@ -189,7 +189,7 @@
   opacity: 0.85;
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-cross-sell__toggle {
     grid-template-columns: auto auto 1fr;
     grid-template-rows: auto auto;

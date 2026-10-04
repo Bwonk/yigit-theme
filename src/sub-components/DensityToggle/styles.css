@@ -54,7 +54,7 @@
   color: var(--24KlcgGmm9);
 }
 
-@media (min-width: 900px) {
+@media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
   .ikas-density-toggle__btn {
     width: 38px;
     height: 34px;

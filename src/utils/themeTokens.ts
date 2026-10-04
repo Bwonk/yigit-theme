@@ -8,6 +8,7 @@ import {
   getThemeColors,
   getThemeTypography,
   getThemeKeyframes,
+  getThemeBreakpoints,
 } from "@ikas/bp-storefront";
 import { formatShadow } from "./theme";
 
@@ -112,6 +113,36 @@ export const ThemeBreakpoint = {
   /** max-width 1023px */
   desktop: "VzlJkKlXGT",
 } as const;
+
+type ThemeBreakpointKey = keyof typeof ThemeBreakpoint;
+
+/** Breakpoint token okunamazsa kullanılacak genişlikler (max-width eşikleri). */
+const BREAKPOINT_FALLBACK_PX: Record<ThemeBreakpointKey, number> = {
+  mobile: 767,
+  tablet: 991,
+  desktop: 1023,
+};
+
+/**
+ * Tema breakpoint genişliği (px). CSS'te `bp(<id>)` ile aynı kaynak;
+ * JS tarafındaki matchMedia eşikleri bununla CSS'le senkron kalır.
+ */
+export function breakpointPx(key: ThemeBreakpointKey): number {
+  const id = ThemeBreakpoint[key];
+  const hit = (getThemeBreakpoints() ?? []).find((b) => b?.id === id);
+  const width = Number(hit?.width);
+  return Number.isFinite(width) && width > 0 ? width : BREAKPOINT_FALLBACK_PX[key];
+}
+
+/** `(max-width: <bp>px)` — CSS'teki `max-width: bp(<id>)` karşılığı. */
+export function maxWidthQuery(key: ThemeBreakpointKey): string {
+  return `(max-width: ${breakpointPx(key)}px)`;
+}
+
+/** `(min-width: <bp + 1>px)` — CSS'teki `min-width: calc(bp(<id>) + 1px)` karşılığı. */
+export function minWidthAboveQuery(key: ThemeBreakpointKey): string {
+  return `(min-width: ${breakpointPx(key) + 1}px)`;
+}
 
 export const ThemeColorScheme = {
   defaultId: "Dy7o7Bp345",

@@ -16,6 +16,7 @@ import {
   IkasVariantValue,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { minWidthAboveQuery } from "../../utils/themeTokens";
 import { formatShadow } from "../../utils/theme";
 
 export interface Props {
@@ -252,7 +253,7 @@ export function ProductMediaGallery({
 
     const syncHeight = () => {
       // Desktop: rail = stage yüksekliği. Mobil yatay strip — max-height kaldır.
-      const desktop = window.matchMedia("(min-width: 992px)").matches;
+      const desktop = window.matchMedia(minWidthAboveQuery("tablet")).matches;
       if (desktop) {
         const h = stage.getBoundingClientRect().height;
         if (h > 0) {
@@ -294,7 +295,7 @@ export function ProductMediaGallery({
     ) as HTMLElement | null;
     if (!active) return;
 
-    const desktop = window.matchMedia("(min-width: 992px)").matches;
+    const desktop = window.matchMedia(minWidthAboveQuery("tablet")).matches;
     const behavior = reduceMotionRef.current ? "auto" : "smooth";
 
     if (desktop) {
@@ -381,7 +382,7 @@ export function ProductMediaGallery({
       queued = true;
       requestAnimationFrame(() => {
         queued = false;
-        if (window.matchMedia("(min-width: 992px)").matches) return;
+        if (window.matchMedia(minWidthAboveQuery("tablet")).matches) return;
         const w = stage.clientWidth || 1;
         const idx = Math.round(stage.scrollLeft / w);
         const next = Math.max(0, Math.min(imageCount - 1, idx));
@@ -404,7 +405,7 @@ export function ProductMediaGallery({
   /** Mobil yatay şeritte stage'i verilen görsele kaydırır (masaüstünde no-op). */
   const scrollStageTo = (index: number) => {
     const stage = stageRef.current;
-    if (!stage || window.matchMedia("(min-width: 992px)").matches) return;
+    if (!stage || window.matchMedia(minWidthAboveQuery("tablet")).matches) return;
     const w = stage.clientWidth || 1;
     if (Math.round(stage.scrollLeft / w) === index) return;
     scrollTargetRef.current = index;

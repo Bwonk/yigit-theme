@@ -126,7 +126,7 @@
   align-self: center;
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-recover {
     padding: 32px var(--mobile-px, 16px) 56px;
   }

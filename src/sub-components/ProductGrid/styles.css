@@ -76,7 +76,7 @@
   line-height: 1.6;
 }
 
-@media (min-width: 760px) {
+@media (min-width: calc(bp(HDRapYMzn7) + 1px)) {
   .ikas-product-grid__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }

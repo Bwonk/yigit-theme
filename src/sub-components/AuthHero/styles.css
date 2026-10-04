@@ -152,7 +152,7 @@
 }
 
 /* ─── Stacked: phones + portrait tablets ─── */
-@media (max-width: 899px) {
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-auth-hero {
     position: relative;
     height: min(36svh, 320px);
@@ -194,7 +194,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-auth-hero {
     height: min(32svh, 260px);
     padding: 10px var(--mobile-px, 16px) 0;
@@ -229,7 +229,7 @@
 }
 
 /* Very short phones / register fold budget */
-@media (max-width: 640px) and (max-height: 740px) {
+@media (max-width: bp(HDRapYMzn7)) and (max-height: 740px) {
   .ikas-auth-hero {
     height: min(28svh, 220px);
   }
@@ -244,7 +244,7 @@
 }
 
 /* Extreme zoom / tiny CSS height: shrink hero so form fits first screen */
-@media (max-width: 899px) and (max-height: 420px) {
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
   .ikas-auth-hero {
     height: min(18svh, 64px);
     padding: 6px var(--mobile-px, 16px) 0;

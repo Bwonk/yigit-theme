@@ -2,6 +2,7 @@ import { useEffect, useRef } from "preact/hooks";
 import { getDefaultSrc, getThemeSetting } from "@ikas/bp-storefront";
 import type { IkasImage } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { maxWidthQuery } from "../../utils/themeTokens";
 
 export interface Props {
   image?: IkasImage | null;
@@ -46,7 +47,7 @@ export function AuthHero({
       !enableParallax ||
       (typeof window !== "undefined" &&
         (window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-          window.matchMedia("(max-width: 899px)").matches ||
+          window.matchMedia(maxWidthQuery("tablet")).matches ||
           window.matchMedia(
             "(orientation: landscape) and (max-height: 560px)"
           ).matches));

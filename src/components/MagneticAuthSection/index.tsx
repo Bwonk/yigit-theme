@@ -21,6 +21,7 @@ import MagneticAuthBrandSide from "../../sub-components/MagneticAuthBrandSide";
 import MagneticAuthRow from "../../sub-components/MagneticAuthRow";
 import CloseButton from "../../sub-components/CloseButton";
 import { Props } from "./types";
+import { maxWidthQuery } from "../../utils/themeTokens";
 
 const BAR_TONE_COUNT = 5;
 
@@ -44,7 +45,7 @@ function clampBarCount(n?: number): number {
 
 function getVariant(): Variant {
   if (typeof window === "undefined") return "desktop";
-  if (window.matchMedia("(max-width: 767px)").matches) return "mobile";
+  if (window.matchMedia(maxWidthQuery("mobile")).matches) return "mobile";
   if (window.matchMedia("(max-width: 1199px)").matches) return "tablet";
   return "desktop";
 }

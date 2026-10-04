@@ -225,7 +225,7 @@
 }
 
 /* ── Tablet: wrap controls; slim’de yatay rail ────────────────────────── */
-@media (max-width: 1099px) and (min-width: 900px) {
+@media (max-width: 1099px) and (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
   .ikas-filter-bar__desktop-filters {
     flex-wrap: wrap;
   }
@@ -254,7 +254,7 @@
 }
 
 /* ── Mobile ──────────────────────────────────────────────────────────── */
-@media (max-width: 899px) {
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-filter-bar {
     --dock-overlap: 24px;
     --dock-radius: calc(var(--media-radius, 32px) * 0.62);

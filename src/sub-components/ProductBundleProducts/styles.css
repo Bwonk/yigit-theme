@@ -198,7 +198,7 @@
   cursor: not-allowed;
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-bundle__row {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
