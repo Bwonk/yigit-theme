@@ -1,0 +1,182 @@
+/* AuthRegisterForm — kayıt formuna özgü stiller (onay kutusu, şifre gücü).
+ * Ortak alan/input stilleri AuthLoginForm/styles.css içinde. Kurallar bölüm
+ * köküne (.ikas-auth / .ikas-mgauth) bağlıdır — bkz. AuthLoginForm/styles.css. */
+
+/* ─── AuthSection (.ikas-auth) ─── */
+
+.ikas-auth .ikas-auth__strength {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.ikas-auth .ikas-auth__strength-bar {
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--8ARbeTYsmD, #e4e7e8);
+}
+
+.ikas-auth .ikas-auth__strength-bar--on {
+  background: var(--sy8ZnXZdoG);
+}
+
+.ikas-auth .ikas-auth__consent-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ikas-auth .ikas-auth__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--xGFwg5Zqpf, #6e7a8c);
+  cursor: pointer;
+  transition: color 0.22s ease;
+}
+
+.ikas-auth .ikas-auth__consent:hover {
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-auth .ikas-auth__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 1px 0 0;
+  flex: 0 0 20px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--cdFDkBbKkc, #c8cfd0);
+  border-radius: 6px;
+  background: var(--24KlcgGmm9, #fff);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.ikas-auth .ikas-auth__checkbox::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2.5px solid var(--fcAwzuFj9W, #101418);
+  border-bottom: 2.5px solid var(--fcAwzuFj9W, #101418);
+  transform: rotate(-45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ikas-auth .ikas-auth__checkbox:checked {
+  background: var(--sy8ZnXZdoG);
+  border-color: var(--sy8ZnXZdoG);
+}
+
+.ikas-auth .ikas-auth__checkbox:checked::after {
+  opacity: 1;
+}
+
+.ikas-auth .ikas-auth__checkbox:focus-visible {
+  outline: 2px solid var(--pxNuSoudLn);
+  outline-offset: 3px;
+}
+
+.ikas-auth .ikas-auth__checkbox[aria-invalid="true"] {
+  border-color: var(--color-warning-focus);
+}
+
+
+/* ─── MagneticAuthSection (.ikas-mgauth) ─── */
+
+.ikas-mgauth .ikas-auth__strength {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.ikas-mgauth .ikas-auth__strength-bar {
+  height: 3px;
+  border-radius: 9999px;
+  background: var(--8ARbeTYsmD, #e4e7e8);
+}
+
+.ikas-mgauth .ikas-auth__strength-bar--on {
+  background: var(--sy8ZnXZdoG);
+}
+
+.ikas-mgauth .ikas-auth__consent-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ikas-mgauth .ikas-auth__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--xGFwg5Zqpf, #6e7a8c);
+  cursor: pointer;
+  transition: color 0.22s ease;
+}
+
+.ikas-mgauth .ikas-auth__consent:hover {
+  color: var(--pxNuSoudLn, #37435b);
+}
+
+.ikas-mgauth .ikas-auth__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 19px;
+  height: 19px;
+  margin: 1px 0 0;
+  flex: 0 0 19px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--cdFDkBbKkc, #c8cfd0);
+  border-radius: 6px;
+  background: var(--24KlcgGmm9, #fff);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.ikas-mgauth .ikas-auth__checkbox::after {
+  content: "";
+  width: 9px;
+  height: 5px;
+  border-left: 2.5px solid var(--fcAwzuFj9W, #101418);
+  border-bottom: 2.5px solid var(--fcAwzuFj9W, #101418);
+  transform: rotate(-45deg) translateY(-1px);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.ikas-mgauth .ikas-auth__checkbox:checked {
+  background: var(--sy8ZnXZdoG);
+  border-color: var(--sy8ZnXZdoG);
+}
+
+.ikas-mgauth .ikas-auth__checkbox:checked::after {
+  opacity: 1;
+}
+
+.ikas-mgauth .ikas-auth__checkbox:focus-visible {
+  outline: 2px solid var(--pxNuSoudLn, #37435b);
+  outline-offset: 3px;
+}
+
+.ikas-mgauth .ikas-auth__checkbox[aria-invalid="true"] {
+  border-color: var(--color-warning-focus);
+}

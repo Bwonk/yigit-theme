@@ -1,0 +1,298 @@
+/* AuthLoginForm — giriş formu + iki formun ortak alan stilleri.
+ * Bu bileşen AuthSection ve MagneticAuthSection içinde kullanılır; CSS ortak
+ * chunk'a girip iki bölüme birden uygulanır. Bu yüzden her kural kendi
+ * bölüm kökü altında yazılır: .ikas-auth (AuthSection) / .ikas-mgauth
+ * (MagneticAuthSection). Kök olmadan yazılan kural diğer bölüme sızar.
+ * Not: alan/input/etiket gibi ortak stiller burada; AuthRegisterForm bunlara
+ * dayanır (iki form her zaman birlikte kullanılır). */
+
+/* ─── AuthSection (.ikas-auth) ─── */
+
+.ikas-auth .ikas-auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.6vw, 18px);
+  /* Studio: Animasyon / Fade Up Enter — ThemeKeyframeRef.fadeUp */
+  animation-name: _2wIPGJlyTg;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
+}
+
+.ikas-auth .ikas-auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ikas-auth .ikas-auth__label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-auth .ikas-auth__banner {
+  padding: 12px 14px;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
+  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  color: var(--color-danger-text);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.ikas-auth .ikas-auth__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ikas-auth .ikas-auth__input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 9999px;
+  background: var(--24KlcgGmm9, #fff);
+  color: var(--pxNuSoudLn);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 15px 16px;
+  outline: none;
+  box-shadow: none;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.ikas-auth .ikas-auth__input-wrap .ikas-auth__input {
+  padding-right: 48px;
+}
+
+.ikas-auth .ikas-auth__input:hover {
+  border-color: var(--cdFDkBbKkc, #c8cfd0);
+}
+
+.ikas-auth .ikas-auth__input:focus {
+  border-color: var(--pxNuSoudLn);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+}
+
+.ikas-auth .ikas-auth__input--error,
+.ikas-auth .ikas-auth__input--error:focus {
+  border-color: var(--color-warning-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-warning-focus) 28%, transparent);
+}
+
+.ikas-auth .ikas-auth__pw-toggle {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--p6EMJiXye1, #8c97a5);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+.ikas-auth .ikas-auth__pw-toggle:hover {
+  background: color-mix(in srgb, var(--pxNuSoudLn) 6%, transparent);
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-auth .ikas-auth__error {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  color: var(--color-danger-text);
+}
+
+.ikas-auth .ikas-auth__row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ikas-auth .ikas-auth__submit {
+  margin-top: 4px;
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (min-width: 600px) {
+  .ikas-auth .ikas-auth__form {
+      gap: 10px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (min-width: 600px) {
+  .ikas-auth .ikas-auth__input {
+      padding: 11px 14px;
+  }
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-auth .ikas-auth__input {
+      padding: 14px 14px;
+      font-size: 16px; /* prevents iOS zoom */
+  }
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
+  .ikas-auth .ikas-auth__form {
+      gap: 8px;
+  }
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
+  .ikas-auth .ikas-auth__field {
+      gap: 4px;
+  }
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
+  .ikas-auth .ikas-auth__input {
+      padding: 10px 12px;
+      font-size: 16px;
+  }
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
+  .ikas-auth .ikas-auth__submit {
+      margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-auth .ikas-auth__form {
+      animation: none;
+      transition: none;
+  }
+}
+
+
+/* ─── MagneticAuthSection (.ikas-mgauth) ─── */
+
+.ikas-mgauth .ikas-auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: ikas-mgauth-field-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ikas-mgauth .ikas-auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ikas-mgauth .ikas-auth__label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-mgauth .ikas-auth__banner {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
+  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  color: var(--color-danger-text);
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.ikas-mgauth .ikas-auth__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ikas-mgauth .ikas-auth__input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--0RbHz765Hw, #dce0e1);
+  border-radius: 14px;
+  background: var(--24KlcgGmm9, #fff);
+  color: var(--pxNuSoudLn, #37435b);
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 12px 15px;
+  outline: none;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.ikas-mgauth .ikas-auth__input-wrap .ikas-auth__input {
+  padding-right: 48px;
+}
+
+.ikas-mgauth .ikas-auth__input:hover {
+  border-color: var(--cdFDkBbKkc, #c8cfd0);
+}
+
+.ikas-mgauth .ikas-auth__input:focus {
+  border-color: var(--pxNuSoudLn, #37435b);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 45%, transparent);
+}
+
+.ikas-mgauth .ikas-auth__input--error,
+.ikas-mgauth .ikas-auth__input--error:focus {
+  border-color: var(--color-warning-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-warning-focus) 28%, transparent);
+}
+
+.ikas-mgauth .ikas-auth__pw-toggle {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--p6EMJiXye1, #8c97a5);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease;
+}
+
+.ikas-mgauth .ikas-auth__pw-toggle:hover {
+  background: var(--jQs026VIpf, #edeff0);
+  color: var(--pxNuSoudLn, #37435b);
+}
+
+.ikas-mgauth .ikas-auth__error {
+  font-family: var(--font-heading);
+  font-size: 11.5px;
+  color: var(--color-danger-text);
+}
+
+.ikas-mgauth .ikas-auth__row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ikas-mgauth .ikas-auth__submit {
+  margin-top: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-mgauth .ikas-auth__form {
+      animation: none;
+  }
+}
