@@ -68,8 +68,6 @@
 
 .ikas-auth__heading {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.08;
   letter-spacing: -0.03em;

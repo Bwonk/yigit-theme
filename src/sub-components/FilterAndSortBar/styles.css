@@ -189,7 +189,6 @@
   color: var(--u9HctrBrDd);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 10px;
 }
 

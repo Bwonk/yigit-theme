@@ -55,7 +55,6 @@
 }
 
 .ikas-testimonials__tag {
-  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
   color: var(--p6EMJiXye1);
@@ -63,8 +62,6 @@
 
 .ikas-testimonials__title {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(32px, 3.8vw, 56px);
   letter-spacing: -0.03em;
   line-height: 1.15;

@@ -42,7 +42,6 @@
 }
 
 .ikas-story__tag {
-  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
   color: var(--p6EMJiXye1);
@@ -50,8 +49,6 @@
 
 .ikas-story__paragraph {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(24px, 3.2vw, 46px);
   letter-spacing: -0.03em;
   line-height: 1.25;
@@ -87,8 +84,6 @@
 }
 
 .ikas-story__counter-val {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(32px, 3.6vw, 52px);
   letter-spacing: -0.03em;
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
@@ -96,7 +91,6 @@
 }
 
 .ikas-story__counter-label {
-  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
   color: var(--p6EMJiXye1);

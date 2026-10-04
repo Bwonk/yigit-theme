@@ -76,7 +76,6 @@
 }
 
 .ikas-hero__tag {
-  font-family: var(--font-mono);
   font-size: clamp(10px, 0.85vw, 11px);
   letter-spacing: 0.22em;
   color: var(--p6EMJiXye1);
@@ -108,7 +107,6 @@
 
 .ikas-hero__subtitle {
   margin: 0;
-  font-family: var(--font-body);
   font-size: clamp(13px, 1vw, 16px);
   line-height: 1.5;
   color: var(--xGFwg5Zqpf);
@@ -262,7 +260,6 @@
 }
 
 .ikas-hero__social-proof-subtitle {
-  font-family: var(--font-mono);
   font-size: clamp(8.5px, 0.7vw, 9.5px);
   letter-spacing: 0.14em;
   color: var(--p6EMJiXye1);

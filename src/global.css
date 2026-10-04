@@ -44,16 +44,21 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
  * FONT-FAMİLY STACK'LERİ — Bileşenler bu CSS var'larını referans alır.
- * Tipografi token'ları (TOKENS.md className'leri) ikas editöründen
- * font-family atamasını alır; bu var'lar ek fallback katmanıdır.
+ *
+ * TEK KAYNAK: Studio tipografi token'ları. --theme-font-* değişkenleri
+ * Header tarafından token'ların canlı ailesiyle <html>'e yazılır
+ * (src/utils/fonts.ts). Studio'da "Başlık H2" / "Gövde Metni (base)" /
+ * "Etiket ve Rozet (xs)" ailesi değişince tüm site değişir. Değişken yoksa
+ * (SSR ilk boyama, token okunamadı) aşağıdaki varsayılan aileler kullanılır.
+ * Bileşen CSS'inde font adı YAZILMAZ; daima bu üç değişken kullanılır.
  * ═══════════════════════════════════════════════════════════════════════ */
 
 /* KATMAN (Z-INDEX) VE BİLEŞEN BOYUT HİYERARŞİ SİSTEMİ */
 :root {
   /* Font Family Stacks */
-  --font-heading: 'Onest', system-ui, -apple-system, sans-serif;
-  --font-body: 'Roboto Flex', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Roboto Mono', ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
+  --font-heading: var(--theme-font-heading, 'Onest'), system-ui, -apple-system, sans-serif;
+  --font-body: var(--theme-font-body, 'Roboto Flex'), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--theme-font-mono, 'Roboto Mono'), ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
   --z-index-base: 1;
   --z-index-dropdown: 50;
   --z-index-filter-bar: 50;

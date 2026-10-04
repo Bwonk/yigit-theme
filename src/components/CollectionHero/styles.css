@@ -71,7 +71,6 @@
   color: var(--sy8ZnXZdoG);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 .ikas-collection-hero__kick-dot {
@@ -88,7 +87,6 @@
   font-size: clamp(44px, 8.2vw, 112px);
   line-height: 0.92;
   letter-spacing: -0.045em;
-  font-weight: 600;
   word-break: break-word;
 }
 
@@ -131,7 +129,6 @@
 }
 
 .ikas-collection-hero__stat-label {
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   letter-spacing: 0.18em;
   color: rgba(255, 255, 255, 0.72);
   text-transform: uppercase;

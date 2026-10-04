@@ -36,7 +36,6 @@
   color: var(--p6EMJiXye1);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 .ikas-filter-sheet__body {
@@ -55,7 +54,6 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 10px;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
 }
 
@@ -150,7 +148,6 @@
   background: transparent;
   color: var(--pxNuSoudLn);
   letter-spacing: 0.12em;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
   cursor: pointer;
   text-decoration: underline;

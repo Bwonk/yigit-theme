@@ -246,7 +246,6 @@
   color: var(--text-meta-aa);           /* AA türevi — global.css */
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 .ikas-product-card__swatches {
@@ -270,7 +269,6 @@
   color: var(--p6EMJiXye1);
   letter-spacing: 0.1em;
   margin-left: 2px;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 /* 9. HIZLI SEPETE EKLE (KLASİK MOD) */

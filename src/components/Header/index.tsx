@@ -14,7 +14,11 @@ import SearchOverlay from "../../sub-components/SearchOverlay";
 import CloseButton from "../../sub-components/CloseButton";
 import { formatShadow } from "../../utils/theme";
 import { useFocusTrap, inertProps, useBodyScrollLock } from "../../utils/a11y";
-import { ensureThemeFonts } from "../../utils/fonts";
+import {
+  ensureThemeFonts,
+  readThemeFontFamilies,
+  applyThemeFontFamilies,
+} from "../../utils/fonts";
 import {
   applyTextSelectionStyles,
   clearTextSelectionStyles,
@@ -194,6 +198,13 @@ export function Header({
   useEffect(() => {
     ensureThemeFonts();
   }, []);
+
+  // Font ailesi tek kaynaktan: Studio tipografi token'ları → --theme-font-*.
+  // Render'da okunur (observable) → editörde token değişince anında güncellenir.
+  const themeFonts = readThemeFontFamilies();
+  useEffect(() => {
+    applyThemeFontFamilies(themeFonts);
+  }, [themeFonts.heading, themeFonts.body, themeFonts.mono]);
 
   // Gerçek layout yüksekliğini + pill alt ofsetini yayınla
   // → Hero kalan 100dvh; sticky filtre bar navbar pill'inin altına oturur

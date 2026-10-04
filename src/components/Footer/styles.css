@@ -56,7 +56,6 @@
 }
 
 .ikas-footer__brand-title {
-  font-family: var(--font-heading);
   font-weight: 700;
   font-size: 17px;
   letter-spacing: 0.2em;
@@ -65,7 +64,6 @@
 
 .ikas-footer__brand-desc {
   margin: 0;
-  font-family: var(--font-body);
   font-size: clamp(14.5px, 1.1vw, 16.5px);
   line-height: 1.6;
   color: var(--text-body-aa);           /* AA türevi — global.css */
@@ -96,7 +94,6 @@
 }
 
 .ikas-footer__col-header {
-  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
   color: var(--text-meta-aa);           /* AA türevi — global.css */
@@ -150,7 +147,6 @@
 }
 
 .ikas-footer__copyright {
-  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
   color: var(--text-meta-aa);           /* AA türevi — global.css */
@@ -194,7 +190,6 @@
   border: 1px solid var(--0RbHz765Hw);
   border-radius: 3px;
   padding: 7px 11px;
-  font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.12em;
   color: var(--xGFwg5Zqpf);
