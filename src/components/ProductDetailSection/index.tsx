@@ -39,6 +39,7 @@ export function ProductDetailSection({
   discountBadgeLabel = "İNDİRİM",
   reviewLabel = "DEĞERLENDİRME",
   detailsAnchorLabel = "Ürün detaylarına git",
+  reviewsAnchorLabel,
   qtyDecreaseLabel = "Adet azalt",
   qtyIncreaseLabel = "Adet artır",
   trustShippingText = "500 ₺ ÜZERİ ÜCRETSİZ KARGO",
@@ -149,6 +150,7 @@ export function ProductDetailSection({
               discountBadgeLabel={discountBadgeLabel}
               reviewLabel={reviewLabel}
               detailsAnchorLabel={detailsAnchorLabel}
+              reviewsAnchorLabel={reviewsAnchorLabel}
               qtyDecreaseLabel={qtyDecreaseLabel}
               qtyIncreaseLabel={qtyIncreaseLabel}
               trustShippingText={trustShippingText}

@@ -2584,6 +2584,14 @@
           "required": false,
           "defaultValue": "adet",
           "groupId": "bundle"
+        },
+        {
+          "name": "reviewsAnchorLabel",
+          "displayName": "Değerlendirmeler Bağlantı Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Değerlendirmelere git",
+          "groupId": "buybox"
         }
       ],
       "propGroups": [

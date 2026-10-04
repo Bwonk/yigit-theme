@@ -110,6 +110,7 @@ export function CustomerReviewsSection({
 
   return (
     <section
+      id="degerlendirmeler"
       className={`ikas-reviews ${className}`.trim()}
       style={inlineStyles}
       lang="tr"

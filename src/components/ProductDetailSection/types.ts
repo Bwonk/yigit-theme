@@ -67,4 +67,5 @@ export interface Props {
   bundleTitle?: string;
   bundleSubtitle?: string;
   bundleQtyLabel?: string;
+  reviewsAnchorLabel?: string;
 }

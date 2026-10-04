@@ -29,16 +29,16 @@ Aşağıdaki 9 renk token'ını sırayla oluştur:
 
 ### B. Tipografi — `kind: "typography"` (10 Token)
 Aşağıdaki 10 tipografi stilini sırayla oluştur:
-- `name: "Tipografi / Display Hero"`, `font_family: "Jost, sans-serif"`, `font_size: "54px"`, `font_weight: "500"`, `line_height: "64.8px"`
-- `name: "Tipografi / Başlık H1"`, `font_family: "Jost, sans-serif"`, `font_size: "48px"`, `font_weight: "500"`, `line_height: "62.5px"`
-- `name: "Tipografi / Başlık H2"`, `font_family: "Jost, sans-serif"`, `font_size: "36px"`, `font_weight: "500"`, `line_height: "46.8px"`
-- `name: "Tipografi / Başlık H3"`, `font_family: "Jost, sans-serif"`, `font_size: "30.2px"`, `font_weight: "500"`, `line_height: "39.3px"`
-- `name: "Tipografi / Başlık H4"`, `font_family: "Jost, sans-serif"`, `font_size: "27px"`, `font_weight: "500"`, `line_height: "35.1px"`
-- `name: "Tipografi / Kart ve Alt Başlık (lg)"`, `font_family: "Jost, sans-serif"`, `font_size: "24px"`, `font_weight: "500"`, `line_height: "31.2px"`
-- `name: "Tipografi / Gövde Metni (base)"`, `font_family: "Jost, sans-serif"`, `font_size: "18px"`, `font_weight: "400"`, `line_height: "25.2px"`
-- `name: "Tipografi / İkincil Metin (sm)"`, `font_family: "Jost, sans-serif"`, `font_size: "16px"`, `font_weight: "400"`, `line_height: "22.4px"`
-- `name: "Tipografi / Etiket ve Rozet (xs)"`, `font_family: "Jost, sans-serif"`, `font_size: "13.5px"`, `font_weight: "500"`, `line_height: "18.9px"`
-- `name: "Tipografi / Mobil Duyuru Metni"`, `font_family: "Jost, sans-serif"`, `font_size: "12px"`, `font_weight: "500"`, `line_height: "16.8px"`
+- `name: "Tipografi / Display Hero"`, `font_family: "Onest"`, `font_size: "54px"`, `font_weight: "600"`, `line_height: "64.8px"`
+- `name: "Tipografi / Başlık H1"`, `font_family: "Onest"`, `font_size: "48px"`, `font_weight: "600"`, `line_height: "62.5px"`
+- `name: "Tipografi / Başlık H2"`, `font_family: "Onest"`, `font_size: "36px"`, `font_weight: "600"`, `line_height: "46.8px"`
+- `name: "Tipografi / Başlık H3"`, `font_family: "Onest"`, `font_size: "30.2px"`, `font_weight: "500"`, `line_height: "39.3px"`
+- `name: "Tipografi / Başlık H4"`, `font_family: "Onest"`, `font_size: "27px"`, `font_weight: "500"`, `line_height: "35.1px"`
+- `name: "Tipografi / Kart ve Alt Başlık (lg)"`, `font_family: "Onest"`, `font_size: "24px"`, `font_weight: "500"`, `line_height: "31.2px"`
+- `name: "Tipografi / Gövde Metni (base)"`, `font_family: "Roboto Flex"`, `font_size: "18px"`, `font_weight: "400"`, `line_height: "25.2px"`
+- `name: "Tipografi / İkincil Metin (sm)"`, `font_family: "Roboto Flex"`, `font_size: "16px"`, `font_weight: "400"`, `line_height: "22.4px"`
+- `name: "Tipografi / Etiket ve Rozet (xs)"`, `font_family: "Roboto Mono"`, `font_size: "13.5px"`, `font_weight: "400"`, `line_height: "18.9px"`
+- `name: "Tipografi / Mobil Duyuru Metni"`, `font_family: "Roboto Mono"`, `font_size: "12px"`, `font_weight: "400"`, `line_height: "16.8px"`
 
 ### C. Boşluklar / Spacing — `kind: "globalVariable"`, `type: "TEXT"` (15 Token)
 Aşağıdaki 15 boşluk değişkenini oluştur:

@@ -348,10 +348,16 @@ export function CartDrawer({
     return acc + finalPriceVal * (item.quantity ?? 1);
   }, 0);
 
-  const freeShippingRatio = Math.min(1, totalAmountNum / freeShippingThreshold);
+  // Eşik 0/boş → kampanya kapalı: çubuk gizlenir (eskiden 0'a bölüp NaN üretiyordu).
+  const hasThreshold = Number(freeShippingThreshold) > 0;
+  const freeShippingRatio = hasThreshold
+    ? Math.min(1, totalAmountNum / freeShippingThreshold)
+    : 0;
   const freeShippingPercent = (freeShippingRatio * 100).toFixed(0);
-  const remainingAmount = Math.max(0, freeShippingThreshold - totalAmountNum);
-  const isFreeShipping = totalAmountNum >= freeShippingThreshold;
+  const remainingAmount = hasThreshold
+    ? Math.max(0, freeShippingThreshold - totalAmountNum)
+    : 0;
+  const isFreeShipping = hasThreshold && totalAmountNum >= freeShippingThreshold;
   const shippingNotice = isFreeShipping
     ? freeShippingAchievedText
     : formatRemainingMessage(freeShippingRemainingText, remainingAmount);
@@ -433,11 +439,13 @@ export function CartDrawer({
         ) : (
           <>
             <div className="ikas-cart-drawer__body">
-              <CartShippingNotice
-                notice={shippingNotice}
-                progressPercent={Number(freeShippingPercent)}
-                className="ikas-cart-drawer__notice"
-              />
+              {hasThreshold && (
+                <CartShippingNotice
+                  notice={shippingNotice}
+                  progressPercent={Number(freeShippingPercent)}
+                  className="ikas-cart-drawer__notice"
+                />
+              )}
 
               <ul className="ikas-cart-drawer__list">
                 {lineItems.map((item) => {

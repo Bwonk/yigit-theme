@@ -26,6 +26,11 @@ import ProductCrossSellOffers from "../ProductCrossSellOffers";
 import QuantityStepper from "../QuantityStepper";
 import TextLink from "../TextLink";
 import { useReveal, revealClasses } from "../../utils/reveal";
+import { hasSelectedCampaignOffers } from "../../utils/offers";
+
+/** CustomerReviewsSection / ProductDetailsSection kök id'leri. */
+const REVIEWS_ANCHOR_ID = "degerlendirmeler";
+const DETAILS_ANCHOR_ID = "detaylar";
 import ProductSocialActions from "../ProductSocialActions";
 import PromotionCountdownBar from "../PromotionCountdownBar";
 
@@ -52,6 +57,7 @@ export interface Props {
   discountBadgeLabel?: string;
   reviewLabel?: string;
   detailsAnchorLabel?: string;
+  reviewsAnchorLabel?: string;
   qtyDecreaseLabel?: string;
   qtyIncreaseLabel?: string;
   trustShippingText?: string;
@@ -136,6 +142,7 @@ export function ProductBuyBox({
   discountBadgeLabel = "İNDİRİM",
   reviewLabel = "DEĞERLENDİRME",
   detailsAnchorLabel = "Ürün detaylarına git",
+  reviewsAnchorLabel = "Değerlendirmelere git",
   qtyDecreaseLabel = "Adet azalt",
   qtyIncreaseLabel = "Adet artır",
   trustShippingText = "500 ₺ ÜZERİ ÜCRETSİZ KARGO",
@@ -203,9 +210,18 @@ export function ProductBuyBox({
     setSizeGuideOpen(true);
   };
 
+  // Puan linki: sayfada yorumlar bölümü varsa oraya, yoksa ürün detaylarına.
+  const [hasReviewsSection, setHasReviewsSection] = useState(false);
+  useEffect(() => {
+    setHasReviewsSection(Boolean(document.getElementById(REVIEWS_ANCHOR_ID)));
+  }, []);
+  const ratingTargetId = hasReviewsSection ? REVIEWS_ANCHOR_ID : DETAILS_ANCHOR_ID;
+
   const scrollToDetails = (e: Event) => {
     e.preventDefault();
-    const target = document.getElementById("detaylar");
+    const target =
+      document.getElementById(REVIEWS_ANCHOR_ID) ||
+      document.getElementById(DETAILS_ANCHOR_ID);
     if (!target) return;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -215,9 +231,7 @@ export function ProductBuyBox({
 
   const variant = getSelectedProductVariant(product);
   const variantTypes = getDisplayedProductVariantTypes(product) || [];
-  const hasSelectedOffers = (product.offers || []).some(
-    (offer) => !!offer?.isSelected && !!(offer as any).product
-  );
+  const hasSelectedOffers = hasSelectedCampaignOffers(product);
   const finalPriceText = variant
     ? hasSelectedOffers
       ? getProductVariantFormattedFinalPriceWithCampaignOffers(variant)
@@ -319,10 +333,10 @@ export function ProductBuyBox({
 
         {rating != null && (
           <a
-            href="#detaylar"
+            href={`#${ratingTargetId}`}
             className="ikas-buy-box__rating"
             onClick={scrollToDetails as any}
-            aria-label={detailsAnchorLabel}
+            aria-label={hasReviewsSection ? reviewsAnchorLabel : detailsAnchorLabel}
           >
             <span
               className="ikas-buy-box__stars"

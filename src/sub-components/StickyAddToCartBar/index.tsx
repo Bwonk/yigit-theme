@@ -15,6 +15,7 @@ import {
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import { inertProps } from "../../utils/a11y";
+import { hasSelectedCampaignOffers } from "../../utils/offers";
 import Button from "../Button";
 
 export interface Props {
@@ -130,7 +131,7 @@ export function StickyAddToCartBar({
     (mainProductImage as any)?.image || (mainProductImage as any) || null;
   const imgSrc = mainImage ? getDefaultSrc(mainImage) : null;
   const finalPriceText = variant
-    ? (product.offers || []).some((o) => !!o?.isSelected)
+    ? hasSelectedCampaignOffers(product)
       ? getProductVariantFormattedFinalPriceWithCampaignOffers(variant)
       : getProductVariantFormattedFinalPrice(variant)
     : "";
