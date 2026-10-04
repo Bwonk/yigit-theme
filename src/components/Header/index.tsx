@@ -12,6 +12,7 @@ import { Props } from "./types";
 import CartDrawer from "../../sub-components/CartDrawer";
 import SearchOverlay from "../../sub-components/SearchOverlay";
 import CloseButton from "../../sub-components/CloseButton";
+import PortalScope from "../../sub-components/PortalScope";
 import { formatShadow } from "../../utils/theme";
 import { useFocusTrap, inertProps, useBodyScrollLock } from "../../utils/a11y";
 import {
@@ -281,13 +282,12 @@ export function Header({
   useBodyScrollLock(isDrawerOpen);
 
   // Drawer modal sözleşmesi: giriş odağı, Tab döngüsü, ESC ve odağın hamburger'a
-  // dönmesi. Drawer header'ın içinde (portal değil) yaşadığı için arka plan inert
-  // yapılmaz; odak döngüsü zaten paneli terk etmeyi engeller.
+  // dönmesi. Drawer PortalScope ile body'ye taşındığı için (CartDrawer gibi)
+  // açıkken arka plan inert yapılır.
   useFocusTrap({
     active: isDrawerOpen,
     containerRef: drawerRef,
     onEscape: () => setIsDrawerOpen(false),
-    skipBackgroundInert: true,
   });
 
   // Reactive cart item count read
@@ -485,7 +485,11 @@ export function Header({
         </div>
       </div>
 
-      {/* MOBİL SLIDE-OUT DRAWER */}
+      {/* MOBİL SLIDE-OUT DRAWER — body'ye portal: header'ın stacking context'i
+          (z-index) ve editörün dönüştürülmüş kapsayıcıları position:fixed'i
+          bozmasın. Header kökündeki CSS değişkenleri portala miras geçmediği
+          için drawer'a ayrıca verilir. */}
+      <PortalScope name="mobile-nav">
       <div
         className={`ikas-header__drawer-backdrop ${
           isDrawerOpen ? "ikas-header__drawer-backdrop--open" : ""
@@ -503,6 +507,7 @@ export function Header({
         aria-label={mobileMenuTitle || menuLabel}
         aria-hidden={!isDrawerOpen}
         {...inertProps(!isDrawerOpen)}
+        style={{ "--drawer-width": drawerWidth, "--drawer-transition": drawerAnim } as any}
       >
         <div className="ikas-header__drawer-header">
           <span className="ikas-header__logo-text">{mobileMenuTitle}</span>
@@ -532,6 +537,7 @@ export function Header({
           </ul>
         </nav>
       </div>
+      </PortalScope>
 
       {/* ENTEGRE ALT BİLEŞENLER */}
       <CartDrawer

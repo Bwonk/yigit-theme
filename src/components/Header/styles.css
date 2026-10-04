@@ -347,7 +347,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
- * MOBİL SLIDE-OUT DRAWER (<760px)
+ * MOBİL SLIDE-OUT DRAWER — PortalScope ile body seviyesinde render edilir
  * ═══════════════════════════════════════════════════════════════════════ */
 .ikas-header__drawer-backdrop {
   position: fixed;
