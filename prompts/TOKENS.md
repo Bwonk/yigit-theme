@@ -149,9 +149,12 @@ Header props: `enableTextSelectionHighlight`, `selectionBackgroundColor`, `selec
 
 | Token Adı | ID | Width | Kullanım |
 | :--- | :--- | :--- | :--- |
+| `Breakpoint / Small Mobile` | `20HIQ0QNmR` | `480` | `@media (max-width: bp(20HIQ0QNmR))` |
 | `Breakpoint / Mobile` | `HDRapYMzn7` | `767` | `@media (max-width: bp(HDRapYMzn7))` |
 | `Breakpoint / Tablet` | `kmfaNJ5hH8` | `991` | `@media (max-width: bp(kmfaNJ5hH8))` |
 | `Breakpoint / Desktop` | `VzlJkKlXGT` | `1023` | `@media (max-width: bp(VzlJkKlXGT))` |
+| `Breakpoint / Wide Desktop` | `WZCjrtAPQO` | `1199` | `@media (max-width: bp(WZCjrtAPQO))` |
+| `Breakpoint / XL Desktop` | `JhPjSNa8Cp` | `1439` | `@media (max-width: bp(JhPjSNa8Cp))` |
 
 `min-width` için: `@media (min-width: calc(bp(<id>) + 1px))`.
 

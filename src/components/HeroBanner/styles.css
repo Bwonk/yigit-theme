@@ -129,7 +129,7 @@
 }
 
 /* Laptop: gap sıkılsın, kolon oranı bozulmasın (metin sıkışmasın) */
-@media (min-width: calc(bp(VzlJkKlXGT) + 1px)) and (max-width: 1439px) {
+@media (min-width: calc(bp(VzlJkKlXGT) + 1px)) and (max-width: bp(JhPjSNa8Cp)) {
   .ikas-hero__container {
     gap: clamp(16px, 2.2vw, 36px);
   }

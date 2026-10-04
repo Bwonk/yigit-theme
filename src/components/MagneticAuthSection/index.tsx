@@ -46,7 +46,7 @@ function clampBarCount(n?: number): number {
 function getVariant(): Variant {
   if (typeof window === "undefined") return "desktop";
   if (window.matchMedia(maxWidthQuery("mobile")).matches) return "mobile";
-  if (window.matchMedia("(max-width: 1199px)").matches) return "tablet";
+  if (window.matchMedia(maxWidthQuery("wideDesktop")).matches) return "tablet";
   return "desktop";
 }
 

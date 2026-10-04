@@ -225,7 +225,7 @@
 }
 
 /* ── Tablet: wrap controls; slim’de yatay rail ────────────────────────── */
-@media (max-width: 1099px) and (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
+@media (max-width: bp(WZCjrtAPQO)) and (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
   .ikas-filter-bar__desktop-filters {
     flex-wrap: wrap;
   }

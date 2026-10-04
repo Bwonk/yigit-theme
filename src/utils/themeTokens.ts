@@ -103,24 +103,34 @@ export const ThemeType = {
 
 /**
  * Breakpoint ids for CSS `bp(<id>)` (from list_theme_globals).
- * Mobile 767 · Tablet 991 · Desktop 1023 (max-width thresholds).
+ * Small Mobile 480 · Mobile 767 · Tablet 991 · Desktop 1023 ·
+ * Wide Desktop 1199 · XL Desktop 1439 (max-width thresholds).
  */
 export const ThemeBreakpoint = {
+  /** max-width 480px */
+  smallMobile: "20HIQ0QNmR",
   /** max-width 767px */
   mobile: "HDRapYMzn7",
   /** max-width 991px */
   tablet: "kmfaNJ5hH8",
   /** max-width 1023px */
   desktop: "VzlJkKlXGT",
+  /** max-width 1199px */
+  wideDesktop: "WZCjrtAPQO",
+  /** max-width 1439px */
+  xlDesktop: "JhPjSNa8Cp",
 } as const;
 
 type ThemeBreakpointKey = keyof typeof ThemeBreakpoint;
 
 /** Breakpoint token okunamazsa kullanılacak genişlikler (max-width eşikleri). */
 const BREAKPOINT_FALLBACK_PX: Record<ThemeBreakpointKey, number> = {
+  smallMobile: 480,
   mobile: 767,
   tablet: 991,
   desktop: 1023,
+  wideDesktop: 1199,
+  xlDesktop: 1439,
 };
 
 /**

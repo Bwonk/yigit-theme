@@ -519,7 +519,7 @@
 
 /* ══════════════ Desktop (≥1200): larger dock + first-paint velocity fit ══════════════ */
 
-@media (min-width: 1200px) {
+@media (min-width: calc(bp(WZCjrtAPQO) + 1px)) {
   .ikas-mgauth {
     --mg-bar-w: 112px;
     --mg-bar-h: 360px;
@@ -537,7 +537,7 @@
 
 /* ══════════════ Tablet (768–1199): panel grid only (dock = base iPad geometry) ══════════════ */
 
-@media (max-width: 1199px) {
+@media (max-width: bp(WZCjrtAPQO)) {
   .ikas-mgauth__panel-grid {
     grid-template-columns: 34% 66%;
   }
