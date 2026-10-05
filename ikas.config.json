@@ -10,7 +10,6 @@
       "entry": "./src/components/AnnouncementBar/index.tsx",
       "styles": "./src/components/AnnouncementBar/styles.css",
       "type": "section",
-      "isHeader": true,
       "props": [
         {
           "name": "text",
