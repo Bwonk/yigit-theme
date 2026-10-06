@@ -9,10 +9,13 @@
   gap: 8px;
   height: var(--filter-chip-h, 40px);
   padding: 0 6px 0 14px;
-  border: 1px solid var(--8ARbeTYsmD);
+  /* Renk şeması: kapalı = SecondaryButton, aktif = PrimaryButton */
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  /* Ok dairesi: şema seçiliyse buton metninden yarı saydam ton */
+  --fd-chev: color-mix(in srgb, var(--ua5R3Zg9Wv) 10%, transparent);
   font-family: var(--font-body, "Roboto Flex", sans-serif);
   font-size: 13px;
   font-weight: 500;
@@ -30,8 +33,9 @@
 }
 
 .ikas-filter-dropdown__trigger:hover {
-  border-color: color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD));
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD)));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
 }
 
 .ikas-filter-dropdown__trigger:active {
@@ -44,16 +48,16 @@
 }
 
 .ikas-filter-dropdown__trigger--active {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
   box-shadow: 0 1px 0 color-mix(in srgb, var(--vluFeuIeFs) 8%, transparent);
 }
 
 .ikas-filter-dropdown__trigger--active:hover {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-filter-dropdown__chev {
@@ -63,7 +67,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  background: var(--wElEhJwjYh);
+  background: var(--fd-chev, var(--wElEhJwjYh));
   flex-shrink: 0;
   transition: background 0.2s ease, transform 0.22s ease;
 }
@@ -86,8 +90,11 @@
   max-height: 280px;
   overflow: auto;
   z-index: 60;
-  background: var(--24KlcgGmm9);
-  border: 1px solid color-mix(in srgb, var(--8ARbeTYsmD) 80%, transparent);
+  /* Açılır panel section şemasını izler; ton = Text slotundan saydam karışım */
+  --fd-tint: color-mix(in srgb, var(--hy9HpUbpuN) 7%, transparent);
+  --fd-tint-strong: color-mix(in srgb, var(--hy9HpUbpuN) 12%, transparent);
+  background: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  border: 1px solid color-mix(in srgb, var(--p6Vorgv0Uy, var(--8ARbeTYsmD)) 80%, transparent);
   border-radius: 14px;
   padding: 6px;
   box-shadow: 0 10px 28px color-mix(in srgb, var(--vluFeuIeFs, #131924) 12%, transparent);
@@ -105,7 +112,7 @@
   width: 100%;
   border: 0;
   background: transparent;
-  color: var(--pxNuSoudLn);
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   text-align: left;
   padding: 9px 11px;
   border-radius: 9px;
@@ -116,7 +123,7 @@
 }
 
 .ikas-filter-dropdown__option:hover {
-  background: var(--wElEhJwjYh);
+  background: var(--fd-tint, var(--wElEhJwjYh));
 }
 
 .ikas-filter-dropdown__option:focus-visible {
@@ -125,13 +132,13 @@
 }
 
 .ikas-filter-dropdown__option--selected {
-  background: var(--jQs026VIpf);
+  background: var(--fd-tint-strong, var(--jQs026VIpf));
   font-weight: 500;
 }
 
 .ikas-filter-dropdown__meta {
   margin-left: auto;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 10px;
   letter-spacing: 0.04em;

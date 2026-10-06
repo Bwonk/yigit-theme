@@ -8,9 +8,11 @@
   width: 100%;
   max-width: 640px;
   padding: clamp(20px, 2.4vw, 32px);
-  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  /* Renk şeması slotları (TOKENS.md §10) — kart zemini section yüzeyiyle aynı;
+     input'lar beyaz/sabit kalır. Fallback = şemasız görünüm. */
+  border: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 16px;
-  background-color: var(--24KlcgGmm9);
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   box-sizing: border-box;
   animation-name: _2wIPGJlyTg;
   animation-duration: 0.4s;
@@ -29,14 +31,14 @@
   font-weight: 500;
   font-size: clamp(18px, 1.5vw, 22px);
   letter-spacing: -0.02em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-reviews .ikas-review-form__note {
   margin: 0;
   font-size: 14.5px;
   line-height: 1.6;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
 }
 
 .ikas-reviews .ikas-review-form__banner {
@@ -65,7 +67,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-reviews .ikas-review-form__stars {
@@ -111,7 +113,7 @@
 .ikas-reviews .ikas-review-form__input {
   width: 100%;
   box-sizing: border-box;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 12px;
   background: var(--24KlcgGmm9, #fff);
   color: var(--pxNuSoudLn);

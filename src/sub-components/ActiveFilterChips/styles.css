@@ -20,10 +20,12 @@
   gap: 6px;
   height: 30px;
   padding: 0 10px;
-  border: 1px solid color-mix(in srgb, var(--8ARbeTYsmD) 85%, transparent);
+  /* Renk şeması: kaldırılabilir çip = SecondaryButton */
+  --chip-muted: color-mix(in srgb, var(--ua5R3Zg9Wv) 65%, var(--nev1XwFhtS));
+  border: 1px solid var(--knCpeJkjkB, color-mix(in srgb, var(--8ARbeTYsmD) 85%, transparent));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   cursor: pointer;
   font-size: 12px;
   font-family: inherit;
@@ -36,8 +38,10 @@
 }
 
 .ikas-filter-chips__chip:hover {
-  border-color: var(--pxNuSoudLn);
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
+  --chip-muted: color-mix(in srgb, var(--0UgngKDdX6) 65%, var(--vvG2EEhdCx));
 }
 
 .ikas-filter-chips__chip:active {
@@ -50,7 +54,7 @@
 }
 
 .ikas-filter-chips__kind {
-  color: var(--p6EMJiXye1);
+  color: var(--chip-muted, var(--p6EMJiXye1));
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 10px;
@@ -64,14 +68,14 @@
 
 .ikas-filter-chips__x {
   display: inline-flex;
-  color: var(--xGFwg5Zqpf);
+  color: var(--chip-muted, var(--xGFwg5Zqpf));
   opacity: 0.85;
 }
 
 .ikas-filter-chips__clear {
   border: 0;
   background: transparent;
-  color: var(--pxNuSoudLn);
+  color: var(--spRu5BCzrk, var(--pxNuSoudLn));
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 10px;
@@ -85,7 +89,7 @@
 }
 
 .ikas-filter-chips__clear:hover {
-  color: var(--fcAwzuFj9W);
+  color: var(--yccjLb7If4, var(--fcAwzuFj9W));
 }
 
 .ikas-filter-chips__clear:focus-visible {

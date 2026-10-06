@@ -13,6 +13,9 @@
 
 .ikas-search-panel {
   padding: 4px 0 8px;
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Tint: hover/alt yüzeyler için Heading'in Background'a hafif karışımı. */
+  --search-panel-tint: color-mix(in srgb, var(--ucmfvEbo4R) 6%, var(--pGwtVHz9Sd));
 }
 
 .ikas-search-panel__sec {
@@ -35,7 +38,7 @@
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-search-panel__sec-head .ikas-search-panel__label {
@@ -51,13 +54,13 @@
   font-size: 10.5px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   cursor: pointer;
 }
 
 .ikas-search-panel__clear:is(:hover, :focus-visible) {
   background-size: 100% 100%;
-  color: var(--pxNuSoudLn);
+  color: var(--pxNuSoudLn); /* sarı dolgu üzerinde sabit */
 }
 
 /* Satır: ürün, terim ya da öneri */
@@ -78,7 +81,7 @@
 
 .ikas-search-panel__row:hover,
 .ikas-search-panel__row.is-active {
-  background-color: var(--wElEhJwjYh, #f4f5f5);
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
 }
 
 .ikas-search-panel__row:focus-visible {
@@ -113,14 +116,14 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--wElEhJwjYh, #f4f5f5);
-  color: var(--pxNuSoudLn);
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   transition: background-color 0.18s ease;
 }
 
 .ikas-search-panel__row:hover .ikas-search-panel__ic,
 .ikas-search-panel__row.is-active .ikas-search-panel__ic {
-  background-color: #ffffff;
+  background-color: var(--pGwtVHz9Sd, #ffffff);
 }
 
 .ikas-search-panel__ic svg {
@@ -148,7 +151,7 @@
   font-size: 14.5px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-search-panel__txt small {
@@ -157,7 +160,7 @@
   white-space: nowrap;
   font-family: var(--font-body);
   font-size: 12.5px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-search-panel mark {
@@ -169,7 +172,7 @@
 .ikas-search-panel__row--term mark {
   background: none;
   font-weight: 400;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-search-panel__price {
@@ -178,16 +181,16 @@
   font-size: 12.5px;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-search-panel__price s {
   margin-right: 6px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-search-panel__go {
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   font-size: 14px;
 }
 
@@ -209,15 +212,15 @@
   border: 0;
   border-radius: 50%;
   background: transparent;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
 }
 
 .ikas-search-panel__remove:hover {
-  background-color: var(--wElEhJwjYh, #f4f5f5);
-  color: var(--pxNuSoudLn);
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* Popüler aramalar: çipler */
@@ -230,23 +233,23 @@
 
 .ikas-search-panel__chip {
   padding: 9px 15px;
-  border: 1.5px solid var(--0RbHz765Hw, #dce0e1);
+  border: 1.5px solid var(--knCpeJkjkB, var(--0RbHz765Hw, #dce0e1));
   border-radius: 9999px;
-  background: transparent;
+  background: var(--nev1XwFhtS, transparent);
   font-family: var(--font-heading);
   font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  color: var(--pxNuSoudLn);
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .ikas-search-panel__chip:hover {
-  background-color: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: #ffffff;
+  background-color: var(--vvG2EEhdCx, var(--pxNuSoudLn));
+  border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+  color: var(--0UgngKDdX6, #ffffff);
 }
 
 .ikas-search-panel__none {
@@ -255,7 +258,7 @@
   font-family: var(--font-body);
   font-size: 14.5px;
   line-height: 1.45;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
 }
 
 /* Yükleniyor iskeleti */
@@ -299,12 +302,12 @@
   padding: 13px 14px;
   border: 0;
   border-radius: 12px;
-  background-color: var(--wElEhJwjYh, #f4f5f5);
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
   font-family: var(--font-heading);
   font-size: 13.5px;
   font-weight: 500;
   text-align: left;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   cursor: pointer;
   transition: background-color 0.18s ease;
 }
@@ -317,6 +320,7 @@
 .ikas-search-panel__all:hover,
 .ikas-search-panel__all.is-active {
   background-color: var(--sy8ZnXZdoG);
+  color: var(--pxNuSoudLn); /* sarı dolgu üzerinde sabit */
 }
 
 @media (prefers-reduced-motion: reduce) {

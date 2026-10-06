@@ -3,9 +3,10 @@
   align-items: center;
   gap: 2px;
   padding: 3px;
-  border: 1px solid var(--8ARbeTYsmD);
+  /* Renk şeması: kapsayıcı + pasif = SecondaryButton, aktif = PrimaryButton */
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--wElEhJwjYh);
+  background: var(--nev1XwFhtS, var(--wElEhJwjYh));
   flex-shrink: 0;
 }
 
@@ -17,7 +18,7 @@
   border: 0;
   border-radius: 9999px;
   background: transparent;
-  color: var(--xGFwg5Zqpf);
+  color: var(--ua5R3Zg9Wv, var(--xGFwg5Zqpf));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -30,8 +31,8 @@
 }
 
 .ikas-density-toggle__btn:hover {
-  color: var(--pxNuSoudLn);
-  background: color-mix(in srgb, var(--24KlcgGmm9) 70%, transparent);
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
+  background: var(--vvG2EEhdCx, color-mix(in srgb, var(--24KlcgGmm9) 70%, transparent));
 }
 
 .ikas-density-toggle__btn:active {
@@ -44,14 +45,14 @@
 }
 
 .ikas-density-toggle__btn--active {
-  background: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
   box-shadow: 0 1px 2px color-mix(in srgb, var(--vluFeuIeFs) 12%, transparent);
 }
 
 .ikas-density-toggle__btn--active:hover {
-  background: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 @media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {

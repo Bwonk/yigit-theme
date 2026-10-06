@@ -28,7 +28,7 @@
 }
 
 .geeny-search-results__title {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   margin: 0;
 }
 

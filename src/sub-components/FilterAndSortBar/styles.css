@@ -21,7 +21,7 @@
   width: 100%;
   box-sizing: border-box;
   background: var(--collection-bg, var(--pGwtVHz9Sd, var(--24KlcgGmm9)));
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
 }
 
 .ikas-filter-bar__inner {
@@ -71,10 +71,11 @@
   align-items: center;
   height: var(--filter-chip-h, 40px);
   padding: 0 14px;
-  border: 1px solid var(--8ARbeTYsmD);
+  /* Renk şeması: seçili değil = SecondaryButton, seçili = PrimaryButton */
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-body, "Roboto Flex", sans-serif);
   font-size: 13px;
   font-weight: 500;
@@ -89,8 +90,9 @@
 }
 
 .ikas-filter-bar__toggle:hover {
-  border-color: color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD));
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD)));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
 }
 
 .ikas-filter-bar__toggle:active {
@@ -104,9 +106,9 @@
 
 .ikas-filter-bar__toggle--on,
 .ikas-filter-bar__toggle--on:hover {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-filter-bar__mob-btn {
@@ -116,10 +118,10 @@
   height: var(--filter-chip-h);
   min-height: 40px;
   padding: 0 14px;
-  border: 1px solid var(--8ARbeTYsmD);
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -133,8 +135,9 @@
 }
 
 .ikas-filter-bar__mob-btn:hover {
-  border-color: var(--pxNuSoudLn);
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
 }
 
 .ikas-filter-bar__mob-btn:active {
@@ -151,9 +154,9 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-filter-bar__mob-btn--primary::before {
@@ -161,7 +164,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--cQnfNuvn0R, var(--sy8ZnXZdoG));
   border-radius: 60% 60% 0 0 / 100% 100% 0 0;
   transform: translateY(102%);
   transition:
@@ -171,8 +174,9 @@
 }
 
 .ikas-filter-bar__mob-btn--primary:is(:focus-visible, :active) {
-  background: var(--pxNuSoudLn);
-  color: var(--pxNuSoudLn);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--sle6Nb4QtF, var(--pxNuSoudLn));
+  color: var(--xm8HJppGoU, var(--pxNuSoudLn));
 }
 
 .ikas-filter-bar__mob-btn--primary:is(:focus-visible, :active)::before {
@@ -182,13 +186,14 @@
 
 /* Genel mob-btn hover zeminini ezer (dokunmatikte yapışan hover dahil) */
 .ikas-filter-bar__mob-btn--primary:hover {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
 @media (hover: hover) {
   .ikas-filter-bar__mob-btn--primary:hover {
-    color: var(--pxNuSoudLn);
+    border-color: var(--sle6Nb4QtF, var(--pxNuSoudLn));
+    color: var(--xm8HJppGoU, var(--pxNuSoudLn));
   }
 
   .ikas-filter-bar__mob-btn--primary:hover::before {
@@ -220,7 +225,7 @@
 }
 
 .ikas-filter-bar__count-num {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
   font-weight: 500;
@@ -228,7 +233,7 @@
 }
 
 .ikas-filter-bar__count-suffix {
-  color: var(--text-meta-aa);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 10px;

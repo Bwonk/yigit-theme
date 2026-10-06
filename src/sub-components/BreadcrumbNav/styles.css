@@ -8,6 +8,8 @@
   max-width: var(--max-site-width, 1560px);
   margin: 0 auto;
   padding: clamp(16px, 2vw, 26px) var(--site-gutter, var(--section-px, 20px)) 0;
+  /* Soluk ayraç: şema seçiliyse Heading ile Background karışımı */
+  --crumb-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
 }
 
 .ikas-breadcrumb__list {
@@ -24,7 +26,7 @@
   line-height: 1.4;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--text-meta-aa);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -53,7 +55,7 @@
 }
 
 .ikas-breadcrumb__item:hover {
-  color: var(--vluFeuIeFs, #101418);
+  color: var(--yccjLb7If4, var(--vluFeuIeFs, #101418));
 }
 
 .ikas-breadcrumb__item:focus {
@@ -66,14 +68,14 @@
 }
 
 .ikas-breadcrumb__item--active {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   font-weight: 500;
   max-width: min(36ch, 52vw);
   flex-shrink: 0;
 }
 
 .ikas-breadcrumb__separator {
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: var(--crumb-muted, var(--u9HctrBrDd, #aeb8c6));
   user-select: none;
   flex-shrink: 0;
 }

@@ -439,13 +439,14 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  /* Renk şeması slotları (TOKENS.md §10) — yalnızca görsel dışı meta satırı */
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
 .ikas-media-gallery__count {
   flex: 0 0 auto;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 @media (max-width: bp(kmfaNJ5hH8)) {

@@ -29,7 +29,8 @@
   width: 100%;
   height: var(--input-height, 48px);
   padding: 0 40px 0 16px;
-  border: 1px solid var(--cdFDkBbKkc);
+  /* Beyaz alan + metin sabit; yalnızca çerçeve renk şemasını izler */
+  border: 1px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc));
   border-radius: var(--input-radius, 8px);
   background-color: var(--24KlcgGmm9);
   color: var(--pxNuSoudLn);

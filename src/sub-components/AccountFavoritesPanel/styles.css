@@ -23,6 +23,7 @@
 
 .ikas-account-favs__remove {
   align-self: flex-start;
-  --tl-color: var(--p6EMJiXye1, #8c97a5);
-  --tl-hover-color: var(--pxNuSoudLn);
+  /* Renk şeması: soluk ikincil bağlantı → Text; hover → HoverLink (TOKENS.md §10) */
+  --tl-color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+  --tl-hover-color: var(--yccjLb7If4, var(--pxNuSoudLn));
 }

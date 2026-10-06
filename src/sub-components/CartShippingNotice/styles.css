@@ -4,20 +4,22 @@
   gap: 8px;
   padding: 12px 16px;
   border-radius: 16px;
-  background-color: var(--wElEhJwjYh, var(--cdFDkBbKkc));
+  /* Renk şeması: Heading'in Background'a hafif karışımı; fallback = şemasız görünüm */
+  --shipping-notice-tint: color-mix(in srgb, var(--ucmfvEbo4R) 6%, var(--pGwtVHz9Sd));
+  background-color: var(--shipping-notice-tint, var(--wElEhJwjYh, var(--cdFDkBbKkc)));
   box-sizing: border-box;
 }
 
 .ikas-cart-shipping-notice__text {
   margin: 0;
   text-align: center;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-shipping-notice__progress-bg {
   width: 100%;
   height: 6px;
-  background-color: color-mix(in srgb, var(--pxNuSoudLn) 20%, transparent);
+  background-color: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 20%, transparent);
   border-radius: var(--shipping-bar-radius, 4px);
   overflow: hidden;
 }

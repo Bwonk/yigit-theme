@@ -10,7 +10,9 @@
   gap: clamp(16px, 1.6vw, 22px);
   width: 100%;
   min-width: 0;
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Form alanları (input/select/drop/checkbox) beyaz zeminiyle sabit kalır. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-option-set__field {
@@ -42,7 +44,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-meta-aa, #5d656f);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
 }
 
 /* legend float ile fieldset içinde flex akışına katılır */
@@ -55,7 +57,7 @@ legend.ikas-option-set__head + * {
 }
 
 .ikas-option-set__name {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-option-set__required {
@@ -67,18 +69,18 @@ legend.ikas-option-set__head + * {
 .ikas-option-set__price {
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--text-meta-aa, #5d656f);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
 }
 
 .ikas-option-set__price {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-option-set__selected {
   margin-left: auto;
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* ── Açıklama / ipucu / hata ───────────────────────────────────────── */
@@ -87,14 +89,14 @@ legend.ikas-option-set__head + * {
   margin: 0;
   font-size: 13.5px;
   line-height: 1.5;
-  color: var(--text-body-aa, #5a6472);
+  color: var(--hy9HpUbpuN, var(--text-body-aa, #5a6472));
 }
 
 .ikas-option-set__hint {
   margin: 0;
   font-size: 10.5px;
   letter-spacing: 0.08em;
-  color: var(--text-meta-aa, #5d656f);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
 }
 
 .ikas-option-set__error {
@@ -126,7 +128,7 @@ legend.ikas-option-set__head + * {
   width: 100%;
   box-sizing: border-box;
   min-height: 48px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 12px;
   background: var(--24KlcgGmm9, #fff);
   color: var(--pxNuSoudLn);
@@ -225,10 +227,10 @@ legend.ikas-option-set__head + * {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 12px;
@@ -246,7 +248,7 @@ legend.ikas-option-set__head + * {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: var(--pxNuSoudLn);
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
   border-radius: 60% 60% 0 0 / 100% 100% 0 0;
   transform: translateY(102%);
   transition:
@@ -271,8 +273,8 @@ legend.ikas-option-set__head + * {
 
 .ikas-option-set__box--selected,
 .ikas-option-set__box:active {
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
 .ikas-option-set__box--selected .ikas-option-set__box-fill,
@@ -287,8 +289,8 @@ legend.ikas-option-set__head + * {
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-option-set__box:hover {
-    color: var(--24KlcgGmm9);
-    border-color: var(--pxNuSoudLn);
+    color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+    border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
   }
 
   .ikas-option-set__box:hover .ikas-option-set__box-fill {
@@ -347,7 +349,7 @@ legend.ikas-option-set__head + * {
 .ikas-option-set__swatch-ring {
   position: absolute;
   inset: -6px;
-  border: 1.5px solid var(--pxNuSoudLn);
+  border: 1.5px solid var(--ucmfvEbo4R, var(--pxNuSoudLn));
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -380,7 +382,7 @@ legend.ikas-option-set__head + * {
 .ikas-option-set__extra {
   font-size: 10px;
   letter-spacing: 0.06em;
-  color: var(--text-meta-aa, #5d656f);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
   white-space: nowrap;
 }
 
@@ -416,7 +418,7 @@ legend.ikas-option-set__head + * {
   width: 22px;
   height: 22px;
   border-radius: 7px;
-  border: 1.5px solid var(--cdFDkBbKkc, #c8cfd0);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc, #c8cfd0));
   background: var(--24KlcgGmm9, #fff);
   color: var(--sy8ZnXZdoG);
   display: inline-flex;
@@ -465,7 +467,7 @@ legend.ikas-option-set__head + * {
   align-items: baseline;
   flex-wrap: wrap;
   gap: 4px 8px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   min-width: 0;
 }
 
@@ -489,7 +491,7 @@ legend.ikas-option-set__head + * {
   width: 48px;
   height: 48px;
   padding: 4px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 12px;
   background: var(--24KlcgGmm9, #fff);
   cursor: pointer;
@@ -521,7 +523,7 @@ legend.ikas-option-set__head + * {
 .ikas-option-set__color-code {
   font-size: 11px;
   letter-spacing: 0.12em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* ── Dosya yükleme ─────────────────────────────────────────────────── */
@@ -541,7 +543,7 @@ legend.ikas-option-set__head + * {
   min-height: 72px;
   padding: 16px;
   box-sizing: border-box;
-  border: 1.5px dashed var(--cdFDkBbKkc, #c8cfd0);
+  border: 1.5px dashed var(--p6Vorgv0Uy, var(--cdFDkBbKkc, #c8cfd0));
   border-radius: 12px;
   background: var(--wElEhJwjYh, #edeff0);
   color: var(--pxNuSoudLn);
@@ -612,7 +614,7 @@ legend.ikas-option-set__head + * {
   justify-content: space-between;
   gap: 10px;
   padding: 8px 8px 8px 14px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
   background: var(--24KlcgGmm9, #fff);
 }
@@ -676,7 +678,7 @@ legend.ikas-option-set__head + * {
   gap: clamp(14px, 1.4vw, 18px);
   margin-top: 6px;
   padding-left: 16px;
-  border-left: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-left: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
 }
 
 @media (max-width: bp(HDRapYMzn7)) {

@@ -30,12 +30,12 @@
 
 .ikas-product-groups__label {
   letter-spacing: 0.18em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-product-groups__value {
   letter-spacing: 0.12em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-product-groups__list {
@@ -66,7 +66,7 @@
   border-radius: 10px;
   overflow: hidden;
   background: var(--jQs026VIpf, #f4f5f6);
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   box-sizing: border-box;
   text-decoration: none;
   transition:
@@ -93,14 +93,14 @@
 }
 
 .ikas-product-groups__tile--selected {
-  border-color: var(--pxNuSoudLn);
+  border-color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   box-shadow: inset 0 0 0 1.5px var(--24KlcgGmm9);
   cursor: default;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-product-groups__tile:not(.ikas-product-groups__tile--selected):hover {
-    border-color: color-mix(in srgb, var(--pxNuSoudLn) 55%, transparent);
+    border-color: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 55%, transparent);
     transform: translateY(-2px);
   }
 }
@@ -110,10 +110,11 @@
 .ikas-product-groups__pill {
   display: inline-flex;
   align-items: center;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  /* Renk şeması slotları (TOKENS.md §10): seçili = Primary, diğerleri = Secondary */
+  border: 1.5px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 12px;
@@ -128,15 +129,15 @@
 }
 
 .ikas-product-groups__pill--selected {
-  background-color: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
   cursor: default;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-product-groups__pill:not(.ikas-product-groups__pill--selected):hover {
-    border-color: var(--pxNuSoudLn);
+    border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
   }
 }
 

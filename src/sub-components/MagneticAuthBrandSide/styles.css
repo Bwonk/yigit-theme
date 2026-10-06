@@ -15,10 +15,13 @@
   min-width: 0;
   text-align: center;
   align-items: center;
+  /* Renk şeması slotları (TOKENS.md §10) — section yüzeyinden miras; fallback = şemasız görünüm.
+     Soluk ipucu: Heading ile Background karışımı; slot tanımsızsa kullanım yerindeki fallback. */
+  --mgauth-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
 }
 
 .ikas-mgauth__brand {
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
   text-decoration: none;
   letter-spacing: 0.26em;
   width: fit-content;
@@ -37,7 +40,7 @@
 }
 
 .ikas-mgauth__kicker {
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   letter-spacing: 0.22em;
 }
 
@@ -46,7 +49,7 @@
   font-size: clamp(32px, 3.4vw, 52px);
   line-height: 1.06;
   letter-spacing: -0.03em;
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
   text-wrap: balance;
 }
 
@@ -55,7 +58,7 @@
   max-width: 52ch;
   font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.55;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
 }
 
 .ikas-mgauth__meta {
@@ -73,13 +76,13 @@
 }
 
 .ikas-mgauth__meta-text {
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   letter-spacing: 0.18em;
   font-size: 11px;
 }
 
 .ikas-mgauth__stage-hint {
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: var(--mgauth-muted, var(--u9HctrBrDd, #aeb8c6));
   letter-spacing: 0.2em;
   font-size: 10px;
   order: 4;

@@ -34,8 +34,11 @@
   bottom: 0;
   width: min(var(--drawer-width, 440px), 100vw);
   max-width: 100vw;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Tint: hover/alt yüzeyler için Heading'in Background'a hafif karışımı. */
+  --cart-drawer-tint: color-mix(in srgb, var(--ucmfvEbo4R) 6%, var(--pGwtVHz9Sd));
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   z-index: var(--z-index-drawer, 10000);
   transform: translateX(100%);
   visibility: hidden;
@@ -72,7 +75,7 @@
 
 .ikas-cart-drawer__title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* BODY */
@@ -107,7 +110,7 @@
   align-items: center;
   gap: 16px;
   padding: 16px 0;
-  border-top: 1px solid var(--gzj8Nhz1Gb);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--gzj8Nhz1Gb));
   transition: opacity 0.2s ease-out;
 }
 
@@ -179,7 +182,7 @@
 
 .ikas-cart-drawer__line-price {
   font-weight: 600;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-drawer__price {
@@ -210,14 +213,14 @@
   border: 0;
   border-radius: 9999px;
   background: transparent;
-  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--pxNuSoudLn)));
   cursor: pointer;
   transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 .ikas-cart-drawer__remove:hover:not(:disabled) {
   color: var(--pAKfHnke8M, var(--pxNuSoudLn));
-  background-color: var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5));
+  background-color: var(--cart-drawer-tint, var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5)));
 }
 
 .ikas-cart-drawer__remove:focus-visible {
@@ -238,13 +241,13 @@
   flex-direction: column;
   gap: 12px;
   padding: 16px 0 0;
-  border-top: 1px solid var(--gzj8Nhz1Gb);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--gzj8Nhz1Gb));
 }
 
 .ikas-cart-drawer__block-title {
   margin: 0;
   font-weight: 500;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* UPSELL CAROUSEL */
@@ -285,8 +288,8 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   box-shadow: 0 2px 8px color-mix(in srgb, var(--pxNuSoudLn) 18%, transparent);
   cursor: pointer;
   transition: background-color 0.2s ease-out, opacity 0.2s ease-out;
@@ -301,7 +304,7 @@
 }
 
 .ikas-cart-drawer__offers-nav:hover:not(:disabled) {
-  background-color: var(--cdFDkBbKkc);
+  background-color: var(--cart-drawer-tint, var(--cdFDkBbKkc));
 }
 
 .ikas-cart-drawer__offers-nav:disabled {
@@ -324,7 +327,7 @@
   max-width: 320px;
   padding: 12px;
   border-radius: 16px;
-  background-color: var(--wElEhJwjYh, var(--cdFDkBbKkc));
+  background-color: var(--cart-drawer-tint, var(--wElEhJwjYh, var(--cdFDkBbKkc)));
   scroll-snap-align: start;
   box-sizing: border-box;
 }
@@ -380,8 +383,8 @@
 .ikas-cart-drawer__promo-wrap {
   flex-shrink: 0;
   padding: 16px 24px;
-  border-top: 1px solid var(--gzj8Nhz1Gb);
-  background-color: var(--24KlcgGmm9);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--gzj8Nhz1Gb));
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
 }
 
 /* EMPTY */
@@ -398,7 +401,7 @@
 
 .ikas-cart-drawer__empty-title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-align: center;
 }
 
@@ -408,8 +411,8 @@
   flex-direction: column;
   gap: 12px;
   padding: 20px 24px 16px;
-  border-top: 1px solid var(--gzj8Nhz1Gb);
-  background-color: var(--24KlcgGmm9);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--gzj8Nhz1Gb));
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   flex-shrink: 0;
 }
 
@@ -418,7 +421,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* Toplam: etiket gövde metni, tutar kart başlığı boyutunda; mono font
@@ -450,7 +453,7 @@
 
 .ikas-cart-drawer__tax {
   margin: -6px 0 4px;
-  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--pxNuSoudLn)));
   font-size: 14px;
 }
 
@@ -465,7 +468,7 @@
   padding: 0 12px;
   border: 0;
   background: transparent;
-  color: var(--pxNuSoudLn);
+  color: var(--spRu5BCzrk, var(--pxNuSoudLn));
   cursor: pointer;
   font: inherit;
   opacity: 0.6;
@@ -475,6 +478,7 @@
 .ikas-cart-drawer__view-cart:hover,
 .ikas-cart-drawer__view-cart:focus-visible {
   opacity: 1;
+  color: var(--yccjLb7If4, var(--pxNuSoudLn));
 }
 
 .ikas-cart-drawer__view-cart:focus-visible {

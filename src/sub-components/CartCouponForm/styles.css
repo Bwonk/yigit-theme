@@ -8,7 +8,7 @@
 
 .ikas-cart-coupon__title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-coupon__row {
@@ -17,7 +17,8 @@
   gap: 8px;
   height: 48px;
   padding: 4px 4px 4px 16px;
-  border: 1.5px solid var(--pxNuSoudLn);
+  /* Renk şeması: kenarlık Border slotundan; fallback = şemasız görünüm */
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--pxNuSoudLn));
   border-radius: 1000px;
   box-sizing: border-box;
   overflow: hidden;
@@ -64,11 +65,11 @@
 }
 
 .ikas-cart-coupon__code {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-coupon__error {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   opacity: 0.75;
 }

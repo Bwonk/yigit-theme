@@ -21,7 +21,9 @@
   box-sizing: border-box;
   background-color: transparent;
   text-decoration: none;
-  color: var(--pxNuSoudLn);
+  /* Renk şeması: kart zeminsiz → metinler section şemasını izler.
+     Görsel üstündeki rozet ve "Sepete ekle" hapı bilinçli olarak sabit. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   gap: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -145,12 +147,12 @@
 }
 
 .ikas-product-card__rating-score {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   font-weight: 500;
 }
 
 .ikas-product-card__rating-count {
-  color: var(--pxNuSoudLn);
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   opacity: 0.7;
 }
 
@@ -161,7 +163,7 @@
   font-family: var(--font-heading);
   font-weight: 500;
   font-size: 16px;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));  /* Ana Lacivert — TOKENS.md satır 10 */
   line-height: 1.35;
   width: 100%;
   min-width: 0;
@@ -203,21 +205,21 @@
   font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));  /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-product-card__old-price {
   font-family: var(--font-mono);
   font-size: 13px;
   text-decoration: line-through;
-  color: var(--pxNuSoudLn);
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   opacity: 0.55;
 }
 
 /* 8. KATEGORİ ETİKETİ + SWATCH (PLP) */
 .ikas-product-card__cat {
   margin: 0;
-  color: var(--text-meta-aa);           /* AA türevi — global.css */
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));  /* AA türevi — global.css */
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -240,7 +242,7 @@
 }
 
 .ikas-product-card__swatch-hint {
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   letter-spacing: 0.1em;
   margin-left: 2px;
 }
@@ -314,7 +316,7 @@
 
 .ikas-product-card--editorial .ikas-product-card__old-price {
   font-size: 13px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   opacity: 1;
 }
 

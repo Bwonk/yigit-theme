@@ -23,6 +23,12 @@
   border-radius: 9999px;
 }
 
+/* Renk şeması: açık zeminde ikon Heading, çerçeve Border; fallback = şemasız görünüm */
+.ikas-close-btn:not(.ikas-close-btn--on-dark) .ikas-icon-chip {
+  border-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
 /* Çip 34×34 kalır; butonun kendisi dokunmatikte 44×44 isabet alanı sağlar. */
 @media (pointer: coarse) {
   .ikas-close-btn {

@@ -8,6 +8,8 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  /* Renk şeması slotları (TOKENS.md §10); tint = hover zemini */
+  --cart-table-tint: color-mix(in srgb, var(--ucmfvEbo4R) 6%, var(--pGwtVHz9Sd));
 }
 
 .ikas-cart-table__item {
@@ -16,7 +18,7 @@
   gap: 16px;
   align-items: center;
   padding: 16px 0;
-  border-top: 1px solid var(--8ARbeTYsmD, var(--gzj8Nhz1Gb));
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, var(--gzj8Nhz1Gb)));
   box-sizing: border-box;
   transition: opacity 0.2s ease-out;
 }
@@ -66,7 +68,7 @@
 
 .ikas-cart-table__name {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-decoration: none;
 }
 
@@ -94,14 +96,14 @@
   border: 0;
   border-radius: 9999px;
   background: transparent;
-  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--pxNuSoudLn)));
   cursor: pointer;
   transition: color 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 .ikas-cart-table__remove:hover:not(:disabled) {
   color: var(--pAKfHnke8M, var(--pxNuSoudLn));
-  background-color: var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5));
+  background-color: var(--cart-table-tint, var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5)));
 }
 
 .ikas-cart-table__remove:focus-visible {
@@ -123,12 +125,12 @@
 
 .ikas-cart-table__price {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-table__price-old {
   margin: 0;
-  color: var(--p6EMJiXye1, var(--xGFwg5Zqpf));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--xGFwg5Zqpf)));
   text-decoration: line-through;
 }
 

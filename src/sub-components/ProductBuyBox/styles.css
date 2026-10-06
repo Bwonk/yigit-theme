@@ -19,7 +19,9 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Varyant pill'leri: seçili/hover = PrimaryButton, diğerleri = SecondaryButton. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__intro {
@@ -39,7 +41,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -69,7 +71,7 @@
   font-size: clamp(28px, 3.6vw, 54px);
   line-height: 1.02;
   letter-spacing: -0.035em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-wrap: balance;
   word-break: break-word;
 }
@@ -111,7 +113,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.12em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -125,14 +127,14 @@
 .ikas-buy-box__final-price {
   font-family: var(--font-mono);
   font-size: clamp(24px, 2.2vw, 32px);
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   letter-spacing: -0.01em;
 }
 
 .ikas-buy-box__sell-price {
   font-family: var(--font-mono);
   font-size: 14px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-decoration: line-through;
 }
 
@@ -140,7 +142,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   border: 1.5px solid var(--sy8ZnXZdoG);
   border-radius: 9999px;
   padding: 5px 10px;
@@ -151,14 +153,14 @@
   margin: 0;
   font-size: clamp(14.5px, 1.05vw, 16.5px);
   line-height: 1.62;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   max-width: 46ch;
   text-wrap: pretty;
 }
 
 .ikas-buy-box__rule {
   height: 1px;
-  background-color: var(--8ARbeTYsmD, #e4e7e8);
+  background-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   width: 100%;
 }
 
@@ -185,7 +187,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -193,7 +195,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-transform: uppercase;
 }
 
@@ -247,7 +249,7 @@
 .ikas-buy-box__swatch-ring {
   position: absolute;
   inset: -6px;
-  border: 1.5px solid var(--pxNuSoudLn);
+  border: 1.5px solid var(--ucmfvEbo4R, var(--pxNuSoudLn));
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -271,10 +273,10 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 12px;
@@ -294,7 +296,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: var(--pxNuSoudLn);
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
   border-radius: 60% 60% 0 0 / 100% 100% 0 0;
   transform: translateY(102%);
   transition:
@@ -309,8 +311,8 @@
 }
 
 .ikas-buy-box__pill:is(:focus-visible, :active):not(:disabled) {
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__pill:is(:focus-visible, :active):not(:disabled) .ikas-buy-box__pill-grow {
@@ -324,8 +326,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-buy-box__pill:hover:not(:disabled) {
-    color: var(--24KlcgGmm9);
-    border-color: var(--pxNuSoudLn);
+    color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+    border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
   }
 
   .ikas-buy-box__pill:hover:not(:disabled) .ikas-buy-box__pill-grow {
@@ -336,8 +338,8 @@
 
 /* Seçili: lacivert dolgu oturmuş halde */
 .ikas-buy-box__pill--selected {
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__pill--selected .ikas-buy-box__pill-grow {
@@ -373,7 +375,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -386,11 +388,11 @@
 }
 
 .ikas-buy-box__stock--out {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__stock--out .ikas-buy-box__stock-dot {
-  background-color: color-mix(in srgb, var(--pxNuSoudLn) 55%, transparent);
+  background-color: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 55%, transparent);
 }
 
 /* Pill CTA — space-between + sepet chip (Button PILL_PRIMARY üzerine) */
@@ -452,7 +454,7 @@
   list-style: none;
   margin: 0;
   padding: clamp(14px, 1.6vw, 20px) 0 0;
-  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -465,7 +467,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.12em;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   text-transform: uppercase;
   transition:
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -488,7 +490,7 @@
 
 .ikas-buy-box__trust-item svg {
   flex: 0 0 18px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 @media (prefers-reduced-motion: reduce) {

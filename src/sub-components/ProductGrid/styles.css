@@ -3,7 +3,8 @@
   box-sizing: border-box;
   /* Üst boşluk hafif — filter dock zaten hero’dan taştığı için ritmi dengeler */
   padding: clamp(18px, 2.4vw, 36px) var(--section-px, 20px) clamp(24px, 3vw, 40px);
-  background-color: var(--24KlcgGmm9);
+  /* Renk şeması slotları; fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
 }
 
 .ikas-product-grid__container {
@@ -79,19 +80,19 @@
   align-items: flex-start;
   gap: 18px;
   padding: clamp(48px, 8vw, 110px) 0;
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   box-sizing: border-box;
 }
 
 .ikas-product-grid__empty-eyebrow {
   margin: 0;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   letter-spacing: 0.2em;
 }
 
 .ikas-product-grid__empty-title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   max-width: 18ch;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -99,7 +100,7 @@
 
 .ikas-product-grid__empty-text {
   margin: 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   max-width: 44ch;
   line-height: 1.6;
 }

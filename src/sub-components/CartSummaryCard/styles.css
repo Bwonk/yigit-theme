@@ -7,9 +7,10 @@
   width: 100%;
   box-sizing: border-box;
   padding: 24px;
-  border: 1px solid var(--8ARbeTYsmD, var(--cdFDkBbKkc));
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  border: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, var(--cdFDkBbKkc)));
   border-radius: var(--card-radius, 32px);
-  background-color: var(--24KlcgGmm9);
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -18,9 +19,9 @@
 
 .ikas-cart-summary__title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--8ARbeTYsmD, var(--cdFDkBbKkc));
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, var(--cdFDkBbKkc)));
 }
 
 .ikas-cart-summary__rows {
@@ -34,14 +35,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-summary__row--total {
   align-items: baseline;
   margin-top: 4px;
   padding-top: 16px;
-  border-top: 1px solid var(--8ARbeTYsmD, var(--cdFDkBbKkc));
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, var(--cdFDkBbKkc)));
 }
 
 .ikas-cart-summary__total-label {
@@ -49,7 +50,7 @@
 }
 
 .ikas-cart-summary__total {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   font-weight: 600;
 }
 
@@ -73,7 +74,7 @@
 
 .ikas-cart-summary__tax {
   margin: -8px 0 0;
-  color: var(--p6EMJiXye1, var(--xGFwg5Zqpf));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--xGFwg5Zqpf)));
   font-size: 14px;
 }
 
