@@ -126,8 +126,8 @@
   --deal-fg: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   --deal-muted: var(--tggPeh5T1A, var(--text-body-aa, #5a6472));
   --deal-media-bg: var(--jQs026VIpf);
-  --deal-tag-bg: var(--pxNuSoudLn);
-  --deal-tag-fg: var(--24KlcgGmm9);
+  --deal-tag-bg: var(--gzVXctV39L, var(--pxNuSoudLn));
+  --deal-tag-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
 }
 
 a.ikas-deal-card:focus {
