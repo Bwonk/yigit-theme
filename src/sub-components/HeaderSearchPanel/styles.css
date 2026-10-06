@@ -320,7 +320,7 @@
 .ikas-search-panel__all:hover,
 .ikas-search-panel__all.is-active {
   background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
-  color: var(--pxNuSoudLn); /* sarı dolgu üzerinde sabit */
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn)); /* sarı dolgu üzerinde sabit */
 }
 
 @media (prefers-reduced-motion: reduce) {

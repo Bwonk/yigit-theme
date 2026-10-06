@@ -23,7 +23,7 @@
   transform: rotate(135deg);
   background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
-  color: var(--vluFeuIeFs, #101418);
+  color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
 }
 
 /* Koyu yüzey: Inverse/Text'ten türetilir; şemasızken beyaz / %35 beyaz çerçeve */
@@ -35,7 +35,7 @@
 .ikas-icon-chip--on-dark.ikas-icon-chip--active {
   background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
-  color: var(--vluFeuIeFs, #101418);
+  color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
 }
 
 @media (prefers-reduced-motion: reduce) {

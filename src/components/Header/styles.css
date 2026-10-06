@@ -295,7 +295,7 @@
 
 .ikas-header__search-icon {
   flex: none;
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-header__search-input {

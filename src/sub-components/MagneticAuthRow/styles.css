@@ -139,9 +139,9 @@
   width: 24px;
   height: 24px;
   border-radius: 9999px;
-  border: 1px solid var(--sy8ZnXZdoG);
-  background: color-mix(in srgb, var(--sy8ZnXZdoG) 14%, transparent);
-  color: var(--sy8ZnXZdoG);
+  border: 1px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  background: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 14%, transparent);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   display: flex;
   align-items: center;
   justify-content: center;
