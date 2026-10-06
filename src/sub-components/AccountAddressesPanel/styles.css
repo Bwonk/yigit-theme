@@ -73,7 +73,7 @@
   width: min(520px, 100%);
   max-height: min(90vh, 760px);
   overflow: auto;
-  background: var(--24KlcgGmm9, #fff);
+  background: var(--jyNun2ZBza, var(--24KlcgGmm9, #fff));
   border-radius: 20px;
   padding: 24px;
   display: flex;
@@ -82,7 +82,7 @@
   box-shadow: 0 16px 48px color-mix(in srgb, var(--pxNuSoudLn) 18%, transparent);
   /* Yükseltilmiş beyaz sayfa: şema slotları sıfırlanır → içerik (etiket, buton)
      şemasız görünümde sabit kalır. `initial` = geçersiz değer → fallback. */
-  color: var(--pxNuSoudLn);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   --pGwtVHz9Sd: initial;
   --ucmfvEbo4R: initial;
   --hy9HpUbpuN: initial;

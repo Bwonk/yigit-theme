@@ -126,9 +126,9 @@
 
 .ikas-contact__panel {
   /* Şemadan bağımsız: panel içi mürekkep şemasız değere döner. */
-  --contact-ink: var(--contact-text, var(--pxNuSoudLn));
+  --contact-ink: var(--contact-text, var(--8Ev4X6Vd0O, var(--pxNuSoudLn)));
   color: var(--contact-ink);
-  background: var(--jQs026VIpf, #f4f5f6);
+  background: var(--poSYrZpIso, var(--jQs026VIpf, #f4f5f6));
   border-radius: var(--input-radius, 14px);
   padding: clamp(24px, 3.4vw, 48px);
   box-sizing: border-box;
@@ -177,7 +177,7 @@
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-contact__required {
@@ -258,7 +258,7 @@ textarea.ikas-contact__input {
 .ikas-contact__success-text {
   margin: 0;
   max-width: 48ch;
-  color: var(--xGFwg5Zqpf);
+  color: var(--8Ev4X6Vd0O, var(--xGFwg5Zqpf));
 }
 
 @keyframes ikas-contact-in {

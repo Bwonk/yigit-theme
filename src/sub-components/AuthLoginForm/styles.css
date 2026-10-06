@@ -196,7 +196,7 @@
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.18em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-mgauth .ikas-auth__banner {
@@ -261,7 +261,7 @@
   border: 0;
   border-radius: 9999px;
   background: transparent;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -273,8 +273,8 @@
 }
 
 .ikas-mgauth .ikas-auth__pw-toggle:hover {
-  background: var(--jQs026VIpf, #edeff0);
-  color: var(--pxNuSoudLn, #37435b);
+  background: var(--poSYrZpIso, var(--jQs026VIpf, #edeff0));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-mgauth .ikas-auth__error {

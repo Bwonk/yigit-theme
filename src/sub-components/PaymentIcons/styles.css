@@ -35,4 +35,8 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
+  /* Metin çipi kartın renklerini izler; logo kartları (svg) beyaz kalır. */
+  border-color: var(--2MHxRczVsb, var(--0RbHz765Hw));
+  background-color: var(--jyNun2ZBza, var(--24KlcgGmm9));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
 }

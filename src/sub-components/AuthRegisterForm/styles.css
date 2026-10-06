@@ -125,13 +125,13 @@
   font-family: var(--font-body);
   font-size: 12.5px;
   line-height: 1.5;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--8Ev4X6Vd0O, var(--xGFwg5Zqpf, #6e7a8c));
   cursor: pointer;
   transition: color 0.22s ease;
 }
 
 .ikas-mgauth .ikas-auth__consent:hover {
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-mgauth .ikas-auth__checkbox {

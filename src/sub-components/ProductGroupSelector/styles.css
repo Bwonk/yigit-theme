@@ -65,7 +65,7 @@
   aspect-ratio: 4 / 5;
   border-radius: 10px;
   overflow: hidden;
-  background: var(--jQs026VIpf, #f4f5f6);
+  background: var(--poSYrZpIso, var(--jQs026VIpf, #f4f5f6));
   border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   box-sizing: border-box;
   text-decoration: none;
@@ -88,7 +88,7 @@
   letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
-  color: var(--pxNuSoudLn);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   overflow-wrap: anywhere;
 }
 

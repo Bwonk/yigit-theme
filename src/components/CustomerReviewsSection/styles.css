@@ -284,7 +284,7 @@
   margin-top: 4px;
   padding: 12px 14px;
   border-left: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
-  background: var(--jQs026VIpf, #f4f5f5);
+  background: var(--poSYrZpIso, var(--jQs026VIpf, #f4f5f5));
   border-radius: 0 10px 10px 0;
 }
 
@@ -292,14 +292,14 @@
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.14em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-reviews__reply-text {
   margin: 0;
   font-size: 14px;
   line-height: 1.55;
-  color: var(--pxNuSoudLn);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   white-space: pre-line;
   word-break: break-word;
 }

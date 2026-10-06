@@ -117,7 +117,7 @@
   min-height: 220px;
   border-radius: 16px;
   overflow: hidden;
-  background-color: var(--jQs026VIpf, #edeff0);
+  background-color: var(--poSYrZpIso, var(--jQs026VIpf, #edeff0));
   text-decoration: none;
 }
 
@@ -143,14 +143,14 @@
   gap: 4px;
   padding: 10px 12px;
   border-radius: 14px;
-  background-color: rgba(255, 255, 255, 0.96);
+  background-color: color-mix(in srgb, var(--jyNun2ZBza, #fff) 96%, transparent);
 }
 
 .ikas-menu-panel__feat-card small {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-menu-panel__feat-card b {
@@ -158,14 +158,14 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1.25;
-  color: var(--pxNuSoudLn);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
 }
 
 .ikas-menu-panel__feat-card em {
   font-family: var(--font-mono);
   font-size: 12px;
   font-style: normal;
-  color: var(--pxNuSoudLn);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
 }
 
 /* KOMPAKT: akordeon */

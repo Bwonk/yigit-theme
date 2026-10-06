@@ -244,15 +244,15 @@
 }
 
 .ikas-hero__avatar--1 {
-  background-color: #f5e8c7;
+  background-color: var(--hBlDr8T9HW, #f5e8c7);
 }
 
 .ikas-hero__avatar--2 {
-  background-color: #d9d3f0;
+  background-color: var(--btAOgyyOol, #d9d3f0);
 }
 
 .ikas-hero__avatar--3 {
-  background-color: #cfe8d8;
+  background-color: var(--qdiB71MdVn, #cfe8d8);
 }
 
 .ikas-hero__chip-text {

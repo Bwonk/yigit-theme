@@ -110,7 +110,7 @@
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 26px;
-  background: var(--wElEhJwjYh, #f4f5f5);
+  background: var(--poSYrZpIso, var(--wElEhJwjYh, #f4f5f5));
   border: 1.5px solid color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 55%, transparent);
   box-shadow: var(--mg-card-shadow);
   will-change: left, top, width, height;
@@ -216,7 +216,7 @@
   gap: 14px;
   padding: 24px 28px;
   overflow: auto;
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-mgauth__panel-head {
@@ -233,7 +233,7 @@
 .ikas-mgauth__panel-form-wordmark {
   display: none;
   letter-spacing: 0.24em;
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-mgauth__panel-body {
@@ -253,7 +253,7 @@
   grid-template-columns: 1fr 1fr;
   padding: 4px;
   border-radius: 9999px;
-  background: var(--jQs026VIpf, #edeff0);
+  background: var(--poSYrZpIso, var(--jQs026VIpf, #edeff0));
 }
 
 .ikas-mgauth__switcher-pill {
@@ -291,7 +291,7 @@
   white-space: nowrap;
   text-align: center;
   cursor: pointer;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
   transition: color 0.3s ease;
 }
 

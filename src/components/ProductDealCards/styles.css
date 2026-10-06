@@ -122,9 +122,9 @@
 }
 
 .ikas-deal-card--light {
-  --deal-bg: var(--wElEhJwjYh);
-  --deal-fg: var(--pxNuSoudLn);
-  --deal-muted: var(--text-body-aa, #5a6472);
+  --deal-bg: var(--poSYrZpIso, var(--wElEhJwjYh));
+  --deal-fg: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
+  --deal-muted: var(--tggPeh5T1A, var(--text-body-aa, #5a6472));
   --deal-media-bg: var(--jQs026VIpf);
   --deal-tag-bg: var(--pxNuSoudLn);
   --deal-tag-fg: var(--24KlcgGmm9);
@@ -317,8 +317,8 @@ a.ikas-deal-card:focus-visible {
   height: 44px;
   padding: 0 18px 0 20px;
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--jyNun2ZBza, var(--24KlcgGmm9));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   font-family: var(--font-heading);
   font-size: 12px;
   font-weight: 600;
@@ -345,7 +345,7 @@ a.ikas-deal-card:focus-visible {
 /* Açık yüzeyli kartta gölge yerine ince çizgi — beyaz hap gri zeminde
    gölgeyle fazla öne çıkıyordu. */
 .ikas-deal-card--light .ikas-deal-card__cta {
-  box-shadow: inset 0 0 0 1px var(--8ARbeTYsmD);
+  box-shadow: inset 0 0 0 1px var(--2MHxRczVsb, var(--8ARbeTYsmD));
 }
 
 /* Koyu (navy) kartta hap Inverse slotlarının tersidir: Inverse/Text zemin,
@@ -359,6 +359,12 @@ a.ikas-deal-card:focus-visible .ikas-deal-card__cta::before,
 a.ikas-deal-card:active .ikas-deal-card__cta::before {
   transform: none;
   border-radius: 0;
+}
+
+/* Sarı (AccentButton/Background) dolgu üzerinde yazı AccentButton/Text. */
+a.ikas-deal-card:focus-visible .ikas-deal-card__cta,
+a.ikas-deal-card:active .ikas-deal-card__cta {
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));
 }
 
 .ikas-deal-card__arrow {
@@ -378,6 +384,10 @@ a.ikas-deal-card:active .ikas-deal-card__cta::before {
   a.ikas-deal-card:hover .ikas-deal-card__cta::before {
     transform: none;
     border-radius: 0;
+  }
+
+  a.ikas-deal-card:hover .ikas-deal-card__cta {
+    color: var(--xxNgTuALjl, var(--pxNuSoudLn));
   }
 }
 

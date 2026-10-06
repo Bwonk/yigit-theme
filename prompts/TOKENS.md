@@ -40,6 +40,8 @@ Bu dosya, ikas editöründe canlı olarak oluşturulan tasarım token'larının 
 | `Rozet / Tükendi Metin` | `FFrSwmzVyU` | `var(--fFrSwmzVyU)` |
 | `Rozet / Etiket Zemin` | `eMO2pn8JV3` | `var(--eMo2Pn8Jv3)` |
 | `Rozet / Etiket Metin` | `veglu61tEE` | `var(--veglu61TEe)` |
+| `Pastel / Lavanta` | `btAOgyyOol` | `var(--btAOgyyOol)` |
+| `Pastel / Nane` | `QdiB71MDVn` | `var(--qdiB71MdVn)` |
 
 Rozet renkleri global’dir (renk şemasından bağımsız, sitenin her yerinde aynı):
 İndirim = ürün kartı indirim rozeti, PDP indirim çerçevesi, Deal Cards tasarruf etiketi,
@@ -220,6 +222,13 @@ Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*,
 | Badge/SoldOutText | `var(--wkpsXzUm2D)` |
 | Badge/LabelBackground | `var(--tPAyW5QcRt)` |
 | Badge/LabelText | `var(--65Fcrshr5K)` |
+| Card/Background | `var(--jyNun2ZBza)` |
+| Card/MutedBackground | `var(--poSYrZpIso)` |
+| Card/Text | `var(--8Ev4X6Vd0O)` |
+| Card/MutedText | `var(--tggPeh5T1A)` |
+| Card/Border | `var(--2MHxRczVsb)` |
+
+Card = section zemininden ayrışan kartlar (beyaz: Card/Background, açık gri: Card/MutedBackground) — İletişim formu, SSS yardım kutusu, Testimonials kartları, mağaza yanıtı, açık Deal Card, Magnetic Auth paneli, kampanya kutusu, ürün grubu kutuları vb.
 
 Inverse = koyu marka yüzeyleri (duyuru bandı, VelocityBelt şeridi, header pill, Newsletter kartı, koyu Deal Card, Magnetic Auth koyu kartları). Badge slotları şemada global `Rozet / …` renklerine bağlıdır; CSS’te `var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)))` gibi slot → global → token zinciriyle yazılır.
 

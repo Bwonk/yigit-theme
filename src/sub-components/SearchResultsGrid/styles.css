@@ -33,8 +33,8 @@
 }
 
 .geeny-search-results__count-badge {
-  background-color: var(--cdFDkBbKkc);
-  color: var(--pxNuSoudLn);
+  background-color: var(--poSYrZpIso, var(--cdFDkBbKkc));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   padding: 4px 12px;
   border-radius: 16px;
   display: inline-flex;

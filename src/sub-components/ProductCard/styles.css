@@ -335,8 +335,8 @@
   border-radius: 9999px;
   isolation: isolate;
   overflow: hidden;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--jyNun2ZBza, var(--24KlcgGmm9));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   font-family: var(--font-heading);
   font-size: 12px;
   font-weight: 600;
@@ -368,6 +368,11 @@
 .ikas-product-card__add-pill:is(:focus-visible, :active)::before {
   transform: none;
   border-radius: 0;
+}
+
+/* Sarı (AccentButton/Background) dolgu üzerinde yazı AccentButton/Text. */
+.ikas-product-card__add-pill:is(:focus-visible, :active):not(.ikas-product-card__add-pill--done) {
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));
 }
 
 .ikas-product-card__add-pill:focus-visible {
@@ -415,6 +420,10 @@
   .ikas-product-card__add-pill:hover::before {
     transform: none;
     border-radius: 0;
+  }
+
+  .ikas-product-card__add-pill:hover:not(.ikas-product-card__add-pill--done) {
+    color: var(--xxNgTuALjl, var(--pxNuSoudLn));
   }
 }
 

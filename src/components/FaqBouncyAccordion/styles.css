@@ -148,12 +148,12 @@
     padding: 18px 20px;
     border-top: 0;
     border-radius: var(--faq-radius, 12px);
-    background-color: var(--wElEhJwjYh, #f4f5f5);  /* Nötr / Yüzey */
+    background-color: var(--poSYrZpIso, var(--wElEhJwjYh, #f4f5f5));  /* Nötr / Yüzey */
   }
 
   .ikas-faq__help-text {
     flex: 1 1 200px;
-    color: var(--pxNuSoudLn, #37435b);
+    color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn, #37435b));
   }
 }
 
