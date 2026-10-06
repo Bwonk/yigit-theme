@@ -175,6 +175,29 @@ Kod sabitleri: `ThemeBreakpoint` in `src/utils/themeTokens.ts`.
 | `Yigit / Soft` | `7ZPFcYS3JC` | `_7ZPFcYS3JC` |
 
 Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*, SecondaryButton/*.
+
+| Slot | cssVar |
+| :--- | :--- |
+| Background | `var(--pGwtVHz9Sd)` |
+| Heading | `var(--ucmfvEbo4R)` |
+| Text | `var(--hy9HpUbpuN)` |
+| Link | `var(--spRu5BCzrk)` |
+| HoverLink | `var(--yccjLb7If4)` |
+| Border | `var(--p6Vorgv0Uy)` |
+| PrimaryButton/Background | `var(--14KZmiHQnk)` |
+| PrimaryButton/Text | `var(--aLyEruXqBe)` |
+| PrimaryButton/Border | `var(--fkaMzCgkCr)` |
+| PrimaryButton/HoverBackground | `var(--cQnfNuvn0R)` |
+| PrimaryButton/HoverText | `var(--xm8HJppGoU)` |
+| PrimaryButton/HoverBorder | `var(--sle6Nb4QtF)` |
+| SecondaryButton/Background | `var(--nev1XwFhtS)` |
+| SecondaryButton/Text | `var(--ua5R3Zg9Wv)` |
+| SecondaryButton/Border | `var(--knCpeJkjkB)` |
+| SecondaryButton/HoverBackground | `var(--vvG2EEhdCx)` |
+| SecondaryButton/HoverText | `var(--0UgngKDdX6)` |
+| SecondaryButton/HoverBorder | `var(--4K9KPuSllH)` |
+
+Slot var’ları yalnızca section’a editörden şema seçildiğinde tanımlıdır. CSS’te her zaman mevcut renkle fallback yazın: `color: var(--ucmfvEbo4R, var(--pxNuSoudLn));` — şema seçilmemiş section eskisi gibi görünür. Section’ın `backgroundColor` prop’u boş bırakılır; doluysa şemanın zeminini ezer.
 Section’larda inherit etmek için palette `className` eklemeyin — slot `cssVar`’ları section scheme’inden çözülür.
 
 ---

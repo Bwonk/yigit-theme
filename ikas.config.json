@@ -3113,7 +3113,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Bölüm zemin rengi",
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {
@@ -3248,7 +3248,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Bölüm zemin rengi",
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {
@@ -3570,7 +3570,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Bölüm zemin rengi",
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "itemsText",
@@ -3845,7 +3845,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Bölüm arka plan rengi",
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "resultsTitleWithKeyword",
@@ -4084,7 +4084,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "detailsTag",
@@ -4290,7 +4290,7 @@
           "displayName": "Arka Plan",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "brandKicker",
@@ -4633,7 +4633,7 @@
           "displayName": "Arka Plan",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "brandKicker",
@@ -4759,7 +4759,7 @@
           "displayName": "Arka Plan",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "accountInfoLabel",
@@ -5166,7 +5166,7 @@
           "displayName": "Arka Plan",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "brandKicker",
@@ -5288,7 +5288,7 @@
           "displayName": "Arka Plan",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff"
+          "defaultValue": ""
         },
         {
           "name": "brandKicker",
@@ -5763,7 +5763,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {
@@ -5897,7 +5897,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         }
       ],
@@ -6072,7 +6072,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         }
       ],
@@ -6192,7 +6192,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {
@@ -6340,7 +6340,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         }
       ],
@@ -6603,7 +6603,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#ffffff",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {

@@ -183,7 +183,7 @@ const ProfilePanel = observer(function ProfilePanel({
 });
 
 export function AccountDashboard({
-  backgroundColor = "#ffffff",
+  backgroundColor,
   accountInfoLabel = "HESABIM",
   ordersLabel = "SİPARİŞLERİM",
   addressesLabel = "ADRESLERİM",

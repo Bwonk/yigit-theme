@@ -15,7 +15,7 @@ export interface CollectionSectionProps extends Props {
  */
 export function CollectionSection({
   productList,
-  backgroundColor = "#ffffff",
+  backgroundColor,
   filterTitle = "FİLTRELER",
   sortTitle = "SIRALA",
   clearFiltersText = "TEMİZLE",

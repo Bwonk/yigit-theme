@@ -15,7 +15,7 @@ export function FaqBouncyAccordion(props: Props) {
     tag = "SSS",
     title = "Sıkça sorulan sorular",
     subtitle = "Sipariş, kargo ve ürün hakkında merak edilenler.",
-    backgroundColor = "#ffffff",
+    backgroundColor,
     items,
     emptyStateText = "Henüz soru eklenmedi.",
     helpText = "Aradığını bulamadın mı? Destek ekibi 7/24 canlı.",

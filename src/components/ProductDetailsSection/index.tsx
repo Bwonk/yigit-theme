@@ -8,7 +8,7 @@ export interface ProductDetailsSectionProps extends Props {
 
 export function ProductDetailsSection({
   product,
-  backgroundColor = "#ffffff",
+  backgroundColor,
   detailsTag = "01 · ÜRÜN DETAYLARI",
   detailsTitle = "Bilmen gereken her şey.",
   detailsSubtitle = "On iki prototip sonrası ortaya çıkan tek parça yapı — malzemesinden bakımına kadar.",

@@ -20,7 +20,7 @@ export function CollectionHero({
   title = "",
   fallbackTitle,
   productList,
-  backgroundColor = "#ffffff",
+  backgroundColor,
   homepageText = "Ana Sayfa",
   productCountSuffix = "ürün",
   className = "",

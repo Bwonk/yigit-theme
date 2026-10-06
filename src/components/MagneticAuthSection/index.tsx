@@ -104,7 +104,7 @@ interface EngineState {
 }
 
 export function MagneticAuthSection({
-  backgroundColor = "#ffffff",
+  backgroundColor,
   brandKicker = "YİĞİT",
   stageKicker = "HESAP ERİŞİMİ",
   stageHeading = "Uykunu yanında taşı.",

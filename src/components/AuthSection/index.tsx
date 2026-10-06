@@ -42,7 +42,7 @@ function prefersReducedMotion(): boolean {
  * Mode from URL; switcher navigates between pages.
  */
 export function AuthSection({
-  backgroundColor = "#ffffff",
+  backgroundColor,
   brandKicker = "YİĞİT",
   loginHeading = "Tekrar hoş geldin.",
   registerHeading = "Hesabını oluştur.",

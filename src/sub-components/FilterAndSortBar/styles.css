@@ -20,7 +20,7 @@
   z-index: var(--z-index-filter-bar, 50);
   width: 100%;
   box-sizing: border-box;
-  background: var(--collection-bg, var(--24KlcgGmm9));
+  background: var(--collection-bg, var(--pGwtVHz9Sd, var(--24KlcgGmm9)));
   border-top: 1px solid var(--8ARbeTYsmD);
 }
 
