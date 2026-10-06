@@ -95,8 +95,8 @@
 
 .ikas-cross-sell__item--selected .ikas-cross-sell__check,
 .ikas-cross-sell__item--locked .ikas-cross-sell__check {
-  background: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-cross-sell__media {

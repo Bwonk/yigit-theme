@@ -109,7 +109,7 @@
 }
 
 .ikas-header__hamburger:hover {
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 /* Logo Stili (Onest 700, 0.22em tracking) */
@@ -133,16 +133,16 @@
 
 .ikas-header__logo-link:hover .ikas-header__logo-text,
 .ikas-header__logo-link:hover {
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
 }
 
 /* Klavye odağı ikon butonlarıyla aynı dili konuşur (WCAG 2.4.11 / 2.4.13). */
 .ikas-header__logo-link:focus-visible,
 .ikas-header__menu-link:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   outline-offset: 3px;
   border-radius: 4px;
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-header__logo-img {
@@ -185,7 +185,7 @@
 }
 
 .ikas-header__menu-link:hover {
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
 }
 
 /* Alt bağlantısı olan öğe: düğme + ok; kart açıkken sarı, ok döner */
@@ -211,7 +211,7 @@
 }
 
 .ikas-header__menu-link--parent[aria-expanded="true"] {
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-header__menu-link--parent[aria-expanded="true"] svg {
@@ -320,7 +320,7 @@
   padding: 4px 0;
   border: 0;
   /* Dolan çizgi (menüdeki "Tümünü gör" ile aynı) */
-  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 100% 2px no-repeat;
+  background: linear-gradient(var(--uYyzbBgJmi, var(--sy8ZnXZdoG)), var(--uYyzbBgJmi, var(--sy8ZnXZdoG))) 0 100% / 100% 2px no-repeat;
   transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease;
   font-size: 10.5px;
   letter-spacing: 0.14em;
@@ -457,7 +457,7 @@
 
 .ikas-header__icon-btn:hover {
   background-color: color-mix(in srgb, var(--24KlcgGmm9) 12%, transparent);
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
   transform: scale(1.06);
 }
 
@@ -471,15 +471,15 @@
 }
 
 .ikas-header__icon-btn:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   outline-offset: 2px;
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-header__icon-btn--active,
 .ikas-header__hamburger--active {
   background-color: color-mix(in srgb, var(--24KlcgGmm9) 16%, transparent);
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-header__hamburger {
@@ -496,8 +496,8 @@
   height: var(--nav-action-size);
   border: 0;
   border-radius: 9999px;
-  background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));  /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -512,7 +512,7 @@
 }
 
 .ikas-header__cart-btn:hover {
-  background-color: color-mix(in srgb, var(--sy8ZnXZdoG) 88%, var(--24KlcgGmm9));
+  background-color: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 88%, var(--24KlcgGmm9));
   transform: scale(1.06);
 }
 

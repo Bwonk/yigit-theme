@@ -20,8 +20,8 @@
      doğru dolup bağlantının zeminini kaplar (menüdeki "Tümünü gör" ile aynı). */
   background:
     linear-gradient(
-      var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))),
-      var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))
+      var(--tl-underline-color, var(--uYyzbBgJmi, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))),
+      var(--tl-underline-color, var(--uYyzbBgJmi, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))))
     )
     0 100% / 100% var(--tl-thickness, 2px) no-repeat;
   -webkit-box-decoration-break: clone;

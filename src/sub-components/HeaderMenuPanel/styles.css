@@ -50,7 +50,7 @@
   text-transform: uppercase;
   color: var(--spRu5BCzrk, var(--pxNuSoudLn));
   text-decoration: none;
-  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 100% 2px no-repeat;
+  background: linear-gradient(var(--uYyzbBgJmi, var(--sy8ZnXZdoG)), var(--uYyzbBgJmi, var(--sy8ZnXZdoG))) 0 100% / 100% 2px no-repeat;
   transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 

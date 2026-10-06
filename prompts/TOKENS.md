@@ -196,6 +196,12 @@ Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*,
 | SecondaryButton/HoverBackground | `var(--vvG2EEhdCx)` |
 | SecondaryButton/HoverText | `var(--0UgngKDdX6)` |
 | SecondaryButton/HoverBorder | `var(--4K9KPuSllH)` |
+| AccentButton/Background | `var(--uYyzbBgJmi)` |
+| AccentButton/Text | `var(--xxNgTuALjl)` |
+| AccentButton/HoverBackground | `var(--880SvcisUo)` |
+| AccentButton/HoverText | `var(--uSkhJxjklN)` |
+
+AccentButton/Background aynı zamanda etkileşimli vurgu dolgularının rengidir: link alt çizgi dolgusu, ürün kartı “Sepete ekle” dolgusu, header sepet butonu ve hover renkleri, akordiyon açık dairesi, işaretli checkbox. Dekoratif sarılar (rozet, yıldız, nokta, indirim etiketi) sabit `--sy8ZnXZdoG` kalır.
 
 Slot var’ları yalnızca section’a editörden şema seçildiğinde tanımlıdır. CSS’te her zaman mevcut renkle fallback yazın: `color: var(--ucmfvEbo4R, var(--pxNuSoudLn));` — şema seçilmemiş section eskisi gibi görünür. Section’ın `backgroundColor` prop’u boş bırakılır; doluysa şemanın zeminini ezer.
 Section’larda inherit etmek için palette `className` eklemeyin — slot `cssVar`’ları section scheme’inden çözülür.

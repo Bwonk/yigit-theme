@@ -78,8 +78,8 @@
 
 /* Share copied — accent chip + ink check (mevcut sözleşme) */
 .ikas-social-btn--copied .ikas-icon-chip {
-  border-color: var(--sy8ZnXZdoG);
-  background-color: var(--sy8ZnXZdoG);
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 

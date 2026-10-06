@@ -21,8 +21,8 @@
 
 .ikas-icon-chip--active {
   transform: rotate(135deg);
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 
@@ -32,8 +32,8 @@
 }
 
 .ikas-icon-chip--on-dark.ikas-icon-chip--active {
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 

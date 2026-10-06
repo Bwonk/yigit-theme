@@ -75,8 +75,8 @@
 }
 
 .ikas-auth .ikas-auth__checkbox:checked {
-  background: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-auth .ikas-auth__checkbox:checked::after {
@@ -165,8 +165,8 @@
 }
 
 .ikas-mgauth .ikas-auth__checkbox:checked {
-  background: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-mgauth .ikas-auth__checkbox:checked::after {

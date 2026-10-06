@@ -114,17 +114,17 @@
 
 /* ─── ACCENT: sarı zemin, lacivert dolgu ─── */
 .ikas-btn--accent {
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--pxNuSoudLn);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));
   border: 1px solid transparent;
 }
 
 .ikas-btn--accent::before {
-  background-color: var(--pxNuSoudLn);
+  background-color: var(--880SvcisUo, var(--pxNuSoudLn));
 }
 
 .ikas-btn--accent:is(:hover, :focus-visible, :active):not(:disabled) {
-  color: var(--24KlcgGmm9);
+  color: var(--uSkhJxjklN, var(--24KlcgGmm9));
 }
 
 /* ─── SECONDARY: şeffaf zemin, sarı dolgu ─── */
@@ -259,17 +259,17 @@
 
 /* ─── PILL_ACCENT: Accent sarı bg → lacivert alttan dolar ─── */
 .ikas-btn--pill_accent {
-  background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));  /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-btn--pill_accent::before {
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--880SvcisUo, var(--pxNuSoudLn));  /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-btn--pill_accent:is(:focus-visible, :active):not(:disabled) {
   /* Lacivert dolgu üzerine accent sarı metin */
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uSkhJxjklN, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
 }
 
 .ikas-btn--pill_accent:active:not(:disabled) {
@@ -305,7 +305,7 @@
   }
 
   .ikas-btn--pill_accent:hover:not(:disabled) {
-    color: var(--sy8ZnXZdoG);
+    color: var(--uSkhJxjklN, var(--sy8ZnXZdoG));
   }
 
   .ikas-btn--pill_secondary:hover:not(:disabled) {

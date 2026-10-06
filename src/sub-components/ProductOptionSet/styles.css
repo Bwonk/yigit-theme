@@ -647,7 +647,7 @@ legend.ikas-option-set__head + * {
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-option-set__file-remove:hover {
-    background: var(--sy8ZnXZdoG);
+    background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   }
 }
 

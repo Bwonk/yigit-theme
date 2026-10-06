@@ -48,7 +48,7 @@
 .ikas-search-panel__clear {
   border: 0;
   /* Dolan çizgi (menüdeki "Tümünü gör" ile aynı) */
-  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 100% 2px no-repeat;
+  background: linear-gradient(var(--uYyzbBgJmi, var(--sy8ZnXZdoG)), var(--uYyzbBgJmi, var(--sy8ZnXZdoG))) 0 100% / 100% 2px no-repeat;
   transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease;
   padding: 6px 0;
   font-size: 10.5px;
@@ -319,7 +319,7 @@
 
 .ikas-search-panel__all:hover,
 .ikas-search-panel__all.is-active {
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--pxNuSoudLn); /* sarı dolgu üzerinde sabit */
 }
 

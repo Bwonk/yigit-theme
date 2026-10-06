@@ -357,7 +357,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   border-radius: 60% 60% 0 0 / 100% 100% 0 0;
   transform: translateY(102%);
   transition:

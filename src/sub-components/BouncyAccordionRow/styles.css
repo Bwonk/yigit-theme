@@ -101,14 +101,14 @@
 }
 
 .ikas-faq-row--open .ikas-faq-row__pm {
-  background-color: var(--sy8ZnXZdoG, #e3e045);
-  border-color: var(--sy8ZnXZdoG, #e3e045);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG, #e3e045));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG, #e3e045));
   transform: rotate(180deg);
 }
 
 .ikas-faq-row--open .ikas-faq-row__pm::before,
 .ikas-faq-row--open .ikas-faq-row__pm::after {
-  background-color: var(--vluFeuIeFs, #101418);
+  background-color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
 }
 
 .ikas-faq-row--open .ikas-faq-row__pm::after {

@@ -40,15 +40,15 @@
 .ikas-close-btn:hover .ikas-icon-chip,
 .ikas-close-btn:focus-visible .ikas-icon-chip {
   transform: rotate(135deg);
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 
 .ikas-close-btn--on-dark:hover .ikas-icon-chip,
 .ikas-close-btn--on-dark:focus-visible .ikas-icon-chip {
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 

@@ -177,7 +177,7 @@
   line-height: 1.3;
   color: var(--spRu5BCzrk, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   text-decoration: none;
-  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 0 2px no-repeat;
+  background: linear-gradient(var(--uYyzbBgJmi, var(--sy8ZnXZdoG)), var(--uYyzbBgJmi, var(--sy8ZnXZdoG))) 0 100% / 0 2px no-repeat;
   transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -231,10 +231,10 @@
 }
 
 .ikas-footer__social-btn:hover {
-  background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));  /* Accent Sarı — TOKENS.md satır 11 */
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   transform: translateY(-2px);
-  color: var(--fcAwzuFj9W);
+  color: var(--xxNgTuALjl, var(--fcAwzuFj9W));
 }
 
 .ikas-footer__social-btn svg {
