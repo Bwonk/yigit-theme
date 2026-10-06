@@ -104,8 +104,10 @@
   --deal-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
   --deal-muted: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 80%, var(--gzVXctV39L, var(--pxNuSoudLn)));
   --deal-media-bg: var(--wElEhJwjYh);
-  --deal-tag-bg: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
-  --deal-tag-fg: var(--xxNgTuALjl, var(--fcAwzuFj9W));
+  /* Kart etiketi (Kart 1/2 Etiketi metni) = etiket rozeti: şema Badge/Label
+     slotu → global Rozet / Etiket rengi. İki kart varyantında da aynı. */
+  --deal-tag-bg: var(--tPAyW5QcRt, var(--eMo2Pn8Jv3, var(--sy8ZnXZdoG)));
+  --deal-tag-fg: var(--65Fcrshr5K, var(--veglu61TEe, var(--fcAwzuFj9W)));
 
   position: relative;
   display: flex;
@@ -126,8 +128,6 @@
   --deal-fg: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   --deal-muted: var(--tggPeh5T1A, var(--text-body-aa, #5a6472));
   --deal-media-bg: var(--jQs026VIpf);
-  --deal-tag-bg: var(--gzVXctV39L, var(--pxNuSoudLn));
-  --deal-tag-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
 }
 
 a.ikas-deal-card:focus {
