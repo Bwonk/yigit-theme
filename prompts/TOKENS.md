@@ -211,6 +211,19 @@ Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*,
 | AccentButton/Text | `var(--xxNgTuALjl)` |
 | AccentButton/HoverBackground | `var(--880SvcisUo)` |
 | AccentButton/HoverText | `var(--uSkhJxjklN)` |
+| Inverse/Background | `var(--gzVXctV39L)` |
+| Inverse/Text | `var(--eceeZPmHKm)` |
+| Inverse/Border | `var(--5Bj1Gi64F9)` |
+| Badge/SaleBackground | `var(--n37O828R9D)` |
+| Badge/SaleText | `var(--x1EAnEpJwy)` |
+| Badge/SoldOutBackground | `var(--iuFhhbspfg)` |
+| Badge/SoldOutText | `var(--wkpsXzUm2D)` |
+| Badge/LabelBackground | `var(--tPAyW5QcRt)` |
+| Badge/LabelText | `var(--65Fcrshr5K)` |
+
+Inverse = koyu marka yüzeyleri (duyuru bandı, VelocityBelt şeridi, header pill, Newsletter kartı, koyu Deal Card, Magnetic Auth koyu kartları). Badge slotları şemada global `Rozet / …` renklerine bağlıdır; CSS’te `var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)))` gibi slot → global → token zinciriyle yazılır.
+
+**Profil mantığı:** Varsayılan şema (Stiller → Renk Şemaları → “Varsayılan yap”) sitenin renk profilidir; section’a ayrıca şema seçilmezse varsayılanı kullanır. Şema slotları global renklere bağlıdır; global rengi değiştirmek o rengi kullanan tüm şemaları günceller.
 
 AccentButton/Background aynı zamanda etkileşimli vurgu dolgularının rengidir: link alt çizgi dolgusu, ürün kartı “Sepete ekle” dolgusu, header sepet butonu ve hover renkleri, akordiyon açık dairesi, işaretli checkbox. Dekoratif sarılar (rozet, yıldız, nokta, indirim etiketi) sabit `--sy8ZnXZdoG` kalır.
 

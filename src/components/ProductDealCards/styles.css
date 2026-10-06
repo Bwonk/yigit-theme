@@ -99,9 +99,10 @@
 /* ─── Kart ─────────────────────────────────────────────────────────── */
 .ikas-deal-card {
   --deal-pad: clamp(10px, 1vw, 14px);
-  --deal-bg: var(--pxNuSoudLn);
-  --deal-fg: var(--24KlcgGmm9);
-  --deal-muted: color-mix(in srgb, var(--24KlcgGmm9) 80%, var(--pxNuSoudLn));
+  /* Varsayılan (navy) ton koyu yüzey: Inverse slotları; --light hepsini ezer. */
+  --deal-bg: var(--gzVXctV39L, var(--pxNuSoudLn));
+  --deal-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
+  --deal-muted: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 80%, var(--gzVXctV39L, var(--pxNuSoudLn)));
   --deal-media-bg: var(--wElEhJwjYh);
   --deal-tag-bg: var(--sy8ZnXZdoG);
   --deal-tag-fg: var(--fcAwzuFj9W);
@@ -295,8 +296,8 @@ a.ikas-deal-card:focus-visible {
   align-items: center;
   padding: 6px 11px;
   border-radius: 9999px;
-  background-color: var(--gi56XfzrM3, var(--sy8ZnXZdoG));
-  color: var(--vMRjMhid6C, var(--fcAwzuFj9W));
+  background-color: var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)));
+  color: var(--x1EAnEpJwy, var(--vMRjMhid6C, var(--fcAwzuFj9W)));
   font-size: 11px;
   letter-spacing: 0.04em;
   line-height: 1.2;
@@ -345,6 +346,13 @@ a.ikas-deal-card:focus-visible {
    gölgeyle fazla öne çıkıyordu. */
 .ikas-deal-card--light .ikas-deal-card__cta {
   box-shadow: inset 0 0 0 1px var(--8ARbeTYsmD);
+}
+
+/* Koyu (navy) kartta hap Inverse slotlarının tersidir: Inverse/Text zemin,
+   Inverse/Background yazı. Şemasızken beyaz hap + lacivert yazı (aynı). */
+.ikas-deal-card--navy .ikas-deal-card__cta {
+  background-color: var(--eceeZPmHKm, var(--24KlcgGmm9));
+  color: var(--gzVXctV39L, var(--pxNuSoudLn));
 }
 
 a.ikas-deal-card:focus-visible .ikas-deal-card__cta::before,

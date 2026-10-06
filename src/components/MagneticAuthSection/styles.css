@@ -19,10 +19,11 @@
   --mg-bar-ch: 288px;
   --mg-bar-gap: 12px;
   --mg-bar-radius: 22px;
-  --mg-on-dark: var(--24KlcgGmm9, #fff);
-  --mg-on-dark-soft: color-mix(in srgb, var(--24KlcgGmm9) 62%, transparent);
-  --mg-on-dark-faint: color-mix(in srgb, var(--24KlcgGmm9) 40%, transparent);
-  --mg-line-on-dark: var(--pFqY0XGdSq, rgba(255, 255, 255, 0.12));
+  /* Koyu yüzey yardımcıları → Inverse slotları (şemasızken beyaz / çizgi). */
+  --mg-on-dark: var(--eceeZPmHKm, var(--24KlcgGmm9, #fff));
+  --mg-on-dark-soft: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 62%, transparent);
+  --mg-on-dark-faint: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 40%, transparent);
+  --mg-line-on-dark: var(--5Bj1Gi64F9, var(--pFqY0XGdSq, rgba(255, 255, 255, 0.12)));
   /* Announcement (~38) + VelocityBelt (~100) — keep belt in first paint */
   --mg-chrome-reserve: 138px;
 
@@ -143,8 +144,8 @@
   gap: 20px;
   padding: 30px 26px;
   overflow: hidden;
-  background: var(--pxNuSoudLn, #37435b);
-  color: var(--24KlcgGmm9, #fff);
+  background: var(--gzVXctV39L, var(--pxNuSoudLn, #37435b));
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9, #fff));
 }
 
 .ikas-mgauth__panel-brand-img {
@@ -175,13 +176,13 @@
 
 .ikas-mgauth__panel-wordmark {
   letter-spacing: 0.24em;
-  color: var(--24KlcgGmm9, #fff);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9, #fff));
 }
 
 .ikas-mgauth__panel-kicker {
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: color-mix(in srgb, var(--24KlcgGmm9) 50%, transparent);
+  color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 50%, transparent);
 }
 
 .ikas-mgauth__panel-brand-bottom {
@@ -199,7 +200,7 @@
   font-size: clamp(17px, 2vw, 21px);
   line-height: 1.24;
   letter-spacing: -0.02em;
-  color: var(--24KlcgGmm9, #fff);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9, #fff));
   text-wrap: pretty;
 }
 

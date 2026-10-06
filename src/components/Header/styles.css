@@ -62,7 +62,7 @@
   gap: clamp(8px, 1.4vw, 20px);
   height: clamp(56px, 4.6vw, 68px);
   padding: 0 7px 0 clamp(18px, 2vw, 30px);
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--gzVXctV39L, var(--pxNuSoudLn));  /* Inverse/Background · Ana Lacivert — TOKENS.md satır 10 */
   border-radius: 9999px;
   /* Sakin elevation — token; scroll'da hafif güçlenir (beyaz halo yok) */
   box-shadow: var(--header-pill-shadow, 0 8px 24px color-mix(in srgb, var(--vluFeuIeFs) 14%, transparent));
@@ -94,7 +94,7 @@
   position: relative;
   background: transparent;
   border: none;
-  color: var(--24KlcgGmm9);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));
   cursor: pointer;
   padding: 4px;
   align-items: center;
@@ -117,7 +117,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));  /* Inverse/Text · Saf Beyaz — TOKENS.md satır 14 */
   transition: color 0.22s ease;
   white-space: nowrap;
 }
@@ -127,7 +127,7 @@
   font-weight: 700;
   font-size: clamp(14px, 1.2vw, 17px);
   letter-spacing: 0.22em;
-  color: var(--24KlcgGmm9);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));
   transition: color 0.22s ease;
 }
 
@@ -178,7 +178,7 @@
   font-family: var(--font-body);
   font-size: 12.5px;
   letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.82);
+  color: color-mix(in srgb, var(--eceeZPmHKm, #fff) 82%, transparent);
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.22s ease;
@@ -263,8 +263,8 @@
   margin: 0;
   padding: 0;
   border-radius: 9999px;
-  background-color: color-mix(in srgb, var(--24KlcgGmm9) 10%, transparent);
-  color: var(--24KlcgGmm9);
+  background-color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 10%, transparent);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));
   opacity: 0;
   overflow: hidden;
   visibility: hidden;
@@ -305,13 +305,13 @@
   border: 0;
   outline: 0;
   background: transparent;
-  color: var(--24KlcgGmm9);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));
   font-family: var(--font-body);
   font-size: 15px;
 }
 
 .ikas-header__search-input::placeholder {
-  color: color-mix(in srgb, var(--24KlcgGmm9) 55%, transparent);
+  color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 55%, transparent);
 }
 
 .ikas-header__search-clear {
@@ -325,13 +325,13 @@
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--24KlcgGmm9) 65%, transparent);
+  color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 65%, transparent);
   cursor: pointer;
 }
 
 .ikas-header__search-clear:is(:hover, :focus-visible) {
   background-size: 100% 100%;
-  color: var(--pxNuSoudLn);
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));
   outline: none;
 }
 
@@ -441,7 +441,7 @@
   border: 0;
   border-radius: 9999px;
   background: transparent;
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));  /* Inverse/Text · Saf Beyaz — TOKENS.md satır 14 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -456,14 +456,14 @@
 }
 
 .ikas-header__icon-btn:hover {
-  background-color: color-mix(in srgb, var(--24KlcgGmm9) 12%, transparent);
+  background-color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 12%, transparent);
   color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
   transform: scale(1.06);
 }
 
 .ikas-header__icon-btn:active {
   transform: scale(0.94);
-  background-color: color-mix(in srgb, var(--24KlcgGmm9) 16%, transparent);
+  background-color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 16%, transparent);
 }
 
 .ikas-header__icon-btn:focus {
@@ -478,7 +478,7 @@
 
 .ikas-header__icon-btn--active,
 .ikas-header__hamburger--active {
-  background-color: color-mix(in srgb, var(--24KlcgGmm9) 16%, transparent);
+  background-color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 16%, transparent);
   color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
@@ -569,9 +569,9 @@
   height: 19px;
   padding: 0 5px;
   border-radius: 9999px;
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
-  border: 2px solid var(--24KlcgGmm9);
+  background-color: var(--gzVXctV39L, var(--pxNuSoudLn));  /* Inverse/Background → Ana Lacivert */
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));             /* Inverse/Text → Saf Beyaz */
+  border: 2px solid var(--eceeZPmHKm, var(--24KlcgGmm9));
   font-family: var(--font-mono);
   font-size: 10px;
   display: flex;

@@ -21,7 +21,7 @@
   max-width: 100%;
   box-sizing: border-box;
   /* Renk şeması Background slotu (TOKENS.md §10); şemasızken şeffaf. Şerit
-     (--belt-bg) bilinçli olarak sabit marka rengi. */
+     (--belt-bg) önce merchant prop'u, sonra Inverse slotlarını izler. */
   background-color: var(--pGwtVHz9Sd, transparent);
   margin: 0;
   padding: 0;
@@ -65,8 +65,8 @@
   flex-shrink: 0;
   box-sizing: border-box;
   padding: 14px 0;
-  background-color: var(--belt-bg, var(--pxNuSoudLn)); /* TOKENS.md satır 10 */
-  color: var(--belt-color, var(--24KlcgGmm9));         /* TOKENS.md satır 14 */
+  background-color: var(--belt-bg, var(--gzVXctV39L, var(--pxNuSoudLn))); /* TOKENS.md satır 10 */
+  color: var(--belt-color, var(--eceeZPmHKm, var(--24KlcgGmm9)));         /* TOKENS.md satır 14 */
   transform: rotate(var(--tilt-angle, 0deg));
   transform-origin: center center;
   overflow: hidden; /* yalnızca track metin taşması — kendi rotate'ini kırpmaz */
@@ -87,7 +87,7 @@
   font-family: var(--font-mono);
   font-size: var(--belt-font-size, 12px);
   letter-spacing: 0.2em;
-  color: var(--belt-color, var(--24KlcgGmm9)); /* TOKENS.md satır 14 */
+  color: var(--belt-color, var(--eceeZPmHKm, var(--24KlcgGmm9))); /* TOKENS.md satır 14 */
   white-space: nowrap;
   flex-shrink: 0;
   padding-right: 2em;

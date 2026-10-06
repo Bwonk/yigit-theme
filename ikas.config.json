@@ -51,7 +51,7 @@
           "displayName": "Arka Plan Rengi",
           "type": "COLOR",
           "required": false,
-          "defaultValue": "#37435B"
+          "defaultValue": ""
         },
         {
           "name": "regionLabel",
@@ -4009,7 +4009,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Kayan yazının rengi",
-          "defaultValue": "#FFFFFF",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {
@@ -4018,7 +4018,7 @@
           "type": "COLOR",
           "required": false,
           "description": "Bandın zemin rengi",
-          "defaultValue": "#37435B",
+          "defaultValue": "",
           "groupId": "appearance"
         },
         {

@@ -13,8 +13,8 @@
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
+  background-color: var(--gzVXctV39L, var(--pxNuSoudLn));  /* Inverse/Background · Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));  /* Inverse/Text · Saf Beyaz — TOKENS.md satır 14 */
   min-height: var(--announcement-height, 38px);
   padding: 10px clamp(16px, 4vw, 40px);
   font-family: var(--font-mono);

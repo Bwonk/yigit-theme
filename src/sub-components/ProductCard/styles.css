@@ -101,8 +101,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--gi56XfzrM3, var(--sy8ZnXZdoG));  /* Accent Sarı — TOKENS.md satır 11 */
-  color: var(--vMRjMhid6C, var(--fcAwzuFj9W));
+  background-color: var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)));  /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--x1EAnEpJwy, var(--vMRjMhid6C, var(--fcAwzuFj9W)));
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.14em;
@@ -113,8 +113,8 @@
 }
 
 .ikas-product-card__badge--out-of-stock {
-  background-color: var(--aw7BgEpJt5, var(--pxNuSoudLn));
-  color: var(--fFrSwmzVyU, var(--24KlcgGmm9));
+  background-color: var(--iuFhhbspfg, var(--aw7BgEpJt5, var(--pxNuSoudLn)));
+  color: var(--wkpsXzUm2D, var(--fFrSwmzVyU, var(--24KlcgGmm9)));
 }
 
 /* 4. KART İÇERİĞİ */
@@ -388,10 +388,10 @@
   text-align: center;
 }
 
-/* Eklendi: lacivert zemin, beyaz yazı */
+/* Eklendi: Inverse zemin + yazı (şemasızken lacivert zemin, beyaz yazı) */
 .ikas-product-card__add-pill--done {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background-color: var(--gzVXctV39L, var(--pxNuSoudLn));
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));
 }
 
 .ikas-product-card__add-pill--done::before {

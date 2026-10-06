@@ -46,8 +46,8 @@
 }
 
 .ikas-buy-box__badge {
-  background-color: var(--eMo2Pn8Jv3, var(--sy8ZnXZdoG));
-  color: var(--veglu61TEe, var(--vluFeuIeFs, #101418));
+  background-color: var(--tPAyW5QcRt, var(--eMo2Pn8Jv3, var(--sy8ZnXZdoG)));
+  color: var(--65Fcrshr5K, var(--veglu61TEe, var(--vluFeuIeFs, #101418)));
   border-radius: 8px;
   font-family: var(--font-mono);
   font-size: 9.5px;
@@ -143,7 +143,7 @@
   font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
-  border: 1.5px solid var(--gi56XfzrM3, var(--sy8ZnXZdoG));
+  border: 1.5px solid var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)));
   border-radius: 9999px;
   padding: 5px 10px;
   text-transform: uppercase;

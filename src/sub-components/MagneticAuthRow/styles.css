@@ -23,33 +23,33 @@
   border: 1px solid var(--mg-line-on-dark);
   border-radius: var(--mg-bar-radius);
   overflow: hidden;
-  background: var(--pxNuSoudLn, #37435b);
+  background: var(--gzVXctV39L, var(--pxNuSoudLn, #37435b));
   box-shadow: var(--mg-card-shadow);
   scroll-snap-align: center;
   will-change: width, height, transform;
 }
 
-/* Flat solid tonal ladder — navy mixed toward white/black (no gradients) */
+/* Flat solid tonal ladder — Inverse/Background (navy) mixed toward white/black (no gradients) */
 .ikas-mgauth__bar--t1 {
-  background: color-mix(in srgb, var(--24KlcgGmm9) 26%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--24KlcgGmm9) 26%, var(--gzVXctV39L, var(--pxNuSoudLn)));
 }
 .ikas-mgauth__bar--t2 {
-  background: color-mix(in srgb, var(--24KlcgGmm9) 12%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--24KlcgGmm9) 12%, var(--gzVXctV39L, var(--pxNuSoudLn)));
 }
 .ikas-mgauth__bar--t3 {
-  background: color-mix(in srgb, var(--vluFeuIeFs) 30%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--vluFeuIeFs) 30%, var(--gzVXctV39L, var(--pxNuSoudLn)));
 }
 .ikas-mgauth__bar--t4 {
-  background: color-mix(in srgb, var(--24KlcgGmm9) 19%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--24KlcgGmm9) 19%, var(--gzVXctV39L, var(--pxNuSoudLn)));
 }
 .ikas-mgauth__bar--t5 {
-  background: color-mix(in srgb, var(--vluFeuIeFs) 16%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--vluFeuIeFs) 16%, var(--gzVXctV39L, var(--pxNuSoudLn)));
 }
 
 .ikas-mgauth__bar--center {
   width: var(--mg-bar-cw);
   height: var(--mg-bar-ch);
-  background: color-mix(in srgb, var(--vluFeuIeFs) 42%, var(--pxNuSoudLn));
+  background: color-mix(in srgb, var(--vluFeuIeFs) 42%, var(--gzVXctV39L, var(--pxNuSoudLn)));
   cursor: pointer;
 }
 
@@ -129,7 +129,7 @@
   font-size: 9px;
   letter-spacing: 0.12em;
   line-height: 1.35;
-  color: color-mix(in srgb, var(--24KlcgGmm9) 86%, transparent);
+  color: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 86%, transparent);
   text-align: left;
   text-wrap: balance;
 }

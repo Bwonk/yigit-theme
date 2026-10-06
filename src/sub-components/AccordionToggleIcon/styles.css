@@ -26,9 +26,10 @@
   color: var(--vluFeuIeFs, #101418);
 }
 
+/* Koyu yüzey: Inverse/Text'ten türetilir; şemasızken beyaz / %35 beyaz çerçeve */
 .ikas-icon-chip--on-dark {
-  border-color: rgba(255, 255, 255, 0.35);
-  color: var(--24KlcgGmm9, #ffffff);
+  border-color: color-mix(in srgb, var(--eceeZPmHKm, #fff) 35%, transparent);
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9, #ffffff));
 }
 
 .ikas-icon-chip--on-dark.ikas-icon-chip--active {
