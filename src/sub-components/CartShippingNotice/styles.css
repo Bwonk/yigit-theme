@@ -26,7 +26,7 @@
 
 .ikas-cart-shipping-notice__progress-fill {
   height: 100%;
-  background-color: var(--ap8FzMh9VN);
+  background-color: var(--uYyzbBgJmi, var(--ap8FzMh9VN));
   border-radius: var(--shipping-bar-radius, 4px);
   transition: width 0.3s ease;
 }

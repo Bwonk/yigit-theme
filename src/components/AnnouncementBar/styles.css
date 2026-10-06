@@ -71,7 +71,7 @@
 
 /* Vurgulu 3. Mesaj (Accent Sarı) */
 .ikas-announcement-bar__msg--highlight {
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
   font-weight: 500;
 }
 

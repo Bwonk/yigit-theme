@@ -72,7 +72,7 @@
   width: 26px;
   height: 1.5px;
   flex: 0 0 auto;
-  background: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-mgauth__meta-text {

@@ -165,7 +165,7 @@
 
 .ikas-search-panel mark {
   border-radius: 3px;
-  background-color: color-mix(in srgb, var(--sy8ZnXZdoG) 62%, transparent);
+  background-color: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 62%, transparent);
   color: inherit;
 }
 

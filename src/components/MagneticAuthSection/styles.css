@@ -111,7 +111,7 @@
   box-sizing: border-box;
   border-radius: 26px;
   background: var(--wElEhJwjYh, #f4f5f5);
-  border: 1.5px solid color-mix(in srgb, var(--sy8ZnXZdoG) 55%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 55%, transparent);
   box-shadow: var(--mg-card-shadow);
   will-change: left, top, width, height;
 }

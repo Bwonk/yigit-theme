@@ -283,7 +283,7 @@
   max-width: 72ch;
   margin-top: 4px;
   padding: 12px 14px;
-  border-left: 2px solid var(--sy8ZnXZdoG);
+  border-left: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   background: var(--jQs026VIpf, #f4f5f5);
   border-radius: 0 10px 10px 0;
 }

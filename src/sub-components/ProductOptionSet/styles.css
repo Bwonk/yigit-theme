@@ -420,7 +420,7 @@ legend.ikas-option-set__head + * {
   border-radius: 7px;
   border: 1.5px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc, #c8cfd0));
   background: var(--24KlcgGmm9, #fff);
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -576,7 +576,7 @@ legend.ikas-option-set__head + * {
 .ikas-option-set__drop--over {
   border-color: var(--pxNuSoudLn);
   border-style: solid;
-  background: color-mix(in srgb, var(--sy8ZnXZdoG) 14%, var(--24KlcgGmm9, #fff));
+  background: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 14%, var(--24KlcgGmm9, #fff));
 }
 
 @media (hover: hover) and (pointer: fine) {

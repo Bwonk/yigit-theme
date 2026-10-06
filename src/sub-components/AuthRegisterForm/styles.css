@@ -19,7 +19,7 @@
 }
 
 .ikas-auth .ikas-auth__strength-bar--on {
-  background: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-auth .ikas-auth__consent-block {
@@ -109,7 +109,7 @@
 }
 
 .ikas-mgauth .ikas-auth__strength-bar--on {
-  background: var(--sy8ZnXZdoG);
+  background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }
 
 .ikas-mgauth .ikas-auth__consent-block {

@@ -96,7 +96,7 @@
   inset: 0;
   z-index: 2;
   border-radius: var(--mg-bar-radius);
-  border: 1.5px solid var(--sy8ZnXZdoG);
+  border: 1.5px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   pointer-events: none;
 }
 

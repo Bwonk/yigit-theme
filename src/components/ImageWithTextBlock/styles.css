@@ -71,7 +71,7 @@
 }
 
 .ikas-image-text__badge {
-  color: var(--badge-color, var(--sy8ZnXZdoG));
+  color: var(--badge-color, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)));
   background-color: var(--badge-bg, var(--pxNuSoudLn));
   padding: 6px 14px;
   border-radius: 20px;

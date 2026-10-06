@@ -5,7 +5,7 @@
 .ikas-promo-countdown {
   --promo-bg: var(--wElEhJwjYh);
   --promo-fg: var(--pxNuSoudLn);
-  --promo-accent: var(--sy8ZnXZdoG);
+  --promo-accent: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   --promo-meta: var(--p6EMJiXye1, #8c97a5);
   --promo-line: var(--8ARbeTYsmD, #e4e7e8);
   --promo-chip: var(--24KlcgGmm9);

@@ -104,8 +104,8 @@
   --deal-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
   --deal-muted: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 80%, var(--gzVXctV39L, var(--pxNuSoudLn)));
   --deal-media-bg: var(--wElEhJwjYh);
-  --deal-tag-bg: var(--sy8ZnXZdoG);
-  --deal-tag-fg: var(--fcAwzuFj9W);
+  --deal-tag-bg: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  --deal-tag-fg: var(--xxNgTuALjl, var(--fcAwzuFj9W));
 
   position: relative;
   display: flex;
