@@ -20,7 +20,9 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  background-color: transparent;
+  /* Renk şeması Background slotu (TOKENS.md §10); şemasızken şeffaf. Şerit
+     (--belt-bg) bilinçli olarak sabit marka rengi. */
+  background-color: var(--pGwtVHz9Sd, transparent);
   margin: 0;
   padding: 0;
   position: relative;
