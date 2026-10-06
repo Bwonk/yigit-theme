@@ -41,11 +41,12 @@ export function ImageWithTextBlock({
 
   const inlineStyles = {
     backgroundColor: backgroundColor || undefined,
-    color: isDarkBg ? ThemeColor.white : ThemeColor.navy,
+    // Renkler renk şemasından gelir (styles.css); yalnızca merchant koyu bir
+    // zemin rengi girdiyse okunabilirlik için açık metin/rozet zorlanır.
+    color: isDarkBg ? ThemeColor.white : undefined,
     ...layoutTokens,
-    "--text-color": isDarkBg ? ThemeColor.white : ThemeColor.navy,
-    "--badge-bg": isDarkBg ? ThemeColor.white : ThemeColor.navy,
-    "--badge-color": isDarkBg ? ThemeColor.navy : ThemeColor.accent,
+    "--badge-bg": isDarkBg ? ThemeColor.white : undefined,
+    "--badge-color": isDarkBg ? ThemeColor.navy : undefined,
   };
 
   const imgSrc = image ? getDefaultSrc(image) : null;
