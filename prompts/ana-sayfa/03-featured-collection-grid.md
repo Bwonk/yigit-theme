@@ -1,7 +1,7 @@
 # PROMPT: Ana Sayfa — Featured Collection Grid (`prompts/ana-sayfa/03-featured-collection-grid.md`)
 
 ## A) 7 TEMEL KURAL (ZORUNLU)
-1. **Referans Dosyalar:** [DESIGN.md](file:///root/geeny/DESIGN.md), [GLOBALS.md](file:///root/geeny/GLOBALS.md), [prompts/TOKENS.md](file:///root/geeny/prompts/TOKENS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) dosyalarını baştan sona referans al.
+1. **Referans Dosyalar:** [DESIGN.md](file:///root/yigit-theme/DESIGN.md), [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md), [prompts/TOKENS.md](file:///root/yigit-theme/prompts/TOKENS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) dosyalarını baştan sona referans al.
 2. **Global-First:** Ham renk, font, boşluk veya animasyon yazma; renk `var(--<cssVar>)`, tipografi `className="_<id>"`, globalVariable'lar (`getThemeSetting` ile okunur) `style={{ "--token": setting?.value }}` şeklinde inline CSS değişkenine aktarılır.
 3. **Türkçe Editör Metinleri:** `displayName`, `description`, prop grup adları ve görünen tüm editör metinleri Türkçe yazılmalıdır.
 4. **Türkçe Description:** Her prop için ne işe yaradığını anlatan açıklayıcı Türkçe `description` ekle.
@@ -12,9 +12,9 @@
 ---
 
 ## B) TEKNİK GÜVENLİK KURALLARI
-- **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; [prompts/TOKENS.md](file:///root/geeny/prompts/TOKENS.md) dosyasındaki canlı `cssVar`, `className` ve `variableName` değerlerini birebir kullan.
+- **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; [prompts/TOKENS.md](file:///root/yigit-theme/prompts/TOKENS.md) dosyasındaki canlı `cssVar`, `className` ve `variableName` değerlerini birebir kullan.
 - **Tipler:** Tüm prop tipleri `types.ts` dosyasında eksiksiz tanımlanıp export edilir.
-- **Ortak Bileşen Bağımlılığı:** Her bir ürün kartı için [prompts/ortak/product-card.md](file:///root/geeny/prompts/ortak/product-card.md) ortak `ProductCard` bileşenini alt çocuk olarak render et (`import { ProductCard } from "../ProductCard"`).
+- **Ortak Bileşen Bağımlılığı:** Her bir ürün kartı için [prompts/ortak/product-card.md](file:///root/yigit-theme/prompts/ortak/product-card.md) ortak `ProductCard` bileşenini alt çocuk olarak render et (`import { ProductCard } from "../ProductCard"`).
 
 ---
 
@@ -30,7 +30,7 @@
   - Masaüstü (1440px): 4 Kolonlu ızgara (`gap: var(--grid-gap, 20px)`).
   - Tablet (768px): 2 veya 3 Kolonlu ızgara (`gap: var(--tablet-grid-gap, 16px)`).
   - Mobil (375px): 2 Kolonlu sıkışık ızgara (`gap: var(--mobile-grid-gap, 12px)`).
-- Alt Bölüm: "Tüm Koleksiyonu İncele" CTA butonu ([prompts/ortak/button.md](file:///root/geeny/prompts/ortak/button.md) entegrasyonu).
+- Alt Bölüm: "Tüm Koleksiyonu İncele" CTA butonu ([prompts/ortak/button.md](file:///root/yigit-theme/prompts/ortak/button.md) entegrasyonu).
 
 ### 3. Prop Listesi (`ikas.config.json`)
 - **Prop Grubu:** `featured_collection_group` (Adı: `"Öne Çıkan Koleksiyon Ayarları"`)

@@ -57,7 +57,7 @@ Bu prompt çalıştırıldığında ajan aşağıdaki adımları sırayla uygula
 Onay geldikten sonra aşağıdaki dosyaları `prompts/ana-sayfa/` dizininde tek tek oluştur:
 
 1. **`prompts/ana-sayfa/01-hero-banner.md`**:
-   - İçerik: BİLEŞEN PROMPT ŞABLONU yapısında. [DESIGN.md](file:///root/geeny/DESIGN.md) Hero Banner analizi, [GLOBALS.md](file:///root/geeny/GLOBALS.md) `Display Hero` tipografisi, `#37435B` / `#E3E045` renkleri, `prompts/ortak/button.md` ve ikas `IMAGE` / `VIDEO` prop tipleri ile doldurulur.
+   - İçerik: BİLEŞEN PROMPT ŞABLONU yapısında. [DESIGN.md](file:///root/yigit-theme/DESIGN.md) Hero Banner analizi, [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) `Display Hero` tipografisi, `#37435B` / `#E3E045` renkleri, `prompts/ortak/button.md` ve ikas `IMAGE` / `VIDEO` prop tipleri ile doldurulur.
 2. **`prompts/ana-sayfa/02-press-ticker.md`**:
    - İçerik: As-Seen-In basın logoları marquee bandı (`25s linear infinite` keyframe animasyonu, `IMAGE_LIST` veya `COMPONENT_LIST`).
 3. **`prompts/ana-sayfa/03-featured-collection-grid.md`**:

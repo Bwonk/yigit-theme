@@ -1,7 +1,7 @@
 # PROMPT: Ana Sayfa — Video Demo Section (`prompts/ana-sayfa/07-video-demo-section.md`)
 
 ## A) 7 TEMEL KURAL (ZORUNLU)
-1. **Referans Dosyalar:** [DESIGN.md](file:///root/geeny/DESIGN.md), [GLOBALS.md](file:///root/geeny/GLOBALS.md), [prompts/TOKENS.md](file:///root/geeny/prompts/TOKENS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) dosyalarını baştan sona referans al.
+1. **Referans Dosyalar:** [DESIGN.md](file:///root/yigit-theme/DESIGN.md), [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md), [prompts/TOKENS.md](file:///root/yigit-theme/prompts/TOKENS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) dosyalarını baştan sona referans al.
 2. **Global-First:** Ham renk, font, boşluk veya animasyon yazma; renk `var(--<cssVar>)`, tipografi `className="_<id>"`, globalVariable'lar (`getThemeSetting` ile okunur) `style={{ "--token": setting?.value }}` şeklinde inline CSS değişkenine aktarılır.
 3. **Türkçe Editör Metinleri:** `displayName`, `description`, prop grup adları ve görünen tüm editör metinleri Türkçe yazılmalıdır.
 4. **Türkçe Description:** Her prop için ne işe yaradığını anlatan açıklayıcı Türkçe `description` ekle.
@@ -12,7 +12,7 @@
 ---
 
 ## B) TEKNİK GÜVENLİK KURALLARI
-- **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; [prompts/TOKENS.md](file:///root/geeny/prompts/TOKENS.md) dosyasındaki canlı `cssVar`, `className` ve `variableName` değerlerini birebir kullan.
+- **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; [prompts/TOKENS.md](file:///root/yigit-theme/prompts/TOKENS.md) dosyasındaki canlı `cssVar`, `className` ve `variableName` değerlerini birebir kullan.
 - **Tipler:** Tüm prop tipleri `types.ts` dosyasında eksiksiz tanımlanıp export edilir.
 - **Video Kontrolü:** Autoplay/Muted seçeneği veya merkezde büyük Oynat (Play) butonu ile interaktif diyalog modal video oynatıcısı.
 

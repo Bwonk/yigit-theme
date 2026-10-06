@@ -1,7 +1,7 @@
 # PROMPT: Ortak Bileşen — Announcement Bar (`prompts/ortak/announcement-bar.md`)
 
 ## A) 7 TEMEL KURAL (ZORUNLU)
-1. **Referans Dosyalar:** [DESIGN.md](file:///root/geeny/DESIGN.md), [GLOBALS.md](file:///root/geeny/GLOBALS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) dosyalarını baştan sona referans al.
+1. **Referans Dosyalar:** [DESIGN.md](file:///root/yigit-theme/DESIGN.md), [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) dosyalarını baştan sona referans al.
 2. **Global-First:** Ham renk, font, boşluk veya animasyon yazma; renk `var(--<cssVar>)`, tipografi `className="_<id>"`, globalVariable'lar (`getThemeSetting` ile okunur) `style={{ "--token": setting?.value }}` şeklinde inline CSS değişkenine aktarılır.
 3. **Türkçe Editör Metinleri:** `displayName`, `description`, prop grup adları ve görünen tüm editör metinleri Türkçe yazılmalıdır (teknik `name` hariç).
 4. **Türkçe Description:** Her prop için ne işe yaradığını anlatan açıklayıcı Türkçe `description` ekle.
@@ -14,8 +14,8 @@
 ## B) TEKNİK GÜVENLİK KURALLARI
 - **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; bileşeni yazmaya başlamadan önce `list_theme_globals` aracını çağır ve `cssVar` TAM değerini kullan.
 - **Tipler:** Tüm prop tipleri `types.ts` dosyasında eksiksiz tanımlanıp export edilir; dizi tipleri açık (`X[]`) tanımlanmalıdır.
-- **ikas Tipleri:** `IkasImage` vb. veri yapılarını TAHMİN ETME — [IKAS.md](file:///root/geeny/IKAS.md)'deki doğrulanmış şemayı kullan. `IkasImage` üzerinde `.url` veya `.src` alanı YOKTUR; CDN URL'i için `@ikas/bp-storefront`'tan `getDefaultSrc(image)` kullan.
-- **İzinli Paketler:** Yalnızca [IKAS.md](file:///root/geeny/IKAS.md)'deki izin verilen npm paketlerinden import yapılabilir (`preact`, `mobx`, `@ikas/bp-storefront`, `@ikas/bp-storefront-models`, `@ikas/component-utils`, `animejs`). Harici paket import'u build'i patlatır.
+- **ikas Tipleri:** `IkasImage` vb. veri yapılarını TAHMİN ETME — [IKAS.md](file:///root/yigit-theme/IKAS.md)'deki doğrulanmış şemayı kullan. `IkasImage` üzerinde `.url` veya `.src` alanı YOKTUR; CDN URL'i için `@ikas/bp-storefront`'tan `getDefaultSrc(image)` kullan.
+- **İzinli Paketler:** Yalnızca [IKAS.md](file:///root/yigit-theme/IKAS.md)'deki izin verilen npm paketlerinden import yapılabilir (`preact`, `mobx`, `@ikas/bp-storefront`, `@ikas/bp-storefront-models`, `@ikas/component-utils`, `animejs`). Harici paket import'u build'i patlatır.
 
 ---
 

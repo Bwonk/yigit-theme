@@ -7,7 +7,7 @@ Canlı referans: [dev-flowventory.ikas.shop](https://dev-flowventory.ikas.shop/)
 
 ## 1. Hedef UX
 
-Single-open accordion · ikon satırları · weighted spring açılış · `prefers-reduced-motion` güvenli · Geeny token dili (solid yüzey, accent chip, gradient yok).
+Single-open accordion · ikon satırları · weighted spring açılış · `prefers-reduced-motion` güvenli · Yigit token dili (solid yüzey, accent chip, gradient yok).
 
 ---
 
@@ -82,9 +82,9 @@ Doğrulama: `npx ikas-component check --json` + `build` (30 component OK).
 
 ## 7. Test SSS içeriği (Home)
 
-Editör Home · FAQ `items` (Geeny / Infinity Pillow dili):
+Editör Home · FAQ `items` (Yigit / Infinity Pillow dili):
 
-1. Geeny nasıl kullanılır?  
+1. Yigit nasıl kullanılır?  
 2. Malzeme ve ölçüler neler?  
 3. Nasıl yıkanır ve bakımı yapılır?  
 4. Kargo ne kadar sürer, ücretsiz mi?  

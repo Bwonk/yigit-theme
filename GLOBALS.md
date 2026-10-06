@@ -1,7 +1,7 @@
 # GLOBALS.md — Tema Global Token Kurulum Dokümanı
 
 ## Amaç
-Bu dosya, ikas MCP ile hangi global'in hangi değerle, hangi araçla oluşturulacağını ve bileşenlerde nasıl entegre edileceğini tarif eden tek kaynaktır. [DESIGN.md](file:///root/geeny/DESIGN.md)'deki analizden türetilmiştir; prompts/ klasöründeki tüm bileşen prompt'ları bu dosyadaki token adlarını ve değerlerini birebir referans alır.
+Bu dosya, ikas MCP ile hangi global'in hangi değerle, hangi araçla oluşturulacağını ve bileşenlerde nasıl entegre edileceğini tarif eden tek kaynaktır. [DESIGN.md](file:///root/yigit-theme/DESIGN.md)'deki analizden türetilmiştir; prompts/ klasöründeki tüm bileşen prompt'ları bu dosyadaki token adlarını ve değerlerini birebir referans alır.
 
 ## Durum — **kurulum tamamlandı**
 
@@ -198,7 +198,7 @@ bazı WebView’lerde `::selection` kısmen veya hiç uygulanmayabilir (bilinen 
 
 ## Kapsama Kontrolü (Coverage Audit)
 
-[DESIGN.md](file:///root/geeny/DESIGN.md)'deki Bileşen Envanteri'nde yer alan tüm bileşenlerin kullandığı token'lar eşleştirilmiştir:
+[DESIGN.md](file:///root/yigit-theme/DESIGN.md)'deki Bileşen Envanteri'nde yer alan tüm bileşenlerin kullandığı token'lar eşleştirilmiştir:
 
 - **`<announcement-bar>`** → Kullanılan token'lar: `Renkler / Ana Lacivert`, `Renkler / Saf Beyaz`, `Tipografi / Mobil Duyuru Metni`, `Boşluk / Announcement Bar Yüksekliği`, `Animasyon / Fade Yumuşak`
 - **`<site-header>`** → Kullanılan token'lar: `Renkler / Saf Beyaz`, `Renkler / Ana Lacivert`, `Renkler / Accent Sarı`, `Renkler / Sticky Header Çizgisi`, `Tipografi / İkincil Metin (sm)`, `Boşluk / Header Yüksekliği`, `Boşluk / Mobile Drawer Genişliği`, `Animasyon / Menü Alt Çizgi`, `Animasyon / Drawer ve Modal`, `Gölge / Sticky Header Shadow`, `Seçim / Etkin|Arka Plan|Metin` (Text Selection — Header props + Theme Settings)

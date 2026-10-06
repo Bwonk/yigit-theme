@@ -3,7 +3,7 @@
 ## Amaç — Bu Dosyanın Rolü
 Bu dosya, ikas tema geliştirme ekosisteminin teknik sınırlarını, ikas MCP araçlarının tam parametre ve çıktı şemalarını, global token sisteminin veri yapılarını ve bileşen mimarisini tanımlayan **üçüncü temel teknik kılavuzdur (Single Technical Source of Truth)**. 
 
-Geliştirme sürecinde [DESIGN.md](file:///root/geeny/DESIGN.md) (Tasarım Kaynağı) ve [GLOBALS.md](file:///root/geeny/GLOBALS.md) (Token Kurulum Kaynağı) ile birlikte kullanılır. "ikas neyi destekliyor, hangi araçla, hangi parametreyle ve hangi veri yapısıyla?" sorusunun kesin ve doğrulanmış yanıtını verir.
+Geliştirme sürecinde [DESIGN.md](file:///root/yigit-theme/DESIGN.md) (Tasarım Kaynağı) ve [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) (Token Kurulum Kaynağı) ile birlikte kullanılır. "ikas neyi destekliyor, hangi araçla, hangi parametreyle ve hangi veri yapısıyla?" sorusunun kesin ve doğrulanmış yanıtını verir.
 
 ---
 

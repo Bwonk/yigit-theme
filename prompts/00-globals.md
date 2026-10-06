@@ -1,19 +1,19 @@
 # PROMPT: Tema Global Token'larının Canlı Kurulumu (`prompts/00-globals.md`)
 
-> **Talimat:** Bu prompt çalıştırıldığında, [GLOBALS.md](file:///root/geeny/GLOBALS.md) dosyasındaki 52 adet global tasarım token'ını ikas editörü üzerinde canlı olarak `create_theme_global` aracıyla oluşturacaksın. Kod yazma ve bileşen düzenleme yapma.
+> **Talimat:** Bu prompt çalıştırıldığında, [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) dosyasındaki 52 adet global tasarım token'ını ikas editörü üzerinde canlı olarak `create_theme_global` aracıyla oluşturacaksın. Kod yazma ve bileşen düzenleme yapma.
 
 ---
 
 ## 1. Hazırlık ve Mevcut Durum Okuma
-1. `list_theme_globals` MCP aracını `project_root: "/root/geeny"` parametresi ile çağırarak editördeki mevcut tasarım token'larını ve global değişkenleri oku.
-2. [GLOBALS.md](file:///root/geeny/GLOBALS.md) dosyasındaki **52 token'lık liste** ile mevcut token'ları karşılaştır.
+1. `list_theme_globals` MCP aracını `project_root: "/root/yigit-theme"` parametresi ile çağırarak editördeki mevcut tasarım token'larını ve global değişkenleri oku.
+2. [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) dosyasındaki **52 token'lık liste** ile mevcut token'ları karşılaştır.
 3. Kullanıcıya kurulacak 52 token'ın özet listesini göster ve **KULLANICI ONAYI BEKLE**.
 
 ---
 
 ## 2. Token Kurulum Adımları (`create_theme_global`)
 
-Kullanıcı onay verdikten sonra [GLOBALS.md](file:///root/geeny/GLOBALS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) kurallarına göre `create_theme_global` aracını çalıştır:
+Kullanıcı onay verdikten sonra [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) kurallarına göre `create_theme_global` aracını çalıştır:
 
 ### A. Renkler — `kind: "color"` (9 Token)
 Aşağıdaki 9 renk token'ını sırayla oluştur:

@@ -171,7 +171,8 @@ Kod sabitleri: `ThemeBreakpoint` in `src/utils/themeTokens.ts`.
 
 | Token Adı | ID | className |
 | :--- | :--- | :--- |
-| `Geeny / Default` | `Dy7o7Bp345` | `_Dy7o7Bp345` |
+| `Yigit / Default` | `Dy7o7Bp345` | `_Dy7o7Bp345` |
+| `Yigit / Soft` | `7ZPFcYS3JC` | `_7ZPFcYS3JC` |
 
 Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*, SecondaryButton/*.
 Section’larda inherit etmek için palette `className` eklemeyin — slot `cssVar`’ları section scheme’inden çözülür.

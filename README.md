@@ -1,4 +1,4 @@
-# geeny
+# yigit-theme
 
 An ikas code components project.
 
@@ -25,7 +25,7 @@ An ikas code components project.
 ## Project Structure
 
 ```
-geeny/
+yigit-theme/
 ├── src/
 │   ├── components/
 │   │   ├── ExampleComponent/  # A child component (type: "component")
