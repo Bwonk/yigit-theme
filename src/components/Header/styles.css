@@ -19,8 +19,9 @@
   z-index: var(--z-index-header, 100);
   padding: clamp(10px, 1.5vw, 20px) 0 clamp(6px, 1vw, 12px);
   /* Floating island: tam genişlik beyaz gradient/scrim YOK — çevre şeffaf.
-     Elevation yalnızca pill üzerindeki token shadow ile. */
-  background: transparent;
+     Elevation yalnızca pill üzerindeki token shadow ile. Section'a renk şeması
+     seçilirse çevre şemanın Background slotuyla boyanır (TOKENS.md §10). */
+  background: var(--pGwtVHz9Sd, transparent);
   margin-top: 0;
   margin-bottom: 0;
 }

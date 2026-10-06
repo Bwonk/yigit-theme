@@ -12,6 +12,11 @@
  *   Accent Sarı:   var(--sy8ZnXZdoG)     TOKENS.md satır 11
  *   Saf Beyaz:     var(--24KlcgGmm9)     TOKENS.md satır 14
  *   Açık Gri Mavi: var(--cdFDkBbKkc)     TOKENS.md satır 12
+ *
+ * Renk şeması: PRIMARY/SECONDARY (klasik + pill) renkleri section'ın renk
+ * şeması slotlarından okunur (PrimaryButton/*, SecondaryButton/*). Şema
+ * seçilmemişse slot var'ı tanımsızdır ve fallback (yukarıdaki tokenlar)
+ * devreye girer. ACCENT variant'ları bilinçli olarak sabit marka renginde.
  * ═══════════════════════════════════════════════════════════════════════ */
 
 /* ─── BASE ─── */
@@ -40,6 +45,18 @@
   height: var(--btn-height, 48px);
   border-radius: var(--btn-radius, 8px);
   transition: var(--btn-transition, all 0.3s cubic-bezier(0.4, 0, 0.2, 1));
+
+  /* Renk şeması slotları (id'ler TOKENS.md §10). Fallback = şemasız görünüm. */
+  --btn-pb-bg: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  --btn-pb-text: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  --btn-pb-hover-bg: var(--cQnfNuvn0R, var(--sy8ZnXZdoG));
+  --btn-pb-hover-text: var(--xm8HJppGoU, var(--pxNuSoudLn));
+  --btn-sb-bg: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  --btn-sb-text: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  --btn-sb-border: var(--knCpeJkjkB, var(--cdFDkBbKkc));
+  --btn-sb-hover-bg: var(--vvG2EEhdCx, var(--pxNuSoudLn));
+  --btn-sb-hover-text: var(--0UgngKDdX6, var(--24KlcgGmm9));
+  --btn-sb-hover-border: var(--4K9KPuSllH, var(--pxNuSoudLn));
 }
 
 /* Full Width Option */
@@ -81,17 +98,18 @@
 
 /* ─── PRIMARY: lacivert zemin, sarı dolgu ─── */
 .ikas-btn--primary {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
-  border: 1px solid transparent;
+  background-color: var(--btn-pb-bg);
+  color: var(--btn-pb-text);
+  border: 1px solid var(--fkaMzCgkCr, transparent);
 }
 
 .ikas-btn--primary::before {
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--btn-pb-hover-bg);
 }
 
 .ikas-btn--primary:is(:hover, :focus-visible, :active):not(:disabled) {
-  color: var(--pxNuSoudLn);
+  color: var(--btn-pb-hover-text);
+  border-color: var(--sle6Nb4QtF, transparent);
 }
 
 /* ─── ACCENT: sarı zemin, lacivert dolgu ─── */
@@ -111,18 +129,18 @@
 
 /* ─── SECONDARY: şeffaf zemin, sarı dolgu ─── */
 .ikas-btn--secondary {
-  background-color: transparent;
-  color: var(--pxNuSoudLn);
-  border: 1px solid var(--cdFDkBbKkc);
+  background-color: var(--nev1XwFhtS, transparent);
+  color: var(--btn-sb-text);
+  border: 1px solid var(--btn-sb-border);
 }
 
 .ikas-btn--secondary::before {
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--vvG2EEhdCx, var(--sy8ZnXZdoG));
 }
 
 .ikas-btn--secondary:is(:hover, :focus-visible, :active):not(:disabled) {
-  color: var(--pxNuSoudLn);
-  border-color: var(--sy8ZnXZdoG);
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
+  border-color: var(--4K9KPuSllH, var(--sy8ZnXZdoG));
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -222,17 +240,17 @@
 
 /* ─── PILL_PRIMARY: Lacivert bg → sarı alttan dolar ─── */
 .ikas-btn--pill_primary {
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
+  background-color: var(--btn-pb-bg);
+  color: var(--btn-pb-text);
 }
 
 .ikas-btn--pill_primary::before {
-  background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
+  background-color: var(--btn-pb-hover-bg);
 }
 
 .ikas-btn--pill_primary:is(:focus-visible, :active):not(:disabled) {
-  /* Sarı dolgu üzerine koyu metin */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  /* Hover dolgusu üzerine hover metin rengi */
+  color: var(--btn-pb-hover-text);
 }
 
 .ikas-btn--pill_primary:active:not(:disabled) {
@@ -260,19 +278,19 @@
 
 /* ─── PILL_SECONDARY: Beyaz bg → lacivert alttan dolar ─── */
 .ikas-btn--pill_secondary {
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz — TOKENS.md satır 14 */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
-  border: 1.5px solid var(--cdFDkBbKkc); /* Açık Gri Mavi — TOKENS.md satır 12 */
+  background-color: var(--btn-sb-bg);
+  color: var(--btn-sb-text);
+  border: 1.5px solid var(--btn-sb-border);
 }
 
 .ikas-btn--pill_secondary::before {
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--btn-sb-hover-bg);
 }
 
 .ikas-btn--pill_secondary:is(:focus-visible, :active):not(:disabled) {
-  /* Lacivert dolgu üzerine beyaz metin */
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
-  border-color: var(--pxNuSoudLn);       /* Ana Lacivert — TOKENS.md satır 10 */
+  /* Hover dolgusu üzerine hover metin rengi */
+  color: var(--btn-sb-hover-text);
+  border-color: var(--btn-sb-hover-border);
 }
 
 .ikas-btn--pill_secondary:active:not(:disabled) {
@@ -283,7 +301,7 @@
    hover "yapışıp" dolguyu açık bırakmasın. */
 @media (hover: hover) {
   .ikas-btn--pill_primary:hover:not(:disabled) {
-    color: var(--pxNuSoudLn);
+    color: var(--btn-pb-hover-text);
   }
 
   .ikas-btn--pill_accent:hover:not(:disabled) {
@@ -291,8 +309,8 @@
   }
 
   .ikas-btn--pill_secondary:hover:not(:disabled) {
-    color: var(--24KlcgGmm9);
-    border-color: var(--pxNuSoudLn);
+    color: var(--btn-sb-hover-text);
+    border-color: var(--btn-sb-hover-border);
   }
 }
 

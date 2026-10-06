@@ -27,11 +27,15 @@
   --hero-gap: clamp(20px, 3vw, 48px);
   --hero-radius: clamp(18px, 2vw, 28px);
   --hero-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Soluk başlık satırı: şema seçiliyse Heading ile Background karışımı.
+     Slot tanımsızsa bu değişken geçersiz olur → kullanım yerindeki fallback. */
+  --hero-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
 
   margin: 0;
   padding: 0 0 clamp(16px, 2.6vh, 32px);
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   overflow-x: clip;
 }
 
@@ -84,7 +88,7 @@
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 /* İki tonlu başlık — kelimeler maskeden alttan kayar */
@@ -96,7 +100,7 @@
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-hero__word {
@@ -117,7 +121,7 @@
 }
 
 .ikas-hero__word-in--muted {
-  color: var(--u9HctrBrDd);
+  color: var(--hero-muted, var(--u9HctrBrDd));
 }
 
 .ikas-hero__subtitle {
@@ -125,7 +129,7 @@
   max-width: 44ch;
   font-size: clamp(16px, 1.25vw, 20px);
   line-height: 1.5;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   text-wrap: pretty;
 }
 
@@ -144,11 +148,11 @@
   margin: 0;
   padding: 18px 0 0;
   list-style: none;
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-hero__assure li {
