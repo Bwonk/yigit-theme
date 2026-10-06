@@ -42,6 +42,7 @@ Bu dosya, ikas editöründe canlı olarak oluşturulan tasarım token'larının 
 | `Rozet / Etiket Metin` | `veglu61tEE` | `var(--veglu61TEe)` |
 | `Pastel / Lavanta` | `btAOgyyOol` | `var(--btAOgyyOol)` |
 | `Pastel / Nane` | `QdiB71MDVn` | `var(--qdiB71MdVn)` |
+| `Odak / Halka` | `vwK85WzqFG` | `var(--vwK85WzqFg)` |
 
 Rozet renkleri global’dir (renk şemasından bağımsız, sitenin her yerinde aynı):
 İndirim = ürün kartı indirim rozeti, PDP indirim çerçevesi, Deal Cards tasarruf etiketi,
@@ -228,6 +229,9 @@ Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*,
 | Card/Text | `var(--8Ev4X6Vd0O)` |
 | Card/MutedText | `var(--tggPeh5T1A)` |
 | Card/Border | `var(--2MHxRczVsb)` |
+| Focus/Ring | `var(--gf8WLq5Ffh)` |
+
+Focus/Ring = tüm odak göstergeleri (outline, input focus halkası). Şemada global `Odak / Halka`ya bağlı; CSS: `var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)))`.
 
 Card = section zemininden ayrışan kartlar (beyaz: Card/Background, açık gri: Card/MutedBackground) — İletişim formu, SSS yardım kutusu, Testimonials kartları, mağaza yanıtı, açık Deal Card, Magnetic Auth paneli, kampanya kutusu, ürün grubu kutuları vb.
 

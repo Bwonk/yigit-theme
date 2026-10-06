@@ -221,7 +221,7 @@ textarea.ikas-contact__input {
 
 .ikas-contact__input:focus {
   border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-contact__input--error,

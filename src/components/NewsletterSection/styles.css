@@ -179,7 +179,7 @@
 }
 
 .ikas-newsletter__form-row:focus-within {
-  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   background-color: color-mix(in srgb, var(--eceeZPmHKm, #fff) 12%, transparent);
 }
 

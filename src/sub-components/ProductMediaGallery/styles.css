@@ -324,7 +324,7 @@
 }
 
 .ikas-media-gallery__pause:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 

@@ -160,7 +160,7 @@ legend.ikas-option-set__head + * {
 
 .ikas-option-set__input:focus {
   border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-option-set__input--invalid,
@@ -448,7 +448,7 @@ legend.ikas-option-set__head + * {
 }
 
 .ikas-option-set__check-input:focus-visible + .ikas-option-set__check-box {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
@@ -512,7 +512,7 @@ legend.ikas-option-set__head + * {
 }
 
 .ikas-option-set__color-input:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
@@ -570,7 +570,7 @@ legend.ikas-option-set__head + * {
 
 .ikas-option-set__drop:focus-within {
   border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-option-set__drop--over {
@@ -661,12 +661,12 @@ legend.ikas-option-set__head + * {
 
 .ikas-option-set__box:focus-visible,
 .ikas-option-set__file-remove:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
 .ikas-option-set__swatch:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 4px;
 }
 

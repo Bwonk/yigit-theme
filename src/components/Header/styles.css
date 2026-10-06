@@ -18,10 +18,11 @@
   box-sizing: border-box;
   z-index: var(--z-index-header, 100);
   padding: clamp(10px, 1.5vw, 20px) 0 clamp(6px, 1vw, 12px);
-  /* Floating island: tam genişlik beyaz gradient/scrim YOK — çevre şeffaf.
-     Elevation yalnızca pill üzerindeki token shadow ile. Section'a renk şeması
-     seçilirse çevre şemanın Background slotuyla boyanır (TOKENS.md §10). */
-  background: var(--pGwtVHz9Sd, transparent);
+  /* Floating island: tam genişlik zemin/scrim YOK — çevre her zaman şeffaf.
+     Şema Background slotu burada kullanılmaz: varsayılan şema da slotu
+     tanımladığı için pill'in çevresinde tam genişlik bant oluşuyordu.
+     Elevation yalnızca pill üzerindeki token shadow ile. */
+  background: transparent;
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -103,7 +104,7 @@
 }
 
 .ikas-header__hamburger:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
   border-radius: 9999px;
 }
@@ -139,7 +140,7 @@
 /* Klavye odağı ikon butonlarıyla aynı dili konuşur (WCAG 2.4.11 / 2.4.13). */
 .ikas-header__logo-link:focus-visible,
 .ikas-header__menu-link:focus-visible {
-  outline: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
   border-radius: 4px;
   color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
@@ -219,7 +220,7 @@
 }
 
 .ikas-header__menu-link--parent:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -290,7 +291,7 @@
 }
 
 .ikas-header__search:focus-within {
-  box-shadow: 0 0 0 1.5px var(--sy8ZnXZdoG);
+  box-shadow: 0 0 0 1.5px var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
 }
 
 .ikas-header__search-icon {
@@ -471,7 +472,7 @@
 }
 
 .ikas-header__icon-btn:focus-visible {
-  outline: 2px solid var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
   color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
 }

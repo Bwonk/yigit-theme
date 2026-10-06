@@ -99,7 +99,7 @@
 }
 
 .ikas-reviews .ikas-review-form__star:has(:focus-visible) {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-reviews .ikas-review-form__star-input {
@@ -136,7 +136,7 @@
 
 .ikas-reviews .ikas-review-form__input:focus {
   border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-reviews .ikas-review-form__input--error,

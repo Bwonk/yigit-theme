@@ -98,7 +98,7 @@
 }
 
 .ikas-buy-box__rating:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
 }
 
@@ -242,7 +242,7 @@
 }
 
 .ikas-buy-box__swatch:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 4px;
 }
 
@@ -357,7 +357,7 @@
 }
 
 .ikas-buy-box__pill:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 

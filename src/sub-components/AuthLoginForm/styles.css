@@ -77,7 +77,7 @@
 
 .ikas-auth .ikas-auth__input:focus {
   border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
 }
 
 .ikas-auth .ikas-auth__input--error,
@@ -242,7 +242,7 @@
 
 .ikas-mgauth .ikas-auth__input:focus {
   border-color: var(--pxNuSoudLn, #37435b);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 45%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 45%, transparent);
 }
 
 .ikas-mgauth .ikas-auth__input--error,

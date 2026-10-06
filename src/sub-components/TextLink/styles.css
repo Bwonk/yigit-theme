@@ -57,7 +57,7 @@ span.ikas-text-link {
 }
 
 .ikas-text-link:focus-visible {
-  outline: 2px solid var(--zyuxTzvMuY, var(--sy8ZnXZdoG));
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))));
   outline-offset: 3px;
 }
 
