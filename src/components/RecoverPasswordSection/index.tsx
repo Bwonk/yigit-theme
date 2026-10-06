@@ -154,7 +154,7 @@ const RecoverForm = observer(function RecoverForm({
 
 export function RecoverPasswordSection({
   backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  brandKicker = "YİĞİT",
   title = "Yeni şifreni belirle.",
   subtitle = "Güçlü bir şifre seç ve tekrar gir.",
   passwordLabel = "YENİ ŞİFRE",

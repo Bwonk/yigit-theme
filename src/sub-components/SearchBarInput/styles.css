@@ -11,6 +11,7 @@
 .geeny-search-bar__form {
   display: flex;
   align-items: center;
+  gap: 10px;
   width: 100%;
   position: relative;
   border-radius: var(--input-radius, 8px);
@@ -66,27 +67,8 @@
   opacity: 1;
 }
 
-.geeny-search-bar__submit-btn {
+/* Button PILL_PRIMARY — input ile aynı yükseklik */
+.geeny-search-bar__submit-btn.ikas-btn {
+  flex: 0 0 auto;
   height: var(--input-height, 48px);
-  padding: 0 24px;
-  border-radius: var(--btn-radius, 8px);
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--pxNuSoudLn);
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.2s ease, transform 0.1s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.geeny-search-bar__submit-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.geeny-search-bar__submit-btn:active {
-  transform: translateY(0);
 }

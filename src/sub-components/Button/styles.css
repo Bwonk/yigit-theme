@@ -2,10 +2,10 @@
  * BUTTON SUB-COMPONENT — Tüm section'larda kullanılan merkezi buton.
  *
  * Variant'lar:
- *   PRIMARY / ACCENT / SECONDARY  — Klasik hover (bg swap + translateY)
- *   PILL_PRIMARY                   — Pill Grow: lacivert bg, hover → sarı grow
- *   PILL_ACCENT                    — Pill Grow: sarı bg, hover → lacivert grow
- *   PILL_SECONDARY                 — Pill Grow: transparent, hover → lacivert grow
+ *   PRIMARY / ACCENT / SECONDARY  — Dolan çizgi: altta 2px çizgi, hover'da zemini doldurur
+ *   PILL_PRIMARY                   — Yükselen dolgu: lacivert bg, hover → sarı alttan dolar
+ *   PILL_ACCENT                    — Yükselen dolgu: sarı bg, hover → lacivert alttan dolar
+ *   PILL_SECONDARY                 — Yükselen dolgu: beyaz bg, hover → lacivert alttan dolar
  *
  * Renkler — TOKENS.md cssVar referansları:
  *   Ana Lacivert:  var(--pxNuSoudLn)     TOKENS.md satır 10
@@ -47,68 +47,95 @@
   width: 100%;
 }
 
-/* ─── PRIMARY Variant (klasik) ─── */
+/* ═══════════════════════════════════════════════════════════════════════
+ * KLASİK (KÖŞELİ) VARYANTLAR — DOLAN ÇİZGİ
+ * Menüdeki "Tümünü gör" ve metin bağlantılarıyla aynı hareket: altta 2px
+ * çizgi durur, hover/odak/basışta yukarı doğru dolup zemini kaplar.
+ * ═══════════════════════════════════════════════════════════════════════ */
+.ikas-btn--primary,
+.ikas-btn--accent,
+.ikas-btn--secondary {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.ikas-btn--primary::before,
+.ikas-btn--accent::before,
+.ikas-btn--secondary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  height: 2px;
+  transition: height 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+.ikas-btn--primary:is(:hover, :focus-visible, :active):not(:disabled)::before,
+.ikas-btn--accent:is(:hover, :focus-visible, :active):not(:disabled)::before,
+.ikas-btn--secondary:is(:hover, :focus-visible, :active):not(:disabled)::before {
+  height: 100%;
+}
+
+/* ─── PRIMARY: lacivert zemin, sarı dolgu ─── */
 .ikas-btn--primary {
   background-color: var(--pxNuSoudLn);
   color: var(--24KlcgGmm9);
   border: 1px solid transparent;
 }
 
-.ikas-btn--primary:hover:not(:disabled) {
+.ikas-btn--primary::before {
   background-color: var(--sy8ZnXZdoG);
+}
+
+.ikas-btn--primary:is(:hover, :focus-visible, :active):not(:disabled) {
   color: var(--pxNuSoudLn);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(227, 224, 69, 0.3);
 }
 
-.ikas-btn--primary:active:not(:disabled) {
-  transform: translateY(0) scale(0.98);
-}
-
-/* ─── ACCENT Variant (klasik) ─── */
+/* ─── ACCENT: sarı zemin, lacivert dolgu ─── */
 .ikas-btn--accent {
   background-color: var(--sy8ZnXZdoG);
   color: var(--pxNuSoudLn);
   border: 1px solid transparent;
 }
 
-.ikas-btn--accent:hover:not(:disabled) {
+.ikas-btn--accent::before {
   background-color: var(--pxNuSoudLn);
+}
+
+.ikas-btn--accent:is(:hover, :focus-visible, :active):not(:disabled) {
   color: var(--24KlcgGmm9);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(55, 67, 91, 0.25);
 }
 
-.ikas-btn--accent:active:not(:disabled) {
-  transform: translateY(0) scale(0.98);
-}
-
-/* ─── SECONDARY Variant (klasik) ─── */
+/* ─── SECONDARY: şeffaf zemin, sarı dolgu ─── */
 .ikas-btn--secondary {
   background-color: transparent;
   color: var(--pxNuSoudLn);
   border: 1px solid var(--cdFDkBbKkc);
 }
 
-.ikas-btn--secondary:hover:not(:disabled) {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
-  transform: translateY(-1px);
+.ikas-btn--secondary::before {
+  background-color: var(--sy8ZnXZdoG);
 }
 
-.ikas-btn--secondary:active:not(:disabled) {
-  transform: translateY(0) scale(0.98);
+.ikas-btn--secondary:is(:hover, :focus-visible, :active):not(:disabled) {
+  color: var(--pxNuSoudLn);
+  border-color: var(--sy8ZnXZdoG);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
- * PILL GROW VARIANTS
+ * PILL VARIANTS — YÜKSELEN DOLGU
  *
- * Efekt: Merkezden büyüyen ::before dolgu. Hover/focus'ta scale(0) → scale(1.05).
+ * Efekt: ::before dolgu alttan kavisli üst kenarla yükselir, yerine oturunca
+ * kavis düzleşir (metin bağlantılarındaki alttan dolan çizgiyle aynı dil).
+ * İkon (ok) sağdan çıkıp soldan geri girer.
+ * - Hover yalnızca gerçek fare olan cihazlarda; dokunmatikte :active aynı
+ *   dolguyu verir → basış geri bildirimi telefonda da görünür.
  * - isolation: isolate → z-index stacking context
- * - overflow: hidden → dolgu taşması engellenir
- * - Metin z-index:1 ile dolgunun üstünde kalır
- * - border-radius: 9999px → pill köşe
+ * - overflow: hidden → dolgu pill dışına taşmaz
+ * - Metin/ikon z-index:1 ile dolgunun üstünde kalır
  * ═══════════════════════════════════════════════════════════════════════ */
 
 /* Pill ortak temel — tüm pill_* variant'ları bunu alır */
@@ -124,8 +151,8 @@
   letter-spacing: 0.1em;
   padding: 0 26px;
   border: none;
-  /* Metin renk geçişi — grow dolgusu transform ile gelir */
-  transition: color 0.3s ease;
+  /* Metin renk geçişi — dolgu transform ile gelir */
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 /* Pill Grow dolgu katmanı (::before) */
@@ -134,14 +161,52 @@
 .ikas-btn--pill_secondary::before {
   content: "";
   position: absolute;
-  /* -14% / -6% orijinal tasarımdaki inset değerleri — dolgunun taşma payı */
-  inset: -14% -6%;
+  inset: 0;
   z-index: 0;
-  border-radius: 9999px;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  /* Kavisli üst kenar: dolgu yükselirken tepesi yuvarlak, oturunca düz. */
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   pointer-events: none;
+}
+
+/* Dolu durum — klavye odağı ve basış her cihazda; hover yalnızca farede. */
+.ikas-btn--pill_primary:is(:focus-visible, :active):not(:disabled)::before,
+.ikas-btn--pill_accent:is(:focus-visible, :active):not(:disabled)::before,
+.ikas-btn--pill_secondary:is(:focus-visible, :active):not(:disabled)::before {
+  transform: none;
+  border-radius: 0;
+}
+
+@media (hover: hover) {
+  .ikas-btn--pill_primary:hover:not(:disabled)::before,
+  .ikas-btn--pill_accent:hover:not(:disabled)::before,
+  .ikas-btn--pill_secondary:hover:not(:disabled)::before {
+    transform: none;
+    border-radius: 0;
+  }
+}
+
+/* Ok değişimi: ikon sağdan çıkar, soldan girer. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ikas-btn--pill_primary:hover:not(:disabled) > svg,
+  .ikas-btn--pill_accent:hover:not(:disabled) > svg,
+  .ikas-btn--pill_secondary:hover:not(:disabled) > svg {
+    animation: ikas-btn-arrow-swap 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+@keyframes ikas-btn-arrow-swap {
+  45% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+  46% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
 }
 
 /* Pill içerik z-index — metin/ikon dolgunun üstünde */
@@ -155,7 +220,7 @@
   z-index: 1;
 }
 
-/* ─── PILL_PRIMARY: Lacivert bg → hover'da accent sarı grow ─── */
+/* ─── PILL_PRIMARY: Lacivert bg → sarı alttan dolar ─── */
 .ikas-btn--pill_primary {
   background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
   color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
@@ -165,14 +230,8 @@
   background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
 }
 
-.ikas-btn--pill_primary:hover:not(:disabled)::before,
-.ikas-btn--pill_primary:focus-visible:not(:disabled)::before {
-  transform: scale(1.05);
-}
-
-.ikas-btn--pill_primary:hover:not(:disabled),
-.ikas-btn--pill_primary:focus-visible:not(:disabled) {
-  /* Sarı grow üzerine koyu metin */
+.ikas-btn--pill_primary:is(:focus-visible, :active):not(:disabled) {
+  /* Sarı dolgu üzerine koyu metin */
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
@@ -180,7 +239,7 @@
   transform: scale(0.97);
 }
 
-/* ─── PILL_ACCENT: Accent sarı bg → hover'da lacivert grow ─── */
+/* ─── PILL_ACCENT: Accent sarı bg → lacivert alttan dolar ─── */
 .ikas-btn--pill_accent {
   background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
@@ -190,14 +249,8 @@
   background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
-.ikas-btn--pill_accent:hover:not(:disabled)::before,
-.ikas-btn--pill_accent:focus-visible:not(:disabled)::before {
-  transform: scale(1.05);
-}
-
-.ikas-btn--pill_accent:hover:not(:disabled),
-.ikas-btn--pill_accent:focus-visible:not(:disabled) {
-  /* Lacivert grow üzerine accent sarı metin */
+.ikas-btn--pill_accent:is(:focus-visible, :active):not(:disabled) {
+  /* Lacivert dolgu üzerine accent sarı metin */
   color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
 }
 
@@ -205,7 +258,7 @@
   transform: scale(0.97);
 }
 
-/* ─── PILL_SECONDARY: Transparent/beyaz bg → hover'da lacivert grow ─── */
+/* ─── PILL_SECONDARY: Beyaz bg → lacivert alttan dolar ─── */
 .ikas-btn--pill_secondary {
   background-color: var(--24KlcgGmm9);  /* Saf Beyaz — TOKENS.md satır 14 */
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
@@ -216,20 +269,31 @@
   background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
-.ikas-btn--pill_secondary:hover:not(:disabled)::before,
-.ikas-btn--pill_secondary:focus-visible:not(:disabled)::before {
-  transform: scale(1.05);
-}
-
-.ikas-btn--pill_secondary:hover:not(:disabled),
-.ikas-btn--pill_secondary:focus-visible:not(:disabled) {
-  /* Lacivert grow üzerine beyaz metin */
+.ikas-btn--pill_secondary:is(:focus-visible, :active):not(:disabled) {
+  /* Lacivert dolgu üzerine beyaz metin */
   color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
   border-color: var(--pxNuSoudLn);       /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-btn--pill_secondary:active:not(:disabled) {
   transform: scale(0.97);
+}
+
+/* Hover renkleri yalnızca gerçek fare olan cihazlarda — dokunmatikte
+   hover "yapışıp" dolguyu açık bırakmasın. */
+@media (hover: hover) {
+  .ikas-btn--pill_primary:hover:not(:disabled) {
+    color: var(--pxNuSoudLn);
+  }
+
+  .ikas-btn--pill_accent:hover:not(:disabled) {
+    color: var(--sy8ZnXZdoG);
+  }
+
+  .ikas-btn--pill_secondary:hover:not(:disabled) {
+    color: var(--24KlcgGmm9);
+    border-color: var(--pxNuSoudLn);
+  }
 }
 
 /* ─── Focus Visible State (tüm variant'lar) ─── */
@@ -278,14 +342,11 @@
     transition: none;
   }
 
-  .ikas-btn--pill_primary:hover:not(:disabled)::before,
-  .ikas-btn--pill_primary:focus-visible:not(:disabled)::before,
-  .ikas-btn--pill_accent:hover:not(:disabled)::before,
-  .ikas-btn--pill_accent:focus-visible:not(:disabled)::before,
-  .ikas-btn--pill_secondary:hover:not(:disabled)::before,
-  .ikas-btn--pill_secondary:focus-visible:not(:disabled)::before {
-    /* Anlık scale — grow efekti yerine instant dolgu */
-    transform: scale(1.05);
+  .ikas-btn--pill_primary:active:not(:disabled),
+  .ikas-btn--pill_accent:active:not(:disabled),
+  .ikas-btn--pill_secondary:active:not(:disabled) {
+    /* Basışta küçülme yok — dolgu anlık gelir */
+    transform: none;
   }
 
   .ikas-btn--pill_primary,
@@ -296,7 +357,10 @@
 
   .ikas-btn--primary,
   .ikas-btn--accent,
-  .ikas-btn--secondary {
+  .ikas-btn--secondary,
+  .ikas-btn--primary::before,
+  .ikas-btn--accent::before,
+  .ikas-btn--secondary::before {
     transition: none;
   }
 

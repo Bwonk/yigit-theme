@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import {
   getThemeSetting,
   getFilterDisplayedValues,
   hasProductListAppliedFilters,
   isProductListFilterable,
+  handleFilterValueClick,
   IkasProductList,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
-import { inertProps } from "../../utils/a11y";
 import FilterDropdown from "../FilterDropdown";
 import SortControl from "../SortControl";
 import DensityToggle from "../DensityToggle";
 import ActiveFilterChips from "../ActiveFilterChips";
 import MobileFilterSheet, { SheetMode } from "../MobileFilterSheet";
+import CategoryDropdown from "../CategoryDropdown";
+import CategoryRail from "../CategoryRail";
 
 export interface Props {
   productList?: IkasProductList;
@@ -30,6 +32,9 @@ export interface Props {
   sheetFiltersTitle?: string;
   sheetSortTitle?: string;
   sheetCloseLabel?: string;
+  categoryFilterTitle?: string;
+  allCategoriesText?: string;
+  categoriesAriaLabel?: string;
   onFilterChange?: () => void;
   className?: string;
 }
@@ -50,68 +55,24 @@ export function FilterAndSortBar({
   sheetFiltersTitle = "Filtreler",
   sheetSortTitle = "Sıralama",
   sheetCloseLabel,
+  categoryFilterTitle = "Kategori",
+  allCategoriesText = "Tümü",
+  categoriesAriaLabel = "Alt kategoriler",
   onFilterChange,
   className = "",
 }: Props) {
-  const [slim, setSlim] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [sheetMode, setSheetMode] = useState<SheetMode>("filters");
-  const barRef = useRef<HTMLDivElement | null>(null);
-  const slimRef = useRef(false);
 
   const sectionPxSetting = getThemeSetting("_Nd1XnRyZlx");
   const mobilePxSetting = getThemeSetting("_uRDipxnxkx");
   const siteWidthSetting = getThemeSetting("_l6CcMRzdeZ");
-  const softShadowSetting = getThemeSetting("_yyUleMlhR4");
-  const mediaRadiusSetting = getThemeSetting("_YFQAxlLvZl");
-  const fadeSetting = getThemeSetting("_AwVN6G9Zib");
 
   const inlineStyles = {
     "--section-px": sectionPxSetting?.value || "20px",
     "--mobile-px": mobilePxSetting?.value || "16px",
     "--max-site-width": siteWidthSetting?.value || "1560px",
-    "--filter-shadow":
-      softShadowSetting?.value || "0 12px 32px rgba(19,25,36,0.08)",
-    "--media-radius": mediaRadiusSetting?.value || "32px",
-    "--filter-fade": fadeSetting?.value || "280ms ease",
   };
-
-  // Slim görünüm, sticky eşiğine bağlanır; histerezis titreşimi önler.
-  useEffect(() => {
-    const el = barRef.current;
-    if (!el) return;
-
-    let frame = 0;
-
-    const measure = () => {
-      frame = 0;
-      const stickTop = parseFloat(window.getComputedStyle(el).top) || 0;
-      const distance = el.getBoundingClientRect().top - stickTop;
-      const next = slimRef.current ? distance <= 4 : distance <= 0.5;
-      if (next !== slimRef.current) {
-        slimRef.current = next;
-        setSlim(next);
-      }
-    };
-
-    const request = () => {
-      if (!frame) frame = requestAnimationFrame(measure);
-    };
-
-    measure();
-    window.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", request);
-    const observer =
-      typeof ResizeObserver !== "undefined" ? new ResizeObserver(request) : null;
-    observer?.observe(el);
-
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", request);
-      window.removeEventListener("resize", request);
-      observer?.disconnect();
-    };
-  }, [Boolean(productList)]);
 
   if (!productList) return null;
 
@@ -148,16 +109,30 @@ export function FilterAndSortBar({
 
   const handleChange = () => onFilterChange?.();
 
+  // Tek değerli filtreler (ör. stokta olanlar) açılır menü yerine tek
+  // dokunuşluk anahtar olarak çizilir.
+  const isToggle = (f: (typeof filters)[number]) =>
+    (getFilterDisplayedValues(f) || []).length === 1 &&
+    (f.numberRangeListOptions?.length ?? 0) === 0;
+  const dropdownFilters = filters.filter((f) => !isToggle(f));
+  const toggleFilters = filters.filter(isToggle);
+
   return (
     <>
+      <CategoryRail
+        productList={productList}
+        allText={allCategoriesText}
+        ariaLabel={categoriesAriaLabel}
+        onChange={handleChange}
+        style={inlineStyles}
+      />
+
       <div
-        ref={barRef}
-        className={`ikas-filter-bar${slim ? " ikas-filter-bar--slim" : ""} ${className}`.trim()}
-        data-stuck={slim ? "true" : "false"}
+        className={`ikas-filter-bar ${className}`.trim()}
         style={inlineStyles as any}
         lang="tr"
       >
-        <div className="ikas-filter-bar__dock">
+        <div className="ikas-filter-bar__inner">
           <div className="ikas-filter-bar__row">
             <div className="ikas-filter-bar__left">
               <div className="ikas-filter-bar__mobile-actions">
@@ -203,12 +178,13 @@ export function FilterAndSortBar({
               </div>
 
               <div className="ikas-filter-bar__desktop-filters">
-                <SortControl
+                <CategoryDropdown
                   productList={productList}
-                  sortTitle={sortTitle}
-                  onSortChange={handleChange}
+                  title={categoryFilterTitle}
+                  allText={allCategoriesText}
+                  onChange={handleChange}
                 />
-                {filters.map((filter) => (
+                {dropdownFilters.map((filter) => (
                   <FilterDropdown
                     key={filter.id}
                     productList={productList}
@@ -216,6 +192,26 @@ export function FilterAndSortBar({
                     onChange={handleChange}
                   />
                 ))}
+                {toggleFilters.map((filter) => {
+                  const value = getFilterDisplayedValues(filter)[0];
+                  const on = value.isSelected === true;
+                  return (
+                    <button
+                      key={filter.id}
+                      type="button"
+                      className={`ikas-filter-bar__toggle${
+                        on ? " ikas-filter-bar__toggle--on" : ""
+                      }`}
+                      aria-pressed={on}
+                      onClick={() => {
+                        handleFilterValueClick(productList, filter, value);
+                        handleChange();
+                      }}
+                    >
+                      {value.name || filter.name}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -227,6 +223,14 @@ export function FilterAndSortBar({
                 <span className="ikas-filter-bar__count-suffix _eZyocyyd0F">
                   {resultsCountSuffix}
                 </span>
+              </div>
+              <div className="ikas-filter-bar__sort">
+                <SortControl
+                  productList={productList}
+                  sortTitle={sortTitle}
+                  onSortChange={handleChange}
+                  className="ikas-sort-control--end"
+                />
               </div>
               {onDensityChange && (
                 <DensityToggle
@@ -241,25 +245,18 @@ export function FilterAndSortBar({
           </div>
 
           {showChips && (
-            <div
-              className="ikas-filter-bar__chips"
-              data-collapsed={slim ? "true" : "false"}
-              aria-hidden={slim ? "true" : undefined}
-              {...inertProps(slim)}
-            >
-              <div className="ikas-filter-bar__chips-inner">
-                <ActiveFilterChips
-                  productList={productList}
-                  clearText={clearFiltersText}
-                  onChange={handleChange}
-                />
-              </div>
+            <div className="ikas-filter-bar__chips">
+              <ActiveFilterChips
+                productList={productList}
+                clearText={clearFiltersText}
+                onChange={handleChange}
+              />
             </div>
           )}
         </div>
       </div>
 
-      {/* Sheet sticky çubuğun stacking context'i dışında kalmalı. */}
+      {/* Sheet, çubuğun stacking context'i dışında kalmalı. */}
       <MobileFilterSheet
         productList={productList}
         open={sheetOpen}

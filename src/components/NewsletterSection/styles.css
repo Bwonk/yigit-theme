@@ -46,6 +46,12 @@
   background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
   border-radius: clamp(20px, 2.6vw, 36px);
   box-shadow: 0 26px 60px rgba(55, 67, 91, 0.22);
+  /* Sade düzen: metin solda, form sağ altta */
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: end;
+  /* Büyük takoz formun üstünde kalsın diye kart biraz yüksek */
+  min-height: clamp(340px, 30vw, 440px);
   transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.25, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.25, 1);
   z-index: 2;
 }
@@ -56,7 +62,7 @@
   transform: translateY(28px);
 }
 
-/* ARKA PLAN KATMANLARI (Görsel + Gradient + SVG Pattern + Takoz) */
+/* ARKA PLAN KATMANLARI (Görsel + Gradient + Takoz) */
 .ikas-newsletter__bg-img {
   position: absolute;
   inset: 0;
@@ -74,25 +80,29 @@
   pointer-events: none;
 }
 
-.ikas-newsletter__pattern {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.16;
-  pointer-events: none;
-}
-
 .ikas-newsletter__wedge {
   position: absolute;
   top: 0;
   right: 0;
-  width: clamp(150px, 24%, 330px);
+  /* Formla çakışmasın: kartın sağ üst köşesinde sınırlı boyut */
+  width: clamp(130px, 19%, 260px);
   aspect-ratio: 1 / 1;
   background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
   border-radius: 0 clamp(20px, 2.6vw, 36px) 0 100%;
   pointer-events: none;
   opacity: 0.9;
+  /* Kart ekranda ilerledikçe köşeden büyür. --p (0→1) NewsletterSection
+     kaydırma dinleyicisinden gelir; JS yoksa tam boy (1) kalır. */
+  transform-origin: 100% 0;
+  transform: scale(calc(0.55 + var(--p, 1) * 0.45));
+  transition: transform 0.25s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-newsletter__wedge {
+    transform: none;
+    transition: none;
+  }
 }
 
 /* İÇERİK BLOĞU & TİPOGRAFİ */
@@ -101,6 +111,7 @@
   z-index: 2;
   padding: clamp(34px, 4.6vw, 76px) clamp(22px, 4vw, 68px);
   max-width: min(100%, 720px);
+  align-self: end;
   display: flex;
   flex-direction: column;
   gap: clamp(14px, 1.6vw, 20px);
@@ -110,6 +121,7 @@
 .ikas-newsletter__tag {
   font-size: 11px;
   letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
 }
 
@@ -129,6 +141,19 @@
   max-width: 48ch;
 }
 
+/* FORM KOLONU — sağ altta, metnin alt çizgisine hizalı */
+.ikas-newsletter__form-col {
+  position: relative;
+  z-index: 2;
+  padding: clamp(34px, 4.6vw, 76px) clamp(22px, 4vw, 68px);
+  padding-left: 0;
+}
+
+.ikas-newsletter__form-col .ikas-newsletter__form {
+  max-width: 520px;
+  margin: 0 0 0 auto;
+}
+
 /* E-POSTA FORMU & PILL INPUT */
 .ikas-newsletter__form {
   display: flex;
@@ -139,15 +164,29 @@
 
 .ikas-newsletter__form-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-width: 520px;
-  /* Buton, input satırının dikey ortasında (etiket sr-only; hata satırı form-row dışında). */
   align-items: center;
+  gap: 8px;
+  max-width: 520px;
+  /* Giriş alanı ve buton tek hap içinde */
+  padding: 5px 5px 5px 22px;
+  border: 1.5px solid rgba(200, 207, 208, 0.5);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.06);
+  box-sizing: border-box;
+  transition: border-color 0.24s ease, background-color 0.24s ease;
+}
+
+.ikas-newsletter__form-row:focus-within {
+  border-color: var(--sy8ZnXZdoG);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.ikas-newsletter__form-row--error {
+  border-color: #ff5a5a;
 }
 
 .ikas-newsletter__input-wrapper {
-  flex: 1 1 200px;
+  flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -156,10 +195,10 @@
 
 .ikas-newsletter__input {
   width: 100%;
-  border: 1.5px solid rgba(200, 207, 208, 0.5);
-  border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.06);
-  padding: 16px 22px;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 11px 0;
   font-family: var(--font-body);
   font-size: 15px;
   color: #ffffff;
@@ -172,13 +211,8 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.ikas-newsletter__input:focus {
-  border-color: var(--sy8ZnXZdoG);      /* Accent Sarı — TOKENS.md satır 11 */
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
 .ikas-newsletter__input--error {
-  border-color: #FF5A5A;
+  color: #ffffff;
 }
 
 .ikas-newsletter__button-wrapper {
@@ -187,11 +221,33 @@
   align-items: center;
 }
 
+/* Sarı buton koyu kartta: dolgu beyaza yükselir, yazı mürekkep */
+.ikas-newsletter__button-wrapper .ikas-btn {
+  height: 46px;
+  padding: 0 22px;
+}
+
+.ikas-newsletter__button-wrapper .ikas-btn::before {
+  background-color: var(--24KlcgGmm9);
+}
+
+.ikas-newsletter__button-wrapper .ikas-btn:is(:focus-visible, :active):not(:disabled) {
+  color: var(--fcAwzuFj9W, #101418);
+}
+
+@media (hover: hover) {
+  .ikas-newsletter__button-wrapper .ikas-btn:hover:not(:disabled) {
+    color: var(--fcAwzuFj9W, #101418);
+  }
+}
+
 .ikas-newsletter__note {
   font-size: 10.5px;
+  line-height: 1.5;
   letter-spacing: 0.12em;
-  color: rgba(200, 207, 208, 0.8);
-  margin-top: 4px;
+  text-transform: uppercase;
+  color: rgba(200, 207, 208, 0.85);
+  margin-top: 2px;
 }
 
 .ikas-newsletter__error-msg {
@@ -232,6 +288,23 @@
   }
 }
 
+/* TABLET VE ALTI: tek kolon, form metnin altında */
+@media (max-width: bp(kmfaNJ5hH8)) {
+  .ikas-newsletter__card {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .ikas-newsletter__form-col {
+    padding-top: 0;
+    padding-left: clamp(22px, 4vw, 68px);
+  }
+
+  .ikas-newsletter__form-col .ikas-newsletter__form {
+    margin: 0;
+  }
+}
+
 /* RESPONSIVE (<768px) */
 @media (max-width: bp(HDRapYMzn7)) {
   /* Mobilde alt padding 40px binişmeyi 10px'e düşürüyordu → kart footer'dan
@@ -249,19 +322,12 @@
     padding: 28px 20px;
   }
 
-  .ikas-newsletter__form-row {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .ikas-newsletter__input-wrapper,
-  .ikas-newsletter__button-wrapper {
-    width: 100%;
+  .ikas-newsletter__form-col {
+    padding: 0 20px 28px;
   }
 
   .ikas-newsletter__button-wrapper .ikas-btn {
-    width: 100%;
-    justify-content: center;
+    padding: 0 16px;
   }
 
   .ikas-newsletter__wedge {

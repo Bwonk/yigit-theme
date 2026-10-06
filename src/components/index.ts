@@ -28,3 +28,8 @@ export { RecoverPasswordSection } from "./RecoverPasswordSection/index";
 export { MagneticAuthSection } from "./MagneticAuthSection/index";
 export { FaqAccordionItem } from "./FaqAccordionItem/index";
 export { FaqBouncyAccordion } from "./FaqBouncyAccordion/index";
+export { CategoryShowcase } from "./CategoryShowcase/index";
+export { ProductTabsCarousel } from "./ProductTabsCarousel/index";
+export { LegalPageSection } from "./LegalPageSection/index";
+export { ProductDealCards } from "./ProductDealCards/index";
+export { ContactSection } from "./ContactSection/index";

@@ -43,11 +43,11 @@ function prefersReducedMotion(): boolean {
  */
 export function AuthSection({
   backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  brandKicker = "YİĞİT",
   loginHeading = "Tekrar hoş geldin.",
   registerHeading = "Hesabını oluştur.",
   loginIntro = "Siparişlerini, iadelerini ve garanti kayıtlarını tek yerden yönet.",
-  registerIntro = "Infinity ailesine katıl — sipariş ve garanti takibi tek hesapta.",
+  registerIntro = "Yiğit ailesine katıl — sipariş ve garanti takibi tek hesapta.",
   loginTabText = "GİRİŞ YAP",
   registerTabText = "KAYIT OL",
   emailLabel = "E-POSTA",
@@ -70,7 +70,7 @@ export function AuthSection({
   privacyLinkText,
   privacyLink,
   heroImage,
-  heroImageAlt = "Infinity seyahat atmosferi",
+  heroImageAlt = "Yiğit seyahat atmosferi",
   heroTag = "SS26 · SEYAHAT SERİSİ",
   heroTitle = "Uykunu yanında taşı.",
   heroSubtitle = "Hesabın siparişlerini, iade taleplerini ve garanti kayıtlarını tek yerde tutar.",

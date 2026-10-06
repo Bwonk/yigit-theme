@@ -20,6 +20,7 @@ export function RelatedProductsCarousel({
   addToCartText = "SEPETE EKLE",
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
   prevAriaLabel = "Önceki ürünler",
@@ -156,6 +157,7 @@ export function RelatedProductsCarousel({
                 addToCartText={addToCartText}
                 discountBadgeText={discountBadgeText}
                 quickAddAriaLabel={quickAddAriaLabel}
+                selectOptionsText={selectOptionsText}
                 addingToCartText={addingToCartText}
                 soldOutText={soldOutText}
               />

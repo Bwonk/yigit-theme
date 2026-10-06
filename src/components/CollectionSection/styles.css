@@ -14,10 +14,10 @@
   overflow: visible;
 }
 
+/* Tam genişlik: filtre çubuğunun zemini kenardan kenara uzanır; içerik
+   genişliğini her alt bileşen kendi kapsayıcısında sınırlar. */
 .ikas-collection-section__container {
-  max-width: var(--max-site-width, 1560px);
   width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

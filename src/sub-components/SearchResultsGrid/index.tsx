@@ -12,6 +12,7 @@ export interface Props {
   loadMoreText?: string;
   discountBadgeText?: string;
   quickAddAriaLabel?: string;
+  selectOptionsText?: string;
   loadingMoreText?: string;
   searchKeyword?: string;
   productList?: IkasProductList;
@@ -28,6 +29,7 @@ export function SearchResultsGrid({
   loadMoreText,
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   loadingMoreText,
   productList,
   products,
@@ -102,6 +104,7 @@ export function SearchResultsGrid({
               product={product}
               discountBadgeText={discountBadgeText}
               quickAddAriaLabel={quickAddAriaLabel}
+              selectOptionsText={selectOptionsText}
             />
           </div>
         ))}

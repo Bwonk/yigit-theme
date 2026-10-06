@@ -9,7 +9,7 @@ export interface Props {
 
 export function BreadcrumbNav({
   product,
-  homepageText = "ANA SAYFA",
+  homepageText = "Ana Sayfa",
   className = "",
 }: Props) {
   const categoryPath = product ? getProductCategoryPath(product) : [];
@@ -38,7 +38,7 @@ export function BreadcrumbNav({
           const href = getIkasCategoryPathItemHref(cat) || "#";
           return (
             <li key={cat.id || idx} className="ikas-breadcrumb__item-wrapper">
-              <span className="ikas-breadcrumb__separator" aria-hidden="true">/</span>
+              <span className="ikas-breadcrumb__separator" aria-hidden="true">›</span>
               <a
                 href={href}
                 className="ikas-breadcrumb__item"
@@ -59,7 +59,7 @@ export function BreadcrumbNav({
 
         {product?.name && (
           <li className="ikas-breadcrumb__item-wrapper">
-            <span className="ikas-breadcrumb__separator" aria-hidden="true">/</span>
+            <span className="ikas-breadcrumb__separator" aria-hidden="true">›</span>
             <span
               className="ikas-breadcrumb__item ikas-breadcrumb__item--active"
               aria-current="page"

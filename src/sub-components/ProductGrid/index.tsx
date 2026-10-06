@@ -26,6 +26,7 @@ export interface Props {
   addToCartText?: string;
   discountBadgeText?: string;
   quickAddAriaLabel?: string;
+  selectOptionsText?: string;
   addingToCartText?: string;
   soldOutText?: string;
   className?: string;
@@ -48,6 +49,7 @@ export function ProductGrid({
   addToCartText,
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText,
   soldOutText,
   className = "",
@@ -111,9 +113,11 @@ export function ProductGrid({
                 showCategoryLabel={showCategoryLabel}
                 showSwatches={showSwatches}
                 overlayQuickAdd
+                cardStyle="editorial"
                 addToCartText={addToCartText}
                 discountBadgeText={discountBadgeText}
                 quickAddAriaLabel={quickAddAriaLabel}
+                selectOptionsText={selectOptionsText}
                 addingToCartText={addingToCartText}
                 soldOutText={soldOutText}
               />

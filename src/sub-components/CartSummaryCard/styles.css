@@ -38,16 +38,30 @@
 }
 
 .ikas-cart-summary__row--total {
-  padding-top: 12px;
+  align-items: baseline;
+  margin-top: 4px;
+  padding-top: 16px;
   border-top: 1px solid var(--8ARbeTYsmD, var(--cdFDkBbKkc));
+}
+
+.ikas-cart-summary__total-label {
+  font-weight: 500;
 }
 
 .ikas-cart-summary__total {
   color: var(--pxNuSoudLn);
+  font-weight: 600;
 }
 
-.ikas-cart-summary__price {
-  font-family: var(--font-mono, "Roboto Mono", ui-monospace, monospace);
+/* Tutarlar: mono font yerine orantılı rakamlar (sepet çekmecesiyle aynı). */
+.ikas-cart-summary__amount {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
+.ikas-cart-summary__shipping {
+  text-align: right;
 }
 
 .ikas-cart-summary__discount {
@@ -58,8 +72,9 @@
 }
 
 .ikas-cart-summary__tax {
-  margin: 0;
+  margin: -8px 0 0;
   color: var(--p6EMJiXye1, var(--xGFwg5Zqpf));
+  font-size: 14px;
 }
 
 .ikas-cart-summary .ikas-btn {

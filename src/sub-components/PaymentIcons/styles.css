@@ -1,0 +1,38 @@
+.ikas-payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ikas-payment-icons__item {
+  display: flex;
+}
+
+.ikas-payment-icons__card,
+.ikas-payment-icons__text {
+  box-sizing: border-box;
+  height: 30px;
+  border: 1px solid var(--0RbHz765Hw);
+  border-radius: 6px;
+  background-color: var(--24KlcgGmm9);
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-payment-icons__card {
+  display: block;
+  width: 48px;
+}
+
+.ikas-payment-icons__text {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

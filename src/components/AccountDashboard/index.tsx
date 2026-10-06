@@ -221,6 +221,7 @@ export function AccountDashboard({
   addToCartText = "SEPETE EKLE",
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   removeFavoriteText = "FAVORİDEN ÇIKAR",
   addressTitleLabel = "BAŞLIK",
   addressLineLabel = "ADRES",
@@ -397,6 +398,7 @@ export function AccountDashboard({
               addToCartText={addToCartText}
               discountBadgeText={discountBadgeText}
               quickAddAriaLabel={quickAddAriaLabel}
+              selectOptionsText={selectOptionsText}
               removeFavoriteText={removeFavoriteText}
             />
           )}

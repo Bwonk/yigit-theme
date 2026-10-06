@@ -36,9 +36,10 @@
 
 .ikas-testimonials__organic-wrapper {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 1200px;
+  margin-inline: auto;
+  display: grid;
+  gap: 18px;
   position: relative;
 }
 
@@ -49,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin: 12px 0 24px 0;
+  margin: -6px 0 0;
   position: relative;
   z-index: 1;
 }
@@ -62,75 +63,106 @@
 
 .ikas-testimonials__title {
   margin: 0;
-  font-size: clamp(32px, 3.8vw, 56px);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(28px, 3.5vw, 56px);
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.22;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0;
 }
 
 .ikas-testimonials__title-part1 {
   color: var(--p6EMJiXye1);
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .ikas-testimonials__title-part2 {
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--fcAwzuFj9W, #101418);    /* Nötr / Mürekkep — tasarımdaki koyu ikinci satır */
+}
+
+.ikas-testimonials__dots {
+  width: 0.5em;
+  height: 0.5em;
+  flex: none;
+  color: var(--p6EMJiXye1);
+}
+
+/* Avatar yüklenmemişse yumuşak renkli daireler */
+.ikas-testimonials__avatar-stack-dot--1 {
+  background-color: #f5e8c7;
+}
+
+.ikas-testimonials__avatar-stack-dot--2 {
+  background-color: #d9d3f0;
+}
+
+.ikas-testimonials__avatar-stack-dot--3 {
+  background-color: #cfe8d8;
 }
 
 /* AVATAR STACK (Üst Üste Binen Daireler & Gerçek Yüz Portreleri) */
 .ikas-testimonials__avatar-stack {
   display: inline-flex;
   align-items: center;
-  margin-left: 4px;
 }
 
 .ikas-testimonials__avatar-stack-img {
-  width: 28px;
-  height: 28px;
+  width: 0.72em;
+  height: 0.72em;
+  font-size: inherit;
   border-radius: 50%;
   border: 2px solid var(--24KlcgGmm9);  /* Saf Beyaz Ayraç — TOKENS.md satır 14 */
   object-fit: cover;
   display: inline-block;
-  margin-left: -8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-left: -7px;
 }
 
-/* ORGANİK SATIRLAR & KART YERLEŞİMLERİ */
+.ikas-testimonials__avatar-stack-img:first-child {
+  margin-left: 0;
+}
+
+/* ═══ KARTLAR — Yigit Landing tasarımı ═══
+   Üst satır: kart 1 solda (biraz aşağıda), kart 2 sağda.
+   Başlık ortada. Alt satır: kart 3 (ve varsa 4) sağa yaslı.
+   Avatarlar kartın tamamen dışında, kartın alt kenarına hizalı. */
 .ikas-testimonials__row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 24px;
+  padding-inline: 4%;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   z-index: 2;
 }
 
-.ikas-testimonials__row--top {
-  margin-bottom: -36px;
-}
-
 .ikas-testimonials__row--bottom {
-  margin-top: -24px;
+  justify-content: flex-end;
+  padding-right: 12%;
+  margin-top: 6px;
 }
 
-/* BEYAZ YORUM KARTLARI (Referans Görsel Birebir Ölçü ve Stil) */
 .ikas-testimonials__card {
-  background-color: #ffffff;
-  border-radius: 20px;
-  padding: 26px 28px;
-  box-shadow: 0 12px 36px rgba(55, 67, 91, 0.07);
-  border: 1px solid #EDEDED;
   position: relative;
   box-sizing: border-box;
-  width: 420px;
-  max-width: 44%;
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.25, 1), box-shadow 0.35s ease, opacity 0.6s ease;
+  width: min(380px, 40%);
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px 14px;
+  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 16px;
+  background-color: var(--24KlcgGmm9);
+  box-shadow: 0 14px 36px rgba(55, 67, 91, 0.1);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 /* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
@@ -139,146 +171,103 @@
   transform: translateY(24px);
 }
 
-/* Çapraz Dikey Ofsetler (Referans Görsel Konumları) */
 .ikas-testimonials__card--1 {
-  margin-left: 6%;
+  margin-top: 44px;
 }
 
-.ikas-testimonials__card--2 {
-  margin-right: 4%;
-  margin-top: 60px; /* Sağ üst kart daha aşağıda */
+/* Hafif yüzme; üzerine gelince durur */
+@keyframes ikas-testimonials-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
 }
 
-.ikas-testimonials__card--3 {
-  margin-left: 2%;
-  margin-top: 0;
-}
-
-.ikas-testimonials__card--4 {
-  margin-right: 8%;
-  margin-top: 70px; /* Sağ alt kart daha aşağıda */
-}
-
-/* Yüzme Animasyonu (tFloat) */
-@keyframes tFloat {
-  0%, 100% {
-    transform: translateY(0);
+@media (prefers-reduced-motion: no-preference) {
+  .ikas-testimonials__card {
+    animation: ikas-testimonials-float 8s ease-in-out infinite;
   }
-  50% {
-    transform: translateY(-8px);
+
+  .ikas-testimonials__card--2 {
+    animation-duration: 9s;
+    animation-delay: -3s;
+  }
+
+  .ikas-testimonials__card--3 {
+    animation-duration: 8.5s;
+    animation-delay: -5s;
+  }
+
+  .ikas-testimonials__card--4 {
+    animation-duration: 9.5s;
+    animation-delay: -2s;
+  }
+
+  .ikas-testimonials__card:hover {
+    animation-play-state: paused;
   }
 }
 
-.ikas-testimonials--visible .ikas-testimonials__card--1 { animation: tFloat 7.5s ease-in-out infinite 0s; }
-.ikas-testimonials--visible .ikas-testimonials__card--2 { animation: tFloat 8.2s ease-in-out infinite 1.2s; }
-.ikas-testimonials--visible .ikas-testimonials__card--3 { animation: tFloat 7.8s ease-in-out infinite 0.6s; }
-.ikas-testimonials--visible .ikas-testimonials__card--4 { animation: tFloat 8.5s ease-in-out infinite 1.8s; }
-
-.ikas-testimonials__card:hover {
-  animation-play-state: paused;
-  transform: translateY(-6px) !important;
-  box-shadow: 0 20px 42px rgba(55, 67, 91, 0.12);
-}
-
-/* GERÇEK YÜZ FOTOĞRAFI AVATAR — KART DIŞINA TAŞAN SÖZ BALONU ELEMANI */
+/* AVATAR — 48px yumuşak renkli daire, kartın dışında */
 .ikas-testimonials__avatar-badge {
   position: absolute;
-  width: 54px;
-  height: 54px;
+  bottom: 6px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 3px solid var(--24KlcgGmm9);  /* Saf Beyaz Ayraç Halka — TOKENS.md satır 14 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 4;
+  display: grid;
+  place-items: center;
   overflow: hidden;
-  box-sizing: border-box;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  z-index: 4;
+  color: var(--pxNuSoudLn);
 }
 
-/* Avatar Görseli (Tam Daire Profil Portresi) */
+.ikas-testimonials__avatar-badge--left,
+.ikas-testimonials__avatar-badge--left-bottom {
+  left: -60px;
+}
+
+.ikas-testimonials__avatar-badge--right,
+.ikas-testimonials__avatar-badge--right-bottom {
+  right: -60px;
+}
+
+.ikas-testimonials__card--1 .ikas-testimonials__avatar-badge {
+  background-color: #f5e8c7;
+}
+
+.ikas-testimonials__card--2 .ikas-testimonials__avatar-badge {
+  background-color: #d9d3f0;
+}
+
+.ikas-testimonials__card--3 .ikas-testimonials__avatar-badge {
+  background-color: #cfe8d8;
+}
+
+.ikas-testimonials__card--4 .ikas-testimonials__avatar-badge {
+  background-color: #f5e8c7;
+}
+
 .ikas-testimonials__avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
   display: block;
 }
 
-/* Avatar Fallback Baş Harf */
 .ikas-testimonials__avatar-initial {
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1;
-  text-align: center;
   user-select: none;
 }
 
-/* Yumuşak Renkli Dairesel Zemin Tonları (Referans Görseldeki Pastel Renkler) */
-.ikas-testimonials__avatar-badge--yellow {
-  background-color: var(--pastel-warm-sand);
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
-}
-
-.ikas-testimonials__avatar-badge--blue {
-  background-color: var(--pastel-soft-blue);
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
-}
-
-.ikas-testimonials__avatar-badge--gray {
-  background-color: var(--pastel-soft-sage);
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
-}
-
-/* REFERANS GÖRSELDEKİ TAM TAŞMA KONUMLARI (Yarı Yarıya Dışarıda Floating) */
-.ikas-testimonials__avatar-badge--left {
-  left: -27px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--left {
-  transform: translateY(-50%) scale(1.08);
-}
-
-.ikas-testimonials__avatar-badge--right {
-  right: -27px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--right {
-  transform: translateY(-50%) scale(1.08);
-}
-
-.ikas-testimonials__avatar-badge--left-bottom {
-  left: -27px;
-  bottom: 12px;
-}
-
-.ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--left-bottom {
-  transform: scale(1.08);
-}
-
-.ikas-testimonials__avatar-badge--right-bottom {
-  right: -27px;
-  bottom: 12px;
-}
-
-.ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--right-bottom {
-  transform: scale(1.08);
-}
-
-/* YORUM METNİ & ALT BİLGİ */
+/* METİN — alıntı, altında ad, en altta yıldızlar */
 .ikas-testimonials__quote {
-  margin: 0 0 16px 0;
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--xGFwg5Zqpf, #5a6472);
 }
 
 .ikas-testimonials__quote p {
@@ -291,36 +280,51 @@
 
 .ikas-testimonials__quote strong {
   font-weight: 600;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--fcAwzuFj9W, #101418);
 }
 
 .ikas-testimonials__card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
 }
 
 .ikas-testimonials__author {
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
-  line-height: 25.2px; /* önceki token'dan miras alınan değer korunuyor */
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--fcAwzuFj9W, #101418);
 }
 
 .ikas-testimonials__stars {
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
-  font-size: 13px;
-  letter-spacing: 2px;
+  color: #e9d94a;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.06em;
 }
 
 /* ALT LİNK */
 .ikas-testimonials__footer {
   text-align: center;
-  margin-top: clamp(40px, 5vw, 60px);
+  margin-top: 10px;
 }
 
-/* Erişilebilirlik: Azaltılmış Hareket Tercihi */
+/* Alt bağlantı: sade altı çizili gövde metni */
+.ikas-testimonials__link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1;
+  --tl-color: var(--xGFwg5Zqpf);
+}
+
+@media (min-width: 1800px) {
+  .ikas-testimonials__quote {
+    font-size: 15.5px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ikas-testimonials__card {
     opacity: 1 !important;
@@ -330,55 +334,44 @@
   }
 }
 
-/* RESPONSIVE (<1024px) */
-@media (max-width: bp(VzlJkKlXGT)) {
+/* TABLET VE ALTI — tek sütun: başlık üstte, kartlar alt alta,
+   avatarlar kartın solunda dışarıda */
+@media (max-width: bp(kmfaNJ5hH8)) {
+  .ikas-testimonials__organic-wrapper {
+    gap: 14px;
+  }
+
   .ikas-testimonials__row {
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    display: contents;
   }
 
   .ikas-testimonials__header {
     order: -1;
-    margin: 0 0 36px 0;
+    margin: 0 0 8px;
   }
 
   .ikas-testimonials__card {
-    margin: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    animation: none !important;
+    width: auto;
+    margin: 0 0 0 60px;
+    animation: none;
   }
 
+  .ikas-testimonials__avatar-badge,
   .ikas-testimonials__avatar-badge--right,
   .ikas-testimonials__avatar-badge--right-bottom {
-    right: 14px;
-    top: -24px;
+    left: -60px;
+    right: auto;
+    top: 0;
     bottom: auto;
-    transform: none;
   }
 
-  .ikas-testimonials__avatar-badge--left,
-  .ikas-testimonials__avatar-badge--left-bottom {
-    left: 14px;
-    top: -24px;
-    bottom: auto;
-    transform: none;
-  }
-
-  .ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--left,
-  .ikas-testimonials__card:hover .ikas-testimonials__avatar-badge--right {
-    transform: scale(1.08);
+  .ikas-testimonials__footer {
+    margin-top: 8px;
   }
 }
 
 @media (max-width: bp(HDRapYMzn7)) {
   .ikas-testimonials {
     padding: 36px 0;
-  }
-
-  .ikas-testimonials__card {
-    padding: 22px 20px;
   }
 }

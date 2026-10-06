@@ -1,0 +1,227 @@
+/* ═══════════════════════════════════════════════════════════════════════
+ * HEADER MENU PANEL — açılır kartın menü içeriği
+ *
+ * Renkler — DESIGN.md token'ları:
+ *   Ana Lacivert:   var(--pxNuSoudLn)
+ *   Accent Sarı:    var(--sy8ZnXZdoG)
+ *   Nötr / Yüzey:   var(--wElEhJwjYh)
+ *   Nötr / Çizgi:   var(--8ARbeTYsmD)
+ *   Meta Metin:     var(--p6EMJiXye1)
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.ikas-menu-panel--card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+
+.ikas-menu-panel--featured {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+}
+
+.ikas-menu-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px 6px;
+}
+
+.ikas-menu-panel__eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+/* "Tümünü gör" — sarı alt çizgili etiket bağlantısı */
+.ikas-menu-panel__all {
+  display: inline-block;
+  padding-block: 6px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--pxNuSoudLn);
+  text-decoration: none;
+  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 100% 2px no-repeat;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-menu-panel__all:hover {
+  background-size: 100% 100%;
+}
+
+.ikas-menu-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ikas-menu-panel__list--cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ikas-menu-panel--featured .ikas-menu-panel__list--cols {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ikas-menu-panel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--pxNuSoudLn);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.ikas-menu-panel__row:hover,
+.ikas-menu-panel__row:focus-visible {
+  background-color: var(--wElEhJwjYh, #f4f5f5);
+  outline: none;
+}
+
+.ikas-menu-panel__row i {
+  font-style: normal;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-menu-panel__row:hover i,
+.ikas-menu-panel__row:focus-visible i {
+  opacity: 1;
+  transform: none;
+}
+
+/* Öne çıkan ürün: görsel kartı, altta beyaz bilgi şeridi */
+.ikas-menu-panel__feat {
+  position: relative;
+  display: block;
+  min-height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--jQs026VIpf, #edeff0);
+  text-decoration: none;
+}
+
+.ikas-menu-panel__feat img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-menu-panel__feat:hover img {
+  transform: scale(1.04);
+}
+
+.ikas-menu-panel__feat-card {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.96);
+}
+
+.ikas-menu-panel__feat-card small {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-menu-panel__feat-card b {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-menu-panel__feat-card em {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-style: normal;
+  color: var(--pxNuSoudLn);
+}
+
+/* KOMPAKT: akordeon */
+.ikas-menu-panel--acc {
+  display: grid;
+  padding: 8px;
+}
+
+.ikas-menu-panel--acc > * + * {
+  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+}
+
+.ikas-menu-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 0 12px;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  color: var(--pxNuSoudLn);
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ikas-menu-panel__top::-webkit-details-marker {
+  display: none;
+}
+
+.ikas-menu-panel__chev {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-menu-panel__group[open] .ikas-menu-panel__chev {
+  transform: rotate(180deg);
+}
+
+.ikas-menu-panel--acc .ikas-menu-panel__list {
+  padding-bottom: 8px;
+}
+
+.ikas-menu-panel--acc .ikas-menu-panel__all {
+  margin: 4px 12px 6px;
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-menu-panel--featured {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-menu-panel__row i,
+  .ikas-menu-panel__feat img,
+  .ikas-menu-panel__chev {
+    transition: none;
+  }
+}

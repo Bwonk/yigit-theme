@@ -53,9 +53,7 @@
 @media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
   .ikas-pdp__right {
     position: sticky;
-    top: calc(
-      var(--ikas-announcement-height, 0px) + var(--ikas-header-height, 80px) + 12px
-    );
+    top: calc(var(--ikas-header-height, 80px) + 12px);
     align-self: start;
   }
 }

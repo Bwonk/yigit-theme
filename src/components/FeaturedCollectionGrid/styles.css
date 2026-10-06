@@ -42,10 +42,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 20px;
+  gap: 20px 40px;
   flex-wrap: wrap;
-  border-bottom: 1px solid var(--8ARbeTYsmD);
-  padding-bottom: 18px;
   width: 100%;
 }
 
@@ -56,15 +54,18 @@
 }
 
 .ikas-featured-grid__tag {
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--p6EMJiXye1);
 }
 
 .ikas-featured-grid__title {
-  margin: 0;
-  font-size: clamp(26px, 2.8vw, 42px);
-  letter-spacing: -0.03em;
+  margin: 10px 0 0;
+  font-size: clamp(28px, 3.4vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
   color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
@@ -91,7 +92,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(16px, 2.2vw, 32px);
+  gap: clamp(14px, 2vw, 28px);
 }
 
 /* Kademeli Fade-Up (Stagger Animation) */

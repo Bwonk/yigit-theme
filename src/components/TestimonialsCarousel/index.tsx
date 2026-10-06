@@ -21,7 +21,9 @@ export interface TestimonialsCarouselProps extends Props {
  * 5. prefers-reduced-motion Erişilebilirlik Desteği.
  */
 export function TestimonialsCarousel({
-  tag = "03 · YORUMLAR",
+  // Etiket ve 4. yorum isteğe bağlı: boş bırakılınca gizlenir (kod varsayılanı
+  // yok; yeni yerleştirmeler config defaultValue ile dolar).
+  tag,
   titlePart1 = "Gerçek yolcular",
   titlePart2 = "Gerçek uyku",
   review1Text = "İstanbul-Tokyo uçuşuydu, hiç umudum yoktu. <strong>İlk kez uzun uçuşta gerçekten uyuyabildim</strong> — boynum yana devrilmedi, inerken omzum ağrımıyordu.",
@@ -33,8 +35,8 @@ export function TestimonialsCarousel({
   review3Text = "Gece otobüsünde bile işe yarıyor. <strong>İki yıldır her yolculukta yanımda:</strong> kılıfını yıkıyorum, hiç deforme olmadı.",
   review3Author = "SELİN Y.",
   review3Avatar,
-  review4Text = "Oğluma mini boyunu aldık. <strong>Arabada başı öne düşmüyor artık</strong>, uyandığında keyfi yerinde oluyor.",
-  review4Author = "DENİZ T.",
+  review4Text,
+  review4Author,
   review4Avatar,
   bottomLinkText = "2.412 YORUMU OKU →",
   bottomLink,
@@ -163,22 +165,45 @@ export function TestimonialsCarousel({
             <h2 className="ikas-testimonials__title _sKAMD8d1LA">
               <span className="ikas-testimonials__title-part1">
                 {titlePart1}
-                {/* AVATAR STACK — merchant'ın yüklediği yorum avatarlarından beslenir */}
-                {stackAvatarSrcs.length > 0 && (
-                  <span className="ikas-testimonials__avatar-stack" aria-hidden="true">
-                    {stackAvatarSrcs.map((src, idx) => (
-                      <img
-                        key={idx}
-                        src={src}
-                        alt=""
-                        className="ikas-testimonials__avatar-stack-img"
-                        loading="lazy"
-                      />
-                    ))}
-                  </span>
-                )}
+                {/* AVATAR STACK — yüklenen yorum avatarları; yoksa renkli daireler */}
+                <span className="ikas-testimonials__avatar-stack" aria-hidden="true">
+                  {stackAvatarSrcs.length > 0
+                    ? stackAvatarSrcs.map((src, idx) => (
+                        <img
+                          key={idx}
+                          src={src}
+                          alt=""
+                          className="ikas-testimonials__avatar-stack-img"
+                          loading="lazy"
+                        />
+                      ))
+                    : [1, 2, 3].map((n) => (
+                        <i
+                          key={n}
+                          className={`ikas-testimonials__avatar-stack-img ikas-testimonials__avatar-stack-dot--${n}`}
+                        />
+                      ))}
+                </span>
               </span>
-              <span className="ikas-testimonials__title-part2">{titlePart2}</span>
+              <span className="ikas-testimonials__title-part2">
+                {/* Nokta ızgarası — tasarımdaki küçük işaret */}
+                <svg className="ikas-testimonials__dots" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <circle cx="10" cy="2" r="1.2" />
+                  <circle cx="6" cy="6" r="1.2" />
+                  <circle cx="10" cy="6" r="1.2" />
+                  <circle cx="14" cy="6" r="1.2" />
+                  <circle cx="2" cy="10" r="1.2" />
+                  <circle cx="6" cy="10" r="1.2" />
+                  <circle cx="10" cy="10" r="1.2" />
+                  <circle cx="14" cy="10" r="1.2" />
+                  <circle cx="18" cy="10" r="1.2" />
+                  <circle cx="6" cy="14" r="1.2" />
+                  <circle cx="10" cy="14" r="1.2" />
+                  <circle cx="14" cy="14" r="1.2" />
+                  <circle cx="10" cy="18" r="1.2" />
+                </svg>
+                {titlePart2}
+              </span>
             </h2>
           </div>
 
@@ -190,7 +215,7 @@ export function TestimonialsCarousel({
                 {renderAvatar(
                   review3Avatar,
                   review3Author,
-                  "ikas-testimonials__avatar-badge--left-bottom",
+                  "ikas-testimonials__avatar-badge--right-bottom",
                   "ikas-testimonials__avatar-badge--gray"
                 )}
                 {/* RICH_TEXT kendi <p> etiketlerini getirebilir → kapsayıcı div. */}
@@ -214,7 +239,7 @@ export function TestimonialsCarousel({
               <div className="ikas-testimonials__card ikas-testimonials__card--4 t-float">
                 {renderAvatar(
                   review4Avatar,
-                  review4Author,
+                  review4Author ?? "",
                   "ikas-testimonials__avatar-badge--right-bottom",
                   "ikas-testimonials__avatar-badge--yellow"
                 )}
@@ -239,7 +264,7 @@ export function TestimonialsCarousel({
           {bottomLinkText && (
             <div className="ikas-testimonials__footer">
               <TextLink
-                tone="LABEL"
+                tone="BODY"
                 href={bottomHref}
                 className="ikas-testimonials__link"
                 text={bottomLinkText}

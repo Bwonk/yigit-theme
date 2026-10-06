@@ -18,6 +18,8 @@ export interface AnnouncementBarProps extends Props {
  * - 3 duyuru mesajı desteği (noktalı ayraç `·` ile ayrılmış)
  * - 3. duyuru mesajında Accent Sarı (var(--sy8ZnXZdoG)) vurgusu
  * - Türkçe karakter dostu toLocaleUpperCase("tr-TR") dönüşümü
+ * - Mobilde mesajlar tek satırda üst üste durur ve 3 saniyede bir sırayla döner
+ *   (iki satıra kırılıp son mesajın yalnız kalmasını önler)
  */
 export function AnnouncementBar({
   text,
@@ -35,9 +37,9 @@ export function AnnouncementBar({
 
   const barRef = useRef<HTMLElement | null>(null);
 
-  // Bant sticky olarak tepeye sabitlenir; gerçek yüksekliğini global bir CSS
-  // değişkenine yazar ki sticky header tam altına otursun (üst üste binmesin).
-  // Bant yoksa değişken 0px'e döner → header top:0 ile çalışmaya devam eder.
+  // Bant akışta durur (yapışkan değil). Gerçek yüksekliği global bir CSS
+  // değişkenine yazılır; hero ilk ekran yüksekliğini hesaplarken bandı düşer.
+  // Bant yoksa değişken 0px'e döner.
   useEffect(() => {
     const root = document.documentElement;
     const el = barRef.current;
@@ -91,7 +93,9 @@ export function AnnouncementBar({
   const fullText = activeMessages.map((m) => m.text).join(" · ");
 
   const innerContent = (
-    <div className="ikas-announcement-bar__content">
+    <div
+      className={`ikas-announcement-bar__content ikas-announcement-bar__content--of-${activeMessages.length}`}
+    >
       {activeMessages.map((msg, index) => (
         <span key={index} className="ikas-announcement-bar__item">
           {index > 0 && (

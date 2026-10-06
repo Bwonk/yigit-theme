@@ -1,5 +1,5 @@
 {
-  "name": "geeny",
+  "name": "yigit-theme",
   "version": "1.0.0",
   "projectId": "e1iohf8g",
   "globalStyles": "./src/global.css",
@@ -136,10 +136,10 @@
         },
         {
           "name": "brandText",
-          "displayName": "Marka Metni (logo yoksa)",
+          "displayName": "Marka Metni (doluysa logo yerine)",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "",
           "groupId": "texts"
         },
         {
@@ -522,19 +522,19 @@
         },
         {
           "name": "searchResultCountText",
-          "displayName": "Sonuç Sayısı Metni",
+          "displayName": "Sonuç Sayısı Metni (kullanılmıyor)",
           "type": "TEXT",
           "required": false,
           "defaultValue": "{count} SONUÇ BULUNDU",
-          "groupId": "search_overlay"
+          "groupId": "unused"
         },
         {
           "name": "searchIdleText",
-          "displayName": "Boş Durum Alt Metni",
+          "displayName": "Boş Durum Alt Metni (kullanılmıyor)",
           "type": "TEXT",
           "required": false,
           "defaultValue": "ARAMAYA BAŞLAYIN YA DA BİR FİLTRE SEÇİN",
-          "groupId": "search_overlay"
+          "groupId": "unused"
         },
         {
           "name": "searchViewAllText",
@@ -551,6 +551,71 @@
           "required": false,
           "defaultValue": "Menüyü kapat",
           "groupId": "texts"
+        },
+        {
+          "name": "menuFeaturedProduct",
+          "displayName": "Menü Kartında Öne Çıkan Ürün",
+          "type": "PRODUCT",
+          "required": false,
+          "description": "Açılır menü kartının sağında gösterilir; boş bırakılırsa kart yalnızca bağlantıları gösterir",
+          "groupId": "header_group"
+        },
+        {
+          "name": "menuFeaturedLabel",
+          "displayName": "Öne Çıkan Ürün Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çok satan",
+          "groupId": "texts"
+        },
+        {
+          "name": "menuViewAllText",
+          "displayName": "Menü Tümünü Gör Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tümünü gör",
+          "groupId": "texts"
+        },
+        {
+          "name": "searchRecentTitle",
+          "displayName": "Son Aramalar Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Son aramalar",
+          "groupId": "search_overlay"
+        },
+        {
+          "name": "searchRecentClearText",
+          "displayName": "Son Aramaları Temizle",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Temizle",
+          "groupId": "search_overlay"
+        },
+        {
+          "name": "searchRemoveRecentLabel",
+          "displayName": "Son Aramayı Kaldır (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "description": "{term} yer tutucusu arama terimiyle değiştirilir",
+          "defaultValue": "Son aramalardan kaldır: {term}",
+          "groupId": "search_overlay"
+        },
+        {
+          "name": "removeItemLabel",
+          "displayName": "Ürünü Kaldır Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürünü sepetten kaldır",
+          "groupId": "cart_drawer"
+        },
+        {
+          "name": "removeItemText",
+          "displayName": "Kaldır Butonu Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır",
+          "groupId": "cart_drawer"
         }
       ],
       "propGroups": [
@@ -577,6 +642,11 @@
           "id": "search_overlay",
           "name": "Arama Paneli",
           "description": "Header arama paneli metinleri"
+        },
+        {
+          "id": "unused",
+          "name": "Kullanılmıyor",
+          "description": "Yeni tasarımda kullanılmayan eski alanlar. Kayıtlı içerik kaymasın diye silinmedi; değiştirmeniz bir şey etkilemez."
         }
       ]
     },
@@ -707,7 +777,7 @@
           "displayName": "Marka İsmi / Başlık",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "YİĞİT",
           "description": "Footer sol marka başlığı",
           "groupId": "footer_group"
         },
@@ -802,7 +872,7 @@
           "displayName": "Telif Hakkı Metni",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "© 2026 INFINITY SLEEP GOODS · TÜM HAKLARI SAKLIDIR",
+          "defaultValue": "© 2026 YİĞİT · TÜM HAKLARI SAKLIDIR",
           "description": "Footer en altındaki telif metni",
           "groupId": "footer_group"
         },
@@ -862,6 +932,14 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "VISA, MASTERCARD, TROY, 3D SECURE"
+        },
+        {
+          "name": "brandLogo",
+          "displayName": "Marka Logosu",
+          "type": "IMAGE",
+          "required": false,
+          "description": "Yüklenirse marka adı yerine logo gösterilir",
+          "groupId": "footer_group"
         }
       ],
       "propGroups": [
@@ -881,11 +959,11 @@
       "props": [
         {
           "name": "tagText",
-          "displayName": "Üst Etiket Metni",
+          "displayName": "Görsel Kartı Alt Etiketi",
           "type": "TEXT",
           "required": false,
           "defaultValue": "SS26 · SEYAHAT SERİSİ",
-          "description": "Başlığın üzerindeki monospace etiket",
+          "description": "Görsel üzerindeki kartta, ana metnin altında küçük etiket olarak gösterilir",
           "groupId": "hero_group"
         },
         {
@@ -894,7 +972,7 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "Uykunu yanında taşı.",
-          "description": "Ana sayfa en üst büyük slogan başlığı",
+          "description": "Koyu kısım ile soluk kısmı | ile ayırabilirsiniz (ör. Her yerde |kusursuz uyku). Ayraç yoksa ilk kelime koyu olur.",
           "groupId": "hero_group"
         },
         {
@@ -951,11 +1029,11 @@
         },
         {
           "name": "socialProofSubtitle",
-          "displayName": "Sosyal Kanıt Alt Metni",
+          "displayName": "Başlık Üstü Puan Metni",
           "type": "TEXT",
           "required": false,
           "defaultValue": "4,8 / 5 · 2.412 DEĞERLENDİRME",
-          "description": "Sosyal kanıt kartı alt puan metni",
+          "description": "Başlığın üstünde yıldızlarla birlikte gösterilir",
           "groupId": "hero_group"
         },
         {
@@ -980,6 +1058,15 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "SS26 Seyahat Serisi"
+        },
+        {
+          "name": "assuranceText",
+          "displayName": "Güvence Maddeleri (virgülle ayırın)",
+          "type": "TEXT",
+          "required": false,
+          "description": "Sol kolonun altında, ince çizginin altında sıralanır",
+          "defaultValue": "Ücretsiz kargo, 30 gün iade, 2 yıl garanti",
+          "groupId": "hero_group"
         }
       ],
       "propGroups": [
@@ -1011,7 +1098,7 @@
           "displayName": "Tarih ve Bilgi Metni",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "TEMMUZ 2026 · INFINITY SLEEP GOODS",
+          "defaultValue": "TEMMUZ 2026 · YİĞİT",
           "description": "Sağ tarafta görünecek tarih ve marka künye metni",
           "groupId": "editorial_group"
         },
@@ -1442,6 +1529,23 @@
           "required": false,
           "defaultValue": "{title} ürününü sepete ekle",
           "groupId": "featured_collection_group"
+        },
+        {
+          "name": "addedToCartText",
+          "displayName": "Sepete Eklendi Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Eklendi",
+          "groupId": "featured_collection_group"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir",
+          "defaultValue": "SEÇENEKLERİ SEÇ",
+          "groupId": "featured_collection_group"
         }
       ],
       "propGroups": [
@@ -1827,7 +1931,7 @@
           "displayName": "Bölüm Başlığı",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Infinity Pillow Nasıl Kullanılır?",
+          "defaultValue": "Yiğit Yastık Nasıl Kullanılır?",
           "description": "Video alanı başlığı",
           "groupId": "video_demo_group"
         },
@@ -1967,6 +2071,190 @@
           "required": false,
           "defaultValue": "Yorumlar yüklenemedi. Lütfen tekrar deneyin.",
           "groupId": "reviews_content"
+        },
+        {
+          "name": "showReviewForm",
+          "displayName": "Yorum yazmayı göster",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "writeReviewText",
+          "displayName": "Yorum yaz butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "YORUM YAZ",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "cancelReviewText",
+          "displayName": "Vazgeç butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "VAZGEÇ",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "formHeading",
+          "displayName": "Form başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Deneyimini paylaş",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "ratingLabel",
+          "displayName": "Puan etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "PUANIN",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "starUnitLabel",
+          "displayName": "Yıldız (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "yıldız",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "titleLabel",
+          "displayName": "Başlık etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "BAŞLIK",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "titlePlaceholder",
+          "displayName": "Başlık placeholder",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kısaca özetle",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "commentLabel",
+          "displayName": "Yorum etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "YORUMUN",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "commentPlaceholder",
+          "displayName": "Yorum placeholder",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürünle ilgili deneyimini anlat",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "submitReviewText",
+          "displayName": "Gönder butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "YORUMU GÖNDER",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "submittingReviewText",
+          "displayName": "Gönderiliyor metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "GÖNDERİLİYOR...",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "reviewSuccessText",
+          "displayName": "Başarı mesajı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teşekkürler! Yorumun onaylandıktan sonra yayınlanacak.",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "reviewFailureText",
+          "displayName": "Hata mesajı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yorum gönderilemedi. Lütfen tekrar deneyin.",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "loginRequiredText",
+          "displayName": "Giriş gerekli metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yorum yazmak için giriş yapmalısın.",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "loginButtonText",
+          "displayName": "Giriş butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "GİRİŞ YAP",
+          "groupId": "reviews_form"
+        },
+        {
+          "name": "reviewsPerPage",
+          "displayName": "Sayfa başına yorum",
+          "type": "NUMBER",
+          "required": false,
+          "defaultValue": 5,
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "loadMoreText",
+          "displayName": "Daha fazla butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "DAHA FAZLA YORUM",
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "loadingMoreText",
+          "displayName": "Yükleniyor metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "YÜKLENİYOR...",
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "showingText",
+          "displayName": "Gösterilen sayısı metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "yorum gösteriliyor",
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "readMoreText",
+          "displayName": "Devamını oku",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Devamını oku",
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "readLessText",
+          "displayName": "Daha az göster",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Daha az göster",
+          "groupId": "reviews_list"
+        },
+        {
+          "name": "storeReplyLabel",
+          "displayName": "Mağaza yanıtı etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MAĞAZA YANITI",
+          "groupId": "reviews_list"
         }
       ],
       "propGroups": [
@@ -1974,6 +2262,16 @@
           "id": "reviews_content",
           "name": "İçerik",
           "description": "Başlık ve boş durum metinleri"
+        },
+        {
+          "id": "reviews_form",
+          "name": "Yorum Formu",
+          "description": "Yorum yazma butonu ve form metinleri"
+        },
+        {
+          "id": "reviews_list",
+          "name": "Yorum Listesi",
+          "description": "Sayfalama ve devamını oku metinleri"
         }
       ]
     },
@@ -2069,6 +2367,15 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "{title} ürününü sepete ekle",
+          "groupId": "related_content"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir",
+          "defaultValue": "SEÇENEKLERİ SEÇ",
           "groupId": "related_content"
         }
       ],
@@ -2257,7 +2564,7 @@
           "displayName": "Breadcrumb Ana Sayfa Metni",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "ANA SAYFA",
+          "defaultValue": "Ana Sayfa",
           "groupId": "breadcrumb"
         },
         {
@@ -2607,6 +2914,110 @@
           "required": false,
           "defaultValue": "Otomatik geçişi başlat",
           "groupId": "gallery"
+        },
+        {
+          "name": "optionsRequiredErrorText",
+          "displayName": "Zorunlu Alan Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu alan zorunludur",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsInvalidText",
+          "displayName": "Eksik Seçenek Uyarısı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sepete eklemeden önce zorunlu alanları doldurun.",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsSelectPlaceholder",
+          "displayName": "Seçim Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seçiniz",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsFileDropText",
+          "displayName": "Dosya Yükleme Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dosya seç veya buraya sürükle",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsUploadingText",
+          "displayName": "Yükleniyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yükleniyor...",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsUploadFailedText",
+          "displayName": "Yükleme Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dosya yüklenemedi",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsFileSizeErrorText",
+          "displayName": "Dosya Boyutu Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{fileName}: en fazla {maxSize}MB",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsFileTypeErrorText",
+          "displayName": "Dosya Türü Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{fileName}: {ext} dosya türüne izin verilmiyor",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsMaxFilesErrorText",
+          "displayName": "Dosya Sayısı Hatası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "En fazla {max} dosya yüklenebilir",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsMinLabelText",
+          "displayName": "Min Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "En az: ",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsMaxLabelText",
+          "displayName": "Maks Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "En fazla: ",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsRemoveFileLabel",
+          "displayName": "Dosyayı Kaldır Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Dosyayı kaldır",
+          "groupId": "options"
+        },
+        {
+          "name": "optionsOptionalText",
+          "displayName": "Opsiyonel Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Opsiyonel",
+          "groupId": "options"
         }
       ],
       "propGroups": [
@@ -2655,6 +3066,11 @@
           "id": "bundle",
           "name": "Paket Ürünler",
           "description": "Bundle / paket içeriği metinleri"
+        },
+        {
+          "id": "options",
+          "name": "Kişiselleştirme",
+          "description": "Ürün kişiselleştirme (seçenek seti) alan metinleri"
         }
       ]
     },
@@ -2705,8 +3121,8 @@
           "displayName": "Kick Etiketi",
           "type": "TEXT",
           "required": false,
-          "description": "Hero üstündeki küçük etiket",
-          "defaultValue": "KOLEKSİYON · 2026",
+          "description": "Boş bırakılırsa kategorinin üst kategori yolu gösterilir (ör. TÜM ÜRÜNLER · SEYAHAT)",
+          "defaultValue": "",
           "groupId": "texts"
         },
         {
@@ -2714,7 +3130,7 @@
           "displayName": "Hero Görseli",
           "type": "IMAGE",
           "required": false,
-          "description": "Yoksa kategori görseli kullanılır",
+          "description": "Kategorinin kendi görseli yoksa kullanılır (yedek görsel)",
           "groupId": "content"
         },
         {
@@ -2771,6 +3187,22 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "Tüm Ürünler",
+          "groupId": "content"
+        },
+        {
+          "name": "homepageText",
+          "displayName": "Ana Sayfa Yol İzi Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ana Sayfa",
+          "groupId": "content"
+        },
+        {
+          "name": "productCountSuffix",
+          "displayName": "Ürün Sayısı Eki",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ürün",
           "groupId": "content"
         }
       ],
@@ -3034,6 +3466,39 @@
           "required": false,
           "defaultValue": "Görünüm",
           "groupId": "filter_texts"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir",
+          "defaultValue": "SEÇENEKLERİ SEÇ",
+          "groupId": "card_texts"
+        },
+        {
+          "name": "categoryFilterTitle",
+          "displayName": "Kategori Filtresi Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kategori",
+          "groupId": "filter_texts"
+        },
+        {
+          "name": "allCategoriesText",
+          "displayName": "Tüm Kategoriler Seçeneği",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tümü",
+          "groupId": "filter_texts"
+        },
+        {
+          "name": "categoriesAriaLabel",
+          "displayName": "Alt Kategoriler Etiketi (erişilebilirlik)",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Alt kategoriler",
+          "groupId": "filter_texts"
         }
       ],
       "propGroups": [
@@ -3276,6 +3741,20 @@
           "required": false,
           "defaultValue": "adet",
           "groupId": "page"
+        },
+        {
+          "name": "removeItemLabel",
+          "displayName": "Ürünü Kaldır Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Ürünü sepetten kaldır"
+        },
+        {
+          "name": "removeItemText",
+          "displayName": "Kaldır Butonu Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kaldır"
         }
       ],
       "propGroups": [
@@ -3470,6 +3949,15 @@
           "type": "TEXT",
           "required": false,
           "defaultValue": "{title} ürününü sepete ekle",
+          "groupId": "texts"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir",
+          "defaultValue": "SEÇENEKLERİ SEÇ",
           "groupId": "texts"
         }
       ],
@@ -3809,7 +4297,7 @@
           "displayName": "Marka Kicker",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "YİĞİT",
           "groupId": "content"
         },
         {
@@ -3841,7 +4329,7 @@
           "displayName": "Kayıt Intro",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Infinity ailesine katıl — sipariş ve garanti takibi tek hesapta.",
+          "defaultValue": "Yiğit ailesine katıl — sipariş ve garanti takibi tek hesapta.",
           "groupId": "content"
         },
         {
@@ -3984,7 +4472,7 @@
           "displayName": "Hero Alt",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "Infinity seyahat atmosferi",
+          "defaultValue": "Yiğit seyahat atmosferi",
           "groupId": "hero"
         },
         {
@@ -4152,7 +4640,7 @@
           "displayName": "Marka",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "YİĞİT",
           "groupId": "content"
         },
         {
@@ -4640,6 +5128,15 @@
           "required": false,
           "defaultValue": "MAHALLE",
           "groupId": "panels"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "description": "Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir",
+          "defaultValue": "SEÇENEKLERİ SEÇ",
+          "groupId": "panels"
         }
       ],
       "propGroups": [
@@ -4676,7 +5173,7 @@
           "displayName": "Marka",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "YİĞİT",
           "groupId": "content"
         },
         {
@@ -4798,7 +5295,7 @@
           "displayName": "Marka Kicker",
           "type": "TEXT",
           "required": false,
-          "defaultValue": "INFINITY",
+          "defaultValue": "YİĞİT",
           "groupId": "stage"
         },
         {
@@ -5202,9 +5699,10 @@
       "props": [
         {
           "name": "icon",
-          "displayName": "İkon",
+          "displayName": "İkon (kullanılmıyor)",
           "type": "SVG",
-          "required": false
+          "required": false,
+          "groupId": "unused"
         },
         {
           "name": "question",
@@ -5219,6 +5717,13 @@
           "type": "RICH_TEXT",
           "required": false,
           "defaultValue": "<p>500 ₺ üzeri siparişlerde kargo ücretsiz; 2–4 iş günü içinde teslim.</p>"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "unused",
+          "name": "Kullanılmıyor",
+          "description": "Yeni tasarımda ikon yerine sıra numarası gösteriliyor. Kayıtlı içerik kaymasın diye silinmedi."
         }
       ]
     },
@@ -5278,6 +5783,29 @@
           "required": false,
           "defaultValue": "Henüz soru eklenmedi.",
           "groupId": "texts"
+        },
+        {
+          "name": "helpText",
+          "displayName": "Destek Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Aradığını bulamadın mı? Destek ekibi 7/24 canlı.",
+          "groupId": "texts"
+        },
+        {
+          "name": "helpLinkText",
+          "displayName": "Destek Bağlantı Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Destek ekibine yaz",
+          "groupId": "texts"
+        },
+        {
+          "name": "helpLink",
+          "displayName": "Destek Bağlantısı",
+          "type": "LINK",
+          "required": false,
+          "groupId": "content"
         }
       ],
       "propGroups": [
@@ -5288,6 +5816,821 @@
         {
           "id": "texts",
           "name": "Metinler"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "e1iohf8g-2gWtACfO0b",
+      "name": "CategoryShowcase",
+      "entry": "./src/components/CategoryShowcase/index.tsx",
+      "styles": "./src/components/CategoryShowcase/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "tag",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "02 · KATEGORİLER",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kategoriye göre keşfet",
+          "groupId": "content"
+        },
+        {
+          "name": "subtitle",
+          "displayName": "Alt Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Seyahat, uyku ve aksesuar — ihtiyacına göre seç.",
+          "groupId": "content"
+        },
+        {
+          "name": "categories",
+          "displayName": "Kategoriler",
+          "type": "CATEGORY_LIST",
+          "required": false,
+          "groupId": "content"
+        },
+        {
+          "name": "cardCtaText",
+          "displayName": "Kart Buton Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Alışverişe başla",
+          "groupId": "content"
+        },
+        {
+          "name": "viewAllText",
+          "displayName": "Tümünü Gör Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tüm ürünler",
+          "groupId": "content"
+        },
+        {
+          "name": "viewAllLink",
+          "displayName": "Tümünü Gör Linki",
+          "type": "LINK",
+          "required": false,
+          "groupId": "content"
+        },
+        {
+          "name": "emptyText",
+          "displayName": "Boş Durum Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Editörden gösterilecek kategorileri seçin.",
+          "groupId": "content"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#ffffff",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "e1iohf8g-uueuEV6O50",
+      "name": "ProductTabsCarousel",
+      "entry": "./src/components/ProductTabsCarousel/index.tsx",
+      "styles": "./src/components/ProductTabsCarousel/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "tag",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "03 · ALIŞVERİŞ",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sizin için seçtiklerimiz",
+          "groupId": "content"
+        },
+        {
+          "name": "tab1Label",
+          "displayName": "Sekme 1 Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Çok Satanlar",
+          "groupId": "tabs"
+        },
+        {
+          "name": "tab1Products",
+          "displayName": "Sekme 1 Ürünleri",
+          "type": "PRODUCT_LIST",
+          "required": false,
+          "groupId": "tabs"
+        },
+        {
+          "name": "tab2Label",
+          "displayName": "Sekme 2 Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Yeni Gelenler",
+          "groupId": "tabs"
+        },
+        {
+          "name": "tab2Products",
+          "displayName": "Sekme 2 Ürünleri",
+          "type": "PRODUCT_LIST",
+          "required": false,
+          "groupId": "tabs"
+        },
+        {
+          "name": "tab3Label",
+          "displayName": "Sekme 3 Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İndirimdekiler",
+          "groupId": "tabs"
+        },
+        {
+          "name": "tab3Products",
+          "displayName": "Sekme 3 Ürünleri",
+          "type": "PRODUCT_LIST",
+          "required": false,
+          "groupId": "tabs"
+        },
+        {
+          "name": "viewAllText",
+          "displayName": "Tümünü Gör Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Tümünü gör",
+          "groupId": "content"
+        },
+        {
+          "name": "viewAllLink",
+          "displayName": "Tümünü Gör Linki",
+          "type": "LINK",
+          "required": false,
+          "groupId": "content"
+        },
+        {
+          "name": "emptyText",
+          "displayName": "Boş Sekme Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bu listede henüz ürün yok.",
+          "groupId": "texts"
+        },
+        {
+          "name": "addToCartText",
+          "displayName": "Sepete Ekle",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "SEPETE EKLE",
+          "groupId": "texts"
+        },
+        {
+          "name": "addingToCartText",
+          "displayName": "Ekleniyor",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "EKLENİYOR...",
+          "groupId": "texts"
+        },
+        {
+          "name": "soldOutText",
+          "displayName": "Tükendi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "TÜKENDİ",
+          "groupId": "texts"
+        },
+        {
+          "name": "selectOptionsText",
+          "displayName": "Seçenek Seç Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "SEÇENEKLERİ SEÇ",
+          "groupId": "texts"
+        },
+        {
+          "name": "discountBadgeText",
+          "displayName": "İndirim Rozeti",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İNDİRİM",
+          "groupId": "texts"
+        },
+        {
+          "name": "quickAddAriaLabel",
+          "displayName": "Hızlı Ekle Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{title} ürününü sepete ekle",
+          "groupId": "texts"
+        },
+        {
+          "name": "prevAriaLabel",
+          "displayName": "Önceki Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Önceki ürünler",
+          "groupId": "texts"
+        },
+        {
+          "name": "nextAriaLabel",
+          "displayName": "Sonraki Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sonraki ürünler",
+          "groupId": "texts"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#ffffff",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "tabs",
+          "name": "Sekmeler"
+        },
+        {
+          "id": "texts",
+          "name": "Metinler"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "e1iohf8g-3tcAKIHFU8",
+      "name": "LegalPageSection",
+      "entry": "./src/components/LegalPageSection/index.tsx",
+      "styles": "./src/components/LegalPageSection/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "description": "Başlığın üstündeki küçük etiket",
+          "defaultValue": "YASAL BİLGİLER",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Kargo ve Teslimat",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "description": "Başlığın altındaki kısa açıklama",
+          "defaultValue": "Siparişinizin nasıl hazırlandığını, ne zaman kargoya verildiğini ve size nasıl ulaştığını bu sayfada bulabilirsiniz.",
+          "groupId": "content"
+        },
+        {
+          "name": "lastUpdatedLabel",
+          "displayName": "Güncelleme Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Son güncelleme",
+          "groupId": "content"
+        },
+        {
+          "name": "lastUpdated",
+          "displayName": "Güncelleme Tarihi",
+          "type": "TEXT",
+          "required": false,
+          "description": "Örn. 1 Ekim 2026 — boş bırakılırsa gösterilmez",
+          "groupId": "content"
+        },
+        {
+          "name": "content",
+          "displayName": "Metin İçeriği",
+          "type": "RICH_TEXT",
+          "required": false,
+          "description": "Yasal metnin kendisi; başlıklar, listeler, tablolar ve bağlantılar kullanılabilir",
+          "defaultValue": "<h2>Kargoya Teslim Süresi</h2><p>Saat 14:00'e kadar verilen siparişler aynı iş günü, sonrasında verilen siparişler bir sonraki iş günü kargoya teslim edilir. Hafta sonu ve resmi tatillerde verilen siparişler ilk iş günü hazırlanır.</p><h2>Teslimat Süresi</h2><p>Kargoya verilen siparişler bulunduğunuz bölgeye göre genellikle 1–3 iş günü içinde adresinize ulaşır.</p><h2>Kargo Ücreti</h2><p>Belirli bir tutarın üzerindeki siparişlerde kargo ücretsizdir. Güncel kargo ücreti ödeme adımında gösterilir.</p><h2>Sipariş Takibi</h2><p>Siparişiniz kargoya verildiğinde takip numarası e-posta ve SMS ile gönderilir. Siparişinizi hesabınızdaki <strong>Siparişlerim</strong> sayfasından da takip edebilirsiniz.</p>",
+          "groupId": "content"
+        },
+        {
+          "name": "showToc",
+          "displayName": "(Kullanılmıyor) Bu Sayfada Listesi",
+          "type": "BOOLEAN",
+          "required": false,
+          "defaultValue": true,
+          "groupId": "navigation",
+          "description": "Bu ayar artık bir şey değiştirmiyor; 'Bu sayfada' listesi kaldırıldı."
+        },
+        {
+          "name": "tocTitle",
+          "displayName": "(Kullanılmıyor) Bu Sayfada Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "BU SAYFADA",
+          "groupId": "navigation",
+          "description": "Bu ayar artık bir şey değiştirmiyor; 'Bu sayfada' listesi kaldırıldı."
+        },
+        {
+          "name": "relatedTitle",
+          "displayName": "Diğer Metinler Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "DİĞER YASAL METİNLER",
+          "groupId": "navigation"
+        },
+        {
+          "name": "relatedLinks",
+          "displayName": "Diğer Yasal Metinler",
+          "type": "LIST_OF_LINK",
+          "required": false,
+          "description": "Yan menüde gösterilen diğer yasal sayfa bağlantıları",
+          "groupId": "navigation"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#ffffff",
+          "groupId": "appearance"
+        },
+        {
+          "name": "textColor",
+          "displayName": "Metin Rengi",
+          "type": "COLOR",
+          "required": false,
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik",
+          "description": "Başlık, giriş ve metin içeriği"
+        },
+        {
+          "id": "navigation",
+          "name": "Gezinme",
+          "description": "'Bu sayfada' listesi ve diğer yasal metin bağlantıları"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "e1iohf8g-53ibBYwByA",
+      "name": "ProductDealCards",
+      "entry": "./src/components/ProductDealCards/index.tsx",
+      "styles": "./src/components/ProductDealCards/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "tag",
+          "displayName": "Üst Etiket",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fırsatlar",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Paketlerle daha avantajlı",
+          "groupId": "content"
+        },
+        {
+          "name": "subtitle",
+          "displayName": "Alt Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Birlikte daha iyi çalışan ürünler, tek pakette ve indirimli.",
+          "groupId": "content"
+        },
+        {
+          "name": "card1Product",
+          "displayName": "Kart 1 Ürünü",
+          "type": "PRODUCT",
+          "required": false,
+          "groupId": "card1"
+        },
+        {
+          "name": "card1Tag",
+          "displayName": "Kart 1 Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "PAKET",
+          "groupId": "card1"
+        },
+        {
+          "name": "card1Text",
+          "displayName": "Kart 1 Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "card1"
+        },
+        {
+          "name": "card1Image",
+          "displayName": "Kart 1 Görseli (boşsa ürün görseli)",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "card1"
+        },
+        {
+          "name": "card2Product",
+          "displayName": "Kart 2 Ürünü",
+          "type": "PRODUCT",
+          "required": false,
+          "groupId": "card2"
+        },
+        {
+          "name": "card2Tag",
+          "displayName": "Kart 2 Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İNDİRİM",
+          "groupId": "card2"
+        },
+        {
+          "name": "card2Text",
+          "displayName": "Kart 2 Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "",
+          "groupId": "card2"
+        },
+        {
+          "name": "card2Image",
+          "displayName": "Kart 2 Görseli (boşsa ürün görseli)",
+          "type": "IMAGE",
+          "required": false,
+          "groupId": "card2"
+        },
+        {
+          "name": "ctaText",
+          "displayName": "Kart Buton Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Fırsatı incele",
+          "groupId": "texts"
+        },
+        {
+          "name": "savingsText",
+          "displayName": "Tasarruf Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{amount} tasarruf",
+          "groupId": "texts"
+        },
+        {
+          "name": "bundleCountText",
+          "displayName": "Paket İçerik Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "{count} ürün bir arada",
+          "groupId": "texts"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#ffffff",
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "card1",
+          "name": "Kart 1"
+        },
+        {
+          "id": "card2",
+          "name": "Kart 2"
+        },
+        {
+          "id": "texts",
+          "name": "Metinler"
+        },
+        {
+          "id": "appearance",
+          "name": "Görünüm"
+        }
+      ]
+    },
+    {
+      "id": "e1iohf8g-VJP3u3zA82",
+      "name": "ContactSection",
+      "entry": "./src/components/ContactSection/index.tsx",
+      "styles": "./src/components/ContactSection/styles.css",
+      "type": "section",
+      "props": [
+        {
+          "name": "eyebrow",
+          "displayName": "Üst Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "İLETİŞİM",
+          "groupId": "content"
+        },
+        {
+          "name": "title",
+          "displayName": "Başlık",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Bize yazın.",
+          "groupId": "content"
+        },
+        {
+          "name": "intro",
+          "displayName": "Giriş Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Sipariş, ürün ya da iş birliği — mesajını bırak, en geç bir iş günü içinde dönüş yapalım.",
+          "groupId": "content"
+        },
+        {
+          "name": "emailTitle",
+          "displayName": "E-posta Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-POSTA",
+          "groupId": "info"
+        },
+        {
+          "name": "emailValue",
+          "displayName": "E-posta Adresi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "merhaba@yigit.com",
+          "groupId": "info"
+        },
+        {
+          "name": "phoneTitle",
+          "displayName": "Telefon Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "TELEFON",
+          "groupId": "info"
+        },
+        {
+          "name": "phoneValue",
+          "displayName": "Telefon Numarası",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "+90 212 000 00 00",
+          "groupId": "info"
+        },
+        {
+          "name": "addressTitle",
+          "displayName": "Adres Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ADRES",
+          "groupId": "info"
+        },
+        {
+          "name": "addressValue",
+          "displayName": "Adres",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Maslak Mah. Büyükdere Cad. No:1, Sarıyer / İstanbul",
+          "groupId": "info"
+        },
+        {
+          "name": "hoursTitle",
+          "displayName": "Çalışma Saatleri Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ÇALIŞMA SAATLERİ",
+          "groupId": "info"
+        },
+        {
+          "name": "hoursValue",
+          "displayName": "Çalışma Saatleri",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Hafta içi 09:00 – 18:00",
+          "groupId": "info"
+        },
+        {
+          "name": "formTitle",
+          "displayName": "Form Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesaj gönder",
+          "groupId": "form"
+        },
+        {
+          "name": "firstNameLabel",
+          "displayName": "Ad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "AD",
+          "groupId": "form"
+        },
+        {
+          "name": "firstNamePlaceholder",
+          "displayName": "Ad Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Adın",
+          "groupId": "form"
+        },
+        {
+          "name": "lastNameLabel",
+          "displayName": "Soyad Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "SOYAD",
+          "groupId": "form"
+        },
+        {
+          "name": "lastNamePlaceholder",
+          "displayName": "Soyad Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Soyadın",
+          "groupId": "form"
+        },
+        {
+          "name": "emailLabel",
+          "displayName": "E-posta Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "E-POSTA",
+          "groupId": "form"
+        },
+        {
+          "name": "emailPlaceholder",
+          "displayName": "E-posta Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "ornek@email.com",
+          "groupId": "form"
+        },
+        {
+          "name": "phoneLabel",
+          "displayName": "Telefon Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "TELEFON",
+          "groupId": "form"
+        },
+        {
+          "name": "phonePlaceholder",
+          "displayName": "Telefon Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "05xx xxx xx xx",
+          "groupId": "form"
+        },
+        {
+          "name": "messageLabel",
+          "displayName": "Mesaj Etiketi",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "MESAJ",
+          "groupId": "form"
+        },
+        {
+          "name": "messagePlaceholder",
+          "displayName": "Mesaj Yer Tutucu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Nasıl yardımcı olabiliriz?",
+          "groupId": "form"
+        },
+        {
+          "name": "submitButtonText",
+          "displayName": "Gönder Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "GÖNDER",
+          "groupId": "form"
+        },
+        {
+          "name": "submittingButtonText",
+          "displayName": "Gönderiliyor Metni",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "GÖNDERİLİYOR...",
+          "groupId": "form"
+        },
+        {
+          "name": "errorText",
+          "displayName": "Hata Mesajı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajın gönderilemedi. Lütfen tekrar dene.",
+          "groupId": "form"
+        },
+        {
+          "name": "successTitle",
+          "displayName": "Başarı Başlığı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Mesajın bize ulaştı.",
+          "groupId": "success"
+        },
+        {
+          "name": "successMessage",
+          "displayName": "Başarı Mesajı",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "Teşekkürler! En kısa sürede e-posta adresinden dönüş yapacağız.",
+          "groupId": "success"
+        },
+        {
+          "name": "sendAnotherText",
+          "displayName": "Yeni Mesaj Butonu",
+          "type": "TEXT",
+          "required": false,
+          "defaultValue": "YENİ MESAJ YAZ",
+          "groupId": "success"
+        },
+        {
+          "name": "backgroundColor",
+          "displayName": "Arka Plan Rengi",
+          "type": "COLOR",
+          "required": false,
+          "defaultValue": "#ffffff",
+          "groupId": "appearance"
+        },
+        {
+          "name": "textColor",
+          "displayName": "Metin Rengi",
+          "type": "COLOR",
+          "required": false,
+          "groupId": "appearance"
+        }
+      ],
+      "propGroups": [
+        {
+          "id": "content",
+          "name": "İçerik"
+        },
+        {
+          "id": "info",
+          "name": "İletişim Bilgileri",
+          "description": "Boş bırakılan satır gizlenir"
+        },
+        {
+          "id": "form",
+          "name": "Form"
+        },
+        {
+          "id": "success",
+          "name": "Gönderim Sonrası"
         },
         {
           "id": "appearance",

@@ -75,6 +75,45 @@
   text-underline-offset: 3px;
 }
 
+/* Adet seçici + satırı tamamen kaldırma butonu yan yana */
+.ikas-cart-table__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ikas-cart-table__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  cursor: pointer;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.ikas-cart-table__remove:hover:not(:disabled) {
+  color: var(--pAKfHnke8M, var(--pxNuSoudLn));
+  background-color: var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5));
+}
+
+.ikas-cart-table__remove:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.ikas-cart-table__remove:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
 .ikas-cart-table__prices {
   display: flex;
   flex-wrap: wrap;
@@ -104,7 +143,7 @@
     height: 68px;
   }
 
-  .ikas-cart-table__item > .ikas-qty-stepper {
+  .ikas-cart-table__item > .ikas-cart-table__actions {
     grid-column: 2;
     justify-self: start;
   }

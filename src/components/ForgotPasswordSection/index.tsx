@@ -143,7 +143,7 @@ const ForgotForm = observer(function ForgotForm({
 
 export function ForgotPasswordSection({
   backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  brandKicker = "YİĞİT",
   title = "Şifreni sıfırla.",
   subtitle = "E-posta adresine sıfırlama bağlantısı gönderelim.",
   emailLabel = "E-POSTA",

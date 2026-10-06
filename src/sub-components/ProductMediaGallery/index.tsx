@@ -760,6 +760,13 @@ export function ProductMediaGallery({
                         muted
                         playsInline
                         preload={isActive ? "metadata" : "none"}
+                        ref={
+                          ready
+                            ? undefined
+                            : (el: HTMLVideoElement | null) => {
+                                if (el && el.readyState >= 2) markMediaReady(mediaId);
+                              }
+                        }
                         onLoadedData={() => markMediaReady(mediaId)}
                       />
                     ) : src ? (
@@ -774,6 +781,15 @@ export function ProductMediaGallery({
                         {...({
                           fetchpriority: isActive ? "high" : "auto",
                         } as any)}
+                        // SSR'da gelen görsel hydration'dan önce yüklenirse onLoad
+                        // hiç tetiklenmez; skeleton görselin üstünde kalmasın.
+                        ref={
+                          ready
+                            ? undefined
+                            : (el: HTMLImageElement | null) => {
+                                if (el?.complete && el.naturalWidth > 0) markMediaReady(mediaId);
+                              }
+                        }
                         onLoad={() => markMediaReady(mediaId)}
                       />
                     ) : (

@@ -28,6 +28,7 @@ export function SearchPageSection({
   loadingMoreText,
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   backgroundColor,
   className = "",
 }: SearchPageSectionProps) {
@@ -113,6 +114,7 @@ export function SearchPageSection({
             loadingMoreText={loadingMoreText}
             discountBadgeText={discountBadgeText}
             quickAddAriaLabel={quickAddAriaLabel}
+            selectOptionsText={selectOptionsText}
           />
         )}
 

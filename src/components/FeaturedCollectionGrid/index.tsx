@@ -33,7 +33,9 @@ export function FeaturedCollectionGrid({
   addToCartText,
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText,
+  addedToCartText,
   soldOutText,
   backgroundColor,
   className = "",
@@ -122,8 +124,11 @@ export function FeaturedCollectionGrid({
                   addToCartText={addToCartText}
                   discountBadgeText={discountBadgeText}
                   quickAddAriaLabel={quickAddAriaLabel}
+                  selectOptionsText={selectOptionsText}
                   addingToCartText={addingToCartText}
+                  addedToCartText={addedToCartText}
                   soldOutText={soldOutText}
+                  cardStyle="editorial"
                 />
               </div>
             ))}

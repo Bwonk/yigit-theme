@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════════════
+ * PRODUCT GROUP SELECTOR — grup içindeki diğer ürünlere bağlantılar
+ * Başlık satırı buy-box varyant başlığıyla aynı tipografide.
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.ikas-product-groups {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.6vw, 22px);
+}
+
+.ikas-product-groups__block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ikas-product-groups__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.ikas-product-groups__label,
+.ikas-product-groups__value {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.ikas-product-groups__label {
+  letter-spacing: 0.18em;
+  color: var(--p6EMJiXye1, #8c97a5);
+}
+
+.ikas-product-groups__value {
+  letter-spacing: 0.12em;
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-product-groups__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ikas-product-groups__list--tiles {
+  gap: 10px;
+}
+
+.ikas-product-groups__list--pills {
+  gap: 9px;
+}
+
+/* ── Görsel kutucuk ───────────────────────────────────────────────────── */
+
+.ikas-product-groups__tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--jQs026VIpf, #f4f5f6);
+  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  box-sizing: border-box;
+  text-decoration: none;
+  transition:
+    border-color var(--buybox-action-ease, 180ms ease),
+    transform var(--buybox-action-ease, 180ms ease);
+}
+
+.ikas-product-groups__tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ikas-product-groups__tile-text {
+  padding: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--pxNuSoudLn);
+  overflow-wrap: anywhere;
+}
+
+.ikas-product-groups__tile--selected {
+  border-color: var(--pxNuSoudLn);
+  box-shadow: inset 0 0 0 1.5px var(--24KlcgGmm9);
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-product-groups__tile:not(.ikas-product-groups__tile--selected):hover {
+    border-color: color-mix(in srgb, var(--pxNuSoudLn) 55%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Hap etiket ───────────────────────────────────────────────────────── */
+
+.ikas-product-groups__pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 9999px;
+  background-color: var(--24KlcgGmm9);
+  color: var(--pxNuSoudLn);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 11px 18px;
+  transition:
+    color var(--buybox-action-ease, 180ms ease),
+    background-color var(--buybox-action-ease, 180ms ease),
+    border-color var(--buybox-action-ease, 180ms ease);
+}
+
+.ikas-product-groups__pill--selected {
+  background-color: var(--pxNuSoudLn);
+  border-color: var(--pxNuSoudLn);
+  color: var(--24KlcgGmm9);
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-product-groups__pill:not(.ikas-product-groups__pill--selected):hover {
+    border-color: var(--pxNuSoudLn);
+  }
+}
+
+.ikas-product-groups__tile:focus-visible,
+.ikas-product-groups__pill:focus-visible {
+  outline: 2px solid var(--sy8ZnXZdoG);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-product-groups__tile,
+  .ikas-product-groups__pill {
+    transition: none;
+  }
+
+  .ikas-product-groups__tile:hover {
+    transform: none;
+  }
+}

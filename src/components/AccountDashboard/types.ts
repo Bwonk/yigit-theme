@@ -47,4 +47,6 @@ export interface Props {
   stateLabel?: string;
   districtLabel?: string;
   regionLabel?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
 }

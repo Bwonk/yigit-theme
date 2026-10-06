@@ -25,9 +25,7 @@
 
 .ikas-details__head {
   position: sticky;
-  top: calc(
-    var(--ikas-announcement-height, 0px) + var(--ikas-header-height, 80px) + 12px
-  );
+  top: calc(var(--ikas-header-height, 80px) + 12px);
   display: flex;
   flex-direction: column;
   gap: clamp(12px, 1.4vw, 18px);

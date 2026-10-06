@@ -8,7 +8,7 @@ export interface VideoDemoSectionProps extends Props {
 }
 
 export function VideoDemoSection({
-  title = "Infinity Pillow Nasıl Kullanılır?",
+  title = "Yiğit Yastık Nasıl Kullanılır?",
   subtitle = "Saniyeler içinde katlayın, çantanıza koyun ve konforun tadını çıkarın.",
   video,
   coverImage,

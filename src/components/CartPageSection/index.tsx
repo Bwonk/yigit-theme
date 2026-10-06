@@ -41,6 +41,8 @@ export function CartPageSection({
   promoPlaceholder = "Kodu gir",
   promoApplyText = "Uygula",
   promoRemoveText = "Kaldır",
+  removeItemLabel = "Ürünü sepetten kaldır",
+  removeItemText = "Kaldır",
   backgroundColor,
   className = "",
 }: CartPageSectionProps) {
@@ -109,6 +111,8 @@ export function CartPageSection({
                 decreaseQtyLabel={decreaseQtyLabel}
                 increaseQtyLabel={increaseQtyLabel}
                 bundleQtyLabel={bundleQtyLabel}
+                removeItemLabel={removeItemLabel}
+                removeItemText={removeItemText}
               />
             </div>
 

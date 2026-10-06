@@ -29,4 +29,6 @@ export interface Props {
   loadingMoreText?: string;
   discountBadgeText?: string;
   quickAddAriaLabel?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
 }

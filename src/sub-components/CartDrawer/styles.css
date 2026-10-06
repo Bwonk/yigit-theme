@@ -166,8 +166,15 @@
 
 .ikas-cart-drawer__line-prices {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px;
+  column-gap: 8px;
+  row-gap: 2px;
+}
+
+.ikas-cart-drawer__line-price,
+.ikas-cart-drawer__line-old {
+  white-space: nowrap;
 }
 
 .ikas-cart-drawer__line-price {
@@ -182,6 +189,45 @@
 .ikas-cart-drawer__line-old {
   opacity: 0.45;
   text-decoration: line-through;
+}
+
+/* Adet seçici + satırı tamamen kaldırma butonu yan yana */
+.ikas-cart-drawer__line-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ikas-cart-drawer__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  cursor: pointer;
+  transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.ikas-cart-drawer__remove:hover:not(:disabled) {
+  color: var(--pAKfHnke8M, var(--pxNuSoudLn));
+  background-color: var(--wElEhJwjYh, var(--jQs026VIpf, #f4f5f5));
+}
+
+.ikas-cart-drawer__remove:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.ikas-cart-drawer__remove:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
 /* PILL STEPPER — styles live in QuantityStepper */
@@ -321,32 +367,13 @@
   opacity: 0.7;
 }
 
-.ikas-cart-drawer__offer-add {
+/* Button PILL_SECONDARY — yalnızca yerleşim ve kompakt boyut */
+.ikas-cart-drawer__offer-add.ikas-btn {
   grid-column: 2;
   justify-self: start;
   height: 34px;
   padding: 0 16px;
-  border: 1.5px solid var(--pxNuSoudLn);
-  border-radius: 1000px;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  transition: background-color 0.2s ease-out, color 0.2s ease-out;
-}
-
-.ikas-cart-drawer__offer-add:hover:not(:disabled) {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
-}
-
-.ikas-cart-drawer__offer-add:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.ikas-cart-drawer__offer-add:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+  font-size: 11px;
 }
 
 /* PROMO — sticky above footer */
@@ -380,7 +407,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 16px 24px 24px;
+  padding: 20px 24px 16px;
   border-top: 1px solid var(--gzj8Nhz1Gb);
   background-color: var(--24KlcgGmm9);
   flex-shrink: 0;
@@ -394,7 +421,24 @@
   color: var(--pxNuSoudLn);
 }
 
+/* Toplam: etiket gövde metni, tutar kart başlığı boyutunda; mono font
+   yerine orantılı rakamlar (geniş harf aralığı hissini kaldırır). */
 .ikas-cart-drawer__row--total {
+  align-items: baseline;
+}
+
+.ikas-cart-drawer__total-label {
+  font-weight: 500;
+}
+
+.ikas-cart-drawer__amount {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+
+.ikas-cart-drawer__total-value {
+  font-weight: 600;
 }
 
 .ikas-cart-drawer__discount {
@@ -405,8 +449,9 @@
 }
 
 .ikas-cart-drawer__tax {
-  margin: 0 0 8px;
-  opacity: 0.6;
+  margin: -6px 0 4px;
+  color: var(--p6EMJiXye1, var(--pxNuSoudLn));
+  font-size: 14px;
 }
 
 .ikas-cart-drawer__view-cart {
@@ -415,8 +460,9 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+  min-height: 36px;
   margin: -4px 0 0;
-  padding: 0;
+  padding: 0 12px;
   border: 0;
   background: transparent;
   color: var(--pxNuSoudLn);
@@ -461,7 +507,7 @@
     height: 68px;
   }
 
-  .ikas-cart-drawer__line > .ikas-qty-stepper {
+  .ikas-cart-drawer__line > .ikas-cart-drawer__line-actions {
     grid-column: 2;
     justify-self: start;
   }
@@ -484,7 +530,6 @@
   .ikas-cart-drawer,
   .ikas-cart-drawer__backdrop,
   .ikas-cart-drawer__line,
-  .ikas-cart-drawer__offer-add,
   .ikas-cart-coupon__apply,
   .ikas-cart-shipping-notice__progress-fill,
   .ikas-cart-drawer__offers {

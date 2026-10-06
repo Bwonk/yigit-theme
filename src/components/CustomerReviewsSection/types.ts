@@ -14,4 +14,27 @@ export interface Props {
   emptyText?: string;
   loadingText?: string;
   errorText?: string;
+  showReviewForm?: boolean;
+  writeReviewText?: string;
+  cancelReviewText?: string;
+  formHeading?: string;
+  ratingLabel?: string;
+  starUnitLabel?: string;
+  titleLabel?: string;
+  titlePlaceholder?: string;
+  commentLabel?: string;
+  commentPlaceholder?: string;
+  submitReviewText?: string;
+  submittingReviewText?: string;
+  reviewSuccessText?: string;
+  reviewFailureText?: string;
+  loginRequiredText?: string;
+  loginButtonText?: string;
+  reviewsPerPage?: number;
+  loadMoreText?: string;
+  loadingMoreText?: string;
+  showingText?: string;
+  readMoreText?: string;
+  readLessText?: string;
+  storeReplyLabel?: string;
 }

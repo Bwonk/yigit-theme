@@ -18,6 +18,7 @@ export interface Props {
   addToCartText?: string;
   discountBadgeText?: string;
   quickAddAriaLabel?: string;
+  selectOptionsText?: string;
   removeFavoriteText?: string;
 }
 
@@ -28,6 +29,7 @@ export function AccountFavoritesPanel({
   addToCartText = "SEPETE EKLE",
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   removeFavoriteText = "FAVORİDEN ÇIKAR",
 }: Props) {
   const [favorites, setFavorites] = useState<IkasProduct[]>([]);
@@ -91,6 +93,7 @@ export function AccountFavoritesPanel({
                 addToCartText={addToCartText}
                 discountBadgeText={discountBadgeText}
                 quickAddAriaLabel={quickAddAriaLabel}
+                selectOptionsText={selectOptionsText}
               />
               <TextLink
                 tone="LABEL"

@@ -45,6 +45,34 @@
   animation-delay: 210ms;
 }
 
+/* Liste kartı: ad solda fiyat sağda tek satır; kategori etiketi ve renk
+   noktaları ikinci satır. ::before sıfır yükseklikte satır kırıcıdır. */
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__content::before {
+  content: "";
+  flex-basis: 100%;
+  height: 0;
+  order: 2;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__price-wrapper {
+  order: 1;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__cat {
+  order: 3;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__swatches {
+  order: 4;
+  margin-top: 0;
+}
+
+.ikas-product-grid__list--dense .ikas-product-card__cat {
+  display: none;
+}
+
 .ikas-product-grid__empty {
   display: flex;
   flex-direction: column;
@@ -80,6 +108,10 @@
   .ikas-product-grid__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .ikas-product-grid__list--dense {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: calc(bp(WZCjrtAPQO) + 1px)) {
@@ -93,6 +125,14 @@
 }
 
 @media (max-width: bp(HDRapYMzn7)) {
+  .ikas-product-grid .ikas-product-card--editorial .ikas-product-card__content::before {
+    display: none;
+  }
+
+  .ikas-product-grid .ikas-product-card--editorial .ikas-product-card__cat {
+    flex: none;
+  }
+
   .ikas-product-grid {
     padding-left: var(--mobile-px, 16px);
     padding-right: var(--mobile-px, 16px);

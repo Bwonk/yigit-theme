@@ -44,6 +44,7 @@
 .ikas-story__tag {
   font-size: 11px;
   letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--p6EMJiXye1);
 }
 
@@ -93,6 +94,7 @@
 .ikas-story__counter-label {
   font-size: 10px;
   letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--p6EMJiXye1);
 }
 

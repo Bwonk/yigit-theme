@@ -115,32 +115,6 @@
   color: var(--24KlcgGmm9);
 }
 
-/* 3. GÖRSEL ÜSTÜ HOVER SLIDE-UP SEPETE EKLE BUTONU (Button Sub-component PILL_PRIMARY) */
-.ikas-product-card__overlay-quick-add {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  z-index: 4;
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-
-.ikas-product-card__media:hover .ikas-product-card__overlay-quick-add,
-.ikas-product-card:hover .ikas-product-card__overlay-quick-add,
-.ikas-product-card__overlay-quick-add:focus-within {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.ikas-product-card__overlay-quick-add .ikas-btn {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  height: 44px;
-}
-
 /* 4. KART İÇERİĞİ */
 .ikas-product-card__content {
   display: flex;
@@ -271,21 +245,211 @@
   margin-left: 2px;
 }
 
-/* 9. HIZLI SEPETE EKLE (KLASİK MOD) */
-.ikas-product-card__quick-add {
-  margin-top: 8px;
-  width: 100%;
-  min-width: 0;
-}
-
 /* Erişilebilirlik: Azaltılmış Hareket Tercihi */
 @media (prefers-reduced-motion: reduce) {
-  .ikas-product-card__overlay-quick-add {
-    transform: none !important;
+  .ikas-product-card__image {
     transition: none !important;
   }
+}
 
-  .ikas-product-card__image {
+/* ═══════════════════════════════════════════════════════════════════════
+ * EDITORIAL VARYANT — ana sayfa öne çıkanlar ızgarası
+ * 4:5 görsel; ad solda, fiyat sağda aynı satırda; sağ altta hap "Sepete ekle".
+ * ═══════════════════════════════════════════════════════════════════════ */
+.ikas-product-card--editorial {
+  gap: 14px;
+}
+
+.ikas-product-card--editorial .ikas-product-card__image-wrapper {
+  aspect-ratio: 4 / 5;
+  background-color: var(--wElEhJwjYh, #f4f5f5);
+}
+
+.ikas-product-card--editorial .ikas-product-card__image {
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-product-card--editorial .ikas-product-card__badge {
+  padding: 6px 12px;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+}
+
+.ikas-product-card--editorial .ikas-product-card__content {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.ikas-product-card--editorial .ikas-product-card__title {
+  flex: 1 1 0;
+  width: auto;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.ikas-product-card--editorial .ikas-product-card__title-link {
+  white-space: normal;
+}
+
+.ikas-product-card--editorial .ikas-product-card__price-wrapper {
+  flex: none;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  width: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.ikas-product-card--editorial .ikas-product-card__final-price,
+.ikas-product-card--editorial .ikas-product-card__old-price {
+  white-space: nowrap;
+}
+
+.ikas-product-card--editorial .ikas-product-card__final-price {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.ikas-product-card--editorial .ikas-product-card__old-price {
+  font-size: 13px;
+  color: var(--p6EMJiXye1, #8c97a5);
+  opacity: 1;
+}
+
+/* Hap "Sepete ekle" — TÜM kartlarda tek stil; dolgu alttan yükselir (Button ile aynı dil) */
+.ikas-product-card__add-pill {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px 0 14px;
+  border: 0;
+  border-radius: 9999px;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--24KlcgGmm9);
+  color: var(--pxNuSoudLn);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(16, 20, 24, 0.14);
+  cursor: pointer;
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.ikas-product-card__add-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--sy8ZnXZdoG);
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-product-card__add-pill:is(:focus-visible, :active)::before {
+  transform: none;
+  border-radius: 0;
+}
+
+.ikas-product-card__add-pill:focus-visible {
+  outline: 2px solid var(--pxNuSoudLn);
+  outline-offset: 2px;
+}
+
+.ikas-product-card__add-pill:active {
+  transform: scale(0.97);
+}
+
+.ikas-product-card__add-icon {
+  width: 14px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+/* Eklendi: lacivert zemin, beyaz yazı */
+.ikas-product-card__add-pill--done {
+  background-color: var(--pxNuSoudLn);
+  color: var(--24KlcgGmm9);
+}
+
+.ikas-product-card__add-pill--done::before {
+  opacity: 0;
+}
+
+/* Fareli cihaz: kartın üzerine gelince belirir */
+@media (hover: hover) {
+  .ikas-product-card__add-pill {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .ikas-product-card:hover .ikas-product-card__add-pill,
+  .ikas-product-card__add-pill:focus-visible,
+  .ikas-product-card__add-pill--done {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ikas-product-card__add-pill:hover::before {
+    transform: none;
+    border-radius: 0;
+  }
+}
+
+/* Dokunmatik: hep görünür, yalnızca + ikonlu yuvarlak düğme */
+@media (hover: none) {
+  .ikas-product-card__add-pill {
+    width: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .ikas-product-card__add-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-product-card--editorial .ikas-product-card__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .ikas-product-card--editorial .ikas-product-card__title {
+    flex: none;
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-product-card__add-pill,
+  .ikas-product-card__add-pill::before {
     transition: none !important;
   }
 }

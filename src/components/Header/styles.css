@@ -1,5 +1,6 @@
 @import "../../sub-components/CartDrawer/styles.css";
-@import "../../sub-components/SearchOverlay/styles.css";
+@import "../../sub-components/HeaderMenuPanel/styles.css";
+@import "../../sub-components/HeaderSearchPanel/styles.css";
 
 /* ═══════════════════════════════════════════════════════════════════════
  * HEADER — FLOATING PILL NAVBAR
@@ -24,11 +25,11 @@
   margin-bottom: 0;
 }
 
-/* Sticky header, duyuru bandının gerçek yüksekliği kadar aşağıdan yapışır.
-   Değişkeni AnnouncementBar çalışma anında yayınlar; bant yoksa 0px kalır. */
+/* Sticky header doğrudan tepeye yapışır; duyuru bandı kaydırınca
+   yukarı çıkıp kaybolur (yapışkan değil). */
 .ikas-header--sticky {
   position: sticky;
-  top: var(--ikas-announcement-height, 0px);
+  top: 0;
 }
 
 .ikas-header__wrapper {
@@ -43,6 +44,7 @@
 /* Masaüstünde pill, shared --nav-pill-max ile site genişliğine bağlı;
    sağa yaslanır → content-box sağ kenarı Hero görsel sağ kenarıyla örtüşür. */
 .ikas-header__pill-wrapper {
+  position: relative;
   width: min(100%, var(--nav-pill-max, calc(var(--max-site-width, 1560px) / 2)));
   margin-left: auto;
 }
@@ -135,8 +137,7 @@
 
 /* Klavye odağı ikon butonlarıyla aynı dili konuşur (WCAG 2.4.11 / 2.4.13). */
 .ikas-header__logo-link:focus-visible,
-.ikas-header__menu-link:focus-visible,
-.ikas-header__drawer-link:focus-visible {
+.ikas-header__menu-link:focus-visible {
   outline: 2px solid var(--sy8ZnXZdoG);
   outline-offset: 3px;
   border-radius: 4px;
@@ -184,6 +185,243 @@
 
 .ikas-header__menu-link:hover {
   color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+}
+
+/* Alt bağlantısı olan öğe: düğme + ok; kart açıkken sarı, ok döner */
+.ikas-header__menu-link--parent {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.ikas-header__menu-link--parent svg {
+  width: 10px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-header__menu-link--parent[aria-expanded="true"] {
+  color: var(--sy8ZnXZdoG);
+}
+
+.ikas-header__menu-link--parent[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.ikas-header__menu-link--parent:focus-visible {
+  outline: 2px solid var(--sy8ZnXZdoG);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Navigasyon, arama açılınca sola çekilip söner (yeri arama alanına kalır) */
+.ikas-header__nav {
+  max-width: 720px;
+  overflow: clip;
+  overflow-clip-margin: 6px;
+  transition:
+    max-width 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.26s ease 0.1s,
+    transform 0.44s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-header--search .ikas-header__nav {
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-12px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    max-width 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.18s ease,
+    transform 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    visibility 0s 0.44s;
+}
+
+.ikas-header--search .ikas-header__left-section {
+  flex: 0 0 auto;
+}
+
+/* PILL İÇİ ARAMA ALANI — kapalıyken 0 genişlik, açılınca kalan yeri doldurur */
+.ikas-header__search {
+  flex: 0 1 0px;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  margin: 0;
+  padding: 0;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--24KlcgGmm9) 10%, transparent);
+  color: var(--24KlcgGmm9);
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition:
+    flex-grow 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    padding 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.2s ease,
+    visibility 0s 0.44s,
+    box-shadow 0.2s ease;
+}
+
+.ikas-header--search .ikas-header__search {
+  flex-grow: 1;
+  padding: 0 10px 0 14px;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    flex-grow 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    padding 0.44s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.3s ease 0.1s,
+    visibility 0s,
+    box-shadow 0.2s ease;
+}
+
+.ikas-header__search:focus-within {
+  box-shadow: 0 0 0 1.5px var(--sy8ZnXZdoG);
+}
+
+.ikas-header__search-icon {
+  flex: none;
+  color: var(--sy8ZnXZdoG);
+}
+
+.ikas-header__search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--24KlcgGmm9);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+
+.ikas-header__search-input::placeholder {
+  color: color-mix(in srgb, var(--24KlcgGmm9) 55%, transparent);
+}
+
+.ikas-header__search-clear {
+  flex: none;
+  margin: 0 8px;
+  padding: 4px 0;
+  border: 0;
+  /* Dolan çizgi (menüdeki "Tümünü gör" ile aynı) */
+  background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 100% 2px no-repeat;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--24KlcgGmm9) 65%, transparent);
+  cursor: pointer;
+}
+
+.ikas-header__search-clear:is(:hover, :focus-visible) {
+  background-size: 100% 100%;
+  color: var(--pxNuSoudLn);
+  outline: none;
+}
+
+/* Arama ikonu ↔ X: dönerek değişir */
+@media (prefers-reduced-motion: no-preference) {
+  .ikas-header__search-btn svg {
+    animation: ikas-header-icon-turn 0.34s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@keyframes ikas-header-icon-turn {
+  from {
+    opacity: 0;
+    transform: rotate(-80deg) scale(0.6);
+  }
+}
+
+/* ═══ AÇILIR KART — pill genişliğinde, menü ve arama aynı yüzey ═══ */
+.ikas-header__drop {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  background-color: var(--24KlcgGmm9);
+  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(19, 25, 36, 0.18);
+  opacity: 0;
+  transform: translateY(-10px) scale(0.985);
+  transform-origin: 50% 0;
+  transition:
+    height 0.38s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.24s ease,
+    transform 0.38s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+.ikas-header__drop--open {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Kart içeriği değişince satırlar sırayla belirir */
+@media (prefers-reduced-motion: no-preference) {
+  .ikas-header__drop-inner :is(.ikas-menu-panel__head, .ikas-menu-panel__list > li, .ikas-menu-panel__feat, .ikas-menu-panel--acc > *) {
+    animation: ikas-header-drop-in 0.42s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .ikas-header__drop-inner .ikas-menu-panel__list > li:nth-child(2),
+  .ikas-header__drop-inner .ikas-menu-panel--acc > :nth-child(2) {
+    animation-delay: 40ms;
+  }
+
+  .ikas-header__drop-inner .ikas-menu-panel__list > li:nth-child(3),
+  .ikas-header__drop-inner .ikas-menu-panel--acc > :nth-child(3) {
+    animation-delay: 80ms;
+  }
+
+  .ikas-header__drop-inner .ikas-menu-panel__list > li:nth-child(n + 4),
+  .ikas-header__drop-inner .ikas-menu-panel--acc > :nth-child(n + 4),
+  .ikas-header__drop-inner .ikas-menu-panel__feat {
+    animation-delay: 120ms;
+  }
+}
+
+@keyframes ikas-header-drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Arka perde: kart açıkken sayfayı hafifçe karartır; header'ın hemen altında */
+.ikas-header__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-index-header, 100) - 1);
+  background-color: rgba(16, 20, 24, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.32s ease, visibility 0s 0.32s;
+}
+
+.ikas-header__scrim--on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.32s ease;
 }
 
 /* 2. SAĞ ALAN: İkon Butonları — ortak interaction sistemi */
@@ -237,9 +475,14 @@
   color: var(--sy8ZnXZdoG);
 }
 
-.ikas-header__icon-btn--active {
+.ikas-header__icon-btn--active,
+.ikas-header__hamburger--active {
   background-color: color-mix(in srgb, var(--24KlcgGmm9) 16%, transparent);
   color: var(--sy8ZnXZdoG);
+}
+
+.ikas-header__hamburger {
+  border-radius: 9999px;
 }
 
 /* Accent Sarı Sepet — aynı hit area / timing, sarı ana-aksiyon korunsun */
@@ -344,98 +587,6 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
- * MOBİL SLIDE-OUT DRAWER — PortalScope ile body seviyesinde render edilir
- * ═══════════════════════════════════════════════════════════════════════ */
-.ikas-header__drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: var(--fRUyppFgyp, rgba(55, 67, 91, 0.75));
-  z-index: var(--z-index-header-drawer, 800);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.ikas-header__drawer-backdrop--open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.ikas-header__drawer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--drawer-width, 320px);
-  max-width: 85vw;
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert */
-  color: var(--24KlcgGmm9);
-  z-index: var(--z-index-header-drawer, 800);
-  transform: translateX(-100%);
-  /* Kapalıyken görsel olarak ekran dışında DEĞİL, tamamen etkisiz olmalı:
-     visibility:hidden içindeki linkleri Tab sırasından da çıkarır (WCAG 2.4.3).
-     Geçiş süresi kadar geciktirilir ki kapanış animasyonu görünür kalsın. */
-  visibility: hidden;
-  transition: var(--drawer-transition, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)),
-    visibility 0s linear 0.4s;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
-}
-
-.ikas-header__drawer--open {
-  transform: translateX(0);
-  visibility: visible;
-  transition: var(--drawer-transition, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)),
-    visibility 0s;
-}
-
-.ikas-header__drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.ikas-header__drawer-nav {
-  padding: 20px;
-  overflow-y: auto;
-  flex: 1;
-}
-
-.ikas-header__drawer-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.ikas-header__drawer-link {
-  display: block;
-  padding: 8px 0;
-  color: var(--24KlcgGmm9);
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 15px;
-  transition: color 0.2s ease;
-}
-
-.ikas-header__drawer-link:hover {
-  color: var(--sy8ZnXZdoG);
-}
-
-/* Drawer mobilde açılır → linkler her zaman tam dokunma hedefi (WCAG 2.5.8). */
-.ikas-header__drawer-link {
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
  * RESPONSIVE DÜZENLEME (<768px — Mobile breakpoint)
  * ═══════════════════════════════════════════════════════════════════════ */
 @media (max-width: bp(HDRapYMzn7)) {
@@ -455,5 +606,52 @@
   /* Yatay nefes yalnızca wrapper --site-gutter ile (Hero ile aynı hiza). */
   .ikas-header {
     padding: 10px 0 6px;
+  }
+
+  /* Pill tam genişlikteyken altından geçen içerik beyaza sönerek kaybolur */
+  .ikas-header::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 -22px;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--24KlcgGmm9) 97%, transparent) 62%,
+      color-mix(in srgb, var(--24KlcgGmm9) 0%, transparent)
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .ikas-header--scrolled::before {
+    opacity: 1;
+  }
+
+  /* Arama açıkken pill'de yalnızca logo, arama alanı ve kapat kalır */
+  .ikas-header--search .ikas-header__hamburger,
+  .ikas-header--search .ikas-header__account-btn,
+  .ikas-header--search .ikas-header__cart-btn {
+    display: none;
+  }
+
+  /* iOS odakta yakınlaştırmasın */
+  .ikas-header__search-input {
+    font-size: 16px;
+  }
+
+  .ikas-header__drop {
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-header__nav,
+  .ikas-header__search,
+  .ikas-header__drop,
+  .ikas-header__scrim,
+  .ikas-header__menu-link--parent svg,
+  .ikas-header::before {
+    transition: none !important;
   }
 }

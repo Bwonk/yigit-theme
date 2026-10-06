@@ -69,4 +69,14 @@ export interface Props {
   searchIdleText?: string;
   searchViewAllText?: string;
   closeMenuLabel?: string;
+  /** Açılır menü kartının sağında gösterilir; boş bırakılırsa kart yalnızca bağlantıları gösterir */
+  menuFeaturedProduct?: IkasProduct | null;
+  menuFeaturedLabel?: string;
+  menuViewAllText?: string;
+  searchRecentTitle?: string;
+  searchRecentClearText?: string;
+  /** {term} yer tutucusu arama terimiyle değiştirilir */
+  searchRemoveRecentLabel?: string;
+  removeItemLabel?: string;
+  removeItemText?: string;
 }

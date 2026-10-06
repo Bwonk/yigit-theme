@@ -7,6 +7,7 @@ import {
   readSetting,
 } from "../../utils/themeTokens";
 import { useReveal, revealClasses } from "../../utils/reveal";
+import TextLink from "../../sub-components/TextLink";
 import { Props } from "./types";
 
 export function FaqBouncyAccordion(props: Props) {
@@ -17,7 +18,12 @@ export function FaqBouncyAccordion(props: Props) {
     backgroundColor = "#ffffff",
     items,
     emptyStateText = "Henüz soru eklenmedi.",
+    helpText = "Aradığını bulamadın mı? Destek ekibi 7/24 canlı.",
+    helpLinkText = "Destek ekibine yaz",
+    helpLink,
   } = props;
+
+  const helpHref = (helpLink as any)?.href || (helpLink as any)?.externalLink || "";
 
   const sectionRef = useRef<HTMLElement>(null);
   // useId: SSR ve client'ta aynı id → hydration uyumsuzluğu yok.
@@ -58,13 +64,17 @@ export function FaqBouncyAccordion(props: Props) {
 
   return (
     <section
+      id="sss"
       ref={sectionRef}
-      className={`ikas-faq ${revealClasses("ikas-faq", reveal)}`.trim()}
+      className={`ikas-faq${revealClasses("ikas-faq", reveal)}`.trim()}
       style={inlineStyles}
       data-faq-group={groupId}
       lang="tr"
     >
       <div className="ikas-faq__inner">
+        {/* Masaüstü: sol kolonda sabit duran başlık + destek notu.
+            Mobil: aside "display: contents" olur, destek notu listenin altına iner. */}
+        <div className="ikas-faq__aside">
         <header className="ikas-faq__head">
           {tag ? (
             <div className={`ikas-faq__tag ikas-faq__reveal ${ThemeType.label}`}>
@@ -86,6 +96,18 @@ export function FaqBouncyAccordion(props: Props) {
             </p>
           ) : null}
         </header>
+
+        {(helpText || (helpLinkText && helpHref)) && (
+          <div className="ikas-faq__help">
+            {helpText && (
+              <p className={`ikas-faq__help-text ${ThemeType.bodySm}`}>{helpText}</p>
+            )}
+            {helpLinkText && helpHref && (
+              <TextLink tone="LABEL" href={helpHref} text={helpLinkText} />
+            )}
+          </div>
+        )}
+        </div>
 
         <div className="ikas-faq__list">
           {hasItems ? (

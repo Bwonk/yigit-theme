@@ -31,4 +31,6 @@ export interface Props {
   promoApplyText?: string;
   promoRemoveText?: string;
   bundleQtyLabel?: string;
+  removeItemLabel?: string;
+  removeItemText?: string;
 }

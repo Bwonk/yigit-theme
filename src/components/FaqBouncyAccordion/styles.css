@@ -1,4 +1,14 @@
-/* FAQ Bouncy Accordion — centered section shell + head reveal */
+/* ═══════════════════════════════════════════════════════════════════════
+ * FAQ — iki kolon (Yigit Landing tasarımı)
+ * Masaüstü: solda sabit duran başlık + destek notu, sağda numaralı sorular.
+ * Tablet/mobil: tek kolon; destek notu soruların altında açık gri kart.
+ *
+ * Renkler — DESIGN.md token'ları:
+ *   Ana Lacivert:  var(--pxNuSoudLn)
+ *   Gövde / Meta:  var(--xGFwg5Zqpf) / var(--p6EMJiXye1)
+ *   Çizgi:         var(--8ARbeTYsmD)   Çizgi Güçlü: var(--0RbHz765Hw)
+ *   Nötr / Yüzey:  var(--wElEhJwjYh)
+ * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-faq {
   width: 100%;
@@ -12,40 +22,65 @@
     var(--section-py, 48px)
     var(--site-gutter, var(--section-px, 20px));
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(24px, 6vw, 120px);
+}
+
+/* Sol kolon: header pill'inin altında sabit kalır */
+.ikas-faq__aside {
+  position: sticky;
+  top: calc(var(--ikas-header-height, 90px) + 20px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: clamp(28px, 3.2vw, 48px);
+  min-width: 0;
 }
 
 .ikas-faq__head {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(10px, 1.2vw, 16px);
-  width: 100%;
-  max-width: 40rem;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .ikas-faq__tag {
-  letter-spacing: 0.2em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--p6EMJiXye1, #8c97a5);
 }
 
 .ikas-faq__title {
   margin: 0;
+  font-size: clamp(32px, 4.4vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   color: var(--pxNuSoudLn, #37435b);
   text-wrap: balance;
 }
 
 .ikas-faq__subtitle {
   margin: 0;
-  margin-inline: auto;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
   max-width: 42ch;
+  color: var(--xGFwg5Zqpf, #6e7a8c);
   text-wrap: pretty;
+}
+
+/* Destek notu — masaüstünde başlığın altında, ince çizgiyle ayrılmış */
+.ikas-faq__help {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: 36ch;
+  margin-top: clamp(24px, 3vw, 40px);
+  padding-top: 20px;
+  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+}
+
+.ikas-faq__help-text {
+  margin: 0;
+  color: var(--xGFwg5Zqpf, #6e7a8c);
 }
 
 .ikas-faq__reveal {
@@ -68,29 +103,55 @@
   transform: translateY(16px);
 }
 
+/* Sorular: numara sayacı burada sıfırlanır */
 .ikas-faq__list {
+  counter-reset: ikas-faq;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-width: 0;
-  max-width: 720px;
-  margin-inline: auto;
-  border-bottom: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-bottom: 1px solid var(--0RbHz765Hw, #dce0e1);
 }
 
 .ikas-faq__empty {
   margin: 0;
   padding: 20px 0;
-  text-align: center;
   color: var(--p6EMJiXye1, #8c97a5);
   border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
 }
 
+/* TABLET VE ALTI: tek kolon; aside açılır, destek notu listenin altına iner */
 @media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-faq__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(20px, 5vw, 32px);
     padding:
       var(--section-py-mobile, 32px)
       var(--site-gutter, var(--mobile-px, 16px));
+  }
+
+  .ikas-faq__aside {
+    display: contents;
+  }
+
+  .ikas-faq__help {
+    order: 3;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+    max-width: none;
+    margin-top: 0;
+    padding: 18px 20px;
+    border-top: 0;
+    border-radius: var(--faq-radius, 12px);
+    background-color: var(--wElEhJwjYh, #f4f5f5);  /* Nötr / Yüzey */
+  }
+
+  .ikas-faq__help-text {
+    flex: 1 1 200px;
+    color: var(--pxNuSoudLn, #37435b);
   }
 }
 

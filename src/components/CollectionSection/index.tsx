@@ -41,8 +41,12 @@ export function CollectionSection({
   addToCartText = "SEPETE EKLE",
   discountBadgeText,
   quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
+  categoryFilterTitle = "Kategori",
+  allCategoriesText = "Tümü",
+  categoriesAriaLabel = "Alt kategoriler",
   className = "",
 }: CollectionSectionProps) {
   const [density, setDensity] = useState<"comfy" | "dense">("comfy");
@@ -51,6 +55,7 @@ export function CollectionSection({
 
   const inlineStyles = {
     backgroundColor: backgroundColor || undefined,
+    "--collection-bg": backgroundColor || undefined,
     ...layoutTokens,
   };
 
@@ -86,6 +91,9 @@ export function CollectionSection({
           sheetFiltersTitle={sheetFiltersTitle}
           sheetSortTitle={sheetSortTitle}
           sheetCloseLabel={sheetCloseLabel}
+          categoryFilterTitle={categoryFilterTitle}
+          allCategoriesText={allCategoriesText}
+          categoriesAriaLabel={categoriesAriaLabel}
           onFilterChange={triggerFade}
         />
 
@@ -103,6 +111,7 @@ export function CollectionSection({
           addToCartText={addToCartText}
           discountBadgeText={discountBadgeText}
           quickAddAriaLabel={quickAddAriaLabel}
+          selectOptionsText={selectOptionsText}
           addingToCartText={addingToCartText}
           soldOutText={soldOutText}
           showCategoryLabel

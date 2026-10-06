@@ -12,6 +12,9 @@ import { useReveal, revealClasses } from "../../utils/reveal";
 import Button from "../../sub-components/Button";
 import { Props } from "./types";
 
+/** Footer'ın üst boşluğuna eklenecek binme payı (bkz. Footer/styles.css). */
+const OVERLAP_VAR = "--ikas-newsletter-overlap";
+
 export interface NewsletterSectionProps extends Props {
   className?: string;
 }
@@ -45,8 +48,8 @@ export function NewsletterSection({
 }: NewsletterSectionProps) {
   // Bölüm bir sayfada birden fazla kez kullanılabilir → label/input eşleşmesi benzersiz olmalı.
   const emailInputId = `ikas-newsletter-email-${useId()}`;
-  const patternId = `ikas-newsletter-pat-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const sectionRef = useRef<HTMLElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const reveal = useReveal(sectionRef, { threshold: 0.15 });
   const newsletterForm = getNewsletterSubscriptionForm(customerStore);
 
@@ -55,6 +58,53 @@ export function NewsletterSection({
       initNewsletterSubscriptionForm(newsletterForm);
     }
   }, [newsletterForm]);
+
+  // Sarı takoz kaydırmayla büyür: kartın ekrandaki ilerlemesi (0 → 1) --p
+  // değişkenine yazılır; boyut CSS'te hesaplanır. Azaltılmış harekette dinlenmez.
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = card.getBoundingClientRect();
+      if (!rect.height) return;
+      const vh = window.innerHeight || 1;
+      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+      card.style.setProperty("--p", progress.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Kart footer'a bilerek biner; binme miktarı global değişkene yazılır ki
+  // footer üst boşluğunu o kadar artırsın (içeriği kartın altında kalmasın).
+  useEffect(() => {
+    const el = sectionRef.current;
+    const root = document.documentElement;
+    if (!el) return;
+    const publish = () => {
+      const overlap = getComputedStyle(el).getPropertyValue("--newsletter-footer-overlap").trim() || "0px";
+      // Binme payı + kartın altında nefes boşluğu (footer içeriği karta yapışmasın)
+      root.style.setProperty(OVERLAP_VAR, `calc(${overlap} + clamp(32px, 4vw, 64px))`);
+    };
+    publish();
+    window.addEventListener("resize", publish);
+    return () => {
+      window.removeEventListener("resize", publish);
+      root.style.setProperty(OVERLAP_VAR, "0px");
+    };
+  }, []);
 
   const layoutTokens = applyLayoutTokens({ includePy: true, includePx: true, includeSiteWidth: true });
 
@@ -91,7 +141,7 @@ export function NewsletterSection({
     >
       <div className="ikas-newsletter__container">
         {/* KURU LACİVERT CTA KUTUSU */}
-        <div className="ikas-newsletter__card">
+        <div ref={cardRef} className="ikas-newsletter__card">
           {/* OPSİYONEL ARKA PLAN GÖRSELİ */}
           {bgImgUrl && (
             <img
@@ -102,30 +152,8 @@ export function NewsletterSection({
             />
           )}
 
-          {/* GRADIENT OVERLAY */}
-          <div className="ikas-newsletter__overlay" />
-
-          {/* DÖNDÜRÜLMÜŞ MİKRO İKON SVG PATTERN */}
-          <svg aria-hidden="true" className="ikas-newsletter__pattern">
-            <defs>
-              <pattern
-                id={patternId}
-                width="104"
-                height="104"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(-12)"
-              >
-                <g fill="none" stroke="#C8CFD0" strokeWidth="1.3" strokeLinecap="round">
-                  <path d="M18 22c-3.4 1.4-5.8 4.7-5.8 8.6a9.2 9.2 0 0 0 12.3 8.7A10 10 0 0 1 18 22Z" />
-                  <path d="M64 18h14M64 26h9" />
-                  <path d="M58 74c0-3.6 2.9-6.6 6.5-6.6h9c3.6 0 6.5 3 6.5 6.6" />
-                  <path d="M64.5 74c0 2.4 2.4 4.4 5.5 4.4h3c3.1 0 5.5-2 5.5-4.4" />
-                  <path d="M22 62l16 8-16 8v-6l7-2-7-2Z" />
-                </g>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill={`url(#${patternId})`} />
-          </svg>
+          {/* Görsel yüklendiyse okunurluk için gradient katman */}
+          {bgImgUrl && <div className="ikas-newsletter__overlay" />}
 
           {/* SAĞ ÜST DEKORATİF ACCENT TAKOZ */}
           <div className="ikas-newsletter__wedge" aria-hidden="true" />
@@ -145,7 +173,10 @@ export function NewsletterSection({
             {subtitle && (
               <p className="ikas-newsletter__subtitle _VcfI5D07Nt">{subtitle}</p>
             )}
+          </div>
 
+          {/* FORM — masaüstünde sağ altta, mobilde metnin altında */}
+          <div className="ikas-newsletter__form-col">
             {isSuccess ? (
               <div className="ikas-newsletter__success-msg _1F5G4mKZxn" role="alert">
                 {newsletterForm?.responseMessage || successText}
@@ -157,7 +188,9 @@ export function NewsletterSection({
                 aria-label={title}
                 noValidate
               >
-                <div className="ikas-newsletter__form-row">
+                <div
+                  className={`ikas-newsletter__form-row${isError ? " ikas-newsletter__form-row--error" : ""}`}
+                >
                   <div className="ikas-newsletter__input-wrapper">
                     <label htmlFor={emailInputId} className="visually-hidden">
                       {emailLabel}
@@ -187,7 +220,7 @@ export function NewsletterSection({
                     <Button
                       type="submit"
                       text={newsletterForm?.isSubmitting ? submittingButtonText : buttonText}
-                      variant="PILL_PRIMARY"
+                      variant="PILL_ACCENT"
                       size="NORMAL"
                       icon={arrowIcon}
                       disabled={newsletterForm?.isSubmitting}

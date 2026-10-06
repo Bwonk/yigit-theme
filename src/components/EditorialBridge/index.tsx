@@ -19,7 +19,7 @@ export interface EditorialBridgeProps extends Props {
  */
 export function EditorialBridge({
   descriptionText = "İyi tasarlanmış seyahat ve uyku ürünleri — İzmir'de dokundu, İstanbul'da tasarlandı.",
-  metaText = "TEMMUZ 2026 · INFINITY SLEEP GOODS",
+  metaText = "TEMMUZ 2026 · YİĞİT",
   backgroundColor,
   className = "",
 }: EditorialBridgeProps) {

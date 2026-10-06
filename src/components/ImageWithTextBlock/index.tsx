@@ -96,8 +96,13 @@ export function ImageWithTextBlock({
           {buttonText && (
             <Button
               text={buttonText}
-              variant="PRIMARY"
+              variant="PILL_PRIMARY"
               size="LARGE"
+              icon={
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M4 12h15M13 6l6 6-6 6" />
+                </svg>
+              }
               onClick={() => {
                 const href = buttonLink?.href;
                 if (href) Router.navigate(href);

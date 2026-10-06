@@ -33,4 +33,9 @@ export interface Props {
   quickAddAriaLabel?: string;
   sheetCloseLabel?: string;
   densityGroupLabel?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
+  categoryFilterTitle?: string;
+  allCategoriesText?: string;
+  categoriesAriaLabel?: string;
 }

@@ -137,33 +137,9 @@ export function CartSummaryCard({
         />
       ) : null}
 
-      <div className="ikas-cart-summary__rows">
-        <div className="ikas-cart-summary__row _VcfI5D07Nt">
-          <span>{subtotalLabel}</span>
-          <span className="ikas-cart-summary__price">{formattedSubtotal}</span>
-        </div>
-        <div className="ikas-cart-summary__row _VcfI5D07Nt">
-          <span>{shippingLabel}</span>
-          <span>
-            {shippingValue}
-          </span>
-        </div>
-        {discountFormatted ? (
-          <div className="ikas-cart-summary__row _eZyocyyd0F">
-            <span>{discountsLabel}</span>
-            <span className="ikas-cart-summary__discount ikas-cart-summary__price">
-              {discountFormatted}
-            </span>
-          </div>
-        ) : null}
-        <div className="ikas-cart-summary__row ikas-cart-summary__row--total _AZR1yL8GrK">
-          <span>{totalLabel}</span>
-          <span className="ikas-cart-summary__total ikas-cart-summary__price">
-            {formattedTotal}
-          </span>
-        </div>
-      </div>
-
+      {/* Sıra sepet çekmecesiyle aynı: kupon → kalemler → genel toplam →
+          vergi notu → ödeme butonu. Genel toplam her zaman butonun hemen
+          üstünde, tek bir yerde durur. */}
       {!isEmpty ? (
         <CartCouponForm
           promoTitle={promoTitle}
@@ -173,7 +149,34 @@ export function CartSummaryCard({
         />
       ) : null}
 
-      <p className="ikas-cart-summary__tax _eZyocyyd0F">{taxNoteText}</p>
+      <div className="ikas-cart-summary__rows">
+        <div className="ikas-cart-summary__row _C0OZ8W7vYS">
+          <span>{subtotalLabel}</span>
+          <span className="ikas-cart-summary__amount">{formattedSubtotal}</span>
+        </div>
+        <div className="ikas-cart-summary__row _C0OZ8W7vYS">
+          <span>{shippingLabel}</span>
+          <span className="ikas-cart-summary__shipping">{shippingValue}</span>
+        </div>
+        {discountFormatted ? (
+          <div className="ikas-cart-summary__row _C0OZ8W7vYS">
+            <span>{discountsLabel}</span>
+            <span className="ikas-cart-summary__discount ikas-cart-summary__amount">
+              {discountFormatted}
+            </span>
+          </div>
+        ) : null}
+        <div className="ikas-cart-summary__row ikas-cart-summary__row--total">
+          <span className="ikas-cart-summary__total-label _VcfI5D07Nt">
+            {totalLabel}
+          </span>
+          <span className="ikas-cart-summary__total ikas-cart-summary__amount _AZR1yL8GrK">
+            {formattedTotal}
+          </span>
+        </div>
+      </div>
+
+      <p className="ikas-cart-summary__tax _C0OZ8W7vYS">{taxNoteText}</p>
 
       <Button
         text={checkoutButtonText}

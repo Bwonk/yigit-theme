@@ -1,5 +1,5 @@
 /**
- * Geeny theme token keys + helpers.
+ * Yigit theme token keys + helpers.
  * Source of truth for ids: prompts/TOKENS.md (synced from list_theme_globals).
  * Prefer these named exports over raw getThemeSetting("_…") literals.
  */

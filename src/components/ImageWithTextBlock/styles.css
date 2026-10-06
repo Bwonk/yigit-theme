@@ -5,7 +5,8 @@
   box-sizing: border-box;
   background-color: var(--24KlcgGmm9);
   color: var(--pxNuSoudLn);
-  padding: var(--section-py, 48px) var(--section-px, 20px);
+  /* Yatay kenar boşluğu container'da (--site-gutter) — diğer bölümlerle aynı hiza */
+  padding: var(--section-py, 48px) 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +16,8 @@
   max-width: var(--max-site-width, 1560px);
   width: 100%;
   margin: 0 auto;
+  padding-inline: var(--site-gutter, 20px);
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas: "media content";
@@ -90,7 +93,11 @@
 /* RESPONSIVE BREAKPOINT (<768px DESIGN.md) */
 @media (max-width: bp(HDRapYMzn7)) {
   .ikas-image-text {
-    padding: var(--section-py-mobile, 32px) var(--mobile-px, 16px);
+    padding: var(--section-py-mobile, 32px) 0;
+  }
+
+  .ikas-image-text__container {
+    padding-inline: var(--mobile-px, 16px);
   }
 
   .ikas-image-text__container,

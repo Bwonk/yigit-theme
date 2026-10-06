@@ -20,6 +20,8 @@ export interface Props {
   decreaseQtyLabel?: string;
   increaseQtyLabel?: string;
   bundleQtyLabel?: string;
+  removeItemLabel?: string;
+  removeItemText?: string;
 }
 
 export function CartItemsList({
@@ -28,6 +30,8 @@ export function CartItemsList({
   decreaseQtyLabel = "Adedi azalt",
   increaseQtyLabel = "Adedi artır",
   bundleQtyLabel = "adet",
+  removeItemLabel = "Ürünü sepetten kaldır",
+  removeItemText = "Kaldır",
 }: Props) {
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
@@ -128,15 +132,41 @@ export function CartItemsList({
               />
             </div>
 
-            <QuantityStepper
-              value={item.quantity ?? 1}
-              onChange={(next) => handleQtyChange(item, next)}
-              min={0}
-              disabled={isUpdating}
-              decreaseLabel={decreaseQtyLabel}
-              increaseLabel={increaseQtyLabel}
-              size="sm"
-            />
+            <div className="ikas-cart-table__actions">
+              <QuantityStepper
+                value={item.quantity ?? 1}
+                onChange={(next) => handleQtyChange(item, next)}
+                min={0}
+                disabled={isUpdating}
+                decreaseLabel={decreaseQtyLabel}
+                increaseLabel={increaseQtyLabel}
+                size="sm"
+              />
+              <button
+                type="button"
+                className="ikas-cart-table__remove ikas-tap-44"
+                title={removeItemText}
+                aria-label={`${removeItemLabel}: ${title}`}
+                disabled={isUpdating}
+                onClick={() => handleQtyChange(item, 0)}
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2.75 4.25h10.5M6.25 4.25V2.75h3.5v1.5M4.25 4.25l.6 8.4c.05.6.55 1.1 1.15 1.1h4c.6 0 1.1-.5 1.15-1.1l.6-8.4M6.75 7v4M9.25 7v4"
+                    stroke="currentColor"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </li>
         );
       })}

@@ -48,7 +48,7 @@ export function ProductDetailSection({
   showProductBadge = true,
   showBuyNow = false,
   buyNowText = "HEMEN SATIN AL",
-  breadcrumbHomeText = "ANA SAYFA",
+  breadcrumbHomeText = "Ana Sayfa",
   showStickyBar = true,
   stickyQtyUnitText = "ADET",
   stickyImageAlt = "Ürün görseli",
@@ -83,6 +83,19 @@ export function ProductDetailSection({
   promotionBackgroundColor,
   promotionTextColor,
   promotionAccentColor,
+  optionsRequiredErrorText = "Bu alan zorunludur",
+  optionsInvalidText = "Sepete eklemeden önce zorunlu alanları doldurun.",
+  optionsSelectPlaceholder = "Seçiniz",
+  optionsFileDropText = "Dosya seç veya buraya sürükle",
+  optionsUploadingText = "Yükleniyor...",
+  optionsUploadFailedText = "Dosya yüklenemedi",
+  optionsFileSizeErrorText = "{fileName}: en fazla {maxSize}MB",
+  optionsFileTypeErrorText = "{fileName}: {ext} dosya türüne izin verilmiyor",
+  optionsMaxFilesErrorText = "En fazla {max} dosya yüklenebilir",
+  optionsMinLabelText = "En az: ",
+  optionsMaxLabelText = "En fazla: ",
+  optionsRemoveFileLabel = "Dosyayı kaldır",
+  optionsOptionalText = "Opsiyonel",
   className = "",
 }: ProductDetailSectionProps) {
   const verticalPySetting = getThemeSetting("_Kl0my3VVMA");
@@ -187,6 +200,19 @@ export function ProductDetailSection({
               promotionBackgroundColor={promotionBackgroundColor}
               promotionTextColor={promotionTextColor}
               promotionAccentColor={promotionAccentColor}
+              optionsRequiredErrorText={optionsRequiredErrorText}
+              optionsInvalidText={optionsInvalidText}
+              optionsSelectPlaceholder={optionsSelectPlaceholder}
+              optionsFileDropText={optionsFileDropText}
+              optionsUploadingText={optionsUploadingText}
+              optionsUploadFailedText={optionsUploadFailedText}
+              optionsFileSizeErrorText={optionsFileSizeErrorText}
+              optionsFileTypeErrorText={optionsFileTypeErrorText}
+              optionsMaxFilesErrorText={optionsMaxFilesErrorText}
+              optionsMinLabelText={optionsMinLabelText}
+              optionsMaxLabelText={optionsMaxLabelText}
+              optionsRemoveFileLabel={optionsRemoveFileLabel}
+              optionsOptionalText={optionsOptionalText}
             />
           </div>
         </div>

@@ -22,7 +22,7 @@ export interface Props {
  */
 export function AuthHero({
   image,
-  imageAlt = "Infinity seyahat atmosferi",
+  imageAlt = "Yiğit seyahat atmosferi",
   tag = "SS26 · SEYAHAT SERİSİ",
   title = "Uykunu yanında taşı.",
   subtitle = "Hesabın siparişlerini, iade taleplerini ve garanti kayıtlarını tek yerde tutar.",

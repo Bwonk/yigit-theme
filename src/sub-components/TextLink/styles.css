@@ -16,15 +16,22 @@
   padding: 0;
   padding-bottom: var(--tl-offset, 2px);
   border: 0;
-  border-bottom: var(--tl-thickness, 2px) solid
-    var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)));
-  background: transparent;
+  /* Dolan çizgi: duruşta altta ince sarı çizgi, üzerine gelince yukarı
+     doğru dolup bağlantının zeminini kaplar (menüdeki "Tümünü gör" ile aynı). */
+  background:
+    linear-gradient(
+      var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))),
+      var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))
+    )
+    0 100% / 100% var(--tl-thickness, 2px) no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   color: var(--tl-color, var(--pxNuSoudLn));
   text-decoration: none;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   vertical-align: baseline;
   max-width: 100%;
 }
@@ -37,12 +44,10 @@ span.ikas-text-link {
   cursor: inherit;
 }
 
-.ikas-text-link:hover {
+.ikas-text-link:hover,
+.ikas-text-link:focus-visible {
+  background-size: 100% 100%;
   color: var(--tl-hover-color, var(--vluFeuIeFs, #101418));
-  border-bottom-color: var(
-    --tl-hover-underline,
-    var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))
-  );
 }
 
 .ikas-text-link:focus {
