@@ -34,6 +34,17 @@ Bu dosya, ikas editöründe canlı olarak oluşturulan tasarım token'larının 
 | `Nötr / Çizgi` | `8ARbeTYsmD` | `var(--8ARbeTYsmD)` |
 | `Nötr / Yüzey Yumuşak` | `JQs026vIpf` | `var(--jQs026VIpf)` |
 | `Nötr / Yüzey` | `wElEhJWJYh` | `var(--wElEhJwjYh)` |
+| `Rozet / İndirim Zemin` | `GI56xfzrM3` | `var(--gi56XfzrM3)` |
+| `Rozet / İndirim Metin` | `vMRjMhid6C` | `var(--vMRjMhid6C)` |
+| `Rozet / Tükendi Zemin` | `aw7bgEpJt5` | `var(--aw7BgEpJt5)` |
+| `Rozet / Tükendi Metin` | `FFrSwmzVyU` | `var(--fFrSwmzVyU)` |
+| `Rozet / Etiket Zemin` | `eMO2pn8JV3` | `var(--eMo2Pn8Jv3)` |
+| `Rozet / Etiket Metin` | `veglu61tEE` | `var(--veglu61TEe)` |
+
+Rozet renkleri global’dir (renk şemasından bağımsız, sitenin her yerinde aynı):
+İndirim = ürün kartı indirim rozeti, PDP indirim çerçevesi, Deal Cards tasarruf etiketi,
+sepet indirim etiketi · Tükendi = ürün kartı tükendi rozeti · Etiket = PDP ürün rozeti,
+yorum “doğrulanmış alıcı” rozeti. Kullanım: `var(--gi56XfzrM3, var(--sy8ZnXZdoG))`.
 
 Nötr skala `Anasayfa.dc.html` referansındaki gri değerlerinden türetildi. Koyudan
 açığa sıralama: Mürekkep `#101418` → Ana Lacivert `#37435B` → Gövde Metni `#6E7A8C`

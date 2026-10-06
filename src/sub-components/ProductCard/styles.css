@@ -101,8 +101,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--sy8ZnXZdoG);  /* Accent Sarı — TOKENS.md satır 11 */
-  color: var(--fcAwzuFj9W);
+  background-color: var(--gi56XfzrM3, var(--sy8ZnXZdoG));  /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--vMRjMhid6C, var(--fcAwzuFj9W));
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.14em;
@@ -113,8 +113,8 @@
 }
 
 .ikas-product-card__badge--out-of-stock {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background-color: var(--aw7BgEpJt5, var(--pxNuSoudLn));
+  color: var(--fFrSwmzVyU, var(--24KlcgGmm9));
 }
 
 /* 4. KART İÇERİĞİ */

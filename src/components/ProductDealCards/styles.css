@@ -295,8 +295,8 @@ a.ikas-deal-card:focus-visible {
   align-items: center;
   padding: 6px 11px;
   border-radius: 9999px;
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--fcAwzuFj9W);
+  background-color: var(--gi56XfzrM3, var(--sy8ZnXZdoG));
+  color: var(--vMRjMhid6C, var(--fcAwzuFj9W));
   font-size: 11px;
   letter-spacing: 0.04em;
   line-height: 1.2;
