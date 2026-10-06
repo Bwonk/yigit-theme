@@ -186,6 +186,7 @@ Kod sabitleri: `ThemeBreakpoint` in `src/utils/themeTokens.ts`.
 | :--- | :--- | :--- |
 | `Yigit / Default` | `Dy7o7Bp345` | `_Dy7o7Bp345` |
 | `Yigit / Soft` | `7ZPFcYS3JC` | `_7ZPFcYS3JC` |
+| `Yigit / Monochrome` | `AhbDN65BYV` | `_AhbDN65BYV` |
 
 Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*, SecondaryButton/*.
 
