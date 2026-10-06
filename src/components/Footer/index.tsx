@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { getDefaultSrc } from "@ikas/bp-storefront";
 import { applyLayoutTokens } from "../../utils/themeTokens";
 import TextLink from "../../sub-components/TextLink";
@@ -48,6 +48,21 @@ export function Footer({
 }: FooterProps) {
   // Mobile accordion state (<768px)
   const [openCols, setOpenCols] = useState<{ [key: string]: boolean }>({});
+  const footerRef = useRef<HTMLElement>(null);
+
+  // ikas sayfa kapsayıcısı (#app) kısa sayfalarda footer'ı ekranın altına
+  // yaslar; aradaki boşlukta şeffaf body görünür. Body zemini footer'ın
+  // (renk şeması dahil) çözülmüş zeminiyle boyanır → boşluk footer'ın devamı olur.
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el || typeof document === "undefined") return;
+    const body = document.body;
+    const prev = body.style.backgroundColor;
+    body.style.backgroundColor = getComputedStyle(el).backgroundColor;
+    return () => {
+      body.style.backgroundColor = prev;
+    };
+  });
 
   const toggleCol = (colId: string) => {
     setOpenCols((prev) => ({
@@ -148,6 +163,7 @@ export function Footer({
 
   return (
     <footer
+      ref={footerRef}
       className={`ikas-footer ${className}`.trim()}
       style={inlineStyles}
       lang="tr"
