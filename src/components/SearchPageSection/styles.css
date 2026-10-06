@@ -8,7 +8,8 @@
 .geeny-search-page {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   padding-top: var(--section-py-mobile, 32px);
   padding-bottom: var(--section-py-mobile, 32px);
   padding-left: var(--mobile-px, 16px);
@@ -52,8 +53,8 @@
 .geeny-search-page__spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--cdFDkBbKkc);
-  border-top-color: var(--pxNuSoudLn);
+  border: 3px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc));
+  border-top-color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   border-radius: 50%;
   animation: geeny-spin 0.8s linear infinite;
 }

@@ -20,8 +20,9 @@
 .ikas-footer {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz / Site Genel Zemini — TOKENS.md satır 14 (KESİNTİSİZ AKIŞ) */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));  /* Saf Beyaz / Site Genel Zemini — TOKENS.md satır 14 (KESİNTİSİZ AKIŞ) */
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   /* Üstteki bülten kartı footer'a biner; binme payı (NewsletterSection
      çalışma anında yayınlar) üst boşluğa eklenir. Bülten yoksa 0px. */
   padding: calc(var(--section-py, clamp(65px, 6vw, 95px)) + var(--ikas-newsletter-overlap, 0px)) 0 clamp(22px, 2.6vw, 34px) 0;
@@ -67,14 +68,14 @@
   font-size: clamp(22px, 2vw, 30px);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-footer__brand-desc {
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--text-body-aa);           /* AA türevi — global.css */
+  color: var(--hy9HpUbpuN, var(--text-body-aa));           /* AA türevi — global.css */
   max-width: 36ch;
 }
 
@@ -142,7 +143,7 @@
   font-size: 11px;
   line-height: 1;
   letter-spacing: 0.16em;
-  color: var(--text-meta-aa);           /* AA türevi — global.css */
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));           /* AA türevi — global.css */
   text-transform: uppercase;
   background: none;
   border: none;
@@ -155,7 +156,7 @@
 
 .ikas-footer__chevron {
   display: none;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   transition: transform 0.2s ease;
 }
 
@@ -174,7 +175,7 @@
   font-family: var(--font-heading);
   font-size: 15px;
   line-height: 1.3;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--spRu5BCzrk, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   text-decoration: none;
   background: linear-gradient(var(--sy8ZnXZdoG), var(--sy8ZnXZdoG)) 0 100% / 0 2px no-repeat;
   transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -182,11 +183,12 @@
 
 .ikas-footer__link:hover {
   background-size: 100% 2px;
+  color: var(--yccjLb7If4, var(--pxNuSoudLn));
 }
 
 /* ALT AYRAÇ BÖLÜMÜ — telif solda, sosyal ortada, ödeme sağda */
 .ikas-footer__bottom {
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   padding-top: 20px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -201,7 +203,7 @@
   line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-meta-aa);           /* AA türevi — global.css */
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));           /* AA türevi — global.css */
 }
 
 /* SOSYAL MEDYA PİLL İKONLARI */
@@ -218,12 +220,12 @@
 .ikas-footer__social-btn {
   width: 38px;
   height: 38px;
-  border: 1px solid var(--0RbHz765Hw);
+  border: 1px solid var(--p6Vorgv0Uy, var(--0RbHz765Hw));
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--spRu5BCzrk, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   text-decoration: none;
   transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.25, 1), color 0.22s ease;
 }
@@ -340,21 +342,21 @@
     width: 42px;
     height: 42px;
     border-color: transparent;
-    background-color: color-mix(in srgb, var(--pxNuSoudLn) 7%, transparent);
+    background-color: color-mix(in srgb, var(--spRu5BCzrk, var(--pxNuSoudLn)) 7%, transparent);
   }
 
   /* Destek bağlantısı: PILL_SECONDARY ile aynı dil — beyaz zemin, ince
      çerçeve, basışta lacivert dolgu alttan yükselir (TextLink'in dolan
      çizgisi burada tüm hap'ı doldurur). */
   .ikas-footer__support-link.ikas-text-link {
-    --tl-underline-color: var(--pxNuSoudLn);
+    --tl-underline-color: var(--vvG2EEhdCx, var(--pxNuSoudLn));
     min-height: 46px;
     padding: 0 20px 0 16px;
-    border: 1.5px solid var(--cdFDkBbKkc);
+    border: 1.5px solid var(--knCpeJkjkB, var(--cdFDkBbKkc));
     border-radius: 9999px;
-    background-color: var(--24KlcgGmm9);
+    background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
     background-size: 100% 0;
-    color: var(--pxNuSoudLn);
+    color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
     font-family: var(--font-heading);
     font-size: 12px;
     font-weight: 600;
@@ -376,13 +378,13 @@
   /* Dokunmatikte hover yapışmasın: dolgu yalnızca basış ve klavye odağında */
   .ikas-footer__support-link.ikas-text-link:hover {
     background-size: 100% 0;
-    color: var(--pxNuSoudLn);
+    color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   }
 
   .ikas-footer__support-link.ikas-text-link:is(:active, :focus-visible) {
     background-size: 100% 100%;
-    border-color: var(--pxNuSoudLn);
-    color: var(--24KlcgGmm9);
+    border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+    color: var(--0UgngKDdX6, var(--24KlcgGmm9));
   }
 
   .ikas-footer__support-link.ikas-text-link:active {
@@ -398,12 +400,12 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 0;
     width: 100%;
-    border-top: 1px solid var(--8ARbeTYsmD);
+    border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   }
 
   .ikas-footer__col {
     gap: 0;
-    border-bottom: 1px solid var(--8ARbeTYsmD);
+    border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   }
 
   .ikas-footer__col-header {
@@ -417,12 +419,12 @@
     font-weight: 500;
     letter-spacing: -0.01em;
     text-transform: none;
-    color: var(--pxNuSoudLn);
+    color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   }
 
   .ikas-footer__chevron {
     display: block;
-    color: var(--pxNuSoudLn);
+    color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
     transition: transform 0.36s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 

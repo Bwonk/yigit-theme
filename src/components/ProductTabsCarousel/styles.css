@@ -16,8 +16,10 @@
 .ikas-ptc {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Sekmeler: seçili = PrimaryButton, diğerleri ve oklar = SecondaryButton. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   padding: var(--section-py, clamp(32px, 4vw, 60px)) 0;
   margin-block: 0;
   overflow: hidden;
@@ -54,7 +56,7 @@
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-ptc__title {
@@ -63,17 +65,19 @@
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-ptc__link {
   white-space: nowrap;
+  --tl-color: var(--spRu5BCzrk, var(--pxNuSoudLn));
+  --tl-hover-color: var(--yccjLb7If4, var(--vluFeuIeFs, #101418));
 }
 
 .ikas-ptc__empty {
   margin: 0;
   padding: clamp(28px, 4vw, 48px) 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   text-align: center;
 }
 
@@ -97,7 +101,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  border-bottom: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   padding-bottom: 16px;
 }
 
@@ -124,10 +128,10 @@
   flex: none;
   margin: 0;
   padding: 9px 18px;
-  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: transparent;
-  color: var(--xGFwg5Zqpf);
+  background-color: var(--nev1XwFhtS, transparent);
+  color: var(--ua5R3Zg9Wv, var(--xGFwg5Zqpf));
   white-space: nowrap;
   cursor: pointer;
   transition:
@@ -143,7 +147,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--sy8ZnXZdoG);
+  background-color: var(--vvG2EEhdCx, var(--sy8ZnXZdoG));
   border-radius: 60% 60% 0 0 / 100% 100% 0 0;
   transform: translateY(102%);
   transition:
@@ -152,9 +156,9 @@
 }
 
 .ikas-ptc__tab[aria-selected="true"] {
-  background-color: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-ptc__tab[aria-selected="true"]::before {
@@ -172,8 +176,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-ptc__tab:hover:not([aria-selected="true"]) {
-    border-color: var(--sy8ZnXZdoG);
-    color: var(--pxNuSoudLn);
+    border-color: var(--4K9KPuSllH, var(--sy8ZnXZdoG));
+    color: var(--0UgngKDdX6, var(--pxNuSoudLn));
   }
 
   .ikas-ptc__tab:hover:not([aria-selected="true"])::before {
@@ -195,10 +199,10 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -225,8 +229,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-ptc__nav-btn:hover:not(:disabled) {
-    background-color: var(--jQs026VIpf, #f4f5f5);
-    border-color: var(--pxNuSoudLn);
+    background-color: var(--vvG2EEhdCx, var(--jQs026VIpf, #f4f5f5));
+    border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+    color: var(--0UgngKDdX6, var(--pxNuSoudLn));
   }
 }
 

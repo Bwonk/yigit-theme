@@ -6,8 +6,9 @@
   width: 100%;
   box-sizing: border-box;
   padding-block: var(--section-py, 48px);
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-cart-page__container {
@@ -29,16 +30,16 @@
 
 .ikas-cart-page__title {
   margin: 0;
-  color: var(--fcAwzuFj9W, var(--pxNuSoudLn));
+  color: var(--ucmfvEbo4R, var(--fcAwzuFj9W, var(--pxNuSoudLn)));
 }
 
 .ikas-cart-page__count {
-  color: var(--p6EMJiXye1, var(--xGFwg5Zqpf));
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, var(--xGFwg5Zqpf)));
 }
 
 .ikas-cart-page__loading {
   margin: 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
 }
 
 .ikas-cart-page__grid {
@@ -75,7 +76,7 @@
 
 .ikas-cart-page__empty-title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 @media (max-width: bp(kmfaNJ5hH8)) {

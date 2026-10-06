@@ -8,9 +8,10 @@
 .ikas-related {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
-  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   padding: var(--section-py, clamp(46px, 5vw, 80px)) 0 clamp(52px, 6vw, 96px);
 }
 
@@ -31,7 +32,7 @@
   align-items: flex-end;
   gap: 20px;
   flex-wrap: wrap;
-  border-bottom: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   padding-bottom: 18px;
   width: 100%;
 }
@@ -47,7 +48,7 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.2em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -58,7 +59,7 @@
   font-size: clamp(26px, 2.8vw, 42px);
   letter-spacing: -0.03em;
   line-height: 1.08;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-wrap: balance;
 }
 
@@ -88,10 +89,11 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  border: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  /* Açık daire ok butonu → SecondaryButton slotları */
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -99,6 +101,7 @@
   transition:
     background-color 0.2s ease,
     border-color 0.2s ease,
+    color 0.2s ease,
     opacity 0.2s ease;
 }
 
@@ -118,8 +121,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-related__nav-btn:hover:not(:disabled) {
-    background-color: var(--jQs026VIpf, #f4f5f5);
-    border-color: var(--pxNuSoudLn);
+    background-color: var(--vvG2EEhdCx, var(--jQs026VIpf, #f4f5f5));
+    border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+    color: var(--0UgngKDdX6, var(--pxNuSoudLn));
   }
 }
 

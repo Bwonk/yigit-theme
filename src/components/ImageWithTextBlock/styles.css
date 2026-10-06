@@ -3,8 +3,11 @@
 .ikas-image-text {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Not: index.tsx inline `color` verir; başlık/açıklama slotu kendisi okur,
+     slot tanımsızsa currentColor (= miras alınan inline renk) kalır. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   /* Yatay kenar boşluğu container'da (--site-gutter) — diğer bölümlerle aynı hiza */
   padding: var(--section-py, 48px) 0;
   display: flex;
@@ -79,13 +82,13 @@
 
 .ikas-image-text__title {
   margin: 0;
-  color: inherit;
+  color: var(--ucmfvEbo4R, currentColor);
   line-height: 1.2;
 }
 
 .ikas-image-text__desc {
   margin: 0;
-  color: inherit;
+  color: var(--hy9HpUbpuN, currentColor);
   opacity: 0.85;
   line-height: 1.6;
 }

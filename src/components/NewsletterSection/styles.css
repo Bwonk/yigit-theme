@@ -16,7 +16,9 @@
 
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz / Site Genel Zemini — TOKENS.md satır 14 */
+  /* Renk şeması: yalnız section zemini Background slotuna bağlı (TOKENS.md §10);
+     tüm metin/form koyu lacivert kartın içinde → sabit. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));  /* Saf Beyaz / Site Genel Zemini — TOKENS.md satır 14 */
   color: #ffffff;
   padding: clamp(24px, 3vw, 44px) 0 0 0;
   margin-top: 0;

@@ -16,7 +16,9 @@
 .ikas-faq-row {
   --faq-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   counter-increment: ikas-faq;
-  border-top: 1px solid var(--0RbHz765Hw, #dce0e1);
+  /* Renk şeması slotları (TOKENS.md §10) — section yüzeyinden miras;
+     fallback = şemasız görünüm */
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--0RbHz765Hw, #dce0e1));
 }
 
 .ikas-faq-row__btn {
@@ -30,7 +32,7 @@
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-faq-row__btn:focus {
@@ -49,7 +51,7 @@
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-faq-row__question {
@@ -73,7 +75,7 @@
   position: relative;
   width: 36px;
   height: 36px;
-  border: 1px solid var(--0RbHz765Hw, #dce0e1);
+  border: 1px solid var(--p6Vorgv0Uy, var(--0RbHz765Hw, #dce0e1));
   border-radius: 50%;
   transition:
     background-color 0.3s ease,
@@ -90,7 +92,7 @@
   width: 12px;
   height: 1.5px;
   margin: -0.75px 0 0 -6px;
-  background-color: var(--pxNuSoudLn, #37435b);
+  background-color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
   transition: transform 0.4s var(--faq-ease), background-color 0.3s ease;
 }
 
@@ -138,7 +140,7 @@
   /* Numara sütunu + boşluk kadar içeriden başlar */
   padding: 0 0 clamp(20px, 2.4vw, 32px) calc(2ch + clamp(14px, 2vw, 28px) + 6px);
   line-height: 1.6;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   text-wrap: pretty;
 }
 
@@ -151,7 +153,7 @@
 }
 
 .ikas-faq-row__answer strong {
-  color: var(--pxNuSoudLn, #37435b);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
   font-weight: 600;
 }
 

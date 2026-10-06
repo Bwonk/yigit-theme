@@ -26,7 +26,9 @@
     0 100% / 100% var(--tl-thickness, 2px) no-repeat;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  color: var(--tl-color, var(--pxNuSoudLn));
+  /* Renk şeması: Link / HoverLink slotları (TOKENS.md §10). --tl-color /
+     --tl-hover-color yerel override'ları önceliklidir; fallback = şemasız görünüm. */
+  color: var(--tl-color, var(--spRu5BCzrk, var(--pxNuSoudLn)));
   text-decoration: none;
   cursor: pointer;
   appearance: none;
@@ -47,7 +49,7 @@ span.ikas-text-link {
 .ikas-text-link:hover,
 .ikas-text-link:focus-visible {
   background-size: 100% 100%;
-  color: var(--tl-hover-color, var(--vluFeuIeFs, #101418));
+  color: var(--tl-hover-color, var(--yccjLb7If4, var(--vluFeuIeFs, #101418)));
 }
 
 .ikas-text-link:focus {

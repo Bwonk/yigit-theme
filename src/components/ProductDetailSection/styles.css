@@ -9,8 +9,9 @@
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   /* Sticky ATC bar içeriği örtmesin */
   padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
 }

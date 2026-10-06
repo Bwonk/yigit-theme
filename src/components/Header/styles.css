@@ -609,7 +609,8 @@
     padding: 10px 0 6px;
   }
 
-  /* Pill tam genişlikteyken altından geçen içerik beyaza sönerek kaybolur */
+  /* Pill tam genişlikteyken altından geçen içerik beyaza sönerek kaybolur
+     (şema seçiliyse Background slotuna) */
   .ikas-header::before {
     content: "";
     position: absolute;
@@ -618,8 +619,8 @@
     pointer-events: none;
     background: linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--24KlcgGmm9) 97%, transparent) 62%,
-      color-mix(in srgb, var(--24KlcgGmm9) 0%, transparent)
+      color-mix(in srgb, var(--pGwtVHz9Sd, var(--24KlcgGmm9)) 97%, transparent) 62%,
+      color-mix(in srgb, var(--pGwtVHz9Sd, var(--24KlcgGmm9)) 0%, transparent)
     );
     opacity: 0;
     transition: opacity 0.25s ease;

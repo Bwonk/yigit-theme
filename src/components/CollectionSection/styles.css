@@ -9,8 +9,9 @@
 .ikas-collection-section {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   overflow: visible;
 }
 

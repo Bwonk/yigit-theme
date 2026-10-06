@@ -11,7 +11,8 @@
   overflow: hidden;
   max-width: 100%;
   padding: clamp(20px, 2.5vw, 40px) 0;
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz — TOKENS.md satır 14 */
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));  /* Saf Beyaz — TOKENS.md satır 14 */
   box-sizing: border-box;
   width: 100%;
 }
@@ -24,10 +25,10 @@
   z-index: 2;
   background: linear-gradient(
     90deg,
-    var(--24KlcgGmm9) 0%,
-    rgba(255, 255, 255, 0) 10%,
-    rgba(255, 255, 255, 0) 90%,
-    var(--24KlcgGmm9) 100%
+    var(--pGwtVHz9Sd, var(--24KlcgGmm9)) 0%,
+    transparent 10%,
+    transparent 90%,
+    var(--pGwtVHz9Sd, var(--24KlcgGmm9)) 100%
   );
 }
 
@@ -47,7 +48,7 @@
   font-weight: 600;
   font-size: var(--marquee-font-size, 38px);
   letter-spacing: 0;
-  fill: var(--marquee-color, var(--pxNuSoudLn)); /* Ana Lacivert fallback — TOKENS.md satır 10 */
+  fill: var(--marquee-color, var(--ucmfvEbo4R, var(--pxNuSoudLn))); /* Ana Lacivert fallback — TOKENS.md satır 10 */
 }
 
 /* Erişilebilirlik: Azaltılmış Hareket Tercihi */

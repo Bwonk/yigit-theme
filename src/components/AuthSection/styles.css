@@ -5,11 +5,15 @@
 .ikas-auth {
   --auth-frame-max: 900px;
   --auth-form-max: clamp(420px, 21vw, 560px);
+  /* Soluk dipnot: şema seçiliyse Heading ile Background karışımı.
+     Slot tanımsızsa bu değişken geçersiz olur → kullanım yerindeki fallback. */
+  --auth-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
   width: 100%;
   min-height: 100svh;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
-  background: var(--24KlcgGmm9, #fff);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  background: var(--pGwtVHz9Sd, var(--24KlcgGmm9, #fff));
   /* Center the auth frame when CSS viewport is taller than the capped composition
      (browser zoom-out) so the hero no longer stretches to full physical height. */
   display: flex;
@@ -54,7 +58,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-decoration: none;
   font-weight: 600;
   width: fit-content;
@@ -71,14 +75,14 @@
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-auth__intro {
   margin: 0;
   font-size: 15px;
   line-height: 1.45;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-auth__switcher {
@@ -88,7 +92,7 @@
   gap: 0;
   padding: 4px;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--pxNuSoudLn) 6%, transparent);
+  background: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 6%, transparent);
 }
 
 .ikas-auth__switcher-pill {
@@ -133,7 +137,7 @@
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -146,7 +150,7 @@
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.14em;
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: var(--auth-muted, var(--u9HctrBrDd, #aeb8c6));
   line-height: 1.7;
 }
 

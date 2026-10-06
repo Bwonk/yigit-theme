@@ -10,10 +10,15 @@
  * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-legal {
-  --legal-ink: var(--legal-text, var(--pxNuSoudLn));
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Metin rengi prop'u (--legal-text) şemanın Heading slotundan önce gelir. */
+  --legal-ink: var(--legal-text, var(--ucmfvEbo4R, var(--pxNuSoudLn)));
+  /* Alıntı/tablo başlığı zemini: şema seçiliyse Text ile Background karışımı.
+     Slot tanımsızsa bu değişken geçersiz olur → kullanım yerindeki fallback. */
+  --legal-tint: color-mix(in srgb, var(--hy9HpUbpuN) 6%, var(--pGwtVHz9Sd));
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   color: var(--legal-ink);
   padding: var(--section-py, clamp(40px, 5vw, 80px)) 0;
   margin-block: 0;
@@ -38,7 +43,7 @@
   gap: 14px;
   max-width: 820px;
   padding-bottom: clamp(24px, 3vw, 40px);
-  border-bottom: 1px solid var(--8ARbeTYsmD);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
 }
 
 .ikas-legal__eyebrow,
@@ -48,7 +53,7 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-legal__title {
@@ -59,7 +64,7 @@
 .ikas-legal__intro {
   margin: 0;
   max-width: 64ch;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
 }
 
 .ikas-legal__updated {
@@ -105,17 +110,17 @@
 .ikas-legal__related-link {
   display: block;
   padding: 6px 0 6px 14px;
-  border-left: 2px solid var(--8ARbeTYsmD);
+  border-left: 2px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   font-size: 14px;
   line-height: 1.4;
-  color: var(--xGFwg5Zqpf);
+  color: var(--spRu5BCzrk, var(--xGFwg5Zqpf));
   text-decoration: none;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .ikas-legal__related-link:hover {
-  color: var(--legal-ink);
-  border-left-color: var(--legal-ink);
+  color: var(--yccjLb7If4, var(--legal-ink));
+  border-left-color: var(--yccjLb7If4, var(--legal-ink));
 }
 
 .ikas-legal__related-link[aria-current="page"] {
@@ -132,7 +137,7 @@
 /* ── Rich text içeriği ────────────────────────────────────────────────── */
 
 .ikas-legal__content {
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   line-height: 1.7;
   overflow-wrap: break-word;
 }
@@ -194,12 +199,13 @@
 }
 
 .ikas-legal__content a {
-  color: var(--legal-ink);
+  color: var(--spRu5BCzrk, var(--legal-ink));
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .ikas-legal__content a:hover {
+  color: var(--yccjLb7If4, var(--spRu5BCzrk, var(--legal-ink)));
   text-decoration-thickness: 2px;
 }
 
@@ -207,13 +213,13 @@
   margin: 1.5em 0;
   padding: 16px 20px;
   border-left: 3px solid var(--legal-ink);
-  background: var(--jQs026VIpf);
+  background: var(--legal-tint, var(--jQs026VIpf));
 }
 
 .ikas-legal__content hr {
   margin: 2em 0;
   border: 0;
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
 }
 
 .ikas-legal__content table {
@@ -229,14 +235,14 @@
 .ikas-legal__content th,
 .ikas-legal__content td {
   padding: 10px 12px;
-  border: 1px solid var(--8ARbeTYsmD);
+  border: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   text-align: left;
   vertical-align: top;
 }
 
 .ikas-legal__content th {
   color: var(--legal-ink);
-  background: var(--jQs026VIpf);
+  background: var(--legal-tint, var(--jQs026VIpf));
   font-weight: 600;
 }
 
@@ -289,18 +295,18 @@
 
   .ikas-legal__related-link {
     padding: 9px 16px;
-    border: 1px solid var(--8ARbeTYsmD);
+    border: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
     border-radius: 999px;
     font-size: 13px;
     white-space: nowrap;
   }
 
   .ikas-legal__related-link:hover {
-    border-color: var(--legal-ink);
+    border-color: var(--yccjLb7If4, var(--legal-ink));
   }
 
   .ikas-legal__related-link[aria-current="page"] {
-    color: var(--24KlcgGmm9);
+    color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
     background: var(--legal-ink);
     border-color: var(--legal-ink);
   }

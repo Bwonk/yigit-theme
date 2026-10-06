@@ -1,8 +1,9 @@
 .ikas-video-demo {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   padding: var(--section-py, 48px) var(--section-px, 20px);
   display: flex;
   justify-content: center;
@@ -30,12 +31,12 @@
 
 .ikas-video-demo__title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-video-demo__subtitle {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   opacity: 0.8;
 }
 

@@ -12,7 +12,8 @@
 .ikas-editorial-bridge {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz — TOKENS.md satır 14 */
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));  /* Saf Beyaz — TOKENS.md satır 14 */
   padding: var(--section-py-mobile, clamp(16px, 2vw, 32px)) 0 var(--section-py, clamp(32px, 4vw, 60px));
   /* Dikey boşluk yalnızca padding'den gelir — margin collapse ile Hero'ya
      binmesin diye margin'ler açıkça sıfırlanır. */
@@ -32,7 +33,7 @@
 .ikas-editorial-bridge__line {
   width: 100%;
   height: 1px;
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
+  background-color: var(--p6Vorgv0Uy, var(--pxNuSoudLn));  /* Ana Lacivert — TOKENS.md satır 10 */
   transform-origin: left;
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -66,7 +67,7 @@
   font-weight: 500;
   font-size: clamp(16px, 1.4vw, 22px);
   line-height: 1.45;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   max-width: 38ch;
 }
 
@@ -74,7 +75,7 @@
 .ikas-editorial-bridge__meta {
   font-size: 11px;
   letter-spacing: 0.18em;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   padding-top: 6px;
   white-space: nowrap;
 }

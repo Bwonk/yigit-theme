@@ -33,8 +33,10 @@
   display: flex;
   align-items: stretch;
   overflow: hidden;
-  color: var(--pxNuSoudLn, #37435b);
-  background-color: var(--24KlcgGmm9, #ffffff);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Açılan panel (dialog) yükseltilmiş yüzey — sabit renklerde kalır. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9, #ffffff));
 }
 
 .ikas-mgauth__inner {

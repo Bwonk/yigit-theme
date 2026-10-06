@@ -19,8 +19,10 @@
 .ikas-deal-cards {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Kartlar (lacivert + açık yüzey paneli) bilinçli olarak sabit. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   padding: var(--section-py, clamp(32px, 4vw, 60px)) 0;
   margin-block: 0;
   overflow: hidden;
@@ -48,7 +50,7 @@
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-meta-aa, var(--p6EMJiXye1));
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, var(--p6EMJiXye1)));
 }
 
 .ikas-deal-cards__title {
@@ -57,12 +59,12 @@
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-deal-cards__subtitle {
   margin: 6px 0 0;
-  color: var(--text-body-aa, var(--xGFwg5Zqpf));
+  color: var(--hy9HpUbpuN, var(--text-body-aa, var(--xGFwg5Zqpf)));
   max-width: 58ch;
 }
 

@@ -1,21 +1,22 @@
 .ikas-press-ticker {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
   padding: var(--section-py, 24px) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   overflow: hidden;
-  border-top: 1px solid var(--cdFDkBbKkc);
-  border-bottom: 1px solid var(--cdFDkBbKkc);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc));
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc));
 }
 
 .ikas-press-ticker__title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   opacity: 0.6;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -72,7 +73,7 @@
 .ikas-press-ticker__logo-text {
   font-size: 20px;
   font-weight: 700;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   letter-spacing: -0.01em;
   white-space: nowrap;
 }

@@ -14,8 +14,9 @@
 .ikas-category-showcase {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   padding: var(--section-py, clamp(32px, 4vw, 60px)) 0;
   margin-block: 0;
   overflow: hidden;
@@ -52,7 +53,7 @@
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-category-showcase__title {
@@ -61,23 +62,25 @@
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-category-showcase__subtitle {
   margin: 6px 0 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   max-width: 58ch;
 }
 
 .ikas-category-showcase__link {
   white-space: nowrap;
+  --tl-color: var(--spRu5BCzrk, var(--pxNuSoudLn));
+  --tl-hover-color: var(--yccjLb7If4, var(--vluFeuIeFs, #101418));
 }
 
 .ikas-category-showcase__empty {
   margin: 0;
   padding: clamp(28px, 4vw, 48px) 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   text-align: center;
 }
 
@@ -166,7 +169,7 @@ a.ikas-category-showcase__card:focus-visible {
 
 .ikas-category-showcase__name {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   letter-spacing: -0.02em;
   overflow-wrap: anywhere;
 }
@@ -178,7 +181,7 @@ a.ikas-category-showcase__card:focus-visible {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--xGFwg5Zqpf);
+  color: var(--spRu5BCzrk, var(--xGFwg5Zqpf));
   transition: color 0.25s ease;
 }
 
@@ -193,7 +196,7 @@ a.ikas-category-showcase__card:focus-visible {
   }
 
   a.ikas-category-showcase__card:hover .ikas-category-showcase__cta {
-    color: var(--pxNuSoudLn);
+    color: var(--yccjLb7If4, var(--pxNuSoudLn));
   }
 
   a.ikas-category-showcase__card:hover .ikas-category-showcase__arrow {

@@ -12,10 +12,13 @@
  * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-contact {
-  --contact-ink: var(--contact-text, var(--pxNuSoudLn));
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Metin rengi prop'u (--contact-text) şemanın Heading slotundan önce gelir.
+     Form paneli yükseltilmiş açık kart: kendi içinde sabit renkte kalır. */
+  --contact-ink: var(--contact-text, var(--ucmfvEbo4R, var(--pxNuSoudLn)));
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   color: var(--contact-ink);
   padding: var(--section-py, clamp(40px, 5vw, 80px)) 0;
 }
@@ -53,7 +56,7 @@
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-contact__title {
@@ -64,14 +67,14 @@
 .ikas-contact__intro {
   margin: 0;
   max-width: 46ch;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
 }
 
 .ikas-contact__info {
   margin: 0;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
 }
 
 .ikas-contact__info-row {
@@ -80,7 +83,7 @@
   gap: 16px;
   align-items: baseline;
   padding: 18px 0;
-  border-bottom: 1px solid var(--8ARbeTYsmD);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
 }
 
 .ikas-contact__info-label {
@@ -88,7 +91,7 @@
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-contact__info-value {
@@ -100,7 +103,7 @@
 }
 
 .ikas-contact__info-link {
-  color: inherit;
+  color: var(--spRu5BCzrk, var(--contact-ink));
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
@@ -109,6 +112,7 @@
 }
 
 .ikas-contact__info-link:hover {
+  color: var(--yccjLb7If4, var(--spRu5BCzrk, var(--contact-ink)));
   text-decoration-color: currentColor;
 }
 
@@ -121,6 +125,9 @@
 /* ── Sağ: form paneli ─────────────────────────────────────────────────── */
 
 .ikas-contact__panel {
+  /* Şemadan bağımsız: panel içi mürekkep şemasız değere döner. */
+  --contact-ink: var(--contact-text, var(--pxNuSoudLn));
+  color: var(--contact-ink);
   background: var(--jQs026VIpf, #f4f5f6);
   border-radius: var(--input-radius, 14px);
   padding: clamp(24px, 3.4vw, 48px);
