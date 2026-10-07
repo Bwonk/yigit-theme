@@ -78,7 +78,10 @@ const ProfilePanel = observer(function ProfilePanel({
         className="ikas-account__form"
         onSubmit={(e) => {
           e.preventDefault();
-          void submitAccountInfoForm(accountForm);
+          if (accountForm.isSubmitting) return;
+          submitAccountInfoForm(accountForm).catch((err) =>
+            console.error("Hesap bilgisi kaydetme hatası:", err)
+          );
         }}
         noValidate
       >
@@ -180,7 +183,7 @@ const ProfilePanel = observer(function ProfilePanel({
 });
 
 export function AccountDashboard({
-  backgroundColor = "#ffffff",
+  backgroundColor,
   accountInfoLabel = "HESABIM",
   ordersLabel = "SİPARİŞLERİM",
   addressesLabel = "ADRESLERİM",
@@ -216,12 +219,18 @@ export function AccountDashboard({
   deleteConfirmTitle = "Adresi sil",
   deleteConfirmMessage = "Bu adresi silmek istediğine emin misin?",
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
+  selectOptionsText,
   removeFavoriteText = "FAVORİDEN ÇIKAR",
   addressTitleLabel = "BAŞLIK",
   addressLineLabel = "ADRES",
   cityLabel = "ŞEHİR",
   postalCodeLabel = "POSTA KODU",
   countryLabel = "ÜLKE",
+  stateLabel,
+  districtLabel,
+  regionLabel,
   className = "",
 }: AccountDashboardProps) {
   const [ready, setReady] = useState(false);
@@ -377,6 +386,9 @@ export function AccountDashboard({
               cityLabel={cityLabel}
               postalCodeLabel={postalCodeLabel}
               countryLabel={countryLabel}
+              stateLabel={stateLabel}
+              districtLabel={districtLabel}
+              regionLabel={regionLabel}
             />
           ) : (
             <AccountFavoritesPanel
@@ -384,6 +396,9 @@ export function AccountDashboard({
               emptyText={favoritesEmptyText}
               shopButtonText={shopButtonText}
               addToCartText={addToCartText}
+              discountBadgeText={discountBadgeText}
+              quickAddAriaLabel={quickAddAriaLabel}
+              selectOptionsText={selectOptionsText}
               removeFavoriteText={removeFavoriteText}
             />
           )}

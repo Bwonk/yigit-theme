@@ -26,7 +26,7 @@
   justify-content: center;
   cursor: pointer;
   line-height: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-social-btn:disabled {
@@ -39,7 +39,7 @@
 }
 
 .ikas-social-btn:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
   border-radius: 9999px;
 }
@@ -56,12 +56,12 @@
 
 /* Chip kenar — Nötr / Çizgi (siyah/navy çizgi yok) */
 .ikas-social-btn .ikas-icon-chip {
-  border-color: var(--8ARbeTYsmD, #e4e7e8);
+  border-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
 }
 
 .ikas-social-btn:hover .ikas-icon-chip,
 .ikas-social-btn:focus-visible .ikas-icon-chip {
-  border-color: var(--8ARbeTYsmD, #e4e7e8);
+  border-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
 }
 
 /* Heart — Durum / Favori (outline + filled currentColor) */
@@ -71,16 +71,16 @@
 
 /* Liked: kırmızı glyph; chip nötr kalır (accent solid yok) */
 .ikas-social-btn--liked .ikas-icon-chip {
-  border-color: var(--8ARbeTYsmD, #e4e7e8);
+  border-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   background-color: transparent;
   color: inherit;
 }
 
 /* Share copied — accent chip + ink check (mevcut sözleşme) */
 .ikas-social-btn--copied .ikas-icon-chip {
-  border-color: var(--sy8ZnXZdoG);
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--vluFeuIeFs, #101418);
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
 }
 
 /* Particles — favori kırmızısı + lacivert */
@@ -99,7 +99,7 @@
 }
 
 .ikas-social-btn__particle--alt {
-  background-color: var(--pxNuSoudLn);
+  background-color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   width: 4px;
   height: 4px;
   margin: -2px 0 0 -2px;

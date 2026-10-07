@@ -51,7 +51,8 @@
   max-height: min(78vh, 560px);
   display: flex;
   flex-direction: column;
-  background-color: var(--24KlcgGmm9);
+  /* Renk şeması slotları (TOKENS.md §10) — PortalScope sahibi section'ın şemasını taşır */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -16px 40px rgba(19, 25, 36, 0.14);
   transform: translateY(110%);
@@ -75,7 +76,7 @@
   width: 42px;
   height: 4px;
   border-radius: 9999px;
-  background-color: var(--8ARbeTYsmD, #e4e7e8);
+  background-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   margin-bottom: 10px;
 }
 
@@ -85,7 +86,7 @@
   justify-content: space-between;
   gap: 16px;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
 }
 
 .ikas-size-guide__title {
@@ -94,7 +95,7 @@
   font-weight: 600;
   font-size: clamp(20px, 2.2vw, 26px);
   letter-spacing: -0.025em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-size-guide__body {
@@ -110,7 +111,7 @@
   margin: 0;
   font-size: clamp(14px, 1vw, 16px);
   line-height: 1.6;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   text-wrap: pretty;
   max-width: 48ch;
 }
@@ -127,7 +128,7 @@
   justify-content: space-between;
   gap: 20px;
   padding: 14px 0;
-  border-bottom: 1px solid var(--wElEhJwjYh, #edeff0);
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--wElEhJwjYh, #edeff0));
 }
 
 .ikas-size-guide__row:last-child {
@@ -139,14 +140,14 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.16em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
 .ikas-size-guide__row dd {
   margin: 0;
   font-size: 15px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-align: right;
 }
 
@@ -154,7 +155,7 @@
   margin: 0;
   font-size: 13.5px;
   line-height: 1.55;
-  color: var(--fcAwzuFj9W, #4e5a6e);
+  color: var(--hy9HpUbpuN, var(--fcAwzuFj9W, #4e5a6e));
   text-wrap: pretty;
 }
 

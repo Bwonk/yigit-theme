@@ -4,6 +4,8 @@
 @import "../QuantityStepper/styles.css";
 @import "../ProductSocialActions/styles.css";
 @import "../PromotionCountdownBar/styles.css";
+@import "../ProductOptionSet/styles.css";
+@import "../ProductGroupSelector/styles.css";
 
 /* ═══════════════════════════════════════════════════════════════════════
  * PRODUCT BUY BOX — referans UrunDetay bilgi paneli
@@ -17,7 +19,9 @@
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Varyant pill'leri: seçili/hover = PrimaryButton, diğerleri = SecondaryButton. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__intro {
@@ -37,13 +41,13 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
 .ikas-buy-box__badge {
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--vluFeuIeFs, #101418);
+  background-color: var(--tPAyW5QcRt, var(--eMo2Pn8Jv3, var(--sy8ZnXZdoG)));
+  color: var(--65Fcrshr5K, var(--veglu61TEe, var(--vluFeuIeFs, #101418)));
   border-radius: 8px;
   font-family: var(--font-mono);
   font-size: 9.5px;
@@ -64,12 +68,10 @@
   flex: 1 1 auto;
   min-width: 0;
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(28px, 3.6vw, 54px);
   line-height: 1.02;
   letter-spacing: -0.035em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-wrap: balance;
   word-break: break-word;
 }
@@ -83,6 +85,12 @@
   color: inherit;
   width: fit-content;
   border-radius: 6px;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .ikas-buy-box__rating:focus {
@@ -90,7 +98,7 @@
 }
 
 .ikas-buy-box__rating:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
 }
 
@@ -105,7 +113,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.12em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -119,14 +127,14 @@
 .ikas-buy-box__final-price {
   font-family: var(--font-mono);
   font-size: clamp(24px, 2.2vw, 32px);
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   letter-spacing: -0.01em;
 }
 
 .ikas-buy-box__sell-price {
   font-family: var(--font-mono);
   font-size: 14px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-decoration: line-through;
 }
 
@@ -134,8 +142,8 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: var(--pxNuSoudLn);
-  border: 1.5px solid var(--sy8ZnXZdoG);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  border: 1.5px solid var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)));
   border-radius: 9999px;
   padding: 5px 10px;
   text-transform: uppercase;
@@ -145,14 +153,14 @@
   margin: 0;
   font-size: clamp(14.5px, 1.05vw, 16.5px);
   line-height: 1.62;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   max-width: 46ch;
   text-wrap: pretty;
 }
 
 .ikas-buy-box__rule {
   height: 1px;
-  background-color: var(--8ARbeTYsmD, #e4e7e8);
+  background-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   width: 100%;
 }
 
@@ -179,7 +187,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.18em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -187,7 +195,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-transform: uppercase;
 }
 
@@ -234,14 +242,14 @@
 }
 
 .ikas-buy-box__swatch:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 4px;
 }
 
 .ikas-buy-box__swatch-ring {
   position: absolute;
   inset: -6px;
-  border: 1.5px solid var(--pxNuSoudLn);
+  border: 1.5px solid var(--ucmfvEbo4R, var(--pxNuSoudLn));
   border-radius: 50%;
   opacity: 0;
   pointer-events: none;
@@ -265,29 +273,35 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
+  border: 1.5px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
   border-radius: 9999px;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   padding: 11px 18px;
   cursor: pointer;
   transition:
     color 0.3s ease,
-    border-color 0.22s ease;
+    border-color 0.3s ease,
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+/* Yükselen dolgu — Button pill'leriyle aynı: alttan kavisli üst kenarla
+   yükselir, yerine oturunca kavis düzleşir. */
 .ikas-buy-box__pill-grow {
   position: absolute;
-  inset: -14% -6%;
+  inset: 0;
   z-index: 0;
-  background-color: var(--pxNuSoudLn);
-  border-radius: 9999px;
-  transform: scale(0);
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
   pointer-events: none;
 }
 
@@ -296,34 +310,41 @@
   z-index: 1;
 }
 
-.ikas-buy-box__pill:focus-visible:not(:disabled) {
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
+.ikas-buy-box__pill:is(:focus-visible, :active):not(:disabled) {
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
-.ikas-buy-box__pill:focus-visible:not(:disabled) .ikas-buy-box__pill-grow {
-  transform: scale(1);
+.ikas-buy-box__pill:is(:focus-visible, :active):not(:disabled) .ikas-buy-box__pill-grow {
+  transform: none;
+  border-radius: 0;
+}
+
+.ikas-buy-box__pill:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .ikas-buy-box__pill:hover:not(:disabled) {
-    color: var(--24KlcgGmm9);
-    border-color: var(--pxNuSoudLn);
+    color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+    border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
   }
 
   .ikas-buy-box__pill:hover:not(:disabled) .ikas-buy-box__pill-grow {
-    transform: scale(1);
+    transform: none;
+    border-radius: 0;
   }
 }
 
+/* Seçili: lacivert dolgu oturmuş halde */
 .ikas-buy-box__pill--selected {
-  background-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
-  border-color: var(--pxNuSoudLn);
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__pill--selected .ikas-buy-box__pill-grow {
-  transform: scale(1);
+  transform: none;
+  border-radius: 0;
 }
 
 .ikas-buy-box__pill:disabled {
@@ -336,7 +357,7 @@
 }
 
 .ikas-buy-box__pill:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
@@ -354,7 +375,7 @@
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   text-transform: uppercase;
 }
 
@@ -367,11 +388,11 @@
 }
 
 .ikas-buy-box__stock--out {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-buy-box__stock--out .ikas-buy-box__stock-dot {
-  background-color: color-mix(in srgb, var(--pxNuSoudLn) 55%, transparent);
+  background-color: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 55%, transparent);
 }
 
 /* Pill CTA — space-between + sepet chip (Button PILL_PRIMARY üzerine) */
@@ -388,8 +409,8 @@
   width: 44px;
   height: 44px;
   border-radius: 9999px;
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--vluFeuIeFs, #101418);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,14 +428,33 @@
 .ikas-buy-box__cta.ikas-btn--pill_primary:hover:not(:disabled) .ikas-buy-box__cta-chip,
 .ikas-buy-box__cta.ikas-btn--pill_primary:focus-visible:not(:disabled) .ikas-buy-box__cta-chip {
   background-color: var(--pxNuSoudLn);
-  color: var(--sy8ZnXZdoG);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+}
+
+/* Kişiselleştirme doğrulama uyarısı — CTA altında, aria-live bölgesi
+   boşken yer kaplamaz ama erişilebilirlik ağacında kalır. */
+.ikas-buy-box__options-alert {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-danger-text, #8f1f1f);
+}
+
+.ikas-buy-box__options-alert:not(.ikas-buy-box__options-alert--visible) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .ikas-buy-box__trust {
   list-style: none;
   margin: 0;
   padding: clamp(14px, 1.6vw, 20px) 0 0;
-  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -427,10 +467,8 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.12em;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(8px);
   transition:
     opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -444,14 +482,15 @@
   transition-delay: 140ms;
 }
 
-.ikas-buy-box__trust--inview .ikas-buy-box__trust-item {
-  opacity: 1;
-  transform: none;
+/* Varsayılan görünür; gizli başlangıç yalnızca JS "armed" iken (editör/SSR güvenli). */
+.ikas-buy-box__trust--armed .ikas-buy-box__trust-item {
+  opacity: 0;
+  transform: translateY(8px);
 }
 
 .ikas-buy-box__trust-item svg {
   flex: 0 0 18px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -474,8 +513,7 @@
     transform: none;
   }
 
-  .ikas-buy-box__pill:hover:not(:disabled) .ikas-buy-box__pill-grow,
-  .ikas-buy-box__pill:focus-visible:not(:disabled) .ikas-buy-box__pill-grow {
+  .ikas-buy-box__pill:active:not(:disabled) {
     transform: none;
   }
 }

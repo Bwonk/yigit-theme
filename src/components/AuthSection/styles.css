@@ -5,11 +5,15 @@
 .ikas-auth {
   --auth-frame-max: 900px;
   --auth-form-max: clamp(420px, 21vw, 560px);
+  /* Soluk dipnot: şema seçiliyse Heading ile Background karışımı.
+     Slot tanımsızsa bu değişken geçersiz olur → kullanım yerindeki fallback. */
+  --auth-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
   width: 100%;
   min-height: 100svh;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
-  background: var(--24KlcgGmm9, #fff);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  background: var(--pGwtVHz9Sd, var(--24KlcgGmm9, #fff));
   /* Center the auth frame when CSS viewport is taller than the capped composition
      (browser zoom-out) so the hero no longer stretches to full physical height. */
   display: flex;
@@ -54,7 +58,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-decoration: none;
   font-weight: 600;
   width: fit-content;
@@ -68,20 +72,17 @@
 
 .ikas-auth__heading {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-auth__intro {
   margin: 0;
-  font-family: var(--font-heading);
   font-size: 15px;
   line-height: 1.45;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-auth__switcher {
@@ -91,7 +92,7 @@
   gap: 0;
   padding: 4px;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--pxNuSoudLn) 6%, transparent);
+  background: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 6%, transparent);
 }
 
 .ikas-auth__switcher-pill {
@@ -101,7 +102,7 @@
   left: 4px;
   width: calc(50% - 4px);
   border-radius: 9999px;
-  background: var(--24KlcgGmm9, #fff);
+  background: var(--jyNun2ZBza, var(--24KlcgGmm9, #fff));
   box-shadow: 0 1px 3px rgba(16, 20, 24, 0.08);
   transform: translateX(0);
   transition: none;
@@ -136,7 +137,7 @@
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -144,224 +145,17 @@
   color: var(--pxNuSoudLn);
 }
 
-.ikas-auth__form {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 1.6vw, 18px);
-  /* Studio: Animasyon / Fade Up Enter — ThemeKeyframeRef.fadeUp */
-  animation-name: _2wIPGJlyTg;
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-  animation-fill-mode: both;
-}
-
-.ikas-auth__field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.ikas-auth__label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  color: var(--p6EMJiXye1, #8c97a5);
-}
-
-.ikas-auth__banner {
-  padding: 12px 14px;
-  border-radius: 9999px;
-  border: 1px solid color-mix(in srgb, var(--color-danger) 35%, transparent);
-  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
-  color: var(--color-danger-text);
-  font-family: var(--font-heading);
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.ikas-auth__input-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.ikas-auth__input {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
-  border-radius: 9999px;
-  background: var(--24KlcgGmm9, #fff);
-  color: var(--pxNuSoudLn);
-  font-family: var(--font-body);
-  font-size: 15px;
-  padding: 15px 16px;
-  outline: none;
-  box-shadow: none;
-  transition:
-    border-color 0.22s ease,
-    box-shadow 0.22s ease;
-}
-
-.ikas-auth__input-wrap .ikas-auth__input {
-  padding-right: 48px;
-}
-
-.ikas-auth__input:hover {
-  border-color: var(--cdFDkBbKkc, #c8cfd0);
-}
-
-.ikas-auth__input:focus {
-  border-color: var(--pxNuSoudLn);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sy8ZnXZdoG) 50%, transparent);
-}
-
-.ikas-auth__input--error {
-  border-color: var(--color-warning-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-warning-focus) 28%, transparent);
-}
-
-.ikas-auth__input--error:focus {
-  border-color: var(--color-warning-focus);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-warning-focus) 28%, transparent);
-}
-
-.ikas-auth__pw-toggle {
-  position: absolute;
-  right: 7px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border: 0;
-  border-radius: 9999px;
-  background: transparent;
-  color: var(--p6EMJiXye1, #8c97a5);
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.22s ease, color 0.22s ease;
-}
-
-.ikas-auth__pw-toggle:hover {
-  background: color-mix(in srgb, var(--pxNuSoudLn) 6%, transparent);
-  color: var(--pxNuSoudLn);
-}
-
-.ikas-auth__error {
-  font-family: var(--font-heading);
-  font-size: 12px;
-  color: var(--color-danger-text);
-}
-
-.ikas-auth__strength {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin-top: 2px;
-}
-
-.ikas-auth__strength-bar {
-  height: 3px;
-  border-radius: 9999px;
-  background: var(--8ARbeTYsmD, #e4e7e8);
-}
-
-.ikas-auth__strength-bar--on {
-  background: var(--sy8ZnXZdoG);
-}
-
-.ikas-auth__consent-block {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.ikas-auth__row {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.ikas-auth__consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  font-family: var(--font-body);
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
-  cursor: pointer;
-  transition: color 0.22s ease;
-}
-
-.ikas-auth__consent:hover {
-  color: var(--pxNuSoudLn);
-}
-
-.ikas-auth__checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  margin: 1px 0 0;
-  flex: 0 0 20px;
-  box-sizing: border-box;
-  border: 1.5px solid var(--cdFDkBbKkc, #c8cfd0);
-  border-radius: 6px;
-  background: var(--24KlcgGmm9, #fff);
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  transition:
-    background 0.22s ease,
-    border-color 0.22s ease;
-}
-
-.ikas-auth__checkbox::after {
-  content: "";
-  width: 10px;
-  height: 6px;
-  border-left: 2.5px solid var(--fcAwzuFj9W, #101418);
-  border-bottom: 2.5px solid var(--fcAwzuFj9W, #101418);
-  transform: rotate(-45deg) translateY(-1px);
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.ikas-auth__checkbox:checked {
-  background: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
-}
-
-.ikas-auth__checkbox:checked::after {
-  opacity: 1;
-}
-
-.ikas-auth__checkbox:focus-visible {
-  outline: 2px solid var(--pxNuSoudLn);
-  outline-offset: 3px;
-}
-
-.ikas-auth__checkbox[aria-invalid="true"] {
-  border-color: var(--color-warning-focus);
-}
-
-.ikas-auth__submit {
-  margin-top: 4px;
-}
-
 .ikas-auth__footnote {
   margin: 0;
   font-family: var(--font-mono);
   font-size: 9.5px;
   letter-spacing: 0.14em;
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: var(--auth-muted, var(--u9HctrBrDd, #aeb8c6));
   line-height: 1.7;
 }
 
 /* ─── Stacked: phones + portrait tablets (< 900) ─── */
-@media (max-width: 899px) {
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-auth {
     display: block;
     justify-content: flex-start;
@@ -439,14 +233,6 @@
     display: none;
   }
 
-  .ikas-auth__form {
-    gap: 10px;
-  }
-
-  .ikas-auth__input {
-    padding: 11px 14px;
-  }
-
   .ikas-auth__tab {
     padding: 10px 8px;
     font-size: 12px;
@@ -462,7 +248,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-auth__form-side {
     padding: 20px var(--mobile-px, 16px) 36px;
   }
@@ -472,15 +258,10 @@
     letter-spacing: 0.08em;
     padding: 12px 8px;
   }
-
-  .ikas-auth__input {
-    padding: 14px 14px;
-    font-size: 16px; /* prevents iOS zoom */
-  }
 }
 
 /* Short phones: keep form reachable sooner */
-@media (max-width: 640px) and (max-height: 740px) {
+@media (max-width: bp(HDRapYMzn7)) and (max-height: 740px) {
   .ikas-auth__form-side {
     padding-top: 16px;
   }
@@ -491,7 +272,7 @@
 }
 
 /* Extreme zoom / tiny CSS viewport: keep inputs + CTA in first screen */
-@media (max-width: 899px) and (max-height: 420px) {
+@media (max-width: bp(kmfaNJ5hH8)) and (max-height: 420px) {
   .ikas-auth__form-side {
     padding: 12px var(--mobile-px, 16px) 20px;
   }
@@ -513,27 +294,10 @@
     display: none;
   }
 
-  .ikas-auth__form {
-    gap: 8px;
-  }
-
-  .ikas-auth__field {
-    gap: 4px;
-  }
-
   .ikas-auth__tab {
     padding: 8px 4px;
     font-size: 11px;
     letter-spacing: 0.04em;
-  }
-
-  .ikas-auth__input {
-    padding: 10px 12px;
-    font-size: 16px;
-  }
-
-  .ikas-auth__submit {
-    margin-top: 0;
   }
 }
 
@@ -552,7 +316,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ikas-auth__form-wrap,
-  .ikas-auth__form,
   .ikas-auth__switcher-pill {
     animation: none;
     transition: none;

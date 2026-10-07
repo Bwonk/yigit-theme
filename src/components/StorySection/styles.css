@@ -15,8 +15,9 @@
 .ikas-story {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);  /* Saf Beyaz — TOKENS.md satır 14 */
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));  /* Saf Beyaz — TOKENS.md satır 14 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   padding: var(--section-py, clamp(40px, 5vw, 80px)) 0;
   position: relative;
   overflow: hidden;
@@ -42,20 +43,18 @@
 }
 
 .ikas-story__tag {
-  font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: var(--p6EMJiXye1);
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 .ikas-story__paragraph {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(24px, 3.2vw, 46px);
   letter-spacing: -0.03em;
   line-height: 1.25;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-story__word {
@@ -67,15 +66,15 @@
 
 .ikas-story__word--lit {
   opacity: 1;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
 }
 
 .ikas-story__counters {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
-  border-top: 1px solid var(--8ARbeTYsmD);
-  border-bottom: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
+  border-bottom: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   padding: 32px 0;
   width: 100%;
 }
@@ -87,19 +86,17 @@
 }
 
 .ikas-story__counter-val {
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(32px, 3.6vw, 52px);
   letter-spacing: -0.03em;
-  color: var(--pxNuSoudLn);             /* Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));             /* Ana Lacivert — TOKENS.md satır 10 */
   line-height: 1;
 }
 
 .ikas-story__counter-label {
-  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
-  color: var(--p6EMJiXye1);
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
 }
 
 @media (prefers-reduced-motion: reduce) {

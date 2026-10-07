@@ -199,3 +199,38 @@ export function useFocusTrap({
 export function inertProps(isInert: boolean): Record<string, unknown> {
   return isInert ? { inert: true } : {};
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+ * Body scroll kilidi — referans sayımlı.
+ *
+ * Birden fazla panel (mobil menü, sepet çekmecesi, arama, beden rehberi)
+ * aynı anda veya art arda açılabilir. Her biri body.style.overflow'u kendisi
+ * "" yaparsa, biri kapanınca diğeri açıkken sayfa kaydırılabilir hale gelir.
+ * Kilit yalnızca son sahibi bırakınca kalkar ve önceki değer geri yüklenir.
+ * ───────────────────────────────────────────────────────────────────────── */
+let scrollLockCount = 0;
+let scrollLockPrevOverflow = "";
+
+function lockBodyScroll(): () => void {
+  if (typeof document === "undefined") return () => {};
+  if (scrollLockCount === 0) {
+    scrollLockPrevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+  }
+  scrollLockCount += 1;
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    scrollLockCount = Math.max(0, scrollLockCount - 1);
+    if (scrollLockCount === 0) document.body.style.overflow = scrollLockPrevOverflow;
+  };
+}
+
+/** `active` true iken body scroll'u kilitler; kapanınca/unmount'ta bırakır. */
+export function useBodyScrollLock(active: boolean): void {
+  useEffect(() => {
+    if (!active) return;
+    return lockBodyScroll();
+  }, [active]);
+}

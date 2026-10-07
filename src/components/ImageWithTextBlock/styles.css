@@ -3,9 +3,13 @@
 .ikas-image-text {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
-  padding: var(--section-py, 48px) var(--section-px, 20px);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Not: index.tsx inline `color` verir; başlık/açıklama slotu kendisi okur,
+     slot tanımsızsa currentColor (= miras alınan inline renk) kalır. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
+  /* Yatay kenar boşluğu container'da (--site-gutter) — diğer bölümlerle aynı hiza */
+  padding: var(--section-py, 48px) 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +19,8 @@
   max-width: var(--max-site-width, 1560px);
   width: 100%;
   margin: 0 auto;
+  padding-inline: var(--site-gutter, 20px);
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-areas: "media content";
@@ -65,8 +71,9 @@
 }
 
 .ikas-image-text__badge {
-  color: var(--badge-color, var(--sy8ZnXZdoG));
-  background-color: var(--badge-bg, var(--pxNuSoudLn));
+  /* Etiket rozeti: şema Badge/Label slotu → global Rozet / Etiket rengi */
+  color: var(--badge-color, var(--65Fcrshr5K, var(--veglu61TEe, var(--sy8ZnXZdoG))));
+  background-color: var(--badge-bg, var(--tPAyW5QcRt, var(--eMo2Pn8Jv3, var(--pxNuSoudLn))));
   padding: 6px 14px;
   border-radius: 20px;
   letter-spacing: 0.06em;
@@ -76,13 +83,13 @@
 
 .ikas-image-text__title {
   margin: 0;
-  color: inherit;
+  color: var(--ucmfvEbo4R, currentColor);
   line-height: 1.2;
 }
 
 .ikas-image-text__desc {
   margin: 0;
-  color: inherit;
+  color: var(--hy9HpUbpuN, currentColor);
   opacity: 0.85;
   line-height: 1.6;
 }
@@ -90,7 +97,11 @@
 /* RESPONSIVE BREAKPOINT (<768px DESIGN.md) */
 @media (max-width: bp(HDRapYMzn7)) {
   .ikas-image-text {
-    padding: var(--section-py-mobile, 32px) var(--mobile-px, 16px);
+    padding: var(--section-py-mobile, 32px) 0;
+  }
+
+  .ikas-image-text__container {
+    padding-inline: var(--mobile-px, 16px);
   }
 
   .ikas-image-text__container,

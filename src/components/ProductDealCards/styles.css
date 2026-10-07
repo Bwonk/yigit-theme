@@ -1,0 +1,469 @@
+/* ═══════════════════════════════════════════════════════════════════════
+ * PRODUCT DEAL CARDS — Fırsatlar / Paketler (ana sayfa ticari ara bölüm)
+ *
+ * Başlık bandı FeaturedCollectionGrid ile aynı dildedir. İki büyük promo
+ * kartı normal ürün ızgarasından ayrışır: kart 1 lacivert panel + beyaz
+ * metin, kart 2 açık yüzey paneli + lacivert metin.
+ *
+ * Renkler — TOKENS.md cssVar referansları:
+ *   Ana Lacivert: var(--pxNuSoudLn)   Saf Beyaz:  var(--24KlcgGmm9)
+ *   Accent Sarı:  var(--sy8ZnXZdoG)   Mürekkep:   var(--fcAwzuFj9W)
+ *   Yüzey:        var(--wElEhJwjYh)   Yüzey Yumuşak: var(--jQs026VIpf)
+ *   AA metin türevleri: var(--text-body-aa) / var(--text-meta-aa) — global.css
+ *
+ * Kontrast (AA): beyaz/lacivert ≈ 10:1 · lacivert/yüzey ≈ 9.6:1 ·
+ *   --text-body-aa/yüzey ≈ 5.5:1 · mürekkep/accent sarı ≈ 13:1 ·
+ *   lacivert paneldeki soluk metin (beyaz %80 + lacivert) ≈ 6.5:1
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.ikas-deal-cards {
+  width: 100%;
+  box-sizing: border-box;
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Kartlar (lacivert + açık yüzey paneli) bilinçli olarak sabit. */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--hy9HpUbpuN, var(--pxNuSoudLn));
+  padding: var(--section-py, clamp(32px, 4vw, 60px)) 0;
+  margin-block: 0;
+  overflow: hidden;
+}
+
+.ikas-deal-cards__container {
+  max-width: var(--max-site-width, 1560px);
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: var(--site-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 40px);
+}
+
+/* Bölüm Başlık Bandı (FeaturedCollectionGrid deseni) */
+.ikas-deal-cards__header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ikas-deal-cards__tag {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, var(--p6EMJiXye1)));
+}
+
+.ikas-deal-cards__title {
+  margin: 10px 0 0;
+  font-size: clamp(28px, 3.4vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-deal-cards__subtitle {
+  margin: 6px 0 0;
+  color: var(--hy9HpUbpuN, var(--text-body-aa, var(--xGFwg5Zqpf)));
+  max-width: 58ch;
+}
+
+/* Kart Izgarası */
+.ikas-deal-cards__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+}
+
+.ikas-deal-cards__grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* Kademeli Fade-Up — varsayılan görünür, gizli başlangıç yalnızca "armed" iken */
+.ikas-deal-cards__item {
+  min-width: 0;
+  display: flex;
+  transition:
+    opacity 0.6s cubic-bezier(0.2, 0.8, 0.25, 1),
+    transform 0.6s cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.ikas-deal-cards--armed .ikas-deal-cards__item {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ─── Kart ─────────────────────────────────────────────────────────── */
+.ikas-deal-card {
+  --deal-pad: clamp(10px, 1vw, 14px);
+  /* Varsayılan (navy) ton koyu yüzey: Inverse slotları; --light hepsini ezer. */
+  --deal-bg: var(--gzVXctV39L, var(--pxNuSoudLn));
+  --deal-fg: var(--eceeZPmHKm, var(--24KlcgGmm9));
+  --deal-muted: color-mix(in srgb, var(--eceeZPmHKm, var(--24KlcgGmm9)) 80%, var(--gzVXctV39L, var(--pxNuSoudLn)));
+  --deal-media-bg: var(--wElEhJwjYh);
+  /* Kart etiketi (Kart 1/2 Etiketi metni) = etiket rozeti: şema Badge/Label
+     slotu → global Rozet / Etiket rengi. İki kart varyantında da aynı. */
+  --deal-tag-bg: var(--tPAyW5QcRt, var(--eMo2Pn8Jv3, var(--sy8ZnXZdoG)));
+  --deal-tag-fg: var(--65Fcrshr5K, var(--veglu61TEe, var(--fcAwzuFj9W)));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: var(--deal-pad);
+  border-radius: var(--deal-radius, 24px);
+  background-color: var(--deal-bg);
+  color: var(--deal-fg);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.ikas-deal-card--light {
+  --deal-bg: var(--poSYrZpIso, var(--wElEhJwjYh));
+  --deal-fg: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
+  --deal-muted: var(--tggPeh5T1A, var(--text-body-aa, #5a6472));
+  --deal-media-bg: var(--jQs026VIpf);
+}
+
+a.ikas-deal-card:focus {
+  outline: none;
+}
+
+a.ikas-deal-card:focus-visible {
+  outline: 2px solid var(--pxNuSoudLn);
+  outline-offset: 4px;
+}
+
+/* Görsel alanı */
+.ikas-deal-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: max(calc(var(--deal-radius, 24px) - var(--deal-pad)), 8px);
+  overflow: hidden;
+  background-color: var(--deal-media-bg);
+}
+
+.ikas-deal-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--deal-hover-transition, transform 0.5s ease-out);
+}
+
+.ikas-deal-card__placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--deal-media-bg);
+}
+
+.ikas-deal-card__tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  max-width: calc(100% - 28px);
+  padding: 7px 12px;
+  border-radius: 9999px;
+  background-color: var(--deal-tag-bg);
+  color: var(--deal-tag-fg);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* İçerik paneli */
+.ikas-deal-card__panel {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(18px, 2.2vw, 30px) clamp(14px, 1.8vw, 24px) clamp(14px, 1.6vw, 20px);
+  min-width: 0;
+}
+
+.ikas-deal-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ikas-deal-card__name {
+  margin: 0;
+  color: var(--deal-fg);
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.ikas-deal-card__text {
+  margin: 0;
+  color: var(--deal-muted);
+  max-width: 52ch;
+}
+
+/* Paket satırı: üst üste binen küçük görseller + ürün sayısı */
+.ikas-deal-card__bundle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ikas-deal-card__thumbs {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.ikas-deal-card__thumb {
+  width: 38px;
+  height: 38px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--deal-bg);
+  box-sizing: border-box;
+  object-fit: cover;
+  background-color: var(--deal-media-bg);
+  flex: none;
+}
+
+.ikas-deal-card__thumb--more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-deal-card__bundle-count {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--deal-fg);
+}
+
+/* Alt bölüm: fiyat + CTA */
+/* Fiyat satırı üstte, CTA her kartta altında — kart genişliğine göre
+   yer değiştirmez (eskiden flex-wrap ile bir kartta yana, diğerinde alta düşüyordu). */
+.ikas-deal-card__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.ikas-deal-card__prices {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.ikas-deal-card__price {
+  color: var(--deal-fg);
+  white-space: nowrap;
+}
+
+.ikas-deal-card__old-price {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--deal-muted);
+  white-space: nowrap;
+}
+
+.ikas-deal-card__savings {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 9999px;
+  background-color: var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)));
+  color: var(--x1EAnEpJwy, var(--vMRjMhid6C, var(--fcAwzuFj9W)));
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* CTA — ürün kartlarındaki "Sepete ekle" hapıyla aynı dil:
+   beyaz hap, kart üzerine gelince sarı dolgu alttan yükselir. */
+.ikas-deal-card__cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 18px 0 20px;
+  border-radius: 9999px;
+  background-color: var(--jyNun2ZBza, var(--24KlcgGmm9));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px rgba(16, 20, 24, 0.12);
+  transition: color 0.3s ease;
+}
+
+.ikas-deal-card__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Açık yüzeyli kartta gölge yerine ince çizgi — beyaz hap gri zeminde
+   gölgeyle fazla öne çıkıyordu. */
+.ikas-deal-card--light .ikas-deal-card__cta {
+  box-shadow: inset 0 0 0 1px var(--2MHxRczVsb, var(--8ARbeTYsmD));
+}
+
+/* Koyu (navy) kartta hap Inverse slotlarının tersidir: Inverse/Text zemin,
+   Inverse/Background yazı. Şemasızken beyaz hap + lacivert yazı (aynı). */
+.ikas-deal-card--navy .ikas-deal-card__cta {
+  background-color: var(--eceeZPmHKm, var(--24KlcgGmm9));
+  color: var(--gzVXctV39L, var(--pxNuSoudLn));
+}
+
+a.ikas-deal-card:focus-visible .ikas-deal-card__cta::before,
+a.ikas-deal-card:active .ikas-deal-card__cta::before {
+  transform: none;
+  border-radius: 0;
+}
+
+/* Sarı (AccentButton/Background) dolgu üzerinde yazı AccentButton/Text. */
+a.ikas-deal-card:focus-visible .ikas-deal-card__cta,
+a.ikas-deal-card:active .ikas-deal-card__cta {
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn));
+}
+
+.ikas-deal-card__arrow {
+  flex: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a.ikas-deal-card:hover .ikas-deal-card__image {
+    transform: scale(1.04);
+  }
+
+  a.ikas-deal-card:hover .ikas-deal-card__arrow {
+    transform: translateX(4px);
+  }
+
+  a.ikas-deal-card:hover .ikas-deal-card__cta::before {
+    transform: none;
+    border-radius: 0;
+  }
+
+  a.ikas-deal-card:hover .ikas-deal-card__cta {
+    color: var(--xxNgTuALjl, var(--pxNuSoudLn));
+  }
+}
+
+/* Tek kart: masaüstünde yatay yerleşim (görsel solda, panel sağda) */
+@media (min-width: calc(bp(VzlJkKlXGT) + 1px)) {
+  .ikas-deal-cards__grid--single .ikas-deal-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .ikas-deal-cards__grid--single .ikas-deal-card__media {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 420px;
+  }
+
+  .ikas-deal-cards__grid--single .ikas-deal-card__panel {
+    justify-content: center;
+    padding: clamp(28px, 3.2vw, 56px);
+  }
+
+  .ikas-deal-cards__grid--single .ikas-deal-card__footer {
+    margin-top: 12px;
+  }
+}
+
+/* Erişilebilirlik: Azaltılmış Hareket Tercihi */
+@media (prefers-reduced-motion: reduce) {
+  .ikas-deal-cards__item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .ikas-deal-card__image,
+  .ikas-deal-card__arrow,
+  .ikas-deal-card__cta::before {
+    transition: none !important;
+  }
+
+  a.ikas-deal-card:hover .ikas-deal-card__image,
+  a.ikas-deal-card:hover .ikas-deal-card__arrow {
+    transform: none;
+  }
+}
+
+/* Yüksek kontrast modu: kart sınırları görünür kalsın */
+@media (forced-colors: active) {
+  .ikas-deal-card {
+    border: 1px solid CanvasText;
+  }
+}
+
+/* RESPONSIVE (<1024px & <768px) */
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-deal-cards {
+    padding: var(--section-py-mobile, 32px) 0;
+  }
+
+  .ikas-deal-cards__container {
+    padding-inline: var(--site-gutter, var(--mobile-px, 16px));
+  }
+
+  .ikas-deal-cards__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .ikas-deal-card__tag {
+    top: 12px;
+    left: 12px;
+    max-width: calc(100% - 24px);
+  }
+
+  .ikas-deal-card__panel {
+    gap: 14px;
+  }
+}

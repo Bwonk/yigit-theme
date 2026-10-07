@@ -1,0 +1,12 @@
+/* Tetikleyici, menü ve seçenek stilleri FilterDropdown'dan gelir
+   (aynı sınıflar). Burada yalnızca kategoriye özgü ölçüler var. */
+.ikas-category-dropdown__label {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ikas-category-dropdown .ikas-filter-dropdown__menu {
+  min-width: 240px;
+  max-height: min(60vh, 420px);
+}

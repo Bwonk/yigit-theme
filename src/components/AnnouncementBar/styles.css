@@ -13,19 +13,17 @@
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--pxNuSoudLn);  /* Ana Lacivert — TOKENS.md satır 10 */
-  color: var(--24KlcgGmm9);             /* Saf Beyaz — TOKENS.md satır 14 */
+  background-color: var(--gzVXctV39L, var(--pxNuSoudLn));  /* Inverse/Background · Ana Lacivert — TOKENS.md satır 10 */
+  color: var(--eceeZPmHKm, var(--24KlcgGmm9));  /* Inverse/Text · Saf Beyaz — TOKENS.md satır 14 */
   min-height: var(--announcement-height, 38px);
   padding: 10px clamp(16px, 4vw, 40px);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.14em;
   text-align: center;
-  /* Bant tepeye sabitlenir; sticky header onun ALTINA oturur
-     (bkz. Header/styles.css → .ikas-header--sticky top ofseti).
-     Böylece hiçbir scroll konumunda ikisi üst üste binmez. */
-  position: sticky;
-  top: 0;
+  /* Bant sayfanın en üstünde akışta durur; kaydırınca yukarı çıkıp kaybolur.
+     Yapışkan header doğrudan tepeye (top: 0) yapışır. */
+  position: relative;
   margin: 0;
   /* Header ile aynı katman: header DOM'da sonra geldiği için kendi alt ağacı
      (mobil menü, sepet çekmecesi, arama katmanı) bandın üzerinde kalır. */
@@ -73,6 +71,64 @@
 
 /* Vurgulu 3. Mesaj (Accent Sarı) */
 .ikas-announcement-bar__msg--highlight {
-  color: var(--sy8ZnXZdoG);             /* Accent Sarı — TOKENS.md satır 11 */
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));             /* Accent Sarı — TOKENS.md satır 11 */
   font-weight: 500;
+}
+
+/* MOBİL: mesajlar aynı hücrede üst üste durur, sırayla belirip kaybolur.
+   Döngü süresi mesaj sayısına göre (her mesaj ~3sn); tek mesajda hareket yok. */
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-announcement-bar__content {
+    display: grid;
+    justify-items: center;
+    gap: 0;
+  }
+
+  .ikas-announcement-bar__item {
+    grid-area: 1 / 1;
+  }
+
+  .ikas-announcement-bar__dot {
+    display: none;
+  }
+}
+
+@media (max-width: bp(HDRapYMzn7)) and (prefers-reduced-motion: no-preference) {
+  .ikas-announcement-bar__content--of-2 .ikas-announcement-bar__item,
+  .ikas-announcement-bar__content--of-3 .ikas-announcement-bar__item {
+    opacity: 0;
+    animation: ikas-announce-3 9s infinite;
+  }
+
+  .ikas-announcement-bar__content--of-2 .ikas-announcement-bar__item {
+    animation-name: ikas-announce-2;
+    animation-duration: 6s;
+  }
+
+  .ikas-announcement-bar__item:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+  .ikas-announcement-bar__item:nth-child(3) {
+    animation-delay: 6s;
+  }
+}
+
+/* Azaltılmış harekette yalnızca ilk mesaj kalır. */
+@media (max-width: bp(HDRapYMzn7)) and (prefers-reduced-motion: reduce) {
+  .ikas-announcement-bar__item:not(:first-child) {
+    display: none;
+  }
+}
+
+@keyframes ikas-announce-3 {
+  0% { opacity: 0; transform: translateY(6px); }
+  4%, 30% { opacity: 1; transform: none; }
+  34%, 100% { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes ikas-announce-2 {
+  0% { opacity: 0; transform: translateY(6px); }
+  6%, 45% { opacity: 1; transform: none; }
+  51%, 100% { opacity: 0; transform: translateY(-6px); }
 }

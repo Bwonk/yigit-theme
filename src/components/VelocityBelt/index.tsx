@@ -109,7 +109,6 @@ export function VelocityBelt({
   const stripRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  const [offset, setOffset] = useState(0);
   const [tilt, setTilt] = useState<TiltExtras>(ZERO_TILT);
 
   const speedKey = String(speed || "slow").toLowerCase();
@@ -164,19 +163,30 @@ export function VelocityBelt({
     return () => ro.disconnect();
   }, [recomputeTilt]);
 
-  // Marquee loop
+  // Marquee loop — transform doğrudan DOM'a yazılır (her frame'de Preact
+  // re-render'ı yok). Reduced-motion'da hareket yok, ekran dışındayken durur.
   useEffect(() => {
-    let animId = 0;
-    let lastScrollY = window.scrollY || window.pageYOffset;
-    let currentX = 0;
-    let currentSpeed = resolvedBase;
+    const track = trackRef.current;
+    const bounds = boundsRef.current;
+    if (!track) return;
 
     const isReducedMotion =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isReducedMotion) {
+      track.style.transform = "translate3d(0, 0, 0)";
+      return;
+    }
+
+    let animId = 0;
+    let lastScrollY = window.scrollY || window.pageYOffset;
+    let currentX = 0;
+    let currentSpeed = resolvedBase;
+    let onScreen = true;
 
     const loop = () => {
-      if (!isReducedMotion && resolvedMultiplier > 0) {
+      animId = 0;
+      if (resolvedMultiplier > 0) {
         const nowScrollY = window.scrollY || window.pageYOffset;
         const delta = Math.abs(nowScrollY - lastScrollY);
         lastScrollY = nowScrollY;
@@ -188,20 +198,37 @@ export function VelocityBelt({
         if (currentSpeed > maxSpeed) currentSpeed = maxSpeed;
       } else {
         currentSpeed = resolvedBase;
-        lastScrollY = window.scrollY || window.pageYOffset;
       }
 
       currentX += dir === "RIGHT" ? currentSpeed : -currentSpeed;
       if (dir === "LEFT" && currentX <= -50) currentX = 0;
       if (dir === "RIGHT" && currentX >= 50) currentX = 0;
 
-      setOffset(currentX);
-      animId = requestAnimationFrame(loop);
+      track.style.transform = `translate3d(${currentX}%, 0, 0)`;
+      if (onScreen) animId = requestAnimationFrame(loop);
     };
 
     animId = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animId);
-  }, [resolvedBase, resolvedMultiplier, dir]);
+
+    // Görünürlük takibi yalnızca durdurmak için; IO hiç tetiklenmezse
+    // (ör. editör iframe'i) varsayılan "ekranda" kabul edilip döngü sürer.
+    let io: IntersectionObserver | null = null;
+    if (bounds && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver((entries) => {
+        onScreen = entries.some((entry) => entry.isIntersecting);
+        if (onScreen && !animId) {
+          lastScrollY = window.scrollY || window.pageYOffset;
+          animId = requestAnimationFrame(loop);
+        }
+      });
+      io.observe(bounds);
+    }
+
+    return () => {
+      if (animId) cancelAnimationFrame(animId);
+      io?.disconnect();
+    };
+  }, [resolvedBase, resolvedMultiplier, dir, Boolean(text?.trim())]);
 
   const formatted = (text || "").trim().toLocaleUpperCase("tr-TR");
   if (!formatted) return null;
@@ -237,7 +264,6 @@ export function VelocityBelt({
             <div
               ref={trackRef}
               className="ikas-velocity-belt__track"
-              style={{ transform: `translate3d(${offset}%, 0, 0)` }}
             >
               <span className="ikas-velocity-belt__text">{repeated}</span>
               <span className="ikas-velocity-belt__text" aria-hidden="true">

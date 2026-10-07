@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import { normalizeSvg } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
-import AccordionToggleIcon from "../AccordionToggleIcon";
 import { ThemeType } from "../../utils/themeTokens";
 import {
   isFaqOpen,
@@ -10,7 +8,6 @@ import {
 } from "../../utils/faqAccordionGroup";
 
 export interface Props {
-  icon?: string;
   question: string;
   answer?: string;
   className?: string;
@@ -25,8 +22,11 @@ function resolveGroupId(el: HTMLElement | null): string | null {
   return el?.closest(`[${FAQ_GROUP_ATTR}]`)?.getAttribute(FAQ_GROUP_ATTR) ?? null;
 }
 
+/**
+ * SSS satırı: sıra numarası (CSS sayacı, `.ikas-faq__list` içinde) + soru +
+ * artı/eksi düğmesi. Tek açık kuralı faqAccordionGroup ile.
+ */
 export const BouncyAccordionRow = observer(function BouncyAccordionRow({
-  icon,
   question,
   answer,
   className = "",
@@ -52,13 +52,6 @@ export const BouncyAccordionRow = observer(function BouncyAccordionRow({
     });
   }, [itemKey]);
 
-  const iconHtml =
-    icon &&
-    normalizeSvg(icon, {
-      idPrefix: `faq-icon-${uid}`,
-      color: "currentColor",
-    });
-
   const handleToggle = () => {
     const id = groupId ?? resolveGroupId(rootRef.current);
     if (!id) {
@@ -83,19 +76,9 @@ export const BouncyAccordionRow = observer(function BouncyAccordionRow({
         aria-controls={panelId}
         onClick={handleToggle}
       >
-        <span className="ikas-faq-row__leading">
-          {iconHtml ? (
-            <span
-              className="ikas-faq-row__icon"
-              aria-hidden="true"
-              dangerouslySetInnerHTML={{ __html: iconHtml }}
-            />
-          ) : (
-            <span className="ikas-faq-row__icon ikas-faq-row__icon--empty" aria-hidden="true" />
-          )}
-          <span className={`ikas-faq-row__question ${ThemeType.h3}`}>{question}</span>
-        </span>
-        <AccordionToggleIcon isOpen={isOpen} />
+        <span className="ikas-faq-row__num" aria-hidden="true" />
+        <span className={`ikas-faq-row__question ${ThemeType.h3}`}>{question}</span>
+        <span className="ikas-faq-row__pm" aria-hidden="true" />
       </button>
 
       <div

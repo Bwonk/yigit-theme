@@ -8,11 +8,12 @@ export interface VideoDemoSectionProps extends Props {
 }
 
 export function VideoDemoSection({
-  title = "Infinity Pillow Nasıl Kullanılır?",
+  title = "Yiğit Yastık Nasıl Kullanılır?",
   subtitle = "Saniyeler içinde katlayın, çantanıza koyun ve konforun tadını çıkarın.",
   video,
   coverImage,
   autoplay = false,
+  playButtonLabel = "Videoyu oynat",
   backgroundColor,
   className = "",
 }: VideoDemoSectionProps) {
@@ -47,21 +48,17 @@ export function VideoDemoSection({
     "--card-shadow": cardShadow,
   };
 
-  const posterSrc = coverImage ? getDefaultSrc(coverImage) : undefined;
-  const videoSrc = (video as any)?.url || (video as any)?.src || undefined;
+  const posterImage = coverImage || video?.thumbnailImage || null;
+  const posterSrc = posterImage ? getDefaultSrc(posterImage) : undefined;
+  // IkasVideo yalnızca `videoSrc` alanını taşır (url/src yok).
+  const videoSrc = video?.videoSrc || undefined;
 
-  const handlePlayToggle = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        videoRef.current.play();
-        setIsPlaying(true);
-      }
-    } else {
-      setIsPlaying(!isPlaying);
-    }
+  const handlePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => setIsPlaying(false));
   };
 
   return (
@@ -89,34 +86,42 @@ export function VideoDemoSection({
               poster={posterSrc}
               controls={isPlaying}
               autoPlay={autoplay}
-              muted={autoplay}
+              muted={autoplay || video?.muted}
+              loop={video?.loop}
               playsInline
               className="ikas-video-demo__video"
+              onPlay={() => setIsPlaying(true)}
               onEnded={() => setIsPlaying(false)}
             />
-          ) : (
+          ) : posterSrc ? (
             <img
-              src={posterSrc || "https://picsum.photos/1200/675"}
-              alt={title || "Video Kapak Görseli"}
+              src={posterSrc}
+              alt={title || ""}
               className="ikas-video-demo__video"
             />
+          ) : (
+            <div className="ikas-video-demo__video ikas-video-demo__placeholder" aria-hidden="true" />
           )}
 
-          {/* OYNAT OVERLAY KATMANI */}
-          <div
-            className={`ikas-video-demo__overlay ${
-              isPlaying ? "ikas-video-demo__overlay--hidden" : ""
-            }`}
-            onClick={handlePlayToggle}
-            role="button"
-            aria-label="Videoyu Oynat"
-          >
-            <button type="button" className="ikas-video-demo__play-btn">
-              <svg className="ikas-video-demo__play-icon" viewBox="0 0 24 24">
-                <polygon points="5 3 19 12 5 21 5 3" />
-              </svg>
-            </button>
-          </div>
+          {/* OYNAT OVERLAY KATMANI — tıklama alanı tüm kapak; erişilebilir hedef içteki button */}
+          {videoSrc && (
+            <div
+              className={`ikas-video-demo__overlay ${
+                isPlaying ? "ikas-video-demo__overlay--hidden" : ""
+              }`}
+              onClick={handlePlay}
+            >
+              <button
+                type="button"
+                className="ikas-video-demo__play-btn"
+                aria-label={playButtonLabel}
+              >
+                <svg className="ikas-video-demo__play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

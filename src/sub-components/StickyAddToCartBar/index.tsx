@@ -8,12 +8,19 @@ import {
   getProductVariantFormattedFinalPrice,
   getProductVariantFormattedFinalPriceWithCampaignOffers,
   hasProductVariantStock,
-  isAddToCartEnabled,
   addItemToCart,
   IkasImage,
   IkasProduct,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { inertProps } from "../../utils/a11y";
+import { hasSelectedCampaignOffers } from "../../utils/offers";
+import { openCartDrawer } from "../../utils/cart";
+import {
+  ensureValidProductOptions,
+  resetProductOptions,
+  showOptionErrors,
+} from "../../utils/productOptions";
 import Button from "../Button";
 
 export interface Props {
@@ -129,12 +136,13 @@ export function StickyAddToCartBar({
     (mainProductImage as any)?.image || (mainProductImage as any) || null;
   const imgSrc = mainImage ? getDefaultSrc(mainImage) : null;
   const finalPriceText = variant
-    ? (product.offers || []).some((o) => !!o?.isSelected)
+    ? hasSelectedCampaignOffers(product)
       ? getProductVariantFormattedFinalPriceWithCampaignOffers(variant)
       : getProductVariantFormattedFinalPrice(variant)
     : "";
   const inStock = variant ? hasProductVariantStock(variant) : true;
-  const canAddToCart = isAddToCartEnabled(product) && inStock && !!variant;
+  // Kişiselleştirme geçerliliği butonu kilitlemez; tıklama doğrulamayı tetikler.
+  const canAddToCart = inStock && !!variant;
   const barMeta = buildVariantMeta(product, stickyQtyUnitText);
 
   const ctaLabel = !inStock
@@ -149,9 +157,16 @@ export function StickyAddToCartBar({
     if (!variant || isAdding || !canAddToCart) return;
     setIsAdding(true);
     try {
+      // Zorunlu kişiselleştirme alanları eksikse ekleme yerine buy box'taki
+      // ilk geçersiz alana (yoksa buy box'a) kaydır.
+      if (!(await ensureValidProductOptions(product, targetElementId))) return;
       const result = await addItemToCart(variant, product, 1);
-      if ((result as any)?.success !== false) {
+      if (result?.success) {
         setJustAdded(true);
+        resetProductOptions(product);
+        openCartDrawer();
+      } else if (result?.validationError === "INVALID_PRODUCT_OPTION_VALUES") {
+        showOptionErrors();
       }
     } catch (err) {
       console.error("Sticky sepete ekleme hatası:", err);
@@ -166,7 +181,7 @@ export function StickyAddToCartBar({
       style={inlineStyles}
       lang="tr"
       aria-hidden={!isVisible}
-      {...(!isVisible ? ({ inert: "" } as any) : {})}
+      {...inertProps(!isVisible)}
     >
       <div className="ikas-sticky-cart__container">
         <div className="ikas-sticky-cart__thumb">

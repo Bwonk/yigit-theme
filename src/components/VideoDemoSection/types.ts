@@ -14,4 +14,5 @@ export interface Props {
   autoplay?: boolean;
   /** Bölüm zemin rengi */
   backgroundColor?: string;
+  playButtonLabel?: string;
 }

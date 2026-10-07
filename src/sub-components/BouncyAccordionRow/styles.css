@@ -1,55 +1,38 @@
-@import "../AccordionToggleIcon/styles.css";
-
 /* ═══════════════════════════════════════════════════════════════════════
- * Bouncy FAQ row — icon + question + spring panel (single-open via bus)
- * Renderer-safe: no :last-child / adjacent-sibling (wrapper divs break them)
+ * SSS satırı — numara + soru + artı/eksi (Yigit Landing tasarımı)
+ * Tek açık kuralı faqAccordionGroup ile. Numara CSS sayacından gelir
+ * (sayaç `.ikas-faq__list` üzerinde sıfırlanır; renderer sarmalayıcı
+ * div'leri sayacı bozmaz).
+ * Renderer-safe: :last-child / komşu seçici yok (sarmalayıcılar bozar).
+ *
+ * Renkler — DESIGN.md token'ları:
+ *   Ana Lacivert:  var(--pxNuSoudLn)
+ *   Accent Sarı:   var(--sy8ZnXZdoG)
+ *   Mürekkep:      var(--vluFeuIeFs)
+ *   Çizgi Güçlü:   var(--0RbHz765Hw)
+ *   Gövde / Meta:  var(--xGFwg5Zqpf) / var(--p6EMJiXye1)
  * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-faq-row {
-  border-top: 1px solid var(--8ARbeTYsmD, #e4e7e8);
-  position: relative;
-  transition:
-    background-color var(--faq-spring, 0.42s cubic-bezier(0.34, 1.56, 0.64, 1)),
-    padding var(--faq-spring, 0.42s cubic-bezier(0.34, 1.56, 0.64, 1));
-}
-
-.ikas-faq-row--open {
-  background-color: var(--jQs026VIpf, #edeff0);
-  padding-inline: 12px;
-  border-radius: var(--faq-radius, 12px);
-  border-top-color: transparent;
-}
-
-.ikas-faq-row--open::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 10px;
-  bottom: 10px;
-  width: 3px;
-  border-radius: 2px;
-  background-color: var(--sy8ZnXZdoG, #e3e045);
+  --faq-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  counter-increment: ikas-faq;
+  /* Renk şeması slotları (TOKENS.md §10) — section yüzeyinden miras;
+     fallback = şemasız görünüm */
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--0RbHz765Hw, #dce0e1));
 }
 
 .ikas-faq-row__btn {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: clamp(16px, 1.8vw, 22px) 0;
+  gap: clamp(14px, 2vw, 28px);
+  padding: clamp(18px, 2vw, 28px) 0;
   border: 0;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: var(--pxNuSoudLn, #37435b);
-  transition: color 0.22s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .ikas-faq-row__btn:hover {
-    color: var(--fcAwzuFj9W, #101418);
-  }
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
 }
 
 .ikas-faq-row__btn:focus {
@@ -57,67 +40,89 @@
 }
 
 .ikas-faq-row__btn:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG, #e3e045);
+  outline: 2px solid var(--pxNuSoudLn, #37435b);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-.ikas-faq-row__leading {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-  flex: 1;
-}
-
-.ikas-faq-row__icon {
-  flex: 0 0 auto;
-  width: 40px;
-  height: 40px;
-  box-sizing: border-box;
-  border-radius: var(--faq-radius, 12px);
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--pxNuSoudLn, #37435b);
-  background-color: var(--24KlcgGmm9, #ffffff);
-  transition:
-    transform var(--faq-spring, 0.42s cubic-bezier(0.34, 1.56, 0.64, 1)),
-    border-color 0.24s ease,
-    background-color 0.24s ease;
-}
-
-.ikas-faq-row__icon svg {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
-
-.ikas-faq-row__icon--empty {
-  background-color: var(--wElEhJwjYh, #f4f5f5);
-}
-
-.ikas-faq-row--open .ikas-faq-row__icon {
-  transform: scale(1.06);
-  border-color: var(--sy8ZnXZdoG, #e3e045);
-  background-color: var(--sy8ZnXZdoG, #e3e045);
-  color: var(--vluFeuIeFs, #101418);
+/* 01, 02 … */
+.ikas-faq-row__num::before {
+  content: counter(ikas-faq, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-faq-row__question {
-  letter-spacing: -0.018em;
-  line-height: 1.35;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: clamp(19px, 1.9vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  transition: transform 0.35s var(--faq-ease);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .ikas-faq-row__btn:hover .ikas-faq-row__question {
+    transform: translateX(6px);
+  }
+}
+
+/* Artı → eksi: dikey çubuk yatığa döner, daire sarıya dolar */
+.ikas-faq-row__pm {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--p6Vorgv0Uy, var(--0RbHz765Hw, #dce0e1));
+  border-radius: 50%;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.4s var(--faq-ease);
+}
+
+.ikas-faq-row__pm::before,
+.ikas-faq-row__pm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -6px;
+  background-color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
+  transition: transform 0.4s var(--faq-ease), background-color 0.3s ease;
+}
+
+.ikas-faq-row__pm::after {
+  transform: rotate(90deg);
+}
+
+.ikas-faq-row--open .ikas-faq-row__pm {
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG, #e3e045));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG, #e3e045));
+  transform: rotate(180deg);
+}
+
+.ikas-faq-row--open .ikas-faq-row__pm::before,
+.ikas-faq-row--open .ikas-faq-row__pm::after {
+  background-color: var(--xxNgTuALjl, var(--vluFeuIeFs, #101418));
+}
+
+.ikas-faq-row--open .ikas-faq-row__pm::after {
+  transform: rotate(0deg);
+}
+
+/* Cevap paneli: yükseklik 0fr → 1fr */
 .ikas-faq-row__panel {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows var(--faq-spring, 0.42s cubic-bezier(0.34, 1.56, 0.64, 1)),
-    opacity 0.28s ease;
+    grid-template-rows 0.45s var(--faq-ease),
+    opacity 0.3s ease;
 }
 
 .ikas-faq-row--open .ikas-faq-row__panel {
@@ -131,22 +136,12 @@
 }
 
 .ikas-faq-row__answer {
-  padding: 0 0 clamp(18px, 2vw, 26px);
-  padding-left: 54px;
   max-width: 62ch;
-  line-height: 1.66;
-  color: var(--xGFwg5Zqpf, #6e7a8c);
+  /* Numara sütunu + boşluk kadar içeriden başlar */
+  padding: 0 0 clamp(20px, 2.4vw, 32px) calc(2ch + clamp(14px, 2vw, 28px) + 6px);
+  line-height: 1.6;
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
   text-wrap: pretty;
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    opacity 0.32s ease 40ms,
-    transform var(--faq-spring, 0.42s cubic-bezier(0.34, 1.56, 0.64, 1)) 40ms;
-}
-
-.ikas-faq-row--open .ikas-faq-row__answer {
-  opacity: 1;
-  transform: none;
 }
 
 .ikas-faq-row__answer p {
@@ -155,6 +150,11 @@
 
 .ikas-faq-row__answer p:last-child {
   margin-bottom: 0;
+}
+
+.ikas-faq-row__answer strong {
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn, #37435b));
+  font-weight: 600;
 }
 
 .ikas-faq-row__answer ul,
@@ -167,31 +167,14 @@
   .ikas-faq-row__answer {
     padding-left: 0;
   }
-
-  .ikas-faq-row--open {
-    padding-inline: 10px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ikas-faq-row,
-  .ikas-faq-row__btn,
-  .ikas-faq-row__icon,
-  .ikas-faq-row__panel,
-  .ikas-faq-row__answer {
+  .ikas-faq-row__question,
+  .ikas-faq-row__pm,
+  .ikas-faq-row__pm::before,
+  .ikas-faq-row__pm::after,
+  .ikas-faq-row__panel {
     transition: none !important;
-  }
-
-  .ikas-faq-row--open .ikas-faq-row__icon {
-    transform: none;
-  }
-
-  .ikas-faq-row__answer {
-    opacity: 1;
-    transform: none;
-  }
-
-  .ikas-faq-row--open .ikas-faq-row__panel {
-    opacity: 1;
   }
 }

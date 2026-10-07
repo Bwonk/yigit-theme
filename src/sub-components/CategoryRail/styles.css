@@ -1,0 +1,93 @@
+/* Yalnızca mobil/tablet: masaüstünde kategori seçimi filtre çubuğundaki
+   açılır menüdedir. */
+.ikas-category-rail {
+  display: none;
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) {
+  .ikas-category-rail {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px var(--section-px, 20px) 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--section-px, 20px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .ikas-category-rail::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-category-rail {
+    padding-left: var(--mobile-px, 16px);
+    padding-right: var(--mobile-px, 16px);
+    scroll-padding-inline: var(--mobile-px, 16px);
+  }
+}
+
+.ikas-category-rail__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 18px;
+  /* Renk şeması: pasif sekme = SecondaryButton, aktif = PrimaryButton */
+  --rail-count: color-mix(in srgb, var(--ua5R3Zg9Wv) 65%, var(--nev1XwFhtS));
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
+  border-radius: 9999px;
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.16s ease;
+}
+
+.ikas-category-rail__tab:active {
+  transform: scale(0.98);
+}
+
+.ikas-category-rail__tab:focus-visible {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 2px;
+}
+
+.ikas-category-rail__tab--active {
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  --rail-count-on: color-mix(in srgb, var(--aLyEruXqBe) 70%, transparent);
+}
+
+.ikas-category-rail__count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--rail-count, var(--p6EMJiXye1));
+  font-variant-numeric: tabular-nums;
+}
+
+.ikas-category-rail__tab--active .ikas-category-rail__count {
+  color: var(--rail-count-on, rgba(255, 255, 255, 0.7));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-category-rail__tab {
+    transition: none;
+  }
+}

@@ -1,6 +1,8 @@
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { getDefaultSrc } from "@ikas/bp-storefront";
 import { applyLayoutTokens } from "../../utils/themeTokens";
 import TextLink from "../../sub-components/TextLink";
+import PaymentIcons from "../../sub-components/PaymentIcons";
 import { Props } from "./types";
 
 export interface FooterProps extends Props {
@@ -18,6 +20,8 @@ type FooterLink = { label?: string; title?: string; href?: string; externalLink?
  * - Editörden beslenen 4 Link Kolonu (bağlantı atanmayan kolon hiç render edilmez)
  * - Dairesel Pill Sosyal Medya İkonları: Hover'da Accent Sarı zemin + translateY(-2px)
  * - Mobilde akordeon (Accordion) katlanabilir kolon mantığı (<768px)
+ * - Mobilde sosyal ikonlar marka adının yanına çıkar; destek bağlantısı ve
+ *   ödeme etiketleri dolgulu çip olur
  */
 export function Footer({
   brandTitle,
@@ -39,10 +43,26 @@ export function Footer({
   showPaymentIcons = true,
   paymentMethodsText,
   backgroundColor,
+  brandLogo,
   className = "",
 }: FooterProps) {
   // Mobile accordion state (<768px)
   const [openCols, setOpenCols] = useState<{ [key: string]: boolean }>({});
+  const footerRef = useRef<HTMLElement>(null);
+
+  // ikas sayfa kapsayıcısı (#app) kısa sayfalarda footer'ı ekranın altına
+  // yaslar; aradaki boşlukta şeffaf body görünür. Body zemini footer'ın
+  // (renk şeması dahil) çözülmüş zeminiyle boyanır → boşluk footer'ın devamı olur.
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el || typeof document === "undefined") return;
+    const body = document.body;
+    const prev = body.style.backgroundColor;
+    body.style.backgroundColor = getComputedStyle(el).backgroundColor;
+    return () => {
+      body.style.backgroundColor = prev;
+    };
+  });
 
   const toggleCol = (colId: string) => {
     setOpenCols((prev) => ({
@@ -56,6 +76,8 @@ export function Footer({
     backgroundColor: backgroundColor || undefined,
     ...layoutTokens,
   };
+
+  const brandLogoSrc = brandLogo ? getDefaultSrc(brandLogo) : null;
 
   const supportLinkObj = supportBadgeLink as any;
   const supportHref = supportLinkObj?.href || supportLinkObj?.externalLink || null;
@@ -111,8 +133,37 @@ export function Footer({
     },
   ].filter((s) => Boolean(s.url));
 
+  const renderSocials = (extraClass = "") =>
+    socials.length > 0 ? (
+      <div className={`ikas-footer__socials ${extraClass}`.trim()}>
+        {socials.map((social) => (
+          <a
+            key={social.label}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.label}
+            className="ikas-footer__social-btn ikas-tap-44"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              aria-hidden="true"
+            >
+              {social.path}
+            </svg>
+          </a>
+        ))}
+      </div>
+    ) : null;
+
   return (
     <footer
+      ref={footerRef}
       className={`ikas-footer ${className}`.trim()}
       style={inlineStyles}
       lang="tr"
@@ -122,9 +173,26 @@ export function Footer({
         <div className="ikas-footer__main">
           {/* SOL MARKA BLOĞU */}
           <div className="ikas-footer__brand">
-            {brandTitle && (
-              <div className="ikas-footer__brand-title _sKAMD8d1LA">
-                {brandTitle}
+            {(brandLogoSrc || brandTitle || socials.length > 0) && (
+              <div className="ikas-footer__brand-head">
+                {brandLogoSrc ? (
+                  <a href="/" className="ikas-footer__brand-logo-link">
+                    <img
+                      src={brandLogoSrc}
+                      alt={brandTitle || ""}
+                      className="ikas-footer__brand-logo"
+                      loading="lazy"
+                    />
+                  </a>
+                ) : (
+                  brandTitle && (
+                    <div className="ikas-footer__brand-title _yO6jM73J3h">
+                      {brandTitle}
+                    </div>
+                  )
+                )}
+                {/* Mobil: sosyal ikonlar marka adının yanında */}
+                {renderSocials("ikas-footer__socials--head")}
               </div>
             )}
             {brandDescription && (
@@ -169,6 +237,7 @@ export function Footer({
                   </button>
                   <div
                     className={`ikas-footer__col-content ${openCols[col.id] ? "ikas-footer__col-content--open" : ""}`}
+                    {...(openCols[col.id] ? {} : { "data-collapsed": "" })}
                   >
                     <ul className="ikas-footer__menu">
                       {col.links.map((item, idx) => (
@@ -197,41 +266,10 @@ export function Footer({
             </div>
           )}
 
-          {socials.length > 0 && (
-            <div className="ikas-footer__socials">
-              {socials.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="ikas-footer__social-btn ikas-tap-44"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    aria-hidden="true"
-                  >
-                    {social.path}
-                  </svg>
-                </a>
-              ))}
-            </div>
-          )}
+          {renderSocials("ikas-footer__socials--bottom")}
 
           {showPaymentIcons && paymentMethods.length > 0 && (
-            <div className="ikas-footer__payments">
-              {paymentMethods.map((method) => (
-                <span key={method} className="ikas-footer__payment-card _eZyocyyd0F">
-                  {method}
-                </span>
-              ))}
-            </div>
+            <PaymentIcons methods={paymentMethods} className="ikas-footer__payments" />
           )}
         </div>
       </div>

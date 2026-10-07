@@ -1,6 +1,7 @@
-import { useRef, useEffect, useState } from "preact/hooks";
+import { useRef } from "preact/hooks";
 import { Router } from "@ikas/bp-storefront";
 import { applyLayoutTokens } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import ProductCard from "../../sub-components/ProductCard";
 import TextLink from "../../sub-components/TextLink";
 import { Props } from "./types";
@@ -30,41 +31,18 @@ export function FeaturedCollectionGrid({
   viewAllLink,
   emptyStateText,
   addToCartText,
+  discountBadgeText,
+  quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText,
+  addedToCartText,
   soldOutText,
   backgroundColor,
   className = "",
 }: FeaturedCollectionGridProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reveal = useReveal(sectionRef, { threshold: 0.1 });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(el);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   const layoutTokens = applyLayoutTokens({ includePy: true, includePx: true, includeSiteWidth: true });
 
   const inlineStyles = {
@@ -79,7 +57,7 @@ export function FeaturedCollectionGrid({
   const viewAllHref = linkObj?.href || linkObj?.externalLink || null;
   const showViewAll = showViewAllButton && Boolean(viewAllButtonText);
 
-  const visibleClass = isVisible ? "ikas-featured-grid--visible" : "";
+  const visibleClass = revealClasses("ikas-featured-grid", reveal);
 
   return (
     <section
@@ -144,8 +122,13 @@ export function FeaturedCollectionGrid({
                   showQuickAdd={true}
                   overlayQuickAdd={true}
                   addToCartText={addToCartText}
+                  discountBadgeText={discountBadgeText}
+                  quickAddAriaLabel={quickAddAriaLabel}
+                  selectOptionsText={selectOptionsText}
                   addingToCartText={addingToCartText}
+                  addedToCartText={addedToCartText}
                   soldOutText={soldOutText}
+                  cardStyle="editorial"
                 />
               </div>
             ))}

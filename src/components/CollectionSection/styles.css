@@ -9,15 +9,16 @@
 .ikas-collection-section {
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   overflow: visible;
 }
 
+/* Tam genişlik: filtre çubuğunun zemini kenardan kenara uzanır; içerik
+   genişliğini her alt bileşen kendi kapsayıcısında sınırlar. */
 .ikas-collection-section__container {
-  max-width: var(--max-site-width, 1560px);
   width: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

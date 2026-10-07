@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import { getThemeSetting } from "@ikas/bp-storefront";
+import { observer } from "@ikas/component-utils";
 
 export interface Props {
   value: number;
@@ -25,7 +26,7 @@ function prefersReducedMotion(): boolean {
  * QuantityStepper — shared pill qty control (PDP, cart drawer, cart page).
  * Bump scale on value change + press scale on buttons.
  */
-export default function QuantityStepper({
+function QuantityStepper({
   value,
   onChange,
   min = 1,
@@ -152,3 +153,5 @@ export default function QuantityStepper({
     </div>
   );
 }
+
+export default observer(QuantityStepper);

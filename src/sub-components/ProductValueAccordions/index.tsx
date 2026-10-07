@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useRef, useState } from "preact/hooks";
 import { getThemeSetting, IkasProduct } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import AccordionToggleIcon from "../AccordionToggleIcon";
+import { useReveal, revealClasses } from "../../utils/reveal";
 
 export interface SpecRow {
   label: string;
@@ -63,7 +64,6 @@ export function ProductValueAccordions({
   className = "",
 }: Props) {
   const [openId, setOpenId] = useState<string>("acc1");
-  const [headVisible, setHeadVisible] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
 
   const accordionAnimSetting = getThemeSetting("_QzHzEnrknJ");
@@ -89,28 +89,8 @@ export function ProductValueAccordions({
     { id: "acc4", title: acc4Title, kind: "text" as const, body: acc4Body },
   ].filter((i) => i.title);
 
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
 
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setHeadVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setHeadVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const reveal = useReveal(rootRef, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
 
   const toggle = (id: string) => {
     setOpenId((prev) => (prev === id ? "" : id));
@@ -124,7 +104,7 @@ export function ProductValueAccordions({
   return (
     <section
       ref={rootRef}
-      className={`ikas-details ${headVisible ? "ikas-details--inview" : ""} ${className}`.trim()}
+      className={`ikas-details ${revealClasses("ikas-details", reveal)} ${className}`.trim()}
       style={inlineStyles}
       lang="tr"
     >

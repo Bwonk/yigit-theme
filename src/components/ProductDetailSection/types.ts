@@ -67,4 +67,20 @@ export interface Props {
   bundleTitle?: string;
   bundleSubtitle?: string;
   bundleQtyLabel?: string;
+  reviewsAnchorLabel?: string;
+  galleryPauseAriaLabel?: string;
+  galleryPlayAriaLabel?: string;
+  optionsRequiredErrorText?: string;
+  optionsInvalidText?: string;
+  optionsSelectPlaceholder?: string;
+  optionsFileDropText?: string;
+  optionsUploadingText?: string;
+  optionsUploadFailedText?: string;
+  optionsFileSizeErrorText?: string;
+  optionsFileTypeErrorText?: string;
+  optionsMaxFilesErrorText?: string;
+  optionsMinLabelText?: string;
+  optionsMaxLabelText?: string;
+  optionsRemoveFileLabel?: string;
+  optionsOptionalText?: string;
 }

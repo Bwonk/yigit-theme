@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useId, useState } from "preact/hooks";
 import {
   setRegisterFormFirstName,
   setRegisterFormLastName,
@@ -8,6 +8,7 @@ import {
   submitRegisterForm,
   Router,
   getRegisterForm,
+  IkasNavigationLink,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import Button from "../Button";
@@ -25,6 +26,11 @@ export interface Props {
   passwordConfirmPlaceholder?: string;
   passwordMismatchText?: string;
   agreementConsentText?: string;
+  /** Onay metninde bağlantıya dönüştürülecek ifadeler + hedefleri. */
+  termsLinkText?: string;
+  termsLink?: IkasNavigationLink | null;
+  privacyLinkText?: string;
+  privacyLink?: IkasNavigationLink | null;
   submitText?: string;
   submittingText?: string;
   showPasswordLabel?: string;
@@ -34,22 +40,44 @@ export interface Props {
 function splitFullName(value: string): { first: string; last: string } {
   const parts = value.trim().split(/\s+/).filter(Boolean);
   if (parts.length === 0) return { first: "", last: "" };
-  if (parts.length === 1) return { first: parts[0], last: parts[0] };
+  // Tek kelime → soyad boş kalır; SDK doğrulaması "soyad gerekli" hatasını
+  // gösterir (eskiden ad kopyalanıp "Ali Ali" olarak kaydediliyordu).
+  if (parts.length === 1) return { first: parts[0], last: "" };
   return { first: parts[0], last: parts.slice(1).join(" ") };
 }
 
-/** Highlight legal phrases with accent underline (reference design). */
-function renderConsentText(text: string) {
-  const parts = text.split(/(Kullanım koşulları|gizlilik politikasını)/g);
-  return parts.map((part, i) =>
-    part === "Kullanım koşulları" || part === "gizlilik politikasını" ? (
-      <TextLink key={i} tone="INLINE" className="ikas-auth__consent-link">
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/**
+ * Onay metninde merchant'ın girdiği ifadeleri (ör. "Kullanım koşulları")
+ * ilgili sayfaya bağlantı olarak işaretler. İfadeler prop'tan geldiği için
+ * metin değiştirildiğinde de eşleşme korunur.
+ */
+function renderConsentText(
+  text: string,
+  links: Array<{ phrase?: string; link?: IkasNavigationLink | null }>
+) {
+  const active = links.filter((l) => l.phrase && l.phrase.trim());
+  if (active.length === 0) return text;
+  const pattern = new RegExp(
+    `(${active.map((l) => escapeRegExp(l.phrase!.trim())).join("|")})`,
+    "g"
+  );
+  return text.split(pattern).map((part, i) => {
+    const hit = active.find((l) => l.phrase!.trim() === part);
+    return hit ? (
+      <TextLink
+        key={i}
+        tone="INLINE"
+        className="ikas-auth__consent-link"
+        link={hit.link ?? undefined}
+      >
         {part}
       </TextLink>
     ) : (
       <span key={i}>{part}</span>
-    )
-  );
+    );
+  });
 }
 
 export function AuthRegisterForm({
@@ -64,16 +92,20 @@ export function AuthRegisterForm({
   passwordConfirmPlaceholder = "Şifreni tekrar gir",
   passwordMismatchText = "Şifreler eşleşmiyor",
   agreementConsentText = "Kullanım koşulları ve gizlilik politikasını okudum, onaylıyorum.",
+  termsLinkText,
+  termsLink,
+  privacyLinkText,
+  privacyLink,
   submitText = "HESAP OLUŞTUR",
   submittingText = "OLUŞTURULUYOR...",
   showPasswordLabel = "Şifreyi göster",
   hidePasswordLabel = "Şifreyi gizle",
 }: Props) {
+  // Aynı sayfada iki form olursa label/input eşleşmesi çakışmasın.
+  const uid = `auth-register-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
   const [fullName, setFullName] = useState(() => {
     const first = registerForm.firstName?.value || "";
     const last = registerForm.lastName?.value || "";
-    if (!first && !last) return "";
-    if (first === last) return first;
     return `${first} ${last}`.trim();
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
@@ -92,14 +124,17 @@ export function AuthRegisterForm({
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
+    if (registerForm.isSubmitting) return;
     if (passwordConfirm !== (registerForm.password?.value ?? "")) {
       setConfirmError(passwordMismatchText);
       return;
     }
     setConfirmError("");
-    const success = await submitRegisterForm(registerForm);
-    if (success) {
-      Router.navigateToPage("ACCOUNT");
+    try {
+      const success = await submitRegisterForm(registerForm);
+      if (success) Router.navigateToPage("ACCOUNT");
+    } catch (err) {
+      console.error("Kayıt hatası:", err);
     }
   };
 
@@ -111,10 +146,10 @@ export function AuthRegisterForm({
         </div>
       )}
 
-      <label className="ikas-auth__field" htmlFor="auth-register-name">
+      <label className="ikas-auth__field" htmlFor={`${uid}-name`}>
         <span className="ikas-auth__label">{fullNameLabel}</span>
         <input
-          id="auth-register-name"
+          id={`${uid}-name`}
           className={`ikas-auth__input${
             registerForm.firstName?.hasError || registerForm.lastName?.hasError
               ? " ikas-auth__input--error"
@@ -134,10 +169,10 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-email">
+      <label className="ikas-auth__field" htmlFor={`${uid}-email`}>
         <span className="ikas-auth__label">{emailLabel}</span>
         <input
-          id="auth-register-email"
+          id={`${uid}-email`}
           className={`ikas-auth__input${
             registerForm.email?.hasError ? " ikas-auth__input--error" : ""
           }`}
@@ -158,11 +193,11 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-password">
+      <label className="ikas-auth__field" htmlFor={`${uid}-password`}>
         <span className="ikas-auth__label">{passwordLabel}</span>
         <div className="ikas-auth__input-wrap">
           <input
-            id="auth-register-password"
+            id={`${uid}-password`}
             className={`ikas-auth__input${
               registerForm.password?.hasError ? " ikas-auth__input--error" : ""
             }`}
@@ -216,10 +251,10 @@ export function AuthRegisterForm({
         )}
       </label>
 
-      <label className="ikas-auth__field" htmlFor="auth-register-password2">
+      <label className="ikas-auth__field" htmlFor={`${uid}-password2`}>
         <span className="ikas-auth__label">{passwordConfirmLabel}</span>
         <input
-          id="auth-register-password2"
+          id={`${uid}-password2`}
           className={`ikas-auth__input${
             confirmError ? " ikas-auth__input--error" : ""
           }`}
@@ -257,7 +292,10 @@ export function AuthRegisterForm({
                 )
               }
             />
-            <span>{renderConsentText(agreementConsentText)}</span>
+            <span>{renderConsentText(agreementConsentText, [
+              { phrase: termsLinkText, link: termsLink },
+              { phrase: privacyLinkText, link: privacyLink },
+            ])}</span>
           </label>
           {registerForm.isMembershipAgreementAccepted?.hasError && (
             <span className="ikas-auth__error">

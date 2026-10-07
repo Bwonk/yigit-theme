@@ -39,6 +39,7 @@ export function ProductDetailSection({
   discountBadgeLabel = "İNDİRİM",
   reviewLabel = "DEĞERLENDİRME",
   detailsAnchorLabel = "Ürün detaylarına git",
+  reviewsAnchorLabel,
   qtyDecreaseLabel = "Adet azalt",
   qtyIncreaseLabel = "Adet artır",
   trustShippingText = "500 ₺ ÜZERİ ÜCRETSİZ KARGO",
@@ -47,7 +48,7 @@ export function ProductDetailSection({
   showProductBadge = true,
   showBuyNow = false,
   buyNowText = "HEMEN SATIN AL",
-  breadcrumbHomeText = "ANA SAYFA",
+  breadcrumbHomeText = "Ana Sayfa",
   showStickyBar = true,
   stickyQtyUnitText = "ADET",
   stickyImageAlt = "Ürün görseli",
@@ -62,6 +63,8 @@ export function ProductDetailSection({
   crossSellSelectedLabel = "Seçildi",
   galleryPrevAriaLabel = "Önceki görsel",
   galleryNextAriaLabel = "Sonraki görsel",
+  galleryPauseAriaLabel,
+  galleryPlayAriaLabel,
   galleryThumbsUpAriaLabel = "Yukarı kaydır",
   galleryThumbsDownAriaLabel = "Aşağı kaydır",
   favoriteAriaLabel = "Favorilere ekle",
@@ -80,6 +83,19 @@ export function ProductDetailSection({
   promotionBackgroundColor,
   promotionTextColor,
   promotionAccentColor,
+  optionsRequiredErrorText = "Bu alan zorunludur",
+  optionsInvalidText = "Sepete eklemeden önce zorunlu alanları doldurun.",
+  optionsSelectPlaceholder = "Seçiniz",
+  optionsFileDropText = "Dosya seç veya buraya sürükle",
+  optionsUploadingText = "Yükleniyor...",
+  optionsUploadFailedText = "Dosya yüklenemedi",
+  optionsFileSizeErrorText = "{fileName}: en fazla {maxSize}MB",
+  optionsFileTypeErrorText = "{fileName}: {ext} dosya türüne izin verilmiyor",
+  optionsMaxFilesErrorText = "En fazla {max} dosya yüklenebilir",
+  optionsMinLabelText = "En az: ",
+  optionsMaxLabelText = "En fazla: ",
+  optionsRemoveFileLabel = "Dosyayı kaldır",
+  optionsOptionalText = "Opsiyonel",
   className = "",
 }: ProductDetailSectionProps) {
   const verticalPySetting = getThemeSetting("_Kl0my3VVMA");
@@ -120,12 +136,14 @@ export function ProductDetailSection({
               product={product}
               galleryPrevAriaLabel={galleryPrevAriaLabel}
               galleryNextAriaLabel={galleryNextAriaLabel}
+              galleryPauseAriaLabel={galleryPauseAriaLabel}
+              galleryPlayAriaLabel={galleryPlayAriaLabel}
               galleryThumbsUpAriaLabel={galleryThumbsUpAriaLabel}
               galleryThumbsDownAriaLabel={galleryThumbsDownAriaLabel}
             />
           </div>
 
-          <div className="ikas-pdp__right" id="product-buy-box-target">
+          <div className="ikas-pdp__right">
             <ProductBuyBox
               product={product}
               seriesTag={seriesTag}
@@ -149,6 +167,7 @@ export function ProductDetailSection({
               discountBadgeLabel={discountBadgeLabel}
               reviewLabel={reviewLabel}
               detailsAnchorLabel={detailsAnchorLabel}
+              reviewsAnchorLabel={reviewsAnchorLabel}
               qtyDecreaseLabel={qtyDecreaseLabel}
               qtyIncreaseLabel={qtyIncreaseLabel}
               trustShippingText={trustShippingText}
@@ -181,6 +200,19 @@ export function ProductDetailSection({
               promotionBackgroundColor={promotionBackgroundColor}
               promotionTextColor={promotionTextColor}
               promotionAccentColor={promotionAccentColor}
+              optionsRequiredErrorText={optionsRequiredErrorText}
+              optionsInvalidText={optionsInvalidText}
+              optionsSelectPlaceholder={optionsSelectPlaceholder}
+              optionsFileDropText={optionsFileDropText}
+              optionsUploadingText={optionsUploadingText}
+              optionsUploadFailedText={optionsUploadFailedText}
+              optionsFileSizeErrorText={optionsFileSizeErrorText}
+              optionsFileTypeErrorText={optionsFileTypeErrorText}
+              optionsMaxFilesErrorText={optionsMaxFilesErrorText}
+              optionsMinLabelText={optionsMinLabelText}
+              optionsMaxLabelText={optionsMaxLabelText}
+              optionsRemoveFileLabel={optionsRemoveFileLabel}
+              optionsOptionalText={optionsOptionalText}
             />
           </div>
         </div>

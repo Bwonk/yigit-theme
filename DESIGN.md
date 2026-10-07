@@ -13,7 +13,7 @@
 > **Uygulanan gerçek:** Canlı tema token'ları için tek doğru kaynak `prompts/TOKENS.md`'dir
 > (`list_theme_globals` çıktısından okunur). Bu dokümandaki ham hex/px değerleri tasarım niyetini
 > anlatır; **koda hardcode edilmez**, token üzerinden bağlanır. Teknik sınırlar için
-> [IKAS.md](file:///root/geeny/IKAS.md), token kurulumu için [GLOBALS.md](file:///root/geeny/GLOBALS.md).
+> [IKAS.md](file:///root/yigit-theme/IKAS.md), token kurulumu için [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md).
 > Merchant içerikleri (metinler, görseller, ürün fiyatları) editable prop olarak kurgulanır.
 
 ---

@@ -44,18 +44,24 @@
 
 /* ═══════════════════════════════════════════════════════════════════════
  * FONT-FAMİLY STACK'LERİ — Bileşenler bu CSS var'larını referans alır.
- * Tipografi token'ları (TOKENS.md className'leri) ikas editöründen
- * font-family atamasını alır; bu var'lar ek fallback katmanıdır.
+ *
+ * TEK KAYNAK: Studio tipografi token'ları. --theme-font-* değişkenleri
+ * Header tarafından token'ların canlı ailesiyle <html>'e yazılır
+ * (src/utils/fonts.ts). Studio'da "Başlık H2" / "Gövde Metni (base)" /
+ * "Etiket ve Rozet (xs)" ailesi değişince tüm site değişir. Değişken yoksa
+ * (SSR ilk boyama, token okunamadı) aşağıdaki varsayılan aileler kullanılır.
+ * Bileşen CSS'inde font adı YAZILMAZ; daima bu üç değişken kullanılır.
  * ═══════════════════════════════════════════════════════════════════════ */
 
 /* KATMAN (Z-INDEX) VE BİLEŞEN BOYUT HİYERARŞİ SİSTEMİ */
 :root {
   /* Font Family Stacks */
-  --font-heading: 'Onest', system-ui, -apple-system, sans-serif;
-  --font-body: 'Roboto Flex', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Roboto Mono', ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
+  --font-heading: var(--theme-font-heading, 'Onest'), system-ui, -apple-system, sans-serif;
+  --font-body: var(--theme-font-body, 'Roboto Flex'), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--theme-font-mono, 'Roboto Mono'), ui-monospace, 'Cascadia Code', 'Fira Mono', monospace;
   --z-index-base: 1;
   --z-index-dropdown: 50;
+  --z-index-filter-bar: 50;
   --z-index-announcement: 100;
   --z-index-header: 100;
   --z-index-header-drawer: 800;
@@ -76,11 +82,12 @@
    * Shared layout system — Header pill + HeroBanner aynı ölçü dilini konuşur:
    *   --max-site-width  → bileşenler getThemeSetting(_l6CcMRzdeZ) ile yazar
    *   --site-gutter     → yatay kenar (yukarıda)
-   *   --nav-pill-max    → masaüstü pill tavanı (site max'ın yarısı; sabit 780 yok)
+   *   --nav-pill-max    → masaüstü pill tavanı (site max'ın yarısı). Header
+   *                       inline style'ında hesaplanır: burada (:root → wrapper)
+   *                       --max-site-width henüz tanımsız olduğundan hep 780px'e düşerdi.
    * Sağ kenar hizası: her iki wrapper content-box'ının sağ kenarı aynıdır;
    * pill margin-left:auto ile o kenara yaslanır, hero görseli sağ kolonu doldurur.
    */
-  --nav-pill-max: calc(var(--max-site-width, 1560px) / 2);
   --hero-grid-gap: clamp(16px, 2.8vw, 48px);
 
   /* Varyant Renk Swatch Boyutu */

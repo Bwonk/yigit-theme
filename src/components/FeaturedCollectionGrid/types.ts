@@ -22,4 +22,9 @@ export interface Props {
   addToCartText?: string;
   addingToCartText?: string;
   soldOutText?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  addedToCartText?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
 }

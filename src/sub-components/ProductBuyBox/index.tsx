@@ -12,18 +12,35 @@ import {
   getProductVariantCampaignOffersDiscountPercentage,
   hasProductVariantDiscount,
   hasProductVariantStock,
-  isAddToCartEnabled,
+  hasValidProductOptionSetValues,
   addItemToCart,
   isColorVariantValue,
   IkasProduct,
+  Router,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import Button from "../Button";
 import SizeGuideDrawer from "../SizeGuideDrawer";
 import ProductBundleProducts from "../ProductBundleProducts";
 import ProductCrossSellOffers from "../ProductCrossSellOffers";
+import ProductOptionSet from "../ProductOptionSet";
+import ProductGroupSelector from "../ProductGroupSelector";
 import QuantityStepper from "../QuantityStepper";
 import TextLink from "../TextLink";
+import { useReveal, revealClasses } from "../../utils/reveal";
+import { hasSelectedCampaignOffers } from "../../utils/offers";
+import { openCartDrawer } from "../../utils/cart";
+import {
+  ensureValidProductOptions,
+  resetProductOptions,
+  showOptionErrors,
+  SHOW_OPTION_ERRORS_EVENT,
+  RESET_OPTION_STATE_EVENT,
+} from "../../utils/productOptions";
+
+/** CustomerReviewsSection / ProductDetailsSection kök id'leri. */
+const REVIEWS_ANCHOR_ID = "degerlendirmeler";
+const DETAILS_ANCHOR_ID = "detaylar";
 import ProductSocialActions from "../ProductSocialActions";
 import PromotionCountdownBar from "../PromotionCountdownBar";
 
@@ -50,6 +67,7 @@ export interface Props {
   discountBadgeLabel?: string;
   reviewLabel?: string;
   detailsAnchorLabel?: string;
+  reviewsAnchorLabel?: string;
   qtyDecreaseLabel?: string;
   qtyIncreaseLabel?: string;
   trustShippingText?: string;
@@ -82,6 +100,19 @@ export interface Props {
   promotionBackgroundColor?: string;
   promotionTextColor?: string;
   promotionAccentColor?: string;
+  optionsRequiredErrorText?: string;
+  optionsInvalidText?: string;
+  optionsSelectPlaceholder?: string;
+  optionsFileDropText?: string;
+  optionsUploadingText?: string;
+  optionsUploadFailedText?: string;
+  optionsFileSizeErrorText?: string;
+  optionsFileTypeErrorText?: string;
+  optionsMaxFilesErrorText?: string;
+  optionsMinLabelText?: string;
+  optionsMaxLabelText?: string;
+  optionsRemoveFileLabel?: string;
+  optionsOptionalText?: string;
   className?: string;
 }
 
@@ -134,6 +165,7 @@ export function ProductBuyBox({
   discountBadgeLabel = "İNDİRİM",
   reviewLabel = "DEĞERLENDİRME",
   detailsAnchorLabel = "Ürün detaylarına git",
+  reviewsAnchorLabel = "Değerlendirmelere git",
   qtyDecreaseLabel = "Adet azalt",
   qtyIncreaseLabel = "Adet artır",
   trustShippingText = "500 ₺ ÜZERİ ÜCRETSİZ KARGO",
@@ -166,14 +198,31 @@ export function ProductBuyBox({
   promotionBackgroundColor,
   promotionTextColor,
   promotionAccentColor,
+  optionsRequiredErrorText = "Bu alan zorunludur",
+  optionsInvalidText = "Sepete eklemeden önce zorunlu alanları doldurun.",
+  optionsSelectPlaceholder = "Seçiniz",
+  optionsFileDropText = "Dosya seç veya buraya sürükle",
+  optionsUploadingText = "Yükleniyor...",
+  optionsUploadFailedText = "Dosya yüklenemedi",
+  optionsFileSizeErrorText = "{fileName}: en fazla {maxSize}MB",
+  optionsFileTypeErrorText = "{fileName}: {ext} dosya türüne izin verilmiyor",
+  optionsMaxFilesErrorText = "En fazla {max} dosya yüklenebilir",
+  optionsMinLabelText = "En az: ",
+  optionsMaxLabelText = "En fazla: ",
+  optionsRemoveFileLabel = "Dosyayı kaldır",
+  optionsOptionalText = "Opsiyonel",
   className = "",
 }: Props) {
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
-  const [trustVisible, setTrustVisible] = useState(false);
   const trustRef = useRef<HTMLUListElement>(null);
+  const trustReveal = useReveal(trustRef, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -4% 0px",
+    enabled: Boolean(trustShippingText || trustReturnText || trustWarrantyText),
+  });
   const sizeGuideTriggerRef = useRef<HTMLElement | null>(null);
 
   const actionAnimSetting = getThemeSetting("_bNtMCrOBsE"); // Animasyon / Buton ve Hover
@@ -188,26 +237,20 @@ export function ProductBuyBox({
     return () => window.clearTimeout(t);
   }, [justAdded]);
 
+  // Kişiselleştirme doğrulaması (buradan ya da sticky bardan) başarısız
+  // olduğunda CTA yanında uyarı göster; sıfırlamada gizle.
+  const [optionsAttempted, setOptionsAttempted] = useState(false);
   useEffect(() => {
-    const el = trustRef.current;
-    if (!el) return;
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setTrustVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setTrustVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.2, rootMargin: "0px 0px -4% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    const show = () => setOptionsAttempted(true);
+    const reset = () => setOptionsAttempted(false);
+    window.addEventListener(SHOW_OPTION_ERRORS_EVENT, show);
+    window.addEventListener(RESET_OPTION_STATE_EVENT, reset);
+    return () => {
+      window.removeEventListener(SHOW_OPTION_ERRORS_EVENT, show);
+      window.removeEventListener(RESET_OPTION_STATE_EVENT, reset);
+    };
   }, []);
+
 
   const openSizeGuide = (e?: Event) => {
     const fromEvent = e?.currentTarget as HTMLElement | null;
@@ -217,9 +260,18 @@ export function ProductBuyBox({
     setSizeGuideOpen(true);
   };
 
-  const scrollToDetails = (e: Event) => {
-    e.preventDefault();
-    const target = document.getElementById("detaylar");
+  // Puan linki: sayfada yorumlar bölümü varsa oraya, yoksa ürün detaylarına.
+  const [hasReviewsSection, setHasReviewsSection] = useState(false);
+  useEffect(() => {
+    setHasReviewsSection(Boolean(document.getElementById(REVIEWS_ANCHOR_ID)));
+  }, []);
+
+  // <a href="#..."> yerine buton: ikas runtime'ı anchor tıklamalarını yakalayıp
+  // "/#degerlendirmeler" (ana sayfa) adresine yönlendiriyor.
+  const scrollToDetails = () => {
+    const target =
+      document.getElementById(REVIEWS_ANCHOR_ID) ||
+      document.getElementById(DETAILS_ANCHOR_ID);
     if (!target) return;
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
     target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -229,9 +281,7 @@ export function ProductBuyBox({
 
   const variant = getSelectedProductVariant(product);
   const variantTypes = getDisplayedProductVariantTypes(product) || [];
-  const hasSelectedOffers = (product.offers || []).some(
-    (offer) => !!offer?.isSelected && !!(offer as any).product
-  );
+  const hasSelectedOffers = hasSelectedCampaignOffers(product);
   const finalPriceText = variant
     ? hasSelectedOffers
       ? getProductVariantFormattedFinalPriceWithCampaignOffers(variant)
@@ -254,7 +304,13 @@ export function ProductBuyBox({
       : getProductVariantDiscountPercentage(variant)
     : "";
   const inStock = variant ? hasProductVariantStock(variant) : true;
-  const canAddToCart = isAddToCartEnabled(product) && inStock && !!variant;
+  // Stok/varyant uygunluğu. Kişiselleştirme geçerliliği burada DEĞİL —
+  // `isAddToCartEnabled` boş zorunlu alanlarda da false döner ve butonu
+  // ölü bırakır; bunun yerine tıklama doğrulamayı tetikler.
+  const canAddToCart = inStock && !!variant;
+  const optionSet = product.productOptionSet;
+  const showOptionsAlert =
+    optionsAttempted && !!optionSet && !hasValidProductOptionSetValues(optionSet);
 
   const summaryRaw = stripHtml(product.description);
   const summary =
@@ -273,19 +329,40 @@ export function ProductBuyBox({
         ? addedToCartText
         : addToCartText;
 
-  const handleAddToCart = async () => {
-    if (!variant || isAdding || !canAddToCart) return;
+  /** Sepete ekler; başarılıysa true döner. */
+  const addToCart = async (): Promise<boolean> => {
+    if (!variant || isAdding || !canAddToCart) return false;
     setIsAdding(true);
     try {
+      // Kişiselleştirme: zorunlu alanlar boş/geçersizse alan hatalarını
+      // göster, ilk geçersiz alana odaklan ve eklemeyi iptal et.
+      if (!(await ensureValidProductOptions(product))) return false;
       const result = await addItemToCart(variant, product, quantity);
-      if ((result as any)?.success !== false) {
-        setJustAdded(true);
+      if (result.success) {
+        resetProductOptions(product);
+      } else if (result.validationError === "INVALID_PRODUCT_OPTION_VALUES") {
+        showOptionErrors();
       }
+      return result.success;
     } catch (err) {
       console.error("Sepete ekleme hatası:", err);
+      return false;
     } finally {
       setIsAdding(false);
     }
+  };
+
+  const handleAddToCart = async () => {
+    if (await addToCart()) {
+      setJustAdded(true);
+      openCartDrawer();
+    }
+  };
+
+  // "Hemen Al": sepete ekle → başarılıysa doğrudan ödeme adımına geç
+  // (çekmece açılmaz).
+  const handleBuyNow = async () => {
+    if (await addToCart()) Router.navigateToPage("CHECKOUT");
   };
 
   const inlineStyles = {
@@ -323,11 +400,11 @@ export function ProductBuyBox({
         </div>
 
         {rating != null && (
-          <a
-            href="#detaylar"
+          <button
+            type="button"
             className="ikas-buy-box__rating"
-            onClick={scrollToDetails as any}
-            aria-label={detailsAnchorLabel}
+            onClick={scrollToDetails}
+            aria-label={hasReviewsSection ? reviewsAnchorLabel : detailsAnchorLabel}
           >
             <span
               className="ikas-buy-box__stars"
@@ -346,7 +423,7 @@ export function ProductBuyBox({
                 </>
               )}
             </span>
-          </a>
+          </button>
         )}
       </div>
 
@@ -382,6 +459,9 @@ export function ProductBuyBox({
       {summary && <p className="ikas-buy-box__summary">{summary}</p>}
 
       <div className="ikas-buy-box__rule" aria-hidden="true" />
+
+      {/* Ürün grupları — gruptaki diğer ürün sayfalarına geçiş */}
+      <ProductGroupSelector product={product} />
 
       {/* Varyantlar */}
       {variantTypes.length > 0 && (
@@ -473,6 +553,22 @@ export function ProductBuyBox({
         </div>
       )}
 
+      <ProductOptionSet
+        product={product}
+        requiredErrorText={optionsRequiredErrorText}
+        selectPlaceholder={optionsSelectPlaceholder}
+        fileDropText={optionsFileDropText}
+        uploadingText={optionsUploadingText}
+        uploadFailedText={optionsUploadFailedText}
+        fileSizeErrorText={optionsFileSizeErrorText}
+        fileTypeErrorText={optionsFileTypeErrorText}
+        maxFilesErrorText={optionsMaxFilesErrorText}
+        minLabelText={optionsMinLabelText}
+        maxLabelText={optionsMaxLabelText}
+        removeFileLabel={optionsRemoveFileLabel}
+        optionalText={optionsOptionalText}
+      />
+
       <ProductBundleProducts
         product={product}
         title={bundleTitle}
@@ -531,14 +627,22 @@ export function ProductBuyBox({
         }
       />
 
+      <p
+        className={`ikas-buy-box__options-alert${showOptionsAlert ? " ikas-buy-box__options-alert--visible" : ""}`}
+        role="status"
+        aria-live="polite"
+      >
+        {showOptionsAlert ? optionsInvalidText : ""}
+      </p>
+
       {showBuyNow && inStock && (
         <Button
           text={buyNowText}
           variant="PILL_SECONDARY"
           size="LARGE"
           fullWidth
-          disabled={!canAddToCart}
-          onClick={handleAddToCart}
+          disabled={!canAddToCart || isAdding}
+          onClick={handleBuyNow}
         />
       )}
 
@@ -546,9 +650,7 @@ export function ProductBuyBox({
       {(trustShippingText || trustReturnText || trustWarrantyText) && (
         <ul
           ref={trustRef}
-          className={`ikas-buy-box__trust${
-            trustVisible ? " ikas-buy-box__trust--inview" : ""
-          }`}
+          className={`ikas-buy-box__trust ${revealClasses("ikas-buy-box__trust", trustReveal)}`.trim()}
         >
           {trustShippingText && (
             <li className="ikas-buy-box__trust-item">

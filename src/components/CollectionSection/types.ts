@@ -29,4 +29,13 @@ export interface Props {
   emptyNoProductsEyebrow?: string;
   emptyNoProductsTitle?: string;
   emptyNoProductsDescription?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  sheetCloseLabel?: string;
+  densityGroupLabel?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
+  categoryFilterTitle?: string;
+  allCategoriesText?: string;
+  categoriesAriaLabel?: string;
 }

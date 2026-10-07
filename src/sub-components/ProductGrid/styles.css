@@ -3,7 +3,8 @@
   box-sizing: border-box;
   /* Üst boşluk hafif — filter dock zaten hero’dan taştığı için ritmi dengeler */
   padding: clamp(18px, 2.4vw, 36px) var(--section-px, 20px) clamp(24px, 3vw, 40px);
-  background-color: var(--24KlcgGmm9);
+  /* Renk şeması slotları; fallback = şemasız görünüm */
+  background-color: var(--pGwtVHz9Sd, var(--24KlcgGmm9));
 }
 
 .ikas-product-grid__container {
@@ -45,26 +46,53 @@
   animation-delay: 210ms;
 }
 
+/* Liste kartı: ad solda fiyat sağda tek satır; kategori etiketi ve renk
+   noktaları ikinci satır. ::before sıfır yükseklikte satır kırıcıdır. */
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__content::before {
+  content: "";
+  flex-basis: 100%;
+  height: 0;
+  order: 2;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__price-wrapper {
+  order: 1;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__cat {
+  order: 3;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.ikas-product-grid .ikas-product-card--editorial .ikas-product-card__swatches {
+  order: 4;
+  margin-top: 0;
+}
+
+.ikas-product-grid__list--dense .ikas-product-card__cat {
+  display: none;
+}
+
 .ikas-product-grid__empty {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
   padding: clamp(48px, 8vw, 110px) 0;
-  border-top: 1px solid var(--8ARbeTYsmD);
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
   box-sizing: border-box;
 }
 
 .ikas-product-grid__empty-eyebrow {
   margin: 0;
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   letter-spacing: 0.2em;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 .ikas-product-grid__empty-title {
   margin: 0;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   max-width: 18ch;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -72,18 +100,22 @@
 
 .ikas-product-grid__empty-text {
   margin: 0;
-  color: var(--xGFwg5Zqpf);
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf));
   max-width: 44ch;
   line-height: 1.6;
 }
 
-@media (min-width: 760px) {
+@media (min-width: calc(bp(HDRapYMzn7) + 1px)) {
   .ikas-product-grid__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .ikas-product-grid__list--dense {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
-@media (min-width: 1180px) {
+@media (min-width: calc(bp(WZCjrtAPQO) + 1px)) {
   .ikas-product-grid__list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -94,6 +126,14 @@
 }
 
 @media (max-width: bp(HDRapYMzn7)) {
+  .ikas-product-grid .ikas-product-card--editorial .ikas-product-card__content::before {
+    display: none;
+  }
+
+  .ikas-product-grid .ikas-product-card--editorial .ikas-product-card__cat {
+    flex: none;
+  }
+
   .ikas-product-grid {
     padding-left: var(--mobile-px, 16px);
     padding-right: var(--mobile-px, 16px);

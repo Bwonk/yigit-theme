@@ -239,13 +239,17 @@ function PromotionCountdownBar({
       return;
     }
 
+    let id = 0;
     const tick = () => {
-      setParts(calcParts(endMs, Date.now()));
+      const next = calcParts(endMs, Date.now());
+      setParts(next);
       setReady(true);
+      // Süre dolunca saymaya devam etmenin anlamı yok.
+      if (next.totalMs <= 0 && id) window.clearInterval(id);
     };
 
     tick();
-    const id = window.setInterval(tick, 1000);
+    id = window.setInterval(tick, 1000);
     return () => window.clearInterval(id);
   }, [showPromotionCountdown, endMs]);
 
@@ -287,7 +291,6 @@ function PromotionCountdownBar({
       style={inlineStyles}
       lang="tr"
       role="timer"
-      aria-live="polite"
       aria-atomic="true"
     >
       <span className="ikas-promo-countdown__sr">{liveText}</span>

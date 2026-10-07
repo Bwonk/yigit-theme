@@ -1,19 +1,19 @@
 # PROMPT: Tema Global Token'larının Canlı Kurulumu (`prompts/00-globals.md`)
 
-> **Talimat:** Bu prompt çalıştırıldığında, [GLOBALS.md](file:///root/geeny/GLOBALS.md) dosyasındaki 52 adet global tasarım token'ını ikas editörü üzerinde canlı olarak `create_theme_global` aracıyla oluşturacaksın. Kod yazma ve bileşen düzenleme yapma.
+> **Talimat:** Bu prompt çalıştırıldığında, [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) dosyasındaki 52 adet global tasarım token'ını ikas editörü üzerinde canlı olarak `create_theme_global` aracıyla oluşturacaksın. Kod yazma ve bileşen düzenleme yapma.
 
 ---
 
 ## 1. Hazırlık ve Mevcut Durum Okuma
-1. `list_theme_globals` MCP aracını `project_root: "/root/geeny"` parametresi ile çağırarak editördeki mevcut tasarım token'larını ve global değişkenleri oku.
-2. [GLOBALS.md](file:///root/geeny/GLOBALS.md) dosyasındaki **52 token'lık liste** ile mevcut token'ları karşılaştır.
+1. `list_theme_globals` MCP aracını `project_root: "/root/yigit-theme"` parametresi ile çağırarak editördeki mevcut tasarım token'larını ve global değişkenleri oku.
+2. [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) dosyasındaki **52 token'lık liste** ile mevcut token'ları karşılaştır.
 3. Kullanıcıya kurulacak 52 token'ın özet listesini göster ve **KULLANICI ONAYI BEKLE**.
 
 ---
 
 ## 2. Token Kurulum Adımları (`create_theme_global`)
 
-Kullanıcı onay verdikten sonra [GLOBALS.md](file:///root/geeny/GLOBALS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) kurallarına göre `create_theme_global` aracını çalıştır:
+Kullanıcı onay verdikten sonra [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) kurallarına göre `create_theme_global` aracını çalıştır:
 
 ### A. Renkler — `kind: "color"` (9 Token)
 Aşağıdaki 9 renk token'ını sırayla oluştur:
@@ -29,16 +29,16 @@ Aşağıdaki 9 renk token'ını sırayla oluştur:
 
 ### B. Tipografi — `kind: "typography"` (10 Token)
 Aşağıdaki 10 tipografi stilini sırayla oluştur:
-- `name: "Tipografi / Display Hero"`, `font_family: "Jost, sans-serif"`, `font_size: "54px"`, `font_weight: "500"`, `line_height: "64.8px"`
-- `name: "Tipografi / Başlık H1"`, `font_family: "Jost, sans-serif"`, `font_size: "48px"`, `font_weight: "500"`, `line_height: "62.5px"`
-- `name: "Tipografi / Başlık H2"`, `font_family: "Jost, sans-serif"`, `font_size: "36px"`, `font_weight: "500"`, `line_height: "46.8px"`
-- `name: "Tipografi / Başlık H3"`, `font_family: "Jost, sans-serif"`, `font_size: "30.2px"`, `font_weight: "500"`, `line_height: "39.3px"`
-- `name: "Tipografi / Başlık H4"`, `font_family: "Jost, sans-serif"`, `font_size: "27px"`, `font_weight: "500"`, `line_height: "35.1px"`
-- `name: "Tipografi / Kart ve Alt Başlık (lg)"`, `font_family: "Jost, sans-serif"`, `font_size: "24px"`, `font_weight: "500"`, `line_height: "31.2px"`
-- `name: "Tipografi / Gövde Metni (base)"`, `font_family: "Jost, sans-serif"`, `font_size: "18px"`, `font_weight: "400"`, `line_height: "25.2px"`
-- `name: "Tipografi / İkincil Metin (sm)"`, `font_family: "Jost, sans-serif"`, `font_size: "16px"`, `font_weight: "400"`, `line_height: "22.4px"`
-- `name: "Tipografi / Etiket ve Rozet (xs)"`, `font_family: "Jost, sans-serif"`, `font_size: "13.5px"`, `font_weight: "500"`, `line_height: "18.9px"`
-- `name: "Tipografi / Mobil Duyuru Metni"`, `font_family: "Jost, sans-serif"`, `font_size: "12px"`, `font_weight: "500"`, `line_height: "16.8px"`
+- `name: "Tipografi / Display Hero"`, `font_family: "Onest"`, `font_size: "54px"`, `font_weight: "600"`, `line_height: "64.8px"`
+- `name: "Tipografi / Başlık H1"`, `font_family: "Onest"`, `font_size: "48px"`, `font_weight: "600"`, `line_height: "62.5px"`
+- `name: "Tipografi / Başlık H2"`, `font_family: "Onest"`, `font_size: "36px"`, `font_weight: "600"`, `line_height: "46.8px"`
+- `name: "Tipografi / Başlık H3"`, `font_family: "Onest"`, `font_size: "30.2px"`, `font_weight: "500"`, `line_height: "39.3px"`
+- `name: "Tipografi / Başlık H4"`, `font_family: "Onest"`, `font_size: "27px"`, `font_weight: "500"`, `line_height: "35.1px"`
+- `name: "Tipografi / Kart ve Alt Başlık (lg)"`, `font_family: "Onest"`, `font_size: "24px"`, `font_weight: "500"`, `line_height: "31.2px"`
+- `name: "Tipografi / Gövde Metni (base)"`, `font_family: "Roboto Flex"`, `font_size: "18px"`, `font_weight: "400"`, `line_height: "25.2px"`
+- `name: "Tipografi / İkincil Metin (sm)"`, `font_family: "Roboto Flex"`, `font_size: "16px"`, `font_weight: "400"`, `line_height: "22.4px"`
+- `name: "Tipografi / Etiket ve Rozet (xs)"`, `font_family: "Roboto Mono"`, `font_size: "13.5px"`, `font_weight: "400"`, `line_height: "18.9px"`
+- `name: "Tipografi / Mobil Duyuru Metni"`, `font_family: "Roboto Mono"`, `font_size: "12px"`, `font_weight: "400"`, `line_height: "16.8px"`
 
 ### C. Boşluklar / Spacing — `kind: "globalVariable"`, `type: "TEXT"` (15 Token)
 Aşağıdaki 15 boşluk değişkenini oluştur:

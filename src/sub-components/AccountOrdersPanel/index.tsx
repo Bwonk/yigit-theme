@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import {
   customerStore,
   getOrders,
@@ -38,16 +38,21 @@ export function AccountOrdersPanel({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const mountedRef = useRef(true);
+  useEffect(() => () => {
+    mountedRef.current = false;
+  }, []);
+
   const load = async () => {
     setLoading(true);
     setError(false);
     try {
       const result = await getOrders(customerStore);
-      setOrders(result || []);
+      if (mountedRef.current) setOrders(result || []);
     } catch {
-      setError(true);
+      if (mountedRef.current) setError(true);
     } finally {
-      setLoading(false);
+      if (mountedRef.current) setLoading(false);
     }
   };
 

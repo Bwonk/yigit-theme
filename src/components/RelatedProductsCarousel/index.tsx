@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import { IkasProduct } from "@ikas/bp-storefront";
 import { applyLayoutTokens, ThemeSetting, readSetting } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import ProductCard from "../../sub-components/ProductCard";
 import { Props } from "./types";
 
@@ -17,6 +18,9 @@ export function RelatedProductsCarousel({
   productList,
   products,
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
   prevAriaLabel = "Önceki ürünler",
@@ -33,7 +37,6 @@ export function RelatedProductsCarousel({
 
   const trackRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const [headVisible, setHeadVisible] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
@@ -42,6 +45,11 @@ export function RelatedProductsCarousel({
   ).slice(0, MAX_RELATED);
 
   const useCarousel = displayProducts.length > 4;
+  const reveal = useReveal(sectionRef, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -4% 0px",
+    enabled: displayProducts.length > 0,
+  });
 
   const updateArrows = () => {
     const el = trackRef.current;
@@ -55,26 +63,6 @@ export function RelatedProductsCarousel({
     setCanNext(el.scrollLeft < maxScroll - 4);
   };
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setHeadVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setHeadVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -107,7 +95,7 @@ export function RelatedProductsCarousel({
   return (
     <section
       ref={sectionRef}
-      className={`ikas-related${headVisible ? " ikas-related--inview" : ""} ${
+      className={`ikas-related ${revealClasses("ikas-related", reveal)} ${
         useCarousel ? "ikas-related--carousel" : "ikas-related--grid"
       } ${className}`.trim()}
       style={inlineStyles}
@@ -167,6 +155,9 @@ export function RelatedProductsCarousel({
                 showQuickAdd
                 overlayQuickAdd
                 addToCartText={addToCartText}
+                discountBadgeText={discountBadgeText}
+                quickAddAriaLabel={quickAddAriaLabel}
+                selectOptionsText={selectOptionsText}
                 addingToCartText={addingToCartText}
                 soldOutText={soldOutText}
               />

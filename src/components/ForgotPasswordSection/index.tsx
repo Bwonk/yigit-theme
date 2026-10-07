@@ -49,7 +49,7 @@ const ForgotForm = observer(function ForgotForm({
       <div className="ikas-forgot__panel">
         <header className="ikas-forgot__header">
           <h1 className="ikas-forgot__heading _DusX6I08Pv">{successTitle}</h1>
-          <p className="ikas-forgot__intro _VcfI5D07Nt">{successMessage}</p>
+          <p className="ikas-forgot__intro _1F5G4mKZxn">{successMessage}</p>
         </header>
         <Button
           text={successButtonText}
@@ -72,7 +72,7 @@ const ForgotForm = observer(function ForgotForm({
     <div className="ikas-forgot__panel">
       <header className="ikas-forgot__header">
         <h1 className="ikas-forgot__heading _DusX6I08Pv">{title}</h1>
-        <p className="ikas-forgot__intro _VcfI5D07Nt">{subtitle}</p>
+        <p className="ikas-forgot__intro _1F5G4mKZxn">{subtitle}</p>
       </header>
 
       {forgotForm.isFailure && forgotForm.responseMessage && (
@@ -85,7 +85,10 @@ const ForgotForm = observer(function ForgotForm({
         className="ikas-forgot__form"
         onSubmit={(e) => {
           e.preventDefault();
-          void submitForgotPasswordForm(forgotForm);
+          if (forgotForm.isSubmitting) return;
+          submitForgotPasswordForm(forgotForm).catch((err) =>
+            console.error("Şifre sıfırlama hatası:", err)
+          );
         }}
         noValidate
       >
@@ -139,8 +142,8 @@ const ForgotForm = observer(function ForgotForm({
 });
 
 export function ForgotPasswordSection({
-  backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  backgroundColor,
+  brandKicker = "YİĞİT",
   title = "Şifreni sıfırla.",
   subtitle = "E-posta adresine sıfırlama bağlantısı gönderelim.",
   emailLabel = "E-POSTA",

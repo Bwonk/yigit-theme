@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "preact/hooks";
 import { createPortal } from "preact/compat";
 import type { ComponentChildren } from "preact";
+import { getThemeColorSchemes } from "@ikas/bp-storefront";
 
 interface ScopeAttrs {
   className?: string;
@@ -21,7 +22,8 @@ interface Props {
  * both, so fixed drawers/overlays render unstyled at the page bottom.
  *
  * This wrapper copies the nearest `cc_*` class + `data-cc-scope` onto a portal
- * host so scoped rules match again.
+ * host so scoped rules match again, plus the nearest color-scheme palette class
+ * so scheme slot vars resolve inside the portal.
  */
 export function PortalScope({ children, name }: Props) {
   const anchorRef = useRef<HTMLSpanElement>(null);
@@ -37,8 +39,20 @@ export function PortalScope({ children, name }: Props) {
       ? Array.from(ccEl.classList).find((c) => c.startsWith("cc_"))
       : undefined;
 
+    // Section'ın renk şeması sınıfı (`_<schemeId>`) da taşınır; yoksa portal
+    // içindeki slot var'ları tanımsız kalır (TOKENS.md §10).
+    const schemeClasses = new Set(
+      (getThemeColorSchemes()?.values ?? [])
+        .map((v) => v?.className)
+        .filter((c): c is string => !!c),
+    );
+    let schemeClass: string | undefined;
+    for (let el = anchor.parentElement; el && !schemeClass; el = el.parentElement) {
+      schemeClass = Array.from(el.classList).find((c) => schemeClasses.has(c));
+    }
+
     setScopeAttrs({
-      className: ccClass,
+      className: [ccClass, schemeClass].filter(Boolean).join(" ") || undefined,
       "data-cc-scope": scopeEl?.getAttribute("data-cc-scope") ?? undefined,
     });
   }, []);

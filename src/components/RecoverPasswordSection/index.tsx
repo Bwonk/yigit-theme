@@ -47,9 +47,12 @@ const RecoverForm = observer(function RecoverForm({
 }) {
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    const success = await submitRecoverPasswordForm(recoverForm);
-    if (success) {
-      Router.navigateToPage("LOGIN");
+    if (recoverForm.isSubmitting) return;
+    try {
+      const success = await submitRecoverPasswordForm(recoverForm);
+      if (success) Router.navigateToPage("LOGIN");
+    } catch (err) {
+      console.error("Şifre yenileme hatası:", err);
     }
   };
 
@@ -57,7 +60,7 @@ const RecoverForm = observer(function RecoverForm({
     <div className="ikas-recover__panel">
       <header className="ikas-recover__header">
         <h1 className="ikas-recover__heading _DusX6I08Pv">{title}</h1>
-        <p className="ikas-recover__intro _VcfI5D07Nt">{subtitle}</p>
+        <p className="ikas-recover__intro _1F5G4mKZxn">{subtitle}</p>
       </header>
 
       {recoverForm.isSuccess && (
@@ -150,8 +153,8 @@ const RecoverForm = observer(function RecoverForm({
 });
 
 export function RecoverPasswordSection({
-  backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  backgroundColor,
+  brandKicker = "YİĞİT",
   title = "Yeni şifreni belirle.",
   subtitle = "Güçlü bir şifre seç ve tekrar gir.",
   passwordLabel = "YENİ ŞİFRE",

@@ -2,9 +2,9 @@
 import type { IkasNavigationLink, IkasImage } from "@ikas/bp-storefront";
 
 export interface Props {
-  /** Başlığın üzerindeki monospace etiket */
+  /** Görsel üzerindeki kartta, ana metnin altında küçük etiket olarak gösterilir */
   tagText?: string;
-  /** Ana sayfa en üst büyük slogan başlığı */
+  /** Koyu kısım ile soluk kısmı | ile ayırabilirsiniz (ör. Her yerde |kusursuz uyku). Ayraç yoksa ilk kelime koyu olur. */
   title?: string;
   /** Başlık altındaki açıklama paragrafı */
   subtitle?: string;
@@ -18,11 +18,13 @@ export interface Props {
   secondaryButtonLink?: IkasNavigationLink | null;
   /** Görsel üzerindeki sosyal kanıt kartı ana metni */
   socialProofTitle?: string;
-  /** Sosyal kanıt kartı alt puan metni */
+  /** Başlığın üstünde yıldızlarla birlikte gösterilir */
   socialProofSubtitle?: string;
   /** Hero alanında gösterilecek dikey görsel */
   image?: IkasImage | null;
   /** Bölüm zemin rengi */
   backgroundColor?: string;
   imageAlt?: string;
+  /** Sol kolonun altında, ince çizginin altında sıralanır */
+  assuranceText?: string;
 }

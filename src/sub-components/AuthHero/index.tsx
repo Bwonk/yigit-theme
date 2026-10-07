@@ -2,6 +2,8 @@ import { useEffect, useRef } from "preact/hooks";
 import { getDefaultSrc, getThemeSetting } from "@ikas/bp-storefront";
 import type { IkasImage } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { maxWidthQuery } from "../../utils/themeTokens";
+import SocialProofChip from "../SocialProofChip";
 
 export interface Props {
   image?: IkasImage | null;
@@ -21,7 +23,7 @@ export interface Props {
  */
 export function AuthHero({
   image,
-  imageAlt = "Infinity seyahat atmosferi",
+  imageAlt = "Yiğit seyahat atmosferi",
   tag = "SS26 · SEYAHAT SERİSİ",
   title = "Uykunu yanında taşı.",
   subtitle = "Hesabın siparişlerini, iade taleplerini ve garanti kayıtlarını tek yerde tutar.",
@@ -46,7 +48,7 @@ export function AuthHero({
       !enableParallax ||
       (typeof window !== "undefined" &&
         (window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-          window.matchMedia("(max-width: 899px)").matches ||
+          window.matchMedia(maxWidthQuery("tablet")).matches ||
           window.matchMedia(
             "(orientation: landscape) and (max-height: 560px)"
           ).matches));
@@ -133,25 +135,11 @@ export function AuthHero({
           {title && <h2 className="ikas-auth-hero__title">{title}</h2>}
           {subtitle && <p className="ikas-auth-hero__subtitle">{subtitle}</p>}
 
-          {(socialProofTitle || socialProofSubtitle) && (
-            <div className="ikas-auth-hero__proof">
-              <div className="ikas-auth-hero__avatars" aria-hidden="true">
-                <span className="ikas-auth-hero__avatar" />
-                <span className="ikas-auth-hero__avatar" />
-                <span className="ikas-auth-hero__avatar" />
-              </div>
-              <div className="ikas-auth-hero__proof-text">
-                {socialProofTitle && (
-                  <span className="ikas-auth-hero__proof-title">{socialProofTitle}</span>
-                )}
-                {socialProofSubtitle && (
-                  <span className="ikas-auth-hero__proof-sub">
-                    ★★★★★ {socialProofSubtitle}
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
+          <SocialProofChip
+            className="ikas-auth-hero__chip"
+            title={socialProofTitle}
+            caption={socialProofSubtitle}
+          />
         </div>
       </div>
     </aside>

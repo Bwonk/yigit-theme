@@ -1,5 +1,5 @@
 /**
- * Geeny theme token keys + helpers.
+ * Yigit theme token keys + helpers.
  * Source of truth for ids: prompts/TOKENS.md (synced from list_theme_globals).
  * Prefer these named exports over raw getThemeSetting("_…") literals.
  */
@@ -8,6 +8,7 @@ import {
   getThemeColors,
   getThemeTypography,
   getThemeKeyframes,
+  getThemeBreakpoints,
 } from "@ikas/bp-storefront";
 import { formatShadow } from "./theme";
 
@@ -98,20 +99,70 @@ export const ThemeType = {
   bodySm: "_C0OZ8W7vYS",
   label: "_eZyocyyd0F",
   announcement: "_8BUF3YKi2n",
+  /** Onest 400 — form/sayfa açıklamaları */
+  descriptionOnest: "_1F5G4mKZxn",
+  /** Onest 600 — küçük vurgu (yorum yazarı) */
+  smallEmphasis: "_UUwzwdlJyq",
+  /** Onest 700 — marka/wordmark */
+  brand: "_yO6jM73J3h",
+  /** Roboto Mono 500 — vurgulu etiket */
+  labelMedium: "_IQOhDPH9FJ",
+  /** Roboto Mono 600 — kalın etiket */
+  labelBold: "_Gcs8grVLXd",
 } as const;
 
 /**
  * Breakpoint ids for CSS `bp(<id>)` (from list_theme_globals).
- * Mobile 767 · Tablet 991 · Desktop 1023 (max-width thresholds).
+ * Small Mobile 480 · Mobile 767 · Tablet 991 · Desktop 1023 ·
+ * Wide Desktop 1199 · XL Desktop 1439 (max-width thresholds).
  */
 export const ThemeBreakpoint = {
+  /** max-width 480px */
+  smallMobile: "20HIQ0QNmR",
   /** max-width 767px */
   mobile: "HDRapYMzn7",
   /** max-width 991px */
   tablet: "kmfaNJ5hH8",
   /** max-width 1023px */
   desktop: "VzlJkKlXGT",
+  /** max-width 1199px */
+  wideDesktop: "WZCjrtAPQO",
+  /** max-width 1439px */
+  xlDesktop: "JhPjSNa8Cp",
 } as const;
+
+type ThemeBreakpointKey = keyof typeof ThemeBreakpoint;
+
+/** Breakpoint token okunamazsa kullanılacak genişlikler (max-width eşikleri). */
+const BREAKPOINT_FALLBACK_PX: Record<ThemeBreakpointKey, number> = {
+  smallMobile: 480,
+  mobile: 767,
+  tablet: 991,
+  desktop: 1023,
+  wideDesktop: 1199,
+  xlDesktop: 1439,
+};
+
+/**
+ * Tema breakpoint genişliği (px). CSS'te `bp(<id>)` ile aynı kaynak;
+ * JS tarafındaki matchMedia eşikleri bununla CSS'le senkron kalır.
+ */
+export function breakpointPx(key: ThemeBreakpointKey): number {
+  const id = ThemeBreakpoint[key];
+  const hit = (getThemeBreakpoints() ?? []).find((b) => b?.id === id);
+  const width = Number(hit?.width);
+  return Number.isFinite(width) && width > 0 ? width : BREAKPOINT_FALLBACK_PX[key];
+}
+
+/** `(max-width: <bp>px)` — CSS'teki `max-width: bp(<id>)` karşılığı. */
+export function maxWidthQuery(key: ThemeBreakpointKey): string {
+  return `(max-width: ${breakpointPx(key)}px)`;
+}
+
+/** `(min-width: <bp + 1>px)` — CSS'teki `min-width: calc(bp(<id>) + 1px)` karşılığı. */
+export function minWidthAboveQuery(key: ThemeBreakpointKey): string {
+  return `(min-width: ${breakpointPx(key) + 1}px)`;
+}
 
 export const ThemeColorScheme = {
   defaultId: "Dy7o7Bp345",
@@ -228,13 +279,12 @@ export function typeClassById(id: string): string | undefined {
 }
 
 /** Map of Studio keyframe id → runtime token (from getThemeKeyframes). */
-export function keyframesById(): Map<string, { id: string; name: string; ref: string }> {
-  const map = new Map<string, { id: string; name: string; ref: string }>();
+export function keyframesById(): Map<string, { id: string; ref: string }> {
+  const map = new Map<string, { id: string; ref: string }>();
   for (const kf of getThemeKeyframes() ?? []) {
     if (!kf?.id) continue;
     map.set(kf.id, {
       id: kf.id,
-      name: kf.name ?? kf.id,
       ref: kf.ref ?? `_${kf.id}`,
     });
   }

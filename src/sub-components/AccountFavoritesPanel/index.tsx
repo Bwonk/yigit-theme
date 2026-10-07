@@ -16,6 +16,9 @@ export interface Props {
   emptyText?: string;
   shopButtonText?: string;
   addToCartText?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  selectOptionsText?: string;
   removeFavoriteText?: string;
 }
 
@@ -24,6 +27,9 @@ export function AccountFavoritesPanel({
   emptyText = "Favori ürünün yok.",
   shopButtonText = "ALIŞVERİŞE BAŞLA",
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
+  selectOptionsText,
   removeFavoriteText = "FAVORİDEN ÇIKAR",
 }: Props) {
   const [favorites, setFavorites] = useState<IkasProduct[]>([]);
@@ -35,6 +41,8 @@ export function AccountFavoritesPanel({
       try {
         const products = await getFavoriteProducts(customerStore);
         if (!cancelled) setFavorites(products || []);
+      } catch (err) {
+        console.error("Favoriler yüklenemedi:", err);
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -45,9 +53,13 @@ export function AccountFavoritesPanel({
   }, []);
 
   const handleRemove = async (product: IkasProduct) => {
-    const ok = await removeIkasProductFromFavorites(product);
-    if (ok) {
-      setFavorites((prev) => prev.filter((p) => p.id !== product.id));
+    try {
+      const ok = await removeIkasProductFromFavorites(product);
+      if (ok) {
+        setFavorites((prev) => prev.filter((p) => p.id !== product.id));
+      }
+    } catch (err) {
+      console.error("Favoriden çıkarma hatası:", err);
     }
   };
 
@@ -79,6 +91,9 @@ export function AccountFavoritesPanel({
                 showQuickAdd
                 overlayQuickAdd
                 addToCartText={addToCartText}
+                discountBadgeText={discountBadgeText}
+                quickAddAriaLabel={quickAddAriaLabel}
+                selectOptionsText={selectOptionsText}
               />
               <TextLink
                 tone="LABEL"

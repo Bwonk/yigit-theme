@@ -16,15 +16,24 @@
   padding: 0;
   padding-bottom: var(--tl-offset, 2px);
   border: 0;
-  border-bottom: var(--tl-thickness, 2px) solid
-    var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)));
-  background: transparent;
-  color: var(--tl-color, var(--pxNuSoudLn));
+  /* Dolan çizgi: duruşta altta ince sarı çizgi, üzerine gelince yukarı
+     doğru dolup bağlantının zeminini kaplar (menüdeki "Tümünü gör" ile aynı). */
+  background:
+    linear-gradient(
+      var(--tl-underline-color, var(--uYyzbBgJmi, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))),
+      var(--tl-underline-color, var(--uYyzbBgJmi, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))))
+    )
+    0 100% / 100% var(--tl-thickness, 2px) no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  /* Renk şeması: Link / HoverLink slotları (TOKENS.md §10). --tl-color /
+     --tl-hover-color yerel override'ları önceliklidir; fallback = şemasız görünüm. */
+  color: var(--tl-color, var(--spRu5BCzrk, var(--pxNuSoudLn)));
   text-decoration: none;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.3s ease, background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
   vertical-align: baseline;
   max-width: 100%;
 }
@@ -37,12 +46,10 @@ span.ikas-text-link {
   cursor: inherit;
 }
 
-.ikas-text-link:hover {
-  color: var(--tl-hover-color, var(--vluFeuIeFs, #101418));
-  border-bottom-color: var(
-    --tl-hover-underline,
-    var(--tl-underline-color, var(--zyuxTzvMuY, var(--sy8ZnXZdoG)))
-  );
+.ikas-text-link:hover,
+.ikas-text-link:focus-visible {
+  background-size: 100% 100%;
+  color: var(--tl-hover-color, var(--yccjLb7If4, var(--vluFeuIeFs, #101418)));
 }
 
 .ikas-text-link:focus {
@@ -50,7 +57,7 @@ span.ikas-text-link {
 }
 
 .ikas-text-link:focus-visible {
-  outline: 2px solid var(--zyuxTzvMuY, var(--sy8ZnXZdoG));
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--zyuxTzvMuY, var(--sy8ZnXZdoG))));
   outline-offset: 3px;
 }
 

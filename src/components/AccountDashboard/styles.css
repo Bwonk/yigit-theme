@@ -5,8 +5,9 @@
 .ikas-account {
   width: 100%;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
-  background: var(--24KlcgGmm9, #fff);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  background: var(--pGwtVHz9Sd, var(--24KlcgGmm9, #fff));
   padding: clamp(32px, 5vw, 64px) var(--section-px, 20px);
 }
 
@@ -39,7 +40,7 @@
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-account__welcome-name {
@@ -64,24 +65,24 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .ikas-account__nav-btn:hover {
-  background: color-mix(in srgb, var(--pxNuSoudLn) 5%, transparent);
-  color: var(--pxNuSoudLn);
+  background: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 5%, transparent);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-account__nav-btn--active {
-  background: color-mix(in srgb, var(--pxNuSoudLn) 8%, transparent);
-  color: var(--pxNuSoudLn);
+  background: color-mix(in srgb, var(--ucmfvEbo4R, var(--pxNuSoudLn)) 8%, transparent);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-account__nav-btn--logout {
   margin-top: 12px;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 .ikas-account__content {
@@ -97,8 +98,6 @@
 
 .ikas-account__title {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(24px, 3vw, 34px);
   letter-spacing: -0.03em;
 }
@@ -107,7 +106,7 @@
   margin: 0;
   font-family: var(--font-heading);
   font-size: 15px;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-account__banner {
@@ -150,7 +149,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-account__input {
@@ -211,207 +210,16 @@
   flex-wrap: wrap;
 }
 
-.ikas-account-orders {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.ikas-account-orders__item {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 18px 20px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
-  border-radius: 16px;
-}
-
-.ikas-account-orders__meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.ikas-account-orders__no {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-}
-
-.ikas-account-orders__date {
-  font-family: var(--font-heading);
-  font-size: 13px;
-  color: var(--p6EMJiXye1, #8c97a5);
-}
-
-.ikas-account-orders__row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 20px;
-  align-items: baseline;
-}
-
-.ikas-account-orders__status {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.ikas-account-orders__count,
-.ikas-account-orders__price {
-  font-family: var(--font-heading);
-  font-size: 14px;
-  color: var(--p6EMJiXye1, #8c97a5);
-}
-
-.ikas-account-orders__price {
-  margin-left: auto;
-  color: var(--pxNuSoudLn);
-  font-weight: 600;
-}
-
-.ikas-account-addrs {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-@media (min-width: 720px) {
-  .ikas-account-addrs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.ikas-account-addrs__card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 18px 20px;
-  border: 1.5px solid var(--8ARbeTYsmD, #e4e7e8);
-  border-radius: 16px;
-}
-
-.ikas-account-addrs__title {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--p6EMJiXye1, #8c97a5);
-}
-
-.ikas-account-addrs__text {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.ikas-account-addrs__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.ikas-addr-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.ikas-addr-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  padding: 0;
-  background: color-mix(in srgb, var(--pxNuSoudLn) 45%, transparent);
-  cursor: pointer;
-}
-
-.ikas-addr-modal__sheet {
-  position: relative;
-  z-index: 1;
-  width: min(520px, 100%);
-  max-height: min(90vh, 760px);
-  overflow: auto;
-  background: var(--24KlcgGmm9, #fff);
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 16px 48px color-mix(in srgb, var(--pxNuSoudLn) 18%, transparent);
-}
-
-.ikas-addr-modal__sheet--sm {
-  width: min(400px, 100%);
-}
-
-.ikas-addr-modal__title {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 22px;
-  letter-spacing: -0.02em;
-}
-
-.ikas-addr-modal__form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.ikas-addr-modal__actions {
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.ikas-account-favs {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  max-width: none;
-}
-
-@media (min-width: 900px) {
-  .ikas-account-favs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+@media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
 
   .ikas-account__content:has(.ikas-account-favs) .ikas-account__panel {
     max-width: none;
   }
 }
 
-.ikas-account-favs__card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
 /* Layout only — underline on TextLink; muted meta text */
-.ikas-account-favs__remove {
-  align-self: flex-start;
-  --tl-color: var(--p6EMJiXye1, #8c97a5);
-  --tl-hover-color: var(--pxNuSoudLn);
-}
 
-@media (max-width: 900px) {
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-account__container {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -436,7 +244,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-account {
     padding: 24px var(--mobile-px, 16px) 48px;
   }

@@ -53,4 +53,30 @@ export interface Props {
   /** Drawer footer ikincil CTA — sepet sayfasına gider */
   viewCartButtonText?: string;
   bundleQtyLabel?: string;
+  searchDialogLabel?: string;
+  searchPlaceholder?: string;
+  searchInputLabel?: string;
+  searchClearText?: string;
+  searchClearLabel?: string;
+  searchCloseLabel?: string;
+  searchLoadingText?: string;
+  searchResultsText?: string;
+  searchFeaturedText?: string;
+  searchNoResultsText?: string;
+  searchQuickFiltersTitle?: string;
+  searchQuickFilters?: string;
+  searchResultCountText?: string;
+  searchIdleText?: string;
+  searchViewAllText?: string;
+  closeMenuLabel?: string;
+  /** Açılır menü kartının sağında gösterilir; boş bırakılırsa kart yalnızca bağlantıları gösterir */
+  menuFeaturedProduct?: IkasProduct | null;
+  menuFeaturedLabel?: string;
+  menuViewAllText?: string;
+  searchRecentTitle?: string;
+  searchRecentClearText?: string;
+  /** {term} yer tutucusu arama terimiyle değiştirilir */
+  searchRemoveRecentLabel?: string;
+  removeItemLabel?: string;
+  removeItemText?: string;
 }

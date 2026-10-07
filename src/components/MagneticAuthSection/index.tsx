@@ -21,6 +21,7 @@ import MagneticAuthBrandSide from "../../sub-components/MagneticAuthBrandSide";
 import MagneticAuthRow from "../../sub-components/MagneticAuthRow";
 import CloseButton from "../../sub-components/CloseButton";
 import { Props } from "./types";
+import { maxWidthQuery } from "../../utils/themeTokens";
 
 const BAR_TONE_COUNT = 5;
 
@@ -44,8 +45,8 @@ function clampBarCount(n?: number): number {
 
 function getVariant(): Variant {
   if (typeof window === "undefined") return "desktop";
-  if (window.matchMedia("(max-width: 767px)").matches) return "mobile";
-  if (window.matchMedia("(max-width: 1199px)").matches) return "tablet";
+  if (window.matchMedia(maxWidthQuery("mobile")).matches) return "mobile";
+  if (window.matchMedia(maxWidthQuery("wideDesktop")).matches) return "tablet";
   return "desktop";
 }
 
@@ -103,8 +104,8 @@ interface EngineState {
 }
 
 export function MagneticAuthSection({
-  backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  backgroundColor,
+  brandKicker = "YİĞİT",
   stageKicker = "HESAP ERİŞİMİ",
   stageHeading = "Uykunu yanında taşı.",
   stageIntro = "Siparişlerini, iadelerini ve favorilerini tek hesapta yönet.",
@@ -136,6 +137,10 @@ export function MagneticAuthSection({
   passwordConfirmPlaceholder = "Şifreni tekrar gir",
   passwordMismatchText = "Şifreler eşleşmiyor",
   agreementConsentText = "Kullanım koşulları ve gizlilik politikasını okudum, onaylıyorum.",
+  termsLinkText,
+  termsLink,
+  privacyLinkText,
+  privacyLink,
   registerSubmitText = "HESAP OLUŞTUR",
   registerSubmittingText = "OLUŞTURULUYOR...",
   showPasswordLabel = "Şifreyi göster",
@@ -527,15 +532,22 @@ export function MagneticAuthSection({
     measure();
   }, [count, barLabels]);
 
+  // Listener'lar bir kez kurulur; en güncel measure/closePanel ref'ten okunur
+  // (editörde bar sayısı değişince ilk render'ın kapanışında kalmasın).
+  const measureRef = useRef(measure);
+  measureRef.current = measure;
+  const closePanelRef = useRef(closePanel);
+  closePanelRef.current = closePanel;
+
   useEffect(() => {
     let resizeRaf = 0;
     const onResize = () => {
       if (eng.current.open || eng.current.closing) return;
       cancelAnimationFrame(resizeRaf);
-      resizeRaf = requestAnimationFrame(measure);
+      resizeRaf = requestAnimationFrame(() => measureRef.current());
     };
     const onKeyDown = (ev: KeyboardEvent) => {
-      if (ev.key === "Escape" && eng.current.open) closePanel();
+      if (ev.key === "Escape" && eng.current.open) closePanelRef.current();
     };
     window.addEventListener("resize", onResize);
     document.addEventListener("keydown", onKeyDown);
@@ -678,7 +690,7 @@ export function MagneticAuthSection({
             )}
             <div className="ikas-mgauth__panel-brand-top">
               {brandKicker && (
-                <span className="ikas-mgauth__panel-wordmark _eZyocyyd0F">
+                <span className="ikas-mgauth__panel-wordmark _Gcs8grVLXd">
                   {upper(brandKicker)}
                 </span>
               )}
@@ -705,7 +717,7 @@ export function MagneticAuthSection({
 
           <div className="ikas-mgauth__panel-form">
             <div className="ikas-mgauth__panel-head">
-              <span className="ikas-mgauth__panel-form-wordmark _eZyocyyd0F">
+              <span className="ikas-mgauth__panel-form-wordmark _Gcs8grVLXd">
                 {upper(brandKicker)}
               </span>
               <CloseButton
@@ -769,6 +781,10 @@ export function MagneticAuthSection({
                     passwordConfirmPlaceholder={passwordConfirmPlaceholder}
                     passwordMismatchText={passwordMismatchText}
                     agreementConsentText={agreementConsentText}
+                    termsLinkText={termsLinkText}
+                    termsLink={termsLink}
+                    privacyLinkText={privacyLinkText}
+                    privacyLink={privacyLink}
                     submitText={registerSubmitText}
                     submittingText={registerSubmittingText}
                     showPasswordLabel={showPasswordLabel}

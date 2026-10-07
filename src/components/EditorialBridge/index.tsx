@@ -1,5 +1,6 @@
-import { useRef, useEffect, useState } from "preact/hooks";
+import { useRef } from "preact/hooks";
 import { applyLayoutTokens } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
 import { Props } from "./types";
 
 export interface EditorialBridgeProps extends Props {
@@ -18,40 +19,13 @@ export interface EditorialBridgeProps extends Props {
  */
 export function EditorialBridge({
   descriptionText = "İyi tasarlanmış seyahat ve uyku ürünleri — İzmir'de dokundu, İstanbul'da tasarlandı.",
-  metaText = "TEMMUZ 2026 · INFINITY SLEEP GOODS",
+  metaText = "TEMMUZ 2026 · YİĞİT",
   backgroundColor,
   className = "",
 }: EditorialBridgeProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const reveal = useReveal(sectionRef, { threshold: 0.15 });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setIsVisible(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
   const layoutTokens = applyLayoutTokens({ includePy: true, includePx: true, includeSiteWidth: true });
 
   const inlineStyles = {
@@ -59,7 +33,7 @@ export function EditorialBridge({
     ...layoutTokens,
   };
 
-  const visibleClass = isVisible ? "ikas-editorial-bridge--visible" : "";
+  const visibleClass = revealClasses("ikas-editorial-bridge", reveal);
   const formattedMeta = metaText ? metaText.trim().toLocaleUpperCase("tr-TR") : "";
 
   return (

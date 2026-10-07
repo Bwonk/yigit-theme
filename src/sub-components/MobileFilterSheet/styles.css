@@ -16,7 +16,8 @@
   width: 100%;
   max-height: 84vh;
   overflow: auto;
-  background: color-mix(in srgb, var(--24KlcgGmm9) 94%, var(--wElEhJwjYh));
+  /* Renk şeması: sayfa section'ın şemasını taşır (PortalScope); fallback = şemasız görünüm */
+  background: var(--pGwtVHz9Sd, color-mix(in srgb, var(--24KlcgGmm9) 94%, var(--wElEhJwjYh)));
   border-radius: 24px 24px 0 0;
   padding: 14px 14px calc(18px + env(safe-area-inset-bottom, 0px));
   animation: ikasFilterSheetIn 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -33,10 +34,9 @@
 }
 
 .ikas-filter-sheet__title {
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
 }
 
 .ikas-filter-sheet__body {
@@ -46,16 +46,15 @@
 }
 
 .ikas-filter-sheet__group {
-  border-top: 1px solid color-mix(in srgb, var(--8ARbeTYsmD) 80%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--p6Vorgv0Uy, var(--8ARbeTYsmD)) 80%, transparent);
   padding: 14px 0 4px;
 }
 
 .ikas-filter-sheet__group-title {
-  color: var(--p6EMJiXye1);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1));
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 10px;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
 }
 
@@ -72,10 +71,12 @@
   height: 42px;
   min-height: 42px;
   padding: 0 14px;
-  border: 1px solid var(--8ARbeTYsmD);
+  /* Seçili değil = SecondaryButton, seçili = PrimaryButton */
+  --sheet-pill-meta: color-mix(in srgb, var(--ua5R3Zg9Wv) 65%, var(--nev1XwFhtS));
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-body, "Roboto Flex", sans-serif);
   font-size: 13px;
   font-weight: 500;
@@ -88,8 +89,10 @@
 }
 
 .ikas-filter-sheet__pill:hover {
-  border-color: color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD));
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD)));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
+  --sheet-pill-meta: color-mix(in srgb, var(--0UgngKDdX6) 65%, var(--vvG2EEhdCx));
 }
 
 .ikas-filter-sheet__pill:active {
@@ -97,30 +100,31 @@
 }
 
 .ikas-filter-sheet__pill:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
 .ikas-filter-sheet__pill--selected {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-filter-sheet__pill--selected:hover {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
 .ikas-filter-sheet__meta {
-  color: var(--p6EMJiXye1);
+  color: var(--sheet-pill-meta, var(--p6EMJiXye1));
   font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 10px;
 }
 
 .ikas-filter-sheet__pill--selected .ikas-filter-sheet__meta {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--sheet-pill-meta-on, rgba(255, 255, 255, 0.7));
+  --sheet-pill-meta-on: color-mix(in srgb, var(--aLyEruXqBe) 70%, transparent);
 }
 
 .ikas-filter-sheet__swatch {
@@ -148,9 +152,8 @@
 .ikas-filter-sheet__clear {
   border: 0;
   background: transparent;
-  color: var(--pxNuSoudLn);
+  color: var(--spRu5BCzrk, var(--pxNuSoudLn));
   letter-spacing: 0.12em;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
   cursor: pointer;
   text-decoration: underline;
@@ -158,8 +161,12 @@
   white-space: nowrap;
 }
 
+.ikas-filter-sheet__clear:hover {
+  color: var(--yccjLb7If4, var(--pxNuSoudLn));
+}
+
 .ikas-filter-sheet__clear:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
   border-radius: 4px;
 }

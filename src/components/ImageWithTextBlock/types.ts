@@ -1,5 +1,6 @@
 // This file is auto-generated — do not edit manually.
 import type { IkasNavigationLink, IkasImage } from "@ikas/bp-storefront";
+import type { HorizontalSide } from "../../global-types";
 
 export interface Props {
   /** Başlık üzerindeki küçük etiket */
@@ -15,7 +16,7 @@ export interface Props {
   /** Bloğun yanında gösterilecek detay görseli */
   image?: IkasImage | null;
   /** Görselin solda mı sağda mı yer alacağı */
-  imagePosition?: string;
+  imagePosition?: HorizontalSide;
   /** Bölüm zemin rengi */
   backgroundColor?: string;
 }

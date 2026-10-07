@@ -18,9 +18,15 @@
 }
 
 .ikas-close-btn:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 3px;
   border-radius: 9999px;
+}
+
+/* Renk şeması: açık zeminde ikon Heading, çerçeve Border; fallback = şemasız görünüm */
+.ikas-close-btn:not(.ikas-close-btn--on-dark) .ikas-icon-chip {
+  border-color: var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
 }
 
 /* Çip 34×34 kalır; butonun kendisi dokunmatikte 44×44 isabet alanı sağlar. */
@@ -34,15 +40,15 @@
 .ikas-close-btn:hover .ikas-icon-chip,
 .ikas-close-btn:focus-visible .ikas-icon-chip {
   transform: rotate(135deg);
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 
 .ikas-close-btn--on-dark:hover .ikas-icon-chip,
 .ikas-close-btn--on-dark:focus-visible .ikas-icon-chip {
-  background-color: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  border-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
   color: var(--vluFeuIeFs, #101418);
 }
 

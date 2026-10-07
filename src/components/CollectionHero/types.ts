@@ -10,9 +10,9 @@ export interface Props {
   productList?: IkasProductList;
   /** Bölüm zemin rengi */
   backgroundColor?: string;
-  /** Hero üstündeki küçük etiket */
+  /** Boş bırakılırsa kategorinin üst kategori yolu gösterilir (ör. TÜM ÜRÜNLER · SEYAHAT) */
   kickLabel?: string;
-  /** Yoksa kategori görseli kullanılır */
+  /** Kategorinin kendi görseli yoksa kullanılır (yedek görsel) */
   image?: IkasImage | null;
   imageAlt?: string;
   showStats?: boolean;
@@ -20,4 +20,7 @@ export interface Props {
   categoryStatLabel?: string;
   customStatLabel?: string;
   customStatValue?: string;
+  fallbackTitle?: string;
+  homepageText?: string;
+  productCountSuffix?: string;
 }

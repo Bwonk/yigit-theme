@@ -11,6 +11,7 @@
 .geeny-search-bar__form {
   display: flex;
   align-items: center;
+  gap: 10px;
   width: 100%;
   position: relative;
   border-radius: var(--input-radius, 8px);
@@ -28,13 +29,13 @@
   width: 100%;
   height: var(--input-height, 48px);
   padding: 0 40px 0 16px;
-  border: 1px solid var(--cdFDkBbKkc);
+  /* Beyaz alan + metin sabit; yalnızca çerçeve renk şemasını izler */
+  border: 1px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc));
   border-radius: var(--input-radius, 8px);
   background-color: var(--24KlcgGmm9);
   color: var(--pxNuSoudLn);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  font-family: inherit;
 }
 
 .geeny-search-bar__input:focus {
@@ -67,27 +68,8 @@
   opacity: 1;
 }
 
-.geeny-search-bar__submit-btn {
+/* Button PILL_PRIMARY — input ile aynı yükseklik */
+.geeny-search-bar__submit-btn.ikas-btn {
+  flex: 0 0 auto;
   height: var(--input-height, 48px);
-  padding: 0 24px;
-  border-radius: var(--btn-radius, 8px);
-  background-color: var(--sy8ZnXZdoG);
-  color: var(--pxNuSoudLn);
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.2s ease, transform 0.1s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.geeny-search-bar__submit-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.geeny-search-bar__submit-btn:active {
-  transform: translateY(0);
 }

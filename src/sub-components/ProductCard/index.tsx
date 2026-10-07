@@ -17,9 +17,10 @@ import {
   isColorVariantValue,
   IkasProduct,
   IkasProductVariant,
+  Router,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
-import Button from "../Button";
+import { openCartDrawer, requiresProductPage } from "../../utils/cart";
 
 /** Paketin kendi Medya’sı; yoksa null (ikas default). */
 function ownMainImageSrc(variant: IkasProductVariant | null | undefined): string | null {
@@ -65,6 +66,9 @@ export interface Props {
   addToCartText?: string;
   addingToCartText?: string;
   soldOutText?: string;
+  discountBadgeText?: string;
+  /** `{title}` yer tutucusu ürün adıyla değiştirilir. */
+  quickAddAriaLabel?: string;
   /**
    * Kartın belge başlık ağacındaki seviyesi. Kart, kapsayan bölümün başlığının
    * bir alt seviyesinde olmalıdır: sayfa başlığı h1 olan listelerde 2, kendi
@@ -72,6 +76,16 @@ export interface Props {
    * WCAG 1.3.1 ihlalidir.
    */
   headingLevel?: 2 | 3 | 4;
+  /**
+   * "editorial": 4:5 görsel, ad ve fiyat aynı satırda, hızlı ekleme sağ altta
+   * hap düğme; eklenince "Eklendi" durumuna geçer (çekmece açılmaz, header
+   * sepet rozeti zıplar). Varsayılan kart düzeni diğer listelerde aynı kalır.
+   */
+  cardStyle?: "default" | "editorial";
+  /** editorial: ekleme sonrası kısa süre gösterilen metin */
+  addedToCartText?: string;
+  /** Kişiselleştirme isteyen ürünlerde buton metni (ürün sayfasına gider). */
+  selectOptionsText?: string;
   className?: string;
 }
 
@@ -86,9 +100,23 @@ export function ProductCard({
   addToCartText = "SEPETE EKLE",
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
+  discountBadgeText = "İNDİRİM",
+  quickAddAriaLabel = "{title} ürününü sepete ekle",
+  cardStyle = "default",
+  addedToCartText = "EKLENDİ",
+  selectOptionsText = "SEÇENEKLERİ SEÇ",
   className = "",
 }: Props) {
   const [isAdding, setIsAdding] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
+  const isEditorial = cardStyle === "editorial";
+
+  // "Eklendi" durumu kısa süre sonra kendiliğinden kalkar.
+  useEffect(() => {
+    if (!justAdded) return;
+    const timer = window.setTimeout(() => setJustAdded(false), 1800);
+    return () => window.clearTimeout(timer);
+  }, [justAdded]);
 
   const radiusSetting = getThemeSetting("_WyFUVwOpPk");
   const hoverAnimSetting = getThemeSetting("_Z1JfmMfgtb");
@@ -177,15 +205,27 @@ export function ProductCard({
       ? product.averageRating.toFixed(1)
       : null;
 
+  // Zorunlu kişiselleştirmesi olan ürün karttan sepete eklenemez
+  // (addItemToCart sessizce başarısız olur) → ürün sayfasına yönlendir.
+  const needsOptions = requiresProductPage(product);
+
   const handleQuickAdd = async (e: Event) => {
     e.preventDefault();
     e.stopPropagation();
+    if (needsOptions) {
+      if (href && href !== "#") Router.navigate(href);
+      return;
+    }
     if (!variant || isAdding || !inStock) return;
 
     setIsAdding(true);
     try {
-      await addItemToCart(variant, product, 1);
-      window.dispatchEvent(new CustomEvent("geeny:cart-drawer:open"));
+      const result = await addItemToCart(variant, product, 1);
+      // Stok yetersiz / geçersiz seçenek gibi hatalarda çekmece açılmasın.
+      if (result.success) {
+        setJustAdded(true);
+        openCartDrawer();
+      }
     } catch (err) {
       console.error("Quick add to cart error:", err);
     } finally {
@@ -193,19 +233,22 @@ export function ProductCard({
     }
   };
 
-  const buttonText = isAdding
-    ? addingToCartText
-    : inStock
-      ? addToCartText
-      : soldOutText;
+  const quickAddLabel = needsOptions
+    ? `${title} — ${selectOptionsText}`
+    : quickAddAriaLabel.replace("{title}", title);
 
   const Heading = `h${headingLevel}` as "h2" | "h3" | "h4";
 
   return (
     <article
-      className={`ikas-product-card ${overlayQuickAdd ? "ikas-product-card--overlay-mode" : ""} ${className}`.trim()}
+      className={`ikas-product-card ${overlayQuickAdd ? "ikas-product-card--overlay-mode" : ""} ${isEditorial ? "ikas-product-card--editorial" : ""} ${className}`
+        .replace(/\s+/g, " ")
+        .trim()}
       style={inlineStyles as any}
     >
+      {/* Medya kapsayıcı: buton <a> içinde olamaz (geçersiz HTML, iç içe
+          etkileşimli öğe) → overlay link'in kardeşi olarak konumlanır. */}
+      <div className="ikas-product-card__media">
       <a
         href={href}
         className="ikas-product-card__image-wrapper"
@@ -238,32 +281,40 @@ export function ProductCard({
             </span>
           ) : (
             hasDiscount && (
-              <span className="ikas-product-card__badge">İNDİRİM</span>
+              <span className="ikas-product-card__badge">{discountBadgeText}</span>
             )
           )}
         </div>
 
-        {showQuickAdd && overlayQuickAdd && (
-          <div
-            className="ikas-product-card__overlay-quick-add"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
-            <Button
-              text={buttonText}
-              variant="PILL_PRIMARY"
-              fullWidth
-              size="NORMAL"
-              disabled={!inStock || isAdding}
-              loading={isAdding}
-              onClick={handleQuickAdd}
-              ariaLabel={`${title} ürününü sepete ekle`}
-            />
-          </div>
-        )}
       </a>
+
+        {/* Tek "Sepete ekle" stili: tüm kartlarda görsel üstünde hap buton
+            (eskiden yalnızca editorial kartlarda; diğerleri tam genişlik
+            lacivert butondu). */}
+        {showQuickAdd && inStock && (
+          <button
+            type="button"
+            className={`ikas-product-card__add-pill${justAdded ? " ikas-product-card__add-pill--done" : ""}`}
+            disabled={isAdding}
+            aria-label={quickAddLabel}
+            onClick={handleQuickAdd as any}
+          >
+            <span className="ikas-product-card__add-icon" aria-hidden="true">
+              {justAdded ? "✓" : needsOptions ? "→" : "+"}
+            </span>
+            <span className="ikas-product-card__add-label" aria-live="polite">
+              {justAdded
+                ? addedToCartText
+                : isAdding
+                  ? addingToCartText
+                  : needsOptions
+                    ? selectOptionsText
+                    : addToCartText}
+            </span>
+          </button>
+        )}
+
+      </div>
 
       <div className="ikas-product-card__content">
         {showRating && averageRating && (
@@ -315,20 +366,6 @@ export function ProductCard({
           </div>
         )}
 
-        {showQuickAdd && !overlayQuickAdd && (
-          <div className="ikas-product-card__quick-add">
-            <Button
-              text={buttonText}
-              variant="PILL_PRIMARY"
-              fullWidth
-              size="NORMAL"
-              disabled={!inStock || isAdding}
-              loading={isAdding}
-              onClick={handleQuickAdd}
-              ariaLabel={`${title} ürününü sepete ekle`}
-            />
-          </div>
-        )}
       </div>
     </article>
   );

@@ -1,5 +1,5 @@
 // This file is auto-generated — do not edit manually.
-import type { IkasImage } from "@ikas/bp-storefront";
+import type { IkasImage, IkasNavigationLink } from "@ikas/bp-storefront";
 
 export interface Props {
   backgroundColor?: string;
@@ -36,4 +36,8 @@ export interface Props {
   passwordMismatchText?: string;
   showPasswordLabel?: string;
   hidePasswordLabel?: string;
+  termsLinkText?: string;
+  privacyLinkText?: string;
+  termsLink?: IkasNavigationLink | null;
+  privacyLink?: IkasNavigationLink | null;
 }

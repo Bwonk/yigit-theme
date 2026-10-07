@@ -1,32 +1,31 @@
 import { useCallback } from "preact/hooks";
-import { searchProductList, getThemeSetting, IkasProduct, IkasProductList } from "@ikas/bp-storefront";
+import { searchProductList, getThemeSetting, IkasProductList } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
-import ProductCard from "../ProductCard";
 
 export interface Props {
   title?: string;
+  /** `{keyword}` yer tutucusu arama kelimesiyle değiştirilir. */
+  titleWithKeyword?: string;
   description?: string;
   suggestedKeywordsTitle?: string;
+  /** Virgülle ayrılmış öneri listesi. */
   suggestedKeywords?: string;
-  recommendedProductsTitle?: string;
+  /** `{keyword}` yer tutucusu öneri kelimesiyle değiştirilir. */
+  suggestionAriaLabel?: string;
   searchKeyword?: string;
   onSelectKeyword?: (keyword: string) => void;
-  recommendedProducts?: IkasProduct[];
   productList?: IkasProductList;
   className?: string;
 }
 
-
-const DEFAULT_SUGGESTIONS = ["Seyahat Yastığı", "Uyku Maskesi", "Boyun Destek", "Seyahat Seti"];
-
 export function EmptySearchState({
   searchKeyword,
   title,
+  titleWithKeyword,
   description,
-  suggestedKeywordsTitle = "Popüler Aramalar:",
+  suggestedKeywordsTitle = "",
   suggestedKeywords,
-  recommendedProductsTitle = "SİZİN İÇİN SEÇTİKLERİMİZ",
-  recommendedProducts,
+  suggestionAriaLabel,
   productList,
   onSelectKeyword,
   className = "",
@@ -64,18 +63,16 @@ export function EmptySearchState({
     "--btn-radius": buttonRadius,
   };
 
-  const parsedChips: string[] = suggestedKeywords
-    ? suggestedKeywords.split(",").map((s) => s.trim()).filter(Boolean)
-    : DEFAULT_SUGGESTIONS;
+  const parsedChips: string[] = (suggestedKeywords ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
 
   const handleChipClick = useCallback(
     (chip: string) => {
-      if (onSelectKeyword) {
-        onSelectKeyword(chip);
-      }
-      if (productList) {
-        searchProductList(productList, chip);
-      }
+      // Tek katman arama yapar: callback varsa üst bileşen, yoksa burası.
+      if (onSelectKeyword) onSelectKeyword(chip);
+      else if (productList) searchProductList(productList, chip);
     },
     [productList, onSelectKeyword]
   );
@@ -85,19 +82,11 @@ export function EmptySearchState({
     : "";
 
   const titleFormatted =
-    title ||
-    (keywordFormatted
-      ? `${keywordFormatted} İÇİN SONUÇ BULUNAMADI`
-      : "ARADIĞINIZ KRİTERLERE UYGUN ÜRÜN BULUNAMADI");
-
-  const descFormatted =
-    description ||
-    "Lütfen kelimelerinizi ve harfleri kontrol ediniz ya da aşağıdaki popüler aramalardan birini deneyiniz.";
+    keywordFormatted && titleWithKeyword
+      ? titleWithKeyword.replace("{keyword}", keywordFormatted)
+      : title;
 
   const formattedSuggestionsTitle = suggestedKeywordsTitle.toLocaleUpperCase("tr-TR");
-  const formattedRecTitle = recommendedProductsTitle.toLocaleUpperCase("tr-TR");
-
-  const displayProducts = recommendedProducts || productList?.data || [];
 
   return (
     <div className={`geeny-empty-search ${className}`.trim()} style={inlineStyles} lang="tr">
@@ -110,19 +99,25 @@ export function EmptySearchState({
           </svg>
         </div>
 
-        <h2 className="geeny-empty-search__title _sKAMD8d1LA">
-          {titleFormatted}
-        </h2>
+        {titleFormatted && (
+          <h2 className="geeny-empty-search__title _sKAMD8d1LA">
+            {titleFormatted}
+          </h2>
+        )}
 
-        <p className="geeny-empty-search__description _VcfI5D07Nt">
-          {descFormatted}
-        </p>
+        {description && (
+          <p className="geeny-empty-search__description _VcfI5D07Nt">
+            {description}
+          </p>
+        )}
 
         {parsedChips.length > 0 && (
           <div className="geeny-empty-search__suggestions">
-            <p className="geeny-empty-search__suggestions-label _C0OZ8W7vYS">
-              {formattedSuggestionsTitle}
-            </p>
+            {formattedSuggestionsTitle && (
+              <p className="geeny-empty-search__suggestions-label _C0OZ8W7vYS">
+                {formattedSuggestionsTitle}
+              </p>
+            )}
             <div className="geeny-empty-search__chips">
               {parsedChips.map((chip) => {
                 const formattedChip = chip.toLocaleUpperCase("tr-TR");
@@ -132,7 +127,7 @@ export function EmptySearchState({
                     type="button"
                     className="geeny-empty-search__chip _C0OZ8W7vYS"
                     onClick={() => handleChipClick(chip)}
-                    aria-label={`"${formattedChip}" araması yap`}
+                    aria-label={suggestionAriaLabel?.replace("{keyword}", formattedChip)}
                   >
                     <span>{formattedChip}</span>
                   </button>
@@ -143,20 +138,6 @@ export function EmptySearchState({
         )}
       </div>
 
-      {displayProducts.length > 0 && (
-        <div className="geeny-empty-search__recommendations">
-          <h3 className="geeny-empty-search__recommendations-title _sKAMD8d1LA">
-            {formattedRecTitle}
-          </h3>
-          <div className="geeny-empty-search__grid">
-            {displayProducts.slice(0, 4).map((product) => (
-              <div key={product.id} className="geeny-empty-search__grid-item">
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

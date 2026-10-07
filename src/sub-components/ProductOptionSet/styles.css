@@ -1,0 +1,716 @@
+/* ═══════════════════════════════════════════════════════════════════════
+ * PRODUCT OPTION SET — kişiselleştirme alanları (buy box içinde)
+ * Varyant seçicilerinin dilini izler: mono etiket, pill kutular,
+ * halkalı swatch'lar, 1.5px çizgili alanlar.
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.ikas-option-set {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.6vw, 22px);
+  width: 100%;
+  min-width: 0;
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Form alanları (input/select/drop/checkbox) beyaz zeminiyle sabit kalır. */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-option-set__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ikas-option-set__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+/* ── Başlık satırı ─────────────────────────────────────────────────── */
+
+.ikas-option-set__head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 2px;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
+}
+
+/* legend float ile fieldset içinde flex akışına katılır */
+legend.ikas-option-set__head {
+  float: left;
+}
+
+legend.ikas-option-set__head + * {
+  clear: both;
+}
+
+.ikas-option-set__name {
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-option-set__required {
+  color: var(--color-danger-text, #8f1f1f);
+  letter-spacing: 0;
+}
+
+.ikas-option-set__optional,
+.ikas-option-set__price {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
+}
+
+.ikas-option-set__price {
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-option-set__selected {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+/* ── Açıklama / ipucu / hata ───────────────────────────────────────── */
+
+.ikas-option-set__desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--hy9HpUbpuN, var(--text-body-aa, #5a6472));
+}
+
+.ikas-option-set__hint {
+  margin: 0;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
+}
+
+.ikas-option-set__error {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-danger-text, #8f1f1f);
+}
+
+/* Boş canlı bölge: yer kaplamaz, erişilebilirlik ağacında kalır */
+.ikas-option-set__error:empty {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ── Metin / select / tarih alanları ───────────────────────────────── */
+
+.ikas-option-set__text-wrap,
+.ikas-option-set__select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.ikas-option-set__input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+  border-radius: 12px;
+  background: var(--24KlcgGmm9, #fff);
+  color: var(--pxNuSoudLn);
+  padding: 12px 16px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color var(--buybox-action-ease, 180ms ease),
+    box-shadow var(--buybox-action-ease, 180ms ease);
+}
+
+.ikas-option-set__input--area {
+  resize: vertical;
+  min-height: 112px;
+  line-height: 1.5;
+  padding-bottom: 28px;
+}
+
+.ikas-option-set__input::placeholder {
+  color: var(--text-meta-aa, #5d656f);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__input:hover {
+    border-color: var(--cdFDkBbKkc, #c8cfd0);
+  }
+}
+
+.ikas-option-set__input:focus {
+  border-color: var(--pxNuSoudLn);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
+}
+
+.ikas-option-set__input--invalid,
+.ikas-option-set__input--invalid:hover {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+.ikas-option-set__input--invalid:focus {
+  border-color: var(--color-danger-text, #8f1f1f);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-danger-text, #8f1f1f) 22%, transparent);
+}
+
+.ikas-option-set__counter {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-meta-aa, #5d656f);
+  pointer-events: none;
+}
+
+/* Tek satır input'ta sayaç ortalanır, metin altına girmesin */
+.ikas-option-set__text-wrap input + .ikas-option-set__counter {
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ikas-option-set__text-wrap input.ikas-option-set__input {
+  padding-right: 64px;
+}
+
+.ikas-option-set__select {
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.ikas-option-set__select-caret {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pxNuSoudLn);
+  pointer-events: none;
+}
+
+.ikas-option-set__date {
+  cursor: pointer;
+}
+
+/* ── Kutu (BOX) seçimi — varyant pill'leriyle aynı dil ─────────────── */
+
+.ikas-option-set__boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.ikas-option-set__box {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--knCpeJkjkB, var(--8ARbeTYsmD, #e4e7e8));
+  border-radius: 9999px;
+  background-color: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ikas-option-set__box-fill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+.ikas-option-set__box-label,
+.ikas-option-set__box-price {
+  position: relative;
+  z-index: 1;
+}
+
+.ikas-option-set__box-price {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+.ikas-option-set__box--selected,
+.ikas-option-set__box:active {
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+}
+
+.ikas-option-set__box--selected .ikas-option-set__box-fill,
+.ikas-option-set__box:active .ikas-option-set__box-fill {
+  transform: none;
+  border-radius: 0;
+}
+
+.ikas-option-set__box:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__box:hover {
+    color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+    border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  }
+
+  .ikas-option-set__box:hover .ikas-option-set__box-fill {
+    transform: none;
+    border-radius: 0;
+  }
+}
+
+.ikas-option-set__field--invalid .ikas-option-set__box:not(.ikas-option-set__box--selected) {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+/* ── Swatch seçimi ─────────────────────────────────────────────────── */
+
+.ikas-option-set__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 14px 18px;
+  padding: 6px 0 0 6px;
+}
+
+.ikas-option-set__swatch-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.ikas-option-set__swatch {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: var(--swatch-radius, 50%);
+  border: 1px solid color-mix(in srgb, var(--pxNuSoudLn) 22%, transparent);
+  background-color: var(--wElEhJwjYh, #edeff0);
+  cursor: pointer;
+  transition: transform var(--buybox-action-ease, 180ms ease);
+}
+
+.ikas-option-set__swatch--image {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+}
+
+.ikas-option-set__swatch-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.ikas-option-set__swatch-ring {
+  position: absolute;
+  inset: -6px;
+  border: 1.5px solid var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.ikas-option-set__swatch--image .ikas-option-set__swatch-ring {
+  inset: -5px;
+  border-radius: 14px;
+}
+
+.ikas-option-set__swatch--selected {
+  transform: scale(1.08);
+}
+
+.ikas-option-set__swatch--selected .ikas-option-set__swatch-ring {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__swatch:hover {
+    transform: scale(1.12);
+  }
+}
+
+.ikas-option-set__field--invalid .ikas-option-set__swatch:not(.ikas-option-set__swatch--selected) {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+.ikas-option-set__extra {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa, #5d656f));
+  white-space: nowrap;
+}
+
+/* ── Checkbox (tekil seçenek + çoklu liste) ────────────────────────── */
+
+.ikas-option-set__checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ikas-option-set__check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.ikas-option-set__check-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ikas-option-set__check-box {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--cdFDkBbKkc, #c8cfd0));
+  background: var(--24KlcgGmm9, #fff);
+  color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--buybox-action-ease, 180ms ease),
+    border-color var(--buybox-action-ease, 180ms ease);
+}
+
+.ikas-option-set__check-box svg {
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.18s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ikas-option-set__check-input:checked + .ikas-option-set__check-box {
+  background: var(--pxNuSoudLn);
+  border-color: var(--pxNuSoudLn);
+}
+
+.ikas-option-set__check-input:checked + .ikas-option-set__check-box svg {
+  opacity: 1;
+  transform: none;
+}
+
+.ikas-option-set__check-input:focus-visible + .ikas-option-set__check-box {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 2px;
+}
+
+.ikas-option-set__check-input[aria-invalid="true"]:not(:checked) + .ikas-option-set__check-box {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__check:hover .ikas-option-set__check-input:not(:checked) + .ikas-option-set__check-box {
+    border-color: var(--pxNuSoudLn);
+  }
+}
+
+.ikas-option-set__check-text {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  min-width: 0;
+}
+
+.ikas-option-set__check-text .ikas-option-set__name {
+  font-family: var(--font-body);
+}
+
+.ikas-option-set__check .ikas-option-set__extra {
+  margin-left: auto;
+}
+
+/* ── Renk seçici ───────────────────────────────────────────────────── */
+
+.ikas-option-set__color {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ikas-option-set__color-input {
+  width: 48px;
+  height: 48px;
+  padding: 4px;
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+  border-radius: 12px;
+  background: var(--24KlcgGmm9, #fff);
+  cursor: pointer;
+}
+
+.ikas-option-set__color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.ikas-option-set__color-input::-webkit-color-swatch {
+  border: 0;
+  border-radius: 8px;
+}
+
+.ikas-option-set__color-input::-moz-color-swatch {
+  border: 0;
+  border-radius: 8px;
+}
+
+.ikas-option-set__color-input:focus-visible {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 2px;
+}
+
+.ikas-option-set__color--invalid .ikas-option-set__color-input {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+.ikas-option-set__color-code {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+/* ── Dosya yükleme ─────────────────────────────────────────────────── */
+
+.ikas-option-set__file {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ikas-option-set__drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 72px;
+  padding: 16px;
+  box-sizing: border-box;
+  border: 1.5px dashed var(--p6Vorgv0Uy, var(--cdFDkBbKkc, #c8cfd0));
+  border-radius: 12px;
+  background: var(--wElEhJwjYh, #edeff0);
+  color: var(--pxNuSoudLn);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color var(--buybox-action-ease, 180ms ease),
+    background-color var(--buybox-action-ease, 180ms ease);
+}
+
+/* Görünmez ama odaklanabilir — klavye ve ekran okuyucu erişimi korunur */
+.ikas-option-set__file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+.ikas-option-set__drop:focus-within {
+  border-color: var(--pxNuSoudLn);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG))) 50%, transparent);
+}
+
+.ikas-option-set__drop--over {
+  border-color: var(--pxNuSoudLn);
+  border-style: solid;
+  background: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 14%, var(--24KlcgGmm9, #fff));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__drop:hover {
+    border-color: var(--pxNuSoudLn);
+  }
+}
+
+.ikas-option-set__drop--invalid {
+  border-color: var(--color-danger-text, #8f1f1f);
+}
+
+.ikas-option-set__drop--busy {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.ikas-option-set__drop-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ikas-option-set__files {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ikas-option-set__file-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 8px 8px 14px;
+  border: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+  border-radius: 9999px;
+  background: var(--24KlcgGmm9, #fff);
+}
+
+.ikas-option-set__file-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--pxNuSoudLn);
+}
+
+.ikas-option-set__file-remove {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--wElEhJwjYh, #edeff0);
+  color: var(--pxNuSoudLn);
+  cursor: pointer;
+  transition: background-color var(--buybox-action-ease, 180ms ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ikas-option-set__file-remove:hover {
+    background: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  }
+}
+
+/* ── Odak halkaları ────────────────────────────────────────────────── */
+
+.ikas-option-set__box:focus,
+.ikas-option-set__swatch:focus,
+.ikas-option-set__file-remove:focus {
+  outline: none;
+}
+
+.ikas-option-set__box:focus-visible,
+.ikas-option-set__file-remove:focus-visible {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 2px;
+}
+
+.ikas-option-set__swatch:focus-visible {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 4px;
+}
+
+/* ── Koşullu alt seçenekler ────────────────────────────────────────── */
+
+.ikas-option-set__children {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 1.4vw, 18px);
+  margin-top: 6px;
+  padding-left: 16px;
+  border-left: 1.5px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD, #e4e7e8));
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-option-set__children {
+    padding-left: 12px;
+  }
+
+  .ikas-option-set__swatches {
+    gap: 12px 16px;
+  }
+
+  .ikas-option-set__box {
+    padding: 10px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-option-set__input,
+  .ikas-option-set__box,
+  .ikas-option-set__box-fill,
+  .ikas-option-set__swatch,
+  .ikas-option-set__swatch-ring,
+  .ikas-option-set__check-box,
+  .ikas-option-set__check-box svg,
+  .ikas-option-set__drop,
+  .ikas-option-set__file-remove {
+    transition: none !important;
+  }
+
+  .ikas-option-set__box:active,
+  .ikas-option-set__swatch--selected,
+  .ikas-option-set__swatch:hover {
+    transform: none;
+  }
+}

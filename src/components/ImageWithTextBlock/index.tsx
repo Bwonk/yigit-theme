@@ -41,11 +41,12 @@ export function ImageWithTextBlock({
 
   const inlineStyles = {
     backgroundColor: backgroundColor || undefined,
-    color: isDarkBg ? ThemeColor.white : ThemeColor.navy,
+    // Renkler renk şemasından gelir (styles.css); yalnızca merchant koyu bir
+    // zemin rengi girdiyse okunabilirlik için açık metin/rozet zorlanır.
+    color: isDarkBg ? ThemeColor.white : undefined,
     ...layoutTokens,
-    "--text-color": isDarkBg ? ThemeColor.white : ThemeColor.navy,
-    "--badge-bg": isDarkBg ? ThemeColor.white : ThemeColor.navy,
-    "--badge-color": isDarkBg ? ThemeColor.navy : ThemeColor.accent,
+    "--badge-bg": isDarkBg ? ThemeColor.white : undefined,
+    "--badge-color": isDarkBg ? ThemeColor.navy : undefined,
   };
 
   const imgSrc = image ? getDefaultSrc(image) : null;
@@ -68,7 +69,7 @@ export function ImageWithTextBlock({
             {imgSrc ? (
               <img
                 src={imgSrc}
-                alt={title || "Detay Görseli"}
+                alt={title || ""}
                 className="ikas-image-text__img"
               />
             ) : (
@@ -96,17 +97,17 @@ export function ImageWithTextBlock({
           {buttonText && (
             <Button
               text={buttonText}
-              variant="PRIMARY"
+              variant="PILL_PRIMARY"
               size="LARGE"
+              icon={
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M4 12h15M13 6l6 6-6 6" />
+                </svg>
+              }
               onClick={() => {
-                const bLink = buttonLink as any;
-                if (bLink?.href) {
-                  Router.navigate(bLink.href);
-                } else if (bLink?.pageType) {
-                  Router.navigateToPage(bLink.pageType, bLink.params);
-                } else {
-                  Router.navigateToPage("CATEGORY");
-                }
+                const href = buttonLink?.href;
+                if (href) Router.navigate(href);
+                else Router.navigateToPage("CATEGORY");
               }}
             />
           )}

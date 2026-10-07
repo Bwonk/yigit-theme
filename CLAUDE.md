@@ -232,8 +232,11 @@ Group text props under a "Texts" propGroup or another specific text group name.
 
 - **Sections** = page-level, full-width containers (Header, Hero, Product Grid, Footer).
   Set `"type": "section"` via CLI. Use `<section>` root element. Props interface: `Props`.
-  **Sections MUST always include a `backgroundColor` COLOR prop** (default: `#ffffff`).
-  Apply via inline style: `style={backgroundColor ? { backgroundColor } : undefined}`
+  **Sections MUST always include a `backgroundColor` COLOR prop with an EMPTY default** (no `defaultValue`, and no `= "#ffffff"` destructuring default in the tsx).
+  Apply via inline style only when set: `style={backgroundColor ? { backgroundColor } : undefined}`
+  An empty prop means "use the color scheme": section colors come from the theme's color-scheme slots
+  (`var(--<slotId>, <fallback>)` in styles.css — see `prompts/TOKENS.md` §10 and `src/components/HeroBanner/styles.css`).
+  A non-empty prop would override the scheme, so never default it to white.
   Consider also adding `textColor` COLOR props for text elements directly on the section background.
 - **Components** = child elements placed inside sections (buttons, cards, badges).
   Defaults to `"component"`. Use `<div>` root element. Props interface: `Props`.

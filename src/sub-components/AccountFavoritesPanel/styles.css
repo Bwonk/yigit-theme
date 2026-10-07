@@ -1,1 +1,29 @@
-/* Styles live in AccountDashboard/styles.css (shared account shell). */
+/* AccountFavoritesPanel — yalnızca AccountDashboard içinde kullanılır; kabuk stilleri
+ * (.ikas-account__*) AccountDashboard/styles.css içinde kalır. */
+
+.ikas-account-favs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: none;
+}
+
+@media (min-width: calc(bp(kmfaNJ5hH8) + 1px)) {
+  .ikas-account-favs {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ikas-account-favs__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ikas-account-favs__remove {
+  align-self: flex-start;
+  /* Renk şeması: soluk ikincil bağlantı → Text; hover → HoverLink (TOKENS.md §10) */
+  --tl-color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+  --tl-hover-color: var(--yccjLb7If4, var(--pxNuSoudLn));
+}

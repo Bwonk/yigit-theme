@@ -16,4 +16,19 @@ export interface Props {
   emptyDescription?: string;
   /** Bölüm arka plan rengi */
   backgroundColor?: string;
+  resultsTitleWithKeyword?: string;
+  productCountText?: string;
+  emptyTitleWithKeyword?: string;
+  suggestedKeywordsTitle?: string;
+  suggestedKeywords?: string;
+  suggestionAriaLabel?: string;
+  searchInputLabel?: string;
+  searchClearLabel?: string;
+  loadingLabel?: string;
+  loadMoreText?: string;
+  loadingMoreText?: string;
+  discountBadgeText?: string;
+  quickAddAriaLabel?: string;
+  /** Kişiselleştirme gerektiren ürünlerde sepete ekle yerine gösterilir; ürün sayfasına yönlendirir */
+  selectOptionsText?: string;
 }

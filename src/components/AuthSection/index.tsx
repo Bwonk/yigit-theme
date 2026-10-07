@@ -42,12 +42,12 @@ function prefersReducedMotion(): boolean {
  * Mode from URL; switcher navigates between pages.
  */
 export function AuthSection({
-  backgroundColor = "#ffffff",
-  brandKicker = "INFINITY",
+  backgroundColor,
+  brandKicker = "YİĞİT",
   loginHeading = "Tekrar hoş geldin.",
   registerHeading = "Hesabını oluştur.",
   loginIntro = "Siparişlerini, iadelerini ve garanti kayıtlarını tek yerden yönet.",
-  registerIntro = "Infinity ailesine katıl — sipariş ve garanti takibi tek hesapta.",
+  registerIntro = "Yiğit ailesine katıl — sipariş ve garanti takibi tek hesapta.",
   loginTabText = "GİRİŞ YAP",
   registerTabText = "KAYIT OL",
   emailLabel = "E-POSTA",
@@ -65,8 +65,12 @@ export function AuthSection({
   registerSubmitText = "HESAP OLUŞTUR",
   registerSubmittingText = "OLUŞTURULUYOR...",
   agreementConsentText = "Kullanım koşulları ve gizlilik politikasını okudum, onaylıyorum.",
+  termsLinkText,
+  termsLink,
+  privacyLinkText,
+  privacyLink,
   heroImage,
-  heroImageAlt = "Infinity seyahat atmosferi",
+  heroImageAlt = "Yiğit seyahat atmosferi",
   heroTag = "SS26 · SEYAHAT SERİSİ",
   heroTitle = "Uykunu yanında taşı.",
   heroSubtitle = "Hesabın siparişlerini, iade taleplerini ve garanti kayıtlarını tek yerde tutar.",
@@ -199,7 +203,7 @@ export function AuthSection({
               {heading && (
                 <h1 className="ikas-auth__heading _DusX6I08Pv">{heading}</h1>
               )}
-              {intro && <p className="ikas-auth__intro _VcfI5D07Nt">{intro}</p>}
+              {intro && <p className="ikas-auth__intro _1F5G4mKZxn">{intro}</p>}
             </header>
 
             <div
@@ -264,6 +268,10 @@ export function AuthSection({
                   passwordConfirmPlaceholder={passwordConfirmPlaceholder}
                   passwordMismatchText={passwordMismatchText}
                   agreementConsentText={agreementConsentText}
+                  termsLinkText={termsLinkText}
+                  termsLink={termsLink}
+                  privacyLinkText={privacyLinkText}
+                  privacyLink={privacyLink}
                   submitText={registerSubmitText}
                   submittingText={registerSubmittingText}
                   showPasswordLabel={showPasswordLabel}

@@ -2,6 +2,8 @@
 // This file is regenerated automatically — do not edit manually.
 import { getThemeSettingValue as _getThemeSettingValueRaw } from "@ikas/bp-storefront";
 
+/** Enum type: 2qFLEqbAV1 */
+export type HorizontalSide = "LEFT" | "RIGHT";
 /** Enum type: ioDAVKTRZR */
 export type ObjectFit = "Fill" | "Cover" | "Contain";
 /** Enum type: vGqGTFaly1 */

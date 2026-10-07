@@ -1,7 +1,7 @@
 # PROMPT: Ortak Bileşen — Slide-Out Cart Drawer (`prompts/ortak/cart-drawer.md`)
 
 ## A) 7 TEMEL KURAL (ZORUNLU)
-1. **Referans Dosyalar:** [DESIGN.md](file:///root/geeny/DESIGN.md), [GLOBALS.md](file:///root/geeny/GLOBALS.md) ve [IKAS.md](file:///root/geeny/IKAS.md) dosyalarını baştan sona referans al.
+1. **Referans Dosyalar:** [DESIGN.md](file:///root/yigit-theme/DESIGN.md), [GLOBALS.md](file:///root/yigit-theme/GLOBALS.md) ve [IKAS.md](file:///root/yigit-theme/IKAS.md) dosyalarını baştan sona referans al.
 2. **Global-First:** Ham renk, font, boşluk veya animasyon yazma; renk `var(--<cssVar>)`, tipografi `className="_<id>"`, globalVariable'lar (`getThemeSetting` ile okunur) `style={{ "--token": setting?.value }}` şeklinde inline CSS değişkenine aktarılır.
 3. **Türkçe Editör Metinleri:** `displayName`, `description`, prop grup adları ve görünen tüm editör metinleri Türkçe yazılmalıdır.
 4. **Türkçe Description:** Her prop için ne işe yaradığını anlatan açıklayıcı Türkçe `description` ekle.
@@ -15,7 +15,7 @@
 - **cssVar Kuralı:** `id`'den elle `var(--id)` türetmek YASAKTIR; bileşeni yazmaya başlamadan önce `list_theme_globals` aracını çağır ve `cssVar` TAM değerini kullan.
 - **Tipler:** Tüm prop tipleri `types.ts` dosyasında eksiksiz tanımlanıp export edilir.
 - **ikas Storefront API:** Sepet verileri ve işlemleri için `@ikas/bp-storefront`'tan `cartStore` (`getCart()`, `changeCartItemQuantity()`, `removeItem()`) ve `customerStore` kullanılmalıdır.
-- **İzinli Paketler:** Yalnızca [IKAS.md](file:///root/geeny/IKAS.md)'deki izin verilen npm paketlerinden import yapılabilir (`preact`, `mobx`, `@ikas/bp-storefront`, `@ikas/bp-storefront-models`, `@ikas/component-utils`).
+- **İzinli Paketler:** Yalnızca [IKAS.md](file:///root/yigit-theme/IKAS.md)'deki izin verilen npm paketlerinden import yapılabilir (`preact`, `mobx`, `@ikas/bp-storefront`, `@ikas/bp-storefront-models`, `@ikas/component-utils`).
 
 ---
 

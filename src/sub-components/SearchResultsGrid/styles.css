@@ -28,16 +28,15 @@
 }
 
 .geeny-search-results__title {
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   margin: 0;
 }
 
 .geeny-search-results__count-badge {
-  background-color: var(--cdFDkBbKkc);
-  color: var(--pxNuSoudLn);
+  background-color: var(--poSYrZpIso, var(--cdFDkBbKkc));
+  color: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
   padding: 4px 12px;
   border-radius: 16px;
-  font-weight: 500;
   display: inline-flex;
   align-items: center;
 }
@@ -67,7 +66,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: bp(20HIQ0QNmR)) {
   .geeny-search-results__grid {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }

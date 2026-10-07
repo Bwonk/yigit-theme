@@ -1,0 +1,330 @@
+/* ═══════════════════════════════════════════════════════════════════════
+ * HEADER SEARCH PANEL — pill içi aramanın sonuç içeriği
+ *
+ * Renkler — DESIGN.md token'ları:
+ *   Ana Lacivert:   var(--pxNuSoudLn)
+ *   Accent Sarı:    var(--sy8ZnXZdoG)
+ *   Nötr / Yüzey:   var(--wElEhJwjYh)
+ *   Yüzey Yumuşak:  var(--jQs026VIpf)
+ *   Nötr / Çizgi:   var(--8ARbeTYsmD)
+ *   Çizgi Güçlü:    var(--0RbHz765Hw)
+ *   Meta Metin:     var(--p6EMJiXye1)
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+.ikas-search-panel {
+  padding: 4px 0 8px;
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm.
+     Tint: hover/alt yüzeyler için Heading'in Background'a hafif karışımı. */
+  --search-panel-tint: color-mix(in srgb, var(--ucmfvEbo4R) 6%, var(--pGwtVHz9Sd));
+}
+
+.ikas-search-panel__sec {
+  display: grid;
+  gap: 4px;
+  padding: 12px 8px 6px;
+}
+
+.ikas-search-panel__sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 10px 4px;
+}
+
+.ikas-search-panel__label {
+  margin: 0;
+  padding: 0 10px 4px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+}
+
+.ikas-search-panel__sec-head .ikas-search-panel__label {
+  padding: 0;
+}
+
+.ikas-search-panel__clear {
+  border: 0;
+  /* Dolan çizgi (menüdeki "Tümünü gör" ile aynı) */
+  background: linear-gradient(var(--uYyzbBgJmi, var(--sy8ZnXZdoG)), var(--uYyzbBgJmi, var(--sy8ZnXZdoG))) 0 100% / 100% 2px no-repeat;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease;
+  padding: 6px 0;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+  cursor: pointer;
+}
+
+.ikas-search-panel__clear:is(:hover, :focus-visible) {
+  background-size: 100% 100%;
+  color: var(--pxNuSoudLn); /* sarı dolgu üzerinde sabit */
+}
+
+/* Satır: ürün, terim ya da öneri */
+.ikas-search-panel__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.ikas-search-panel__row:hover,
+.ikas-search-panel__row.is-active {
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+}
+
+.ikas-search-panel__row:focus-visible {
+  outline: 2px solid var(--pxNuSoudLn);
+  outline-offset: -2px;
+}
+
+.ikas-search-panel__row--term {
+  gap: 12px;
+  padding-block: 7px;
+}
+
+.ikas-search-panel__thumb {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--jQs026VIpf, #edeff0);
+}
+
+.ikas-search-panel__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ikas-search-panel__ic {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  transition: background-color 0.18s ease;
+}
+
+.ikas-search-panel__row:hover .ikas-search-panel__ic,
+.ikas-search-panel__row.is-active .ikas-search-panel__ic {
+  background-color: var(--pGwtVHz9Sd, #ffffff);
+}
+
+.ikas-search-panel__ic svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ikas-search-panel__txt {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.ikas-search-panel__txt b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-search-panel__txt small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+}
+
+.ikas-search-panel mark {
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--uYyzbBgJmi, var(--sy8ZnXZdoG)) 62%, transparent);
+  color: inherit;
+}
+
+.ikas-search-panel__row--term mark {
+  background: none;
+  font-weight: 400;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+}
+
+.ikas-search-panel__price {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+.ikas-search-panel__price s {
+  margin-right: 6px;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+}
+
+.ikas-search-panel__go {
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+  font-size: 14px;
+}
+
+/* Son arama: terim satırı + kaldır düğmesi */
+.ikas-search-panel__recent {
+  display: flex;
+  align-items: center;
+}
+
+.ikas-search-panel__recent .ikas-search-panel__row {
+  flex: 1;
+  min-width: 0;
+}
+
+.ikas-search-panel__remove {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ikas-search-panel__remove:hover {
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+}
+
+/* Popüler aramalar: çipler */
+.ikas-search-panel__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-inline: 10px;
+}
+
+.ikas-search-panel__chip {
+  padding: 9px 15px;
+  border: 1.5px solid var(--knCpeJkjkB, var(--0RbHz765Hw, #dce0e1));
+  border-radius: 9999px;
+  background: var(--nev1XwFhtS, transparent);
+  font-family: var(--font-heading);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ikas-search-panel__chip:hover {
+  background-color: var(--vvG2EEhdCx, var(--pxNuSoudLn));
+  border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+  color: var(--0UgngKDdX6, #ffffff);
+}
+
+.ikas-search-panel__none {
+  margin: 0;
+  padding: 6px 10px 10px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--hy9HpUbpuN, var(--xGFwg5Zqpf, #6e7a8c));
+}
+
+/* Yükleniyor iskeleti */
+.ikas-search-panel__skeleton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+}
+
+.ikas-search-panel__skeleton span {
+  border-radius: 10px;
+  background-color: var(--8ARbeTYsmD, #e4e7e8);
+  animation: ikas-search-shimmer 1.4s ease-in-out infinite;
+}
+
+.ikas-search-panel__skeleton span:first-child {
+  flex: none;
+  width: 46px;
+  height: 46px;
+}
+
+.ikas-search-panel__skeleton span:last-child {
+  width: 55%;
+  height: 14px;
+  border-radius: 4px;
+}
+
+@keyframes ikas-search-shimmer {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.85; }
+}
+
+/* Tüm sonuçlar satırı — seçilince sarıya dolar */
+.ikas-search-panel__all {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(100% - 16px);
+  margin: 4px 8px 0;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--search-panel-tint, var(--wElEhJwjYh, #f4f5f5));
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.ikas-search-panel__all span {
+  flex: 1;
+  min-width: 0;
+}
+
+.ikas-search-panel__all:hover,
+.ikas-search-panel__all.is-active {
+  background-color: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  color: var(--xxNgTuALjl, var(--pxNuSoudLn)); /* sarı dolgu üzerinde sabit */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ikas-search-panel__skeleton span {
+    animation: none;
+  }
+}

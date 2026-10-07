@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "preact/hooks";
 import { applyLayoutTokens } from "../../utils/themeTokens";
+import { canAnimateOnScroll } from "../../utils/reveal";
 import { Props } from "./types";
 
 export interface StorySectionProps extends Props {
@@ -64,31 +65,36 @@ export function StorySection({
   const textRef = useRef<HTMLParagraphElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
 
-  const [activeWordCount, setActiveWordCount] = useState(0);
-  const [counts, setCounts] = useState({
-    c1: countUp(counter1Val, 0),
-    c2: countUp(counter2Val, 0),
-    c3: countUp(counter3Val, 0),
-    c4: countUp(counter4Val, 0),
-  });
+  // null = scroll animasyonu devrede değil → tüm kelimeler yanık (SSR/editör güvenli).
+  const [activeWordCount, setActiveWordCount] = useState<number | null>(null);
+  const finalCounts = {
+    c1: counter1Val,
+    c2: counter2Val,
+    c3: counter3Val,
+    c4: counter4Val,
+  };
+  // Varsayılan: gerçek değerler. 0'dan sayma yalnızca storefront'ta, görünür olunca.
+  const [counts, setCounts] = useState(finalCounts);
 
   const words = (storyText || "").trim().split(/\s+/).filter(Boolean);
 
   // 1. SCROLL-LIT WORDS
   useEffect(() => {
-    if (!textRef.current || words.length === 0) return;
-
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setActiveWordCount(words.length);
+    if (!textRef.current || words.length === 0 || !canAnimateOnScroll()) {
+      setActiveWordCount(null);
       return;
     }
 
-    let rafId: number;
+    let rafId = 0;
 
     const handleScroll = () => {
       if (!textRef.current) return;
       const rect = textRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (!windowHeight) {
+        setActiveWordCount(null);
+        return;
+      }
 
       const startTrigger = windowHeight * 0.85;
       const endTrigger = windowHeight * 0.25;
@@ -117,54 +123,57 @@ export function StorySection({
   // 2. COUNTER ANIMATION
   useEffect(() => {
     const el = counterRef.current;
-    if (!el) return;
+    setCounts(finalCounts);
+    if (!el || !canAnimateOnScroll()) return;
 
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setCounts({
-        c1: counter1Val,
-        c2: counter2Val,
-        c3: counter3Val,
-        c4: counter4Val,
-      });
-      return;
-    }
+    let rafId = 0;
+    const duration = 1500;
 
-    let animated = false;
+    const run = () => {
+      const startTime = performance.now();
+      const step = (now: number) => {
+        const progress = Math.min(1, (now - startTime) / duration);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+
+        setCounts(
+          progress >= 1
+            ? finalCounts
+            : {
+                c1: countUp(counter1Val, easeProgress),
+                c2: countUp(counter2Val, easeProgress),
+                c3: countUp(counter3Val, easeProgress),
+                c4: countUp(counter4Val, easeProgress),
+              }
+        );
+
+        if (progress < 1) rafId = requestAnimationFrame(step);
+      };
+      rafId = requestAnimationFrame(step);
+    };
+
+    // Sayma başlamadan hemen önce sıfır durumuna al.
+    setCounts({
+      c1: countUp(counter1Val, 0),
+      c2: countUp(counter2Val, 0),
+      c3: countUp(counter3Val, 0),
+      c4: countUp(counter4Val, 0),
+    });
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
-            observer.disconnect();
-
-            const startTime = performance.now();
-            const duration = 1500;
-
-            const step = (now: number) => {
-              const elapsed = now - startTime;
-              const progress = Math.min(1, elapsed / duration);
-              const easeProgress = 1 - Math.pow(1 - progress, 3);
-
-              setCounts({
-                c1: progress >= 1 ? counter1Val : countUp(counter1Val, easeProgress),
-                c2: progress >= 1 ? counter2Val : countUp(counter2Val, easeProgress),
-                c3: progress >= 1 ? counter3Val : countUp(counter3Val, easeProgress),
-                c4: progress >= 1 ? counter4Val : countUp(counter4Val, easeProgress),
-              });
-
-              if (progress < 1) requestAnimationFrame(step);
-            };
-
-            requestAnimationFrame(step);
-          }
-        });
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          run();
+        }
       },
       { threshold: 0.2 }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
   }, [counter1Val, counter2Val, counter3Val, counter4Val]);
   const layoutTokens = applyLayoutTokens({ includePy: true, includePx: true, includeSiteWidth: true });
 
@@ -175,6 +184,7 @@ export function StorySection({
 
   return (
     <section
+      id="hikaye"
       className={`ikas-story ${className}`.trim()}
       style={inlineStyles}
       lang="tr"
@@ -184,7 +194,7 @@ export function StorySection({
           {tag && <div className="ikas-story__tag _eZyocyyd0F">{tag}</div>}
           <p ref={textRef} className="ikas-story__paragraph _sKAMD8d1LA">
             {words.map((word, idx) => {
-              const isLit = idx < activeWordCount;
+              const isLit = activeWordCount === null || idx < activeWordCount;
               return (
                 <span
                   key={idx}

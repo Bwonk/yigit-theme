@@ -79,7 +79,7 @@ export function PaginationLoadMore({
         {hasNext && (
           <Button
             text={isLoading ? loadingText : loadMoreText}
-            variant="SECONDARY"
+            variant="PILL_SECONDARY"
             size="NORMAL"
             loading={isLoading}
             onClick={handleLoadMore}

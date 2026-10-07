@@ -16,6 +16,7 @@ import {
   IkasVariantValue,
 } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import { minWidthAboveQuery } from "../../utils/themeTokens";
 import { formatShadow } from "../../utils/theme";
 
 export interface Props {
@@ -24,6 +25,8 @@ export interface Props {
   storyDurationMs?: number;
   galleryPrevAriaLabel?: string;
   galleryNextAriaLabel?: string;
+  galleryPauseAriaLabel?: string;
+  galleryPlayAriaLabel?: string;
   galleryThumbsUpAriaLabel?: string;
   galleryThumbsDownAriaLabel?: string;
   className?: string;
@@ -165,6 +168,8 @@ export function ProductMediaGallery({
   storyDurationMs = DEFAULT_STORY_MS,
   galleryPrevAriaLabel = "Önceki görsel",
   galleryNextAriaLabel = "Sonraki görsel",
+  galleryPauseAriaLabel = "Otomatik geçişi duraklat",
+  galleryPlayAriaLabel = "Otomatik geçişi başlat",
   galleryThumbsUpAriaLabel = "Yukarı kaydır",
   galleryThumbsDownAriaLabel = "Aşağı kaydır",
   className = "",
@@ -172,11 +177,20 @@ export function ProductMediaGallery({
   const [selectedIndex, setSelectedIndex] = useState(0);
   /** Story animasyonunu restart etmek için (thumb seçiminde) */
   const [storyTick, setStoryTick] = useState(0);
+  // Kullanıcı galeriyle etkileşirken (hover / klavye odağı / dokunma) otomatik
+  // geçiş durur — WCAG 2.2.2 Pause, Stop, Hide.
+  const [storyPaused, setStoryPaused] = useState(false);
+  // Kullanıcının butonla açıkça durdurması (hover/odak duraklamasından bağımsız).
+  const [userPaused, setUserPaused] = useState(false);
   const [slideDir, setSlideDir] = useState<"next" | "prev" | "none">("none");
   const [thumbsOverflow, setThumbsOverflow] = useState(false);
   const [thumbsFade, setThumbsFade] = useState({ top: false, bottom: false });
   const [mediaReady, setMediaReady] = useState<Record<string, boolean>>({});
   const stageRef = useRef<HTMLDivElement>(null);
+  // Programatik (autoplay / varyant / thumb) kaydırma hedefi. Smooth scroll
+  // sürerken scroll dinleyicisi ara index'leri yazıp hedefi bozmasın.
+  const scrollTargetRef = useRef<number | null>(null);
+  const scrollTargetTimerRef = useRef(0);
   const thumbsRailRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const reduceMotionRef = useRef(false);
@@ -245,7 +259,7 @@ export function ProductMediaGallery({
 
     const syncHeight = () => {
       // Desktop: rail = stage yüksekliği. Mobil yatay strip — max-height kaldır.
-      const desktop = window.matchMedia("(min-width: 992px)").matches;
+      const desktop = window.matchMedia(minWidthAboveQuery("tablet")).matches;
       if (desktop) {
         const h = stage.getBoundingClientRect().height;
         if (h > 0) {
@@ -287,7 +301,7 @@ export function ProductMediaGallery({
     ) as HTMLElement | null;
     if (!active) return;
 
-    const desktop = window.matchMedia("(min-width: 992px)").matches;
+    const desktop = window.matchMedia(minWidthAboveQuery("tablet")).matches;
     const behavior = reduceMotionRef.current ? "auto" : "smooth";
 
     if (desktop) {
@@ -344,6 +358,7 @@ export function ProductMediaGallery({
   useEffect(() => {
     if (!storyEnabled) return;
     if (reduceMotionRef.current) return;
+    if (storyPaused || userPaused) return;
 
     const timer = window.setTimeout(() => {
       setSelectedIndex((prev) => (prev + 1) % imageCount);
@@ -351,7 +366,24 @@ export function ProductMediaGallery({
     }, storyMs);
 
     return () => window.clearTimeout(timer);
-  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick]);
+  }, [storyEnabled, imageCount, storyMs, activeIndex, storyTick, storyPaused, userPaused]);
+
+  const toggleUserPause = () => {
+    setUserPaused((was) => {
+      // Devam ederken ilerleme çubuğu ve zamanlayıcı baştan başlar.
+      if (was) setStoryTick((t) => t + 1);
+      return !was;
+    });
+  };
+
+  const pauseStory = () => setStoryPaused(true);
+  // Devam ederken ilerleme çubuğu baştan başlar (zamanlayıcı da baştan kurulur).
+  const resumeStory = () => {
+    setStoryPaused((was) => {
+      if (was) setStoryTick((t) => t + 1);
+      return false;
+    });
+  };
 
   // Mobil yatay snap ile seçili index senkron
   useEffect(() => {
@@ -364,10 +396,14 @@ export function ProductMediaGallery({
       queued = true;
       requestAnimationFrame(() => {
         queued = false;
-        if (window.matchMedia("(min-width: 992px)").matches) return;
+        if (window.matchMedia(minWidthAboveQuery("tablet")).matches) return;
         const w = stage.clientWidth || 1;
         const idx = Math.round(stage.scrollLeft / w);
         const next = Math.max(0, Math.min(imageCount - 1, idx));
+        if (scrollTargetRef.current !== null) {
+          if (next === scrollTargetRef.current) scrollTargetRef.current = null;
+          return;
+        }
         setSelectedIndex((prev) => {
           if (prev === next) return prev;
           setStoryTick((t) => t + 1);
@@ -379,6 +415,33 @@ export function ProductMediaGallery({
     stage.addEventListener("scroll", onScroll, { passive: true });
     return () => stage.removeEventListener("scroll", onScroll);
   }, [storyEnabled, imageCount]);
+
+  /** Mobil yatay şeritte stage'i verilen görsele kaydırır (masaüstünde no-op). */
+  const scrollStageTo = (index: number) => {
+    const stage = stageRef.current;
+    if (!stage || window.matchMedia(minWidthAboveQuery("tablet")).matches) return;
+    const w = stage.clientWidth || 1;
+    if (Math.round(stage.scrollLeft / w) === index) return;
+    scrollTargetRef.current = index;
+    window.clearTimeout(scrollTargetTimerRef.current);
+    // Kullanıcı smooth scroll'u keserse hedef sonsuza dek beklemesin.
+    scrollTargetTimerRef.current = window.setTimeout(() => {
+      scrollTargetRef.current = null;
+    }, 900);
+    stage.scrollTo({
+      left: index * w,
+      behavior: reduceMotionRef.current ? "auto" : "smooth",
+    });
+  };
+
+  // Autoplay ve varyant senkronu yalnızca index'i değiştirir; mobil şeritte
+  // görünen görsel de o index'e kaysın (yoksa sayaç ilerler, görsel durur).
+  useEffect(() => {
+    scrollStageTo(activeIndex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex]);
+
+  useEffect(() => () => window.clearTimeout(scrollTargetTimerRef.current), []);
 
   /** Variant seç + window scroll konumunu kilitle (URL yazma) */
   const selectVariantKeepScroll = (vv: IkasVariantValue) => {
@@ -415,13 +478,7 @@ export function ProductMediaGallery({
     setSelectedIndex(next);
     setStoryTick((t) => t + 1);
 
-    const stage = stageRef.current;
-    if (stage && !window.matchMedia("(min-width: 992px)").matches) {
-      stage.scrollTo({
-        left: next * stage.clientWidth,
-        behavior: reduceMotionRef.current ? "auto" : "smooth",
-      });
-    }
+    scrollStageTo(next);
 
     if (syncVariant) {
       const vv = items[next]?.variantValue;
@@ -578,9 +635,46 @@ export function ProductMediaGallery({
         )}
 
         <div className="ikas-media-gallery__main-col">
+          {/* Görünür duraklat/başlat (WCAG 2.2.2). Stage mobilde yatay kaydırılan
+              bir şerit olduğu için buton stage'in DIŞINDA, ana kolona sabitlenir. */}
+          {storyEnabled && !reduceMotionRef.current && (
+            <button
+              type="button"
+              className="ikas-media-gallery__pause ikas-tap-44"
+              onClick={toggleUserPause}
+              aria-pressed={userPaused}
+              aria-label={userPaused ? galleryPlayAriaLabel : galleryPauseAriaLabel}
+            >
+              {userPaused ? (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M7 4.5v15l13-7.5z" />
+                </svg>
+              ) : (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <rect x="6" y="4.5" width="4" height="15" rx="1" />
+                  <rect x="14" y="4.5" width="4" height="15" rx="1" />
+                </svg>
+              )}
+            </button>
+          )}
           <div
             ref={stageRef}
-            className="ikas-media-gallery__stage"
+            className={`ikas-media-gallery__stage${
+              storyPaused || userPaused ? " ikas-media-gallery__stage--paused" : ""
+            }`}
+            onMouseEnter={storyEnabled ? pauseStory : undefined}
+            onMouseLeave={storyEnabled ? resumeStory : undefined}
+            onFocusIn={storyEnabled ? pauseStory : undefined}
+            onFocusOut={
+              storyEnabled
+                ? (e: FocusEvent) => {
+                    const next = e.relatedTarget as Node | null;
+                    if (!next || !stageRef.current?.contains(next)) resumeStory();
+                  }
+                : undefined
+            }
+            onTouchStart={storyEnabled ? pauseStory : undefined}
+            onTouchEnd={storyEnabled ? resumeStory : undefined}
             role="region"
             aria-roledescription="carousel"
             aria-label={product.name}
@@ -666,6 +760,13 @@ export function ProductMediaGallery({
                         muted
                         playsInline
                         preload={isActive ? "metadata" : "none"}
+                        ref={
+                          ready
+                            ? undefined
+                            : (el: HTMLVideoElement | null) => {
+                                if (el && el.readyState >= 2) markMediaReady(mediaId);
+                              }
+                        }
                         onLoadedData={() => markMediaReady(mediaId)}
                       />
                     ) : src ? (
@@ -680,6 +781,15 @@ export function ProductMediaGallery({
                         {...({
                           fetchpriority: isActive ? "high" : "auto",
                         } as any)}
+                        // SSR'da gelen görsel hydration'dan önce yüklenirse onLoad
+                        // hiç tetiklenmez; skeleton görselin üstünde kalmasın.
+                        ref={
+                          ready
+                            ? undefined
+                            : (el: HTMLImageElement | null) => {
+                                if (el?.complete && el.naturalWidth > 0) markMediaReady(mediaId);
+                              }
+                        }
                         onLoad={() => markMediaReady(mediaId)}
                       />
                     ) : (

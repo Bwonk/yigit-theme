@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { applyLayoutTokens } from "../../utils/themeTokens";
 import FilterAndSortBar from "../../sub-components/FilterAndSortBar";
 import ProductGrid from "../../sub-components/ProductGrid";
@@ -15,7 +15,7 @@ export interface CollectionSectionProps extends Props {
  */
 export function CollectionSection({
   productList,
-  backgroundColor = "#ffffff",
+  backgroundColor,
   filterTitle = "FİLTRELER",
   sortTitle = "SIRALA",
   clearFiltersText = "TEMİZLE",
@@ -34,11 +34,19 @@ export function CollectionSection({
   shownCountLabel = "Gösterilen",
   densityComfyLabel = "Rahat görünüm",
   densityDenseLabel = "Sık görünüm",
+  densityGroupLabel,
   sheetFiltersTitle = "Filtreler",
   sheetSortTitle = "Sıralama",
+  sheetCloseLabel,
   addToCartText = "SEPETE EKLE",
+  discountBadgeText,
+  quickAddAriaLabel,
+  selectOptionsText,
   addingToCartText = "EKLENİYOR...",
   soldOutText = "TÜKENDİ",
+  categoryFilterTitle = "Kategori",
+  allCategoriesText = "Tümü",
+  categoriesAriaLabel = "Alt kategoriler",
   className = "",
 }: CollectionSectionProps) {
   const [density, setDensity] = useState<"comfy" | "dense">("comfy");
@@ -47,12 +55,17 @@ export function CollectionSection({
 
   const inlineStyles = {
     backgroundColor: backgroundColor || undefined,
+    "--collection-bg": backgroundColor || undefined,
     ...layoutTokens,
   };
 
+  const fadeTimerRef = useRef(0);
+  useEffect(() => () => window.clearTimeout(fadeTimerRef.current), []);
+
   const triggerFade = () => {
     setIsFading(true);
-    window.setTimeout(() => setIsFading(false), 280);
+    window.clearTimeout(fadeTimerRef.current);
+    fadeTimerRef.current = window.setTimeout(() => setIsFading(false), 280);
   };
 
   return (
@@ -74,8 +87,13 @@ export function CollectionSection({
           onDensityChange={setDensity}
           densityComfyLabel={densityComfyLabel}
           densityDenseLabel={densityDenseLabel}
+          densityGroupLabel={densityGroupLabel}
           sheetFiltersTitle={sheetFiltersTitle}
           sheetSortTitle={sheetSortTitle}
+          sheetCloseLabel={sheetCloseLabel}
+          categoryFilterTitle={categoryFilterTitle}
+          allCategoriesText={allCategoriesText}
+          categoriesAriaLabel={categoriesAriaLabel}
           onFilterChange={triggerFade}
         />
 
@@ -91,6 +109,9 @@ export function CollectionSection({
           emptyNoProductsTitle={emptyNoProductsTitle}
           emptyNoProductsMessage={emptyNoProductsDescription}
           addToCartText={addToCartText}
+          discountBadgeText={discountBadgeText}
+          quickAddAriaLabel={quickAddAriaLabel}
+          selectOptionsText={selectOptionsText}
           addingToCartText={addingToCartText}
           soldOutText={soldOutText}
           showCategoryLabel

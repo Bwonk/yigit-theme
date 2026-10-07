@@ -5,8 +5,9 @@
   width: 100%;
   min-height: 70svh;
   box-sizing: border-box;
-  color: var(--pxNuSoudLn);
-  background: var(--24KlcgGmm9, #fff);
+  /* Renk şeması slotları (TOKENS.md §10); fallback = şemasız görünüm */
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  background: var(--pGwtVHz9Sd, var(--24KlcgGmm9, #fff));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +27,7 @@
   font-size: 12px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--pxNuSoudLn);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   text-decoration: none;
   font-weight: 600;
   width: fit-content;
@@ -46,8 +47,6 @@
 
 .ikas-recover__heading {
   margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 600;
   font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.08;
   letter-spacing: -0.03em;
@@ -55,10 +54,9 @@
 
 .ikas-recover__intro {
   margin: 0;
-  font-family: var(--font-heading);
   font-size: 15px;
   line-height: 1.45;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-recover__banner {
@@ -94,7 +92,7 @@
   font-family: var(--font-mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
-  color: var(--p6EMJiXye1, #8c97a5);
+  color: var(--hy9HpUbpuN, var(--p6EMJiXye1, #8c97a5));
 }
 
 .ikas-recover__input {
@@ -128,7 +126,7 @@
   align-self: center;
 }
 
-@media (max-width: 640px) {
+@media (max-width: bp(HDRapYMzn7)) {
   .ikas-recover {
     padding: 32px var(--mobile-px, 16px) 56px;
   }

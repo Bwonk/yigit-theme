@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useId, useRef } from "preact/hooks";
 import { IkasComponentRenderer } from "@ikas/bp-storefront";
 import {
   applyLayoutTokens,
@@ -6,6 +6,8 @@ import {
   ThemeType,
   readSetting,
 } from "../../utils/themeTokens";
+import { useReveal, revealClasses } from "../../utils/reveal";
+import TextLink from "../../sub-components/TextLink";
 import { Props } from "./types";
 
 export function FaqBouncyAccordion(props: Props) {
@@ -13,14 +15,20 @@ export function FaqBouncyAccordion(props: Props) {
     tag = "SSS",
     title = "Sıkça sorulan sorular",
     subtitle = "Sipariş, kargo ve ürün hakkında merak edilenler.",
-    backgroundColor = "#ffffff",
+    backgroundColor,
     items,
     emptyStateText = "Henüz soru eklenmedi.",
+    helpText = "Aradığını bulamadın mı? Destek ekibi 7/24 canlı.",
+    helpLinkText = "Destek ekibine yaz",
+    helpLink,
   } = props;
 
+  const helpHref = (helpLink as any)?.href || (helpLink as any)?.externalLink || "";
+
   const sectionRef = useRef<HTMLElement>(null);
-  const groupIdRef = useRef(`faq-${Math.random().toString(36).slice(2, 10)}`);
-  const [headVisible, setHeadVisible] = useState(false);
+  // useId: SSR ve client'ta aynı id → hydration uyumsuzluğu yok.
+  const groupId = `faq-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
+  const reveal = useReveal(sectionRef, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
 
   const springEase = readSetting(
     ThemeSetting.qtyStepper,
@@ -38,28 +46,6 @@ export function FaqBouncyAccordion(props: Props) {
     includeSiteWidth: true,
   });
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setHeadVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setHeadVisible(true);
-          io.disconnect();
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
 
   const itemList = Array.isArray(items)
     ? items
@@ -78,13 +64,17 @@ export function FaqBouncyAccordion(props: Props) {
 
   return (
     <section
+      id="sss"
       ref={sectionRef}
-      className={`ikas-faq${headVisible ? " ikas-faq--inview" : ""}`}
+      className={`ikas-faq${revealClasses("ikas-faq", reveal)}`.trim()}
       style={inlineStyles}
-      data-faq-group={groupIdRef.current}
+      data-faq-group={groupId}
       lang="tr"
     >
       <div className="ikas-faq__inner">
+        {/* Masaüstü: sol kolonda sabit duran başlık + destek notu.
+            Mobil: aside "display: contents" olur, destek notu listenin altına iner. */}
+        <div className="ikas-faq__aside">
         <header className="ikas-faq__head">
           {tag ? (
             <div className={`ikas-faq__tag ikas-faq__reveal ${ThemeType.label}`}>
@@ -106,6 +96,18 @@ export function FaqBouncyAccordion(props: Props) {
             </p>
           ) : null}
         </header>
+
+        {(helpText || (helpLinkText && helpHref)) && (
+          <div className="ikas-faq__help">
+            {helpText && (
+              <p className={`ikas-faq__help-text ${ThemeType.bodySm}`}>{helpText}</p>
+            )}
+            {helpLinkText && helpHref && (
+              <TextLink tone="LABEL" href={helpHref} text={helpLinkText} />
+            )}
+          </div>
+        )}
+        </div>
 
         <div className="ikas-faq__list">
           {hasItems ? (

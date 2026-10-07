@@ -1,24 +1,30 @@
 import { useState, useCallback } from "preact/hooks";
 import { searchProductList, getThemeSetting, IkasProductList } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
+import Button from "../Button";
 
 export interface Props {
   placeholder?: string;
   buttonText?: string;
+  inputLabel?: string;
+  clearLabel?: string;
   productList?: IkasProductList;
   onSearch?: (keyword: string) => void;
   className?: string;
 }
 
 export function SearchBarInput({
-  placeholder = "Ürün veya kategori ara...",
-  buttonText = "Ara",
+  placeholder = "",
+  buttonText = "",
+  inputLabel,
+  clearLabel,
   productList,
   onSearch,
   className = "",
 }: Props) {
 
-  const [keyword, setKeyword] = useState<string>("");
+  // ?q= ile gelindiğinde mevcut arama kelimesi input'ta görünsün.
+  const [keyword, setKeyword] = useState<string>(() => productList?.searchKeyword ?? "");
 
   // Read live global settings via getThemeSetting using exact variableNames from prompts/TOKENS.md
   const inputHeightSetting = getThemeSetting("_2xLGYXCG2n"); // Boşluk / Buton Yüksekliği (48px)
@@ -33,24 +39,17 @@ export function SearchBarInput({
     (e: any) => {
       e?.preventDefault();
       const trimmedKeyword = keyword.trim();
-      if (onSearch) {
-        onSearch(trimmedKeyword);
-      }
-      if (productList) {
-        searchProductList(productList, trimmedKeyword);
-      }
+      // Tek katman arama yapar: callback varsa üst bileşen, yoksa burası.
+      if (onSearch) onSearch(trimmedKeyword);
+      else if (productList) searchProductList(productList, trimmedKeyword);
     },
     [keyword, productList, onSearch]
   );
 
   const handleClear = useCallback(() => {
     setKeyword("");
-    if (onSearch) {
-      onSearch("");
-    }
-    if (productList) {
-      searchProductList(productList, "");
-    }
+    if (onSearch) onSearch("");
+    else if (productList) searchProductList(productList, "");
   }, [productList, onSearch]);
 
   const inlineStyles = {
@@ -72,14 +71,14 @@ export function SearchBarInput({
             placeholder={formattedPlaceholder}
             value={keyword}
             onInput={(e: any) => setKeyword((e.target as HTMLInputElement).value)}
-            aria-label="Arama girdisi"
+            aria-label={inputLabel}
           />
           {keyword.length > 0 && (
             <button
               type="button"
               className="geeny-search-bar__clear-btn"
               onClick={handleClear}
-              aria-label="Aramayı temizle"
+              aria-label={clearLabel}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -88,17 +87,18 @@ export function SearchBarInput({
             </button>
           )}
         </div>
-        <button
+        <Button
           type="submit"
-          className="geeny-search-bar__submit-btn _C0OZ8W7vYS"
-          aria-label={formattedButtonText}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <span>{formattedButtonText}</span>
-        </button>
+          variant="PILL_PRIMARY"
+          className="geeny-search-bar__submit-btn"
+          text={formattedButtonText}
+          icon={
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          }
+        />
       </form>
     </div>
   );

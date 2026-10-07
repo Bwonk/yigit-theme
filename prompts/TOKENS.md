@@ -34,6 +34,20 @@ Bu dosya, ikas editöründe canlı olarak oluşturulan tasarım token'larının 
 | `Nötr / Çizgi` | `8ARbeTYsmD` | `var(--8ARbeTYsmD)` |
 | `Nötr / Yüzey Yumuşak` | `JQs026vIpf` | `var(--jQs026VIpf)` |
 | `Nötr / Yüzey` | `wElEhJWJYh` | `var(--wElEhJwjYh)` |
+| `Rozet / İndirim Zemin` | `GI56xfzrM3` | `var(--gi56XfzrM3)` |
+| `Rozet / İndirim Metin` | `vMRjMhid6C` | `var(--vMRjMhid6C)` |
+| `Rozet / Tükendi Zemin` | `aw7bgEpJt5` | `var(--aw7BgEpJt5)` |
+| `Rozet / Tükendi Metin` | `FFrSwmzVyU` | `var(--fFrSwmzVyU)` |
+| `Rozet / Etiket Zemin` | `eMO2pn8JV3` | `var(--eMo2Pn8Jv3)` |
+| `Rozet / Etiket Metin` | `veglu61tEE` | `var(--veglu61TEe)` |
+| `Pastel / Lavanta` | `btAOgyyOol` | `var(--btAOgyyOol)` |
+| `Pastel / Nane` | `QdiB71MDVn` | `var(--qdiB71MdVn)` |
+| `Odak / Halka` | `vwK85WzqFG` | `var(--vwK85WzqFg)` |
+
+Rozet renkleri global’dir (renk şemasından bağımsız, sitenin her yerinde aynı):
+İndirim = ürün kartı indirim rozeti, PDP indirim çerçevesi, Deal Cards tasarruf etiketi,
+sepet indirim etiketi · Tükendi = ürün kartı tükendi rozeti · Etiket = PDP ürün rozeti,
+yorum “doğrulanmış alıcı” rozeti. Kullanım: `var(--gi56XfzrM3, var(--sy8ZnXZdoG))`.
 
 Nötr skala `Anasayfa.dc.html` referansındaki gri değerlerinden türetildi. Koyudan
 açığa sıralama: Mürekkep `#101418` → Ana Lacivert `#37435B` → Gövde Metni `#6E7A8C`
@@ -55,6 +69,11 @@ açığa sıralama: Mürekkep `#101418` → Ana Lacivert `#37435B` → Gövde Me
 | `Tipografi / İkincil Metin (sm)` | `C0OZ8W7vYS` | `_C0OZ8W7vYS` |
 | `Tipografi / Etiket ve Rozet (xs)` | `eZyocyyd0F` | `_eZyocyyd0F` |
 | `Tipografi / Mobil Duyuru Metni` | `8BUF3YKi2n` | `_8BUF3YKi2n` |
+| `Tipografi / Açıklama (Onest)` | `1F5G4mKZxn` | `_1F5G4mKZxn` |
+| `Tipografi / Küçük Vurgu (Onest)` | `UUwzwdlJyq` | `_UUwzwdlJyq` |
+| `Tipografi / Marka (Onest)` | `yO6jM73J3h` | `_yO6jM73J3h` |
+| `Tipografi / Etiket Vurgulu (xs)` | `IQOhDPH9FJ` | `_IQOhDPH9FJ` |
+| `Tipografi / Etiket Kalın (xs)` | `Gcs8grVLXd` | `_Gcs8grVLXd` |
 
 ---
 
@@ -149,9 +168,12 @@ Header props: `enableTextSelectionHighlight`, `selectionBackgroundColor`, `selec
 
 | Token Adı | ID | Width | Kullanım |
 | :--- | :--- | :--- | :--- |
+| `Breakpoint / Small Mobile` | `20HIQ0QNmR` | `480` | `@media (max-width: bp(20HIQ0QNmR))` |
 | `Breakpoint / Mobile` | `HDRapYMzn7` | `767` | `@media (max-width: bp(HDRapYMzn7))` |
 | `Breakpoint / Tablet` | `kmfaNJ5hH8` | `991` | `@media (max-width: bp(kmfaNJ5hH8))` |
 | `Breakpoint / Desktop` | `VzlJkKlXGT` | `1023` | `@media (max-width: bp(VzlJkKlXGT))` |
+| `Breakpoint / Wide Desktop` | `WZCjrtAPQO` | `1199` | `@media (max-width: bp(WZCjrtAPQO))` |
+| `Breakpoint / XL Desktop` | `JhPjSNa8Cp` | `1439` | `@media (max-width: bp(JhPjSNa8Cp))` |
 
 `min-width` için: `@media (min-width: calc(bp(<id>) + 1px))`.
 
@@ -163,9 +185,63 @@ Kod sabitleri: `ThemeBreakpoint` in `src/utils/themeTokens.ts`.
 
 | Token Adı | ID | className |
 | :--- | :--- | :--- |
-| `Geeny / Default` | `Dy7o7Bp345` | `_Dy7o7Bp345` |
+| `Yigit / Default` | `Dy7o7Bp345` | `_Dy7o7Bp345` |
+| `Yigit / Soft` | `7ZPFcYS3JC` | `_7ZPFcYS3JC` |
+| `Yigit / Monochrome` | `AhbDN65BYV` | `_AhbDN65BYV` |
 
 Slot’lar: Background, Heading, Text, Link, HoverLink, Border, PrimaryButton/*, SecondaryButton/*.
+
+| Slot | cssVar |
+| :--- | :--- |
+| Background | `var(--pGwtVHz9Sd)` |
+| Heading | `var(--ucmfvEbo4R)` |
+| Text | `var(--hy9HpUbpuN)` |
+| Link | `var(--spRu5BCzrk)` |
+| HoverLink | `var(--yccjLb7If4)` |
+| Border | `var(--p6Vorgv0Uy)` |
+| PrimaryButton/Background | `var(--14KZmiHQnk)` |
+| PrimaryButton/Text | `var(--aLyEruXqBe)` |
+| PrimaryButton/Border | `var(--fkaMzCgkCr)` |
+| PrimaryButton/HoverBackground | `var(--cQnfNuvn0R)` |
+| PrimaryButton/HoverText | `var(--xm8HJppGoU)` |
+| PrimaryButton/HoverBorder | `var(--sle6Nb4QtF)` |
+| SecondaryButton/Background | `var(--nev1XwFhtS)` |
+| SecondaryButton/Text | `var(--ua5R3Zg9Wv)` |
+| SecondaryButton/Border | `var(--knCpeJkjkB)` |
+| SecondaryButton/HoverBackground | `var(--vvG2EEhdCx)` |
+| SecondaryButton/HoverText | `var(--0UgngKDdX6)` |
+| SecondaryButton/HoverBorder | `var(--4K9KPuSllH)` |
+| AccentButton/Background | `var(--uYyzbBgJmi)` |
+| AccentButton/Text | `var(--xxNgTuALjl)` |
+| AccentButton/HoverBackground | `var(--880SvcisUo)` |
+| AccentButton/HoverText | `var(--uSkhJxjklN)` |
+| Inverse/Background | `var(--gzVXctV39L)` |
+| Inverse/Text | `var(--eceeZPmHKm)` |
+| Inverse/Border | `var(--5Bj1Gi64F9)` |
+| Badge/SaleBackground | `var(--n37O828R9D)` |
+| Badge/SaleText | `var(--x1EAnEpJwy)` |
+| Badge/SoldOutBackground | `var(--iuFhhbspfg)` |
+| Badge/SoldOutText | `var(--wkpsXzUm2D)` |
+| Badge/LabelBackground | `var(--tPAyW5QcRt)` |
+| Badge/LabelText | `var(--65Fcrshr5K)` |
+| Card/Background | `var(--jyNun2ZBza)` |
+| Card/MutedBackground | `var(--poSYrZpIso)` |
+| Card/Text | `var(--8Ev4X6Vd0O)` |
+| Card/MutedText | `var(--tggPeh5T1A)` |
+| Card/Border | `var(--2MHxRczVsb)` |
+| Focus/Ring | `var(--gf8WLq5Ffh)` |
+
+Focus/Ring = tüm odak göstergeleri (outline, input focus halkası). Şemada global `Odak / Halka`ya bağlı; CSS: `var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)))`.
+
+Card = section zemininden ayrışan kartlar (beyaz: Card/Background, açık gri: Card/MutedBackground) — İletişim formu, SSS yardım kutusu, Testimonials kartları, mağaza yanıtı, açık Deal Card, Magnetic Auth paneli, kampanya kutusu, ürün grubu kutuları vb.
+
+Inverse = koyu marka yüzeyleri (duyuru bandı, VelocityBelt şeridi, header pill, Newsletter kartı, koyu Deal Card, Magnetic Auth koyu kartları). Badge slotları şemada global `Rozet / …` renklerine bağlıdır; CSS’te `var(--n37O828R9D, var(--gi56XfzrM3, var(--sy8ZnXZdoG)))` gibi slot → global → token zinciriyle yazılır.
+
+**Profil mantığı:** Varsayılan şema (Stiller → Renk Şemaları → “Varsayılan yap”) sitenin renk profilidir; section’a ayrıca şema seçilmezse varsayılanı kullanır. Şema slotları global renklere bağlıdır; global rengi değiştirmek o rengi kullanan tüm şemaları günceller.
+
+AccentButton/Background aynı zamanda etkileşimli vurgu dolgularının rengidir: link alt çizgi dolgusu, ürün kartı “Sepete ekle” dolgusu, header sepet butonu ve hover renkleri, akordiyon açık dairesi, işaretli checkbox. Dekoratif sarılar (rozet, yıldız, nokta, indirim etiketi) sabit `--sy8ZnXZdoG` kalır.
+
+Slot var’ları yalnızca section’a editörden şema seçildiğinde tanımlıdır. CSS’te her zaman mevcut renkle fallback yazın: `color: var(--ucmfvEbo4R, var(--pxNuSoudLn));` — şema seçilmemiş section eskisi gibi görünür. Section’ın `backgroundColor` prop’u boş bırakılır; doluysa şemanın zeminini ezer.
 Section’larda inherit etmek için palette `className` eklemeyin — slot `cssVar`’ları section scheme’inden çözülür.
 
 ---

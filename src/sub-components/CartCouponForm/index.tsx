@@ -47,7 +47,7 @@ export function CartCouponForm({
       <p className="ikas-cart-coupon__title _VcfI5D07Nt">{promoTitle}</p>
       {appliedCode ? (
         <div className="ikas-cart-coupon__row ikas-cart-coupon__row--applied">
-          <span className="ikas-cart-coupon__code _eZyocyyd0F">
+          <span className="ikas-cart-coupon__code _IQOhDPH9FJ">
             {appliedCode}
           </span>
           <TextLink

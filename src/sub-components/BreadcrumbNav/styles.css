@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
- * BREADCRUMB — referans UrunDetay mono path
+ * BREADCRUMB — gövde fontu, sakin tek satır yol izi
  * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-breadcrumb {
@@ -8,21 +8,25 @@
   max-width: var(--max-site-width, 1560px);
   margin: 0 auto;
   padding: clamp(16px, 2vw, 26px) var(--site-gutter, var(--section-px, 20px)) 0;
+  /* Soluk ayraç: şema seçiliyse Heading ile Background karışımı */
+  --crumb-muted: color-mix(in srgb, var(--ucmfvEbo4R) 65%, var(--pGwtVHz9Sd));
 }
 
 .ikas-breadcrumb__list {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 10px;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--u9HctrBrDd, #aeb8c6);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -35,12 +39,12 @@
 .ikas-breadcrumb__item-wrapper {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-width: 0;
 }
 
 .ikas-breadcrumb__item {
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: inherit;
   text-decoration: none;
   transition: color 0.2s ease;
   overflow: hidden;
@@ -51,7 +55,7 @@
 }
 
 .ikas-breadcrumb__item:hover {
-  color: var(--vluFeuIeFs, #101418);
+  color: var(--yccjLb7If4, var(--vluFeuIeFs, #101418));
 }
 
 .ikas-breadcrumb__item:focus {
@@ -64,14 +68,14 @@
 }
 
 .ikas-breadcrumb__item--active {
-  color: var(--pxNuSoudLn);
-  font-weight: 400;
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
+  font-weight: 500;
   max-width: min(36ch, 52vw);
   flex-shrink: 0;
 }
 
 .ikas-breadcrumb__separator {
-  color: var(--u9HctrBrDd, #aeb8c6);
+  color: var(--crumb-muted, var(--u9HctrBrDd, #aeb8c6));
   user-select: none;
   flex-shrink: 0;
 }

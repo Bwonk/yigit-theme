@@ -3,12 +3,12 @@
  */
 
 .ikas-promo-countdown {
-  --promo-bg: var(--wElEhJwjYh);
-  --promo-fg: var(--pxNuSoudLn);
-  --promo-accent: var(--sy8ZnXZdoG);
-  --promo-meta: var(--p6EMJiXye1, #8c97a5);
-  --promo-line: var(--8ARbeTYsmD, #e4e7e8);
-  --promo-chip: var(--24KlcgGmm9);
+  --promo-bg: var(--poSYrZpIso, var(--wElEhJwjYh));
+  --promo-fg: var(--8Ev4X6Vd0O, var(--pxNuSoudLn));
+  --promo-accent: var(--uYyzbBgJmi, var(--sy8ZnXZdoG));
+  --promo-meta: var(--tggPeh5T1A, var(--p6EMJiXye1, #8c97a5));
+  --promo-line: var(--2MHxRczVsb, var(--8ARbeTYsmD, #e4e7e8));
+  --promo-chip: var(--jyNun2ZBza, var(--24KlcgGmm9));
   --promo-radius: 0.5rem;
   --promo-digit-ms: 280ms;
   --promo-digit-ease: cubic-bezier(0.4, 0, 0.2, 1);

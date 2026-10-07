@@ -3,87 +3,40 @@
 @import "../DensityToggle/styles.css";
 @import "../ActiveFilterChips/styles.css";
 @import "../MobileFilterSheet/styles.css";
+@import "../CategoryDropdown/styles.css";
+@import "../CategoryRail/styles.css";
 
 /* ═══════════════════════════════════════════════════════════════════════
- * FILTER DOCK — hero alt kenarına oturan floating control surface
+ * FİLTRE ÇUBUĞU — tam genişlikte tek satır. Yapışkan değildir: sayfayla
+ * birlikte kayar, kategori başlığının altında kalır. Üst çizgisi başlığı
+ * kapatır.
  * ═══════════════════════════════════════════════════════════════════════ */
 
 .ikas-filter-bar {
-  position: sticky;
-  --stick-gap: 8px;
-  --stick-top: calc(
-    var(--ikas-announcement-height, 0px) +
-      var(--ikas-header-pill-offset, var(--ikas-header-height, 82px)) +
-      var(--stick-gap)
-  );
-  --filter-morph-duration: 440ms;
-  --filter-morph-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  /* Sticky dock = header pill: aynı --nav-pill-max + sağa yaslı gutter */
-  --filter-bar-slim-max: var(--nav-pill-max, calc(var(--max-site-width, 1560px) / 2));
-  /* Hero kartı ile aynı yatay dil — section-px / site-gutter */
-  --dock-overlap: clamp(28px, 3.2vw, 40px);
-  --dock-radius: calc(var(--media-radius, 32px) * 0.72);
   --filter-chip-h: 40px;
   --filter-gap: 8px;
 
-  top: var(--stick-top);
+  position: relative;
   z-index: var(--z-index-filter-bar, 50);
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--collection-bg, var(--pGwtVHz9Sd, var(--24KlcgGmm9)));
+  border-top: 1px solid var(--p6Vorgv0Uy, var(--8ARbeTYsmD));
+}
+
+.ikas-filter-bar__inner {
   max-width: var(--max-site-width, 1560px);
   width: 100%;
-  margin: calc(var(--dock-overlap) * -1) auto 0;
-  padding: 0 var(--section-px, 20px);
+  margin: 0 auto;
+  padding: 10px var(--section-px, 20px);
   box-sizing: border-box;
-  transition: padding var(--filter-morph-duration) var(--filter-morph-ease);
-}
-
-.ikas-filter-bar--slim {
-  --filter-chip-h: 34px;
-  --filter-gap: 6px;
-  --dock-radius: 9999px;
-  padding-left: var(--site-gutter, var(--section-px, 20px));
-  padding-right: var(--site-gutter, var(--section-px, 20px));
-}
-
-/* Floating dock surface — hero’nun devamı, ayrı kart değil */
-.ikas-filter-bar__dock {
-  width: 100%;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: 0;
-  background: color-mix(in srgb, var(--24KlcgGmm9) 92%, var(--wElEhJwjYh));
-  border: 1px solid color-mix(in srgb, var(--8ARbeTYsmD) 70%, transparent);
-  border-radius: var(--dock-radius, 24px);
-  padding: 12px 14px;
-  box-shadow: var(
-    --filter-shadow,
-    0 8px 28px color-mix(in srgb, var(--vluFeuIeFs, #131924) 8%, transparent)
-  );
-  box-sizing: border-box;
-  overflow: visible;
-  backdrop-filter: saturate(1.05);
-  transition:
-    width var(--filter-morph-duration) var(--filter-morph-ease),
-    padding var(--filter-morph-duration) var(--filter-morph-ease),
-    border-radius var(--filter-morph-duration) var(--filter-morph-ease),
-    box-shadow var(--filter-morph-duration) var(--filter-morph-ease),
-    background var(--filter-morph-duration) var(--filter-morph-ease);
-}
-
-.ikas-filter-bar--slim .ikas-filter-bar__dock {
-  width: min(100%, var(--filter-bar-slim-max));
-  padding: 8px 12px;
-  background: var(--24KlcgGmm9);
-  box-shadow: var(
-    --filter-shadow-slim,
-    0 6px 20px color-mix(in srgb, var(--vluFeuIeFs, #131924) 12%, transparent)
-  );
 }
 
 .ikas-filter-bar__row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 8px 12px;
   flex-wrap: wrap;
   min-width: 0;
 }
@@ -112,6 +65,52 @@
   min-width: 0;
 }
 
+/* Tek dokunuşluk anahtar — FilterDropdown tetikleyicisiyle aynı hap */
+.ikas-filter-bar__toggle {
+  display: inline-flex;
+  align-items: center;
+  height: var(--filter-chip-h, 40px);
+  padding: 0 14px;
+  /* Renk şeması: seçili değil = SecondaryButton, seçili = PrimaryButton */
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
+  border-radius: 9999px;
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
+  font-family: var(--font-body, "Roboto Flex", sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.16s ease;
+}
+
+.ikas-filter-bar__toggle:hover {
+  border-color: var(--4K9KPuSllH, color-mix(in srgb, var(--pxNuSoudLn) 45%, var(--8ARbeTYsmD)));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
+}
+
+.ikas-filter-bar__toggle:active {
+  transform: scale(0.98);
+}
+
+.ikas-filter-bar__toggle:focus-visible {
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
+  outline-offset: 2px;
+}
+
+.ikas-filter-bar__toggle--on,
+.ikas-filter-bar__toggle--on:hover {
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
+}
+
 .ikas-filter-bar__mob-btn {
   display: inline-flex;
   align-items: center;
@@ -119,10 +118,10 @@
   height: var(--filter-chip-h);
   min-height: 40px;
   padding: 0 14px;
-  border: 1px solid var(--8ARbeTYsmD);
+  border: 1px solid var(--knCpeJkjkB, var(--8ARbeTYsmD));
   border-radius: 9999px;
-  background: var(--24KlcgGmm9);
-  color: var(--pxNuSoudLn);
+  background: var(--nev1XwFhtS, var(--24KlcgGmm9));
+  color: var(--ua5R3Zg9Wv, var(--pxNuSoudLn));
   font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 11px;
   letter-spacing: 0.1em;
@@ -132,13 +131,13 @@
     background 0.2s ease,
     color 0.2s ease,
     border-color 0.2s ease,
-    transform 0.18s ease,
-    height var(--filter-morph-duration) var(--filter-morph-ease);
+    transform 0.18s ease;
 }
 
 .ikas-filter-bar__mob-btn:hover {
-  border-color: var(--pxNuSoudLn);
-  background: var(--wElEhJwjYh);
+  border-color: var(--4K9KPuSllH, var(--pxNuSoudLn));
+  background: var(--vvG2EEhdCx, var(--wElEhJwjYh));
+  color: var(--0UgngKDdX6, var(--pxNuSoudLn));
 }
 
 .ikas-filter-bar__mob-btn:active {
@@ -146,27 +145,75 @@
 }
 
 .ikas-filter-bar__mob-btn:focus-visible {
-  outline: 2px solid var(--sy8ZnXZdoG);
+  outline: 2px solid var(--gf8WLq5Ffh, var(--vwK85WzqFg, var(--sy8ZnXZdoG)));
   outline-offset: 2px;
 }
 
+/* Birincil: Button PILL_PRIMARY ile aynı dil — sarı dolgu alttan kavisli yükselir */
 .ikas-filter-bar__mob-btn--primary {
-  background: var(--pxNuSoudLn);
-  border-color: var(--pxNuSoudLn);
-  color: var(--24KlcgGmm9);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+  color: var(--aLyEruXqBe, var(--24KlcgGmm9));
 }
 
+.ikas-filter-bar__mob-btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--cQnfNuvn0R, var(--sy8ZnXZdoG));
+  border-radius: 60% 60% 0 0 / 100% 100% 0 0;
+  transform: translateY(102%);
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-radius 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+.ikas-filter-bar__mob-btn--primary:is(:focus-visible, :active) {
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--sle6Nb4QtF, var(--pxNuSoudLn));
+  color: var(--xm8HJppGoU, var(--pxNuSoudLn));
+}
+
+.ikas-filter-bar__mob-btn--primary:is(:focus-visible, :active)::before {
+  transform: none;
+  border-radius: 0;
+}
+
+/* Genel mob-btn hover zeminini ezer (dokunmatikte yapışan hover dahil) */
 .ikas-filter-bar__mob-btn--primary:hover {
-  background: var(--sy8ZnXZdoG);
-  border-color: var(--sy8ZnXZdoG);
-  color: var(--fcAwzuFj9W);
+  background: var(--14KZmiHQnk, var(--pxNuSoudLn));
+  border-color: var(--fkaMzCgkCr, var(--pxNuSoudLn));
+}
+
+@media (hover: hover) {
+  .ikas-filter-bar__mob-btn--primary:hover {
+    border-color: var(--sle6Nb4QtF, var(--pxNuSoudLn));
+    color: var(--xm8HJppGoU, var(--pxNuSoudLn));
+  }
+
+  .ikas-filter-bar__mob-btn--primary:hover::before {
+    transform: none;
+    border-radius: 0;
+  }
 }
 
 .ikas-filter-bar__right {
   display: flex;
   align-items: center;
-  gap: clamp(10px, 1.2vw, 16px);
+  gap: clamp(8px, 1.2vw, 16px);
   flex: 0 0 auto;
+}
+
+/* Sıralama sağda durur: menü sağ kenara hizalı açılır */
+.ikas-sort-control--end .ikas-sort-control__menu {
+  left: auto;
+  right: 0;
+  transform-origin: top right;
 }
 
 .ikas-filter-bar__count {
@@ -178,7 +225,7 @@
 }
 
 .ikas-filter-bar__count-num {
-  color: var(--p6EMJiXye1);
+  color: var(--ucmfvEbo4R, var(--pxNuSoudLn));
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
   font-weight: 500;
@@ -186,138 +233,57 @@
 }
 
 .ikas-filter-bar__count-suffix {
-  color: var(--u9HctrBrDd);
+  color: var(--hy9HpUbpuN, var(--text-meta-aa));
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-family: var(--font-mono, "Roboto Mono", monospace);
   font-size: 10px;
 }
 
-/* Active chips — second rail under controls; collapses in slim */
+/* Uygulanan filtreler — yapışık haldeyken de görünür kalır */
 .ikas-filter-bar__chips {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition:
-    grid-template-rows var(--filter-morph-duration) var(--filter-morph-ease),
-    opacity var(--filter-morph-duration) var(--filter-morph-ease),
-    margin-top var(--filter-morph-duration) var(--filter-morph-ease);
   margin-top: 10px;
-}
-
-.ikas-filter-bar__chips[data-collapsed="true"] {
-  grid-template-rows: 0fr;
-  opacity: 0;
-  margin-top: 0;
-  pointer-events: none;
-}
-
-.ikas-filter-bar__chips-inner {
-  min-height: 0;
-  overflow: hidden;
+  min-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ikas-filter-bar,
-  .ikas-filter-bar__dock,
-  .ikas-filter-bar__chips,
-  .ikas-filter-bar__mob-btn {
+  .ikas-filter-bar__toggle,
+  .ikas-filter-bar__mob-btn,
+  .ikas-filter-bar__mob-btn--primary::before {
     transition: none !important;
   }
 }
 
-/* ── Tablet: wrap controls; slim’de yatay rail ────────────────────────── */
-@media (max-width: 1099px) and (min-width: 900px) {
-  .ikas-filter-bar__desktop-filters {
-    flex-wrap: wrap;
-  }
-
-  .ikas-filter-bar--slim .ikas-filter-bar__desktop-filters {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    /* Header pill ile aynı dar yüzey — kontroller yatay rail’de kalır */
-    max-width: min(100%, calc(var(--nav-pill-max, 50vw) - 120px));
-  }
-
-  .ikas-filter-bar--slim .ikas-filter-bar__desktop-filters::-webkit-scrollbar {
-    display: none;
-  }
-
-  .ikas-filter-bar--slim .ikas-filter-bar__desktop-filters > * {
-    flex-shrink: 0;
-  }
-
-  .ikas-filter-bar--slim .ikas-filter-bar__row {
-    flex-wrap: nowrap;
-  }
-}
-
-/* ── Mobile ──────────────────────────────────────────────────────────── */
-@media (max-width: 899px) {
-  .ikas-filter-bar {
-    --dock-overlap: 24px;
-    --dock-radius: calc(var(--media-radius, 32px) * 0.62);
-    margin-top: calc(var(--dock-overlap) * -1);
-    padding-left: var(--mobile-px, 16px);
-    padding-right: var(--mobile-px, 16px);
-  }
-
-  .ikas-filter-bar__dock {
-    padding: 10px 10px;
-  }
-
-  .ikas-filter-bar--slim {
-    --filter-chip-h: 36px;
-    padding-left: var(--mobile-px, 16px);
-    padding-right: var(--mobile-px, 16px);
-  }
-
-  .ikas-filter-bar--slim .ikas-filter-bar__dock {
-    width: 100%;
-    padding: 8px 10px;
-  }
-
-  .ikas-filter-bar__row {
-    gap: 10px;
-  }
-
+/* ── Mobil / tablet ──────────────────────────────────────────────────── */
+@media (max-width: bp(kmfaNJ5hH8)) {
   .ikas-filter-bar__mobile-actions {
     display: flex;
   }
 
-  .ikas-filter-bar__desktop-filters {
-    display: none;
-  }
-
+  .ikas-filter-bar__desktop-filters,
+  .ikas-filter-bar__sort,
   .ikas-filter-bar__right .ikas-density-toggle {
-    display: none;
-  }
-
-  .ikas-filter-bar__chips-inner {
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-  }
-
-  .ikas-filter-bar__chips-inner::-webkit-scrollbar {
     display: none;
   }
 }
 
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-filter-bar__inner {
+    padding-left: var(--mobile-px, 16px);
+    padding-right: var(--mobile-px, 16px);
+  }
+}
+
 /*
- * Dokunmatik hedefler (WCAG 2.2 · 2.5.8): filtre/sırala chip'leri parmakla
- * kullanılan ana kontroller. Kaba işaretleyicide chip yüksekliği 44px'e çıkar;
- * fare ile 40/36px kompakt tasarım korunur.
+ * Dokunmatik hedefler (WCAG 2.2 · 2.5.8): filtre/sırala hap'ları parmakla
+ * kullanılan ana kontroller. Kaba işaretleyicide yükseklik 44px'e çıkar;
+ * fare ile 40px kompakt tasarım korunur.
  */
 @media (pointer: coarse) {
-  .ikas-filter-bar,
-  .ikas-filter-bar--slim {
+  .ikas-filter-bar {
     --filter-chip-h: 44px;
   }
 
-  .ikas-filter-bar__chip,
+  .ikas-filter-bar__toggle,
   .ikas-filter-bar__mob-btn {
     min-height: 44px;
   }
