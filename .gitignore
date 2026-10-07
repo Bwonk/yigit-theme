@@ -22,3 +22,12 @@ create_variant_input.json
 all_mutations.json
 .playwright-mcp/
 .tmp/
+
+# ikas dosya yapısı dışındaki yerel çalışma dosyaları (prompt/tasarım notları)
+prompts/
+GLOBALS.md
+DESIGN.md
+IKAS.md
+.claude/
+pnpm-lock.yaml
+pnpm-workspace.yaml
