@@ -10,8 +10,9 @@ scripts/
 .env
 .env.local
 
-# MCP sunucu tanımları admin token içerir; şablonu .mcp.json.example
+# MCP sunucu tanımları yerel ayardır (admin token içerebilir)
 .mcp.json
+.mcp.json.example
 *.jpg
 *.jpeg
 *.png
