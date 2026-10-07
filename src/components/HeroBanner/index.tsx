@@ -2,6 +2,7 @@ import { getDefaultSrc, Router } from "@ikas/bp-storefront";
 import { applyLayoutTokens } from "../../utils/themeTokens";
 import Button from "../../sub-components/Button";
 import TextLink from "../../sub-components/TextLink";
+import SocialProofChip from "../../sub-components/SocialProofChip";
 import { Props } from "./types";
 
 export interface HeroBannerProps extends Props {
@@ -171,24 +172,11 @@ export function HeroBanner({
             <div className="ikas-hero__img-placeholder" />
           )}
 
-          {(socialProofTitle || tagText) && (
-            <div className="ikas-hero__chip">
-              <div className="ikas-hero__chip-main">
-                <span className="ikas-hero__avatars" aria-hidden="true">
-                  <i className="ikas-hero__avatar ikas-hero__avatar--1" />
-                  <i className="ikas-hero__avatar ikas-hero__avatar--2" />
-                  <i className="ikas-hero__avatar ikas-hero__avatar--3" />
-                </span>
-                <span className="ikas-hero__chip-text">
-                  {socialProofTitle}
-                  {tagText && <small className="_eZyocyyd0F">{tagText}</small>}
-                </span>
-              </div>
-              <span className="ikas-hero__chip-stars" aria-hidden="true">
-                ★★★★★
-              </span>
-            </div>
-          )}
+          <SocialProofChip
+            className="ikas-hero__chip"
+            title={socialProofTitle}
+            caption={tagText}
+          />
         </div>
       </div>
     </section>

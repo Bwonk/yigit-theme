@@ -1,0 +1,101 @@
+/* Sosyal kanıt kartı — HeroBanner ve AuthHero ortak.
+   Konum (absolute / akış) kullanan bileşenin className'inden gelir. */
+.ikas-proof-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px 10px 12px;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--24KlcgGmm9) 96%, transparent);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--pxNuSoudLn);
+  box-sizing: border-box;
+}
+
+.ikas-proof-chip__main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ikas-proof-chip__avatars {
+  display: flex;
+  flex: none;
+  margin-right: 4px;
+}
+
+.ikas-proof-chip__avatar {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--24KlcgGmm9);
+  border-radius: 50%;
+  margin-left: -8px;
+}
+
+.ikas-proof-chip__avatar:first-child {
+  margin-left: 0;
+}
+
+.ikas-proof-chip__avatar--1 {
+  background-color: var(--hBlDr8T9HW, #f5e8c7);
+}
+
+.ikas-proof-chip__avatar--2 {
+  background-color: var(--btAOgyyOol, #d9d3f0);
+}
+
+.ikas-proof-chip__avatar--3 {
+  background-color: var(--qdiB71MdVn, #cfe8d8);
+}
+
+.ikas-proof-chip__text {
+  min-width: 0;
+}
+
+.ikas-proof-chip__text small {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p6EMJiXye1);
+}
+
+.ikas-proof-chip__stars {
+  flex: none;
+  color: var(--sy8ZnXZdoG);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  -webkit-text-stroke: 0.5px var(--pxNuSoudLn);
+}
+
+@media (min-width: 1800px) {
+  .ikas-proof-chip {
+    padding: 12px 24px 12px 14px;
+    font-size: 16px;
+  }
+
+  .ikas-proof-chip__avatar {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: bp(kmfaNJ5hH8)) {
+  .ikas-proof-chip__text small {
+    display: none;
+  }
+}
+
+@media (max-width: bp(HDRapYMzn7)) {
+  .ikas-proof-chip {
+    padding: 8px 16px 8px 10px;
+    font-size: 13px;
+  }
+}

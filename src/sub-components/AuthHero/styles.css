@@ -1,10 +1,13 @@
+@import "../SocialProofChip/styles.css";
+
 .ikas-auth-hero {
   position: sticky;
   top: 0;
   /* Cap tall CSS viewports (zoom-out) so hero matches the auth frame, not raw 100svh. */
   height: min(100svh, var(--auth-frame-max, 900px));
   min-width: 0;
-  padding: clamp(14px, 1.5vw, 26px) 0 clamp(14px, 1.5vw, 26px) clamp(8px, 1vw, 18px);
+  /* Sağ kenar da boşluklu: görsel kart viewport kenarına yapışmasın */
+  padding: clamp(14px, 1.5vw, 26px) clamp(14px, 1.5vw, 26px) clamp(14px, 1.5vw, 26px) clamp(8px, 1vw, 18px);
   box-sizing: border-box;
 }
 
@@ -100,55 +103,9 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.ikas-auth-hero__proof {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Sosyal kanıt kartı (SocialProofChip) — Hero'dakiyle aynı; metnin altında akışta */
+.ikas-auth-hero__chip {
   margin-top: 8px;
-}
-
-.ikas-auth-hero__avatars {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.ikas-auth-hero__avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 9999px;
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  background: var(--cdFDkBbKkc, #c8cfd0);
-  display: block;
-}
-
-.ikas-auth-hero__avatar + .ikas-auth-hero__avatar {
-  margin-left: -10px;
-  background: var(--u9HctrBrDd, #aeb8c6);
-}
-
-.ikas-auth-hero__avatar:nth-child(3) {
-  background: color-mix(in srgb, var(--pxNuSoudLn) 40%, #fff);
-}
-
-.ikas-auth-hero__proof-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.ikas-auth-hero__proof-title {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.ikas-auth-hero__proof-sub {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ─── Stacked: phones + portrait tablets ─── */
@@ -189,7 +146,7 @@
     overflow: hidden;
   }
 
-  .ikas-auth-hero__proof {
+  .ikas-auth-hero__chip {
     margin-top: 2px;
   }
 }
@@ -213,19 +170,6 @@
     font-size: 13px;
     -webkit-line-clamp: 2;
   }
-
-  /* Dense proof: hide avatars, keep text */
-  .ikas-auth-hero__avatars {
-    display: none;
-  }
-
-  .ikas-auth-hero__proof-title {
-    font-size: 12px;
-  }
-
-  .ikas-auth-hero__proof-sub {
-    font-size: 9px;
-  }
 }
 
 /* Very short phones / register fold budget */
@@ -238,7 +182,7 @@
     display: none;
   }
 
-  .ikas-auth-hero__proof {
+  .ikas-auth-hero__chip {
     display: none;
   }
 }
@@ -257,7 +201,7 @@
 
   .ikas-auth-hero__tag,
   .ikas-auth-hero__subtitle,
-  .ikas-auth-hero__proof {
+  .ikas-auth-hero__chip {
     display: none;
   }
 
@@ -299,7 +243,7 @@
     overflow: hidden;
   }
 
-  .ikas-auth-hero__proof {
+  .ikas-auth-hero__chip {
     display: none;
   }
 }

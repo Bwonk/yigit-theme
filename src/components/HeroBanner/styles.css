@@ -1,5 +1,6 @@
 @import "../../sub-components/Button/styles.css";
 @import "../../sub-components/TextLink/styles.css";
+@import "../../sub-components/SocialProofChip/styles.css";
 
 /* ═══════════════════════════════════════════════════════════════════════
  * HERO BANNER — BÖLÜNMÜŞ HERO (Yigit Landing tasarımı)
@@ -197,84 +198,13 @@
   background-color: var(--cdFDkBbKkc);
 }
 
-/* Sosyal kanıt kartı */
+/* Sosyal kanıt kartı (SocialProofChip) — görselin altına yerleşir */
 .ikas-hero__chip {
   position: absolute;
   left: 16px;
   right: 16px;
   bottom: 16px;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 20px 10px 12px;
-  border-radius: 9999px;
-  background-color: color-mix(in srgb, var(--24KlcgGmm9) 96%, transparent);
-  font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--pxNuSoudLn);
-}
-
-.ikas-hero__chip-main {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-
-.ikas-hero__avatars {
-  display: flex;
-  flex: none;
-  margin-right: 4px;
-}
-
-.ikas-hero__avatar {
-  width: 28px;
-  height: 28px;
-  border: 2px solid var(--24KlcgGmm9);
-  border-radius: 50%;
-  margin-left: -8px;
-}
-
-.ikas-hero__avatar:first-child {
-  margin-left: 0;
-}
-
-.ikas-hero__avatar--1 {
-  background-color: var(--hBlDr8T9HW, #f5e8c7);
-}
-
-.ikas-hero__avatar--2 {
-  background-color: var(--btAOgyyOol, #d9d3f0);
-}
-
-.ikas-hero__avatar--3 {
-  background-color: var(--qdiB71MdVn, #cfe8d8);
-}
-
-.ikas-hero__chip-text {
-  min-width: 0;
-}
-
-.ikas-hero__chip-text small {
-  display: block;
-  margin-top: 3px;
-  font-size: 10.5px;
-  line-height: 1.3;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--p6EMJiXye1);
-}
-
-.ikas-hero__chip-stars {
-  flex: none;
-  color: var(--sy8ZnXZdoG);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  -webkit-text-stroke: 0.5px var(--pxNuSoudLn);
 }
 
 /* ─── GİRİŞ HAREKETİ ─── */
@@ -321,16 +251,6 @@
   .ikas-hero__main {
     gap: 32px;
   }
-
-  .ikas-hero__chip {
-    padding: 12px 24px 12px 14px;
-    font-size: 16px;
-  }
-
-  .ikas-hero__avatar {
-    width: 34px;
-    height: 34px;
-  }
 }
 
 /* ─── TABLET VE ALTI: tek kolon, görsel üstte ─── */
@@ -345,10 +265,6 @@
     order: -1;
     aspect-ratio: 4 / 3;
     max-width: 100%;
-  }
-
-  .ikas-hero__chip-text small {
-    display: none;
   }
 }
 
@@ -373,7 +289,5 @@
     left: 12px;
     right: 12px;
     bottom: 12px;
-    padding: 8px 16px 8px 10px;
-    font-size: 13px;
   }
 }

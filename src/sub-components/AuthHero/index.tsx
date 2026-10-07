@@ -3,6 +3,7 @@ import { getDefaultSrc, getThemeSetting } from "@ikas/bp-storefront";
 import type { IkasImage } from "@ikas/bp-storefront";
 import { observer } from "@ikas/component-utils";
 import { maxWidthQuery } from "../../utils/themeTokens";
+import SocialProofChip from "../SocialProofChip";
 
 export interface Props {
   image?: IkasImage | null;
@@ -134,25 +135,11 @@ export function AuthHero({
           {title && <h2 className="ikas-auth-hero__title">{title}</h2>}
           {subtitle && <p className="ikas-auth-hero__subtitle">{subtitle}</p>}
 
-          {(socialProofTitle || socialProofSubtitle) && (
-            <div className="ikas-auth-hero__proof">
-              <div className="ikas-auth-hero__avatars" aria-hidden="true">
-                <span className="ikas-auth-hero__avatar" />
-                <span className="ikas-auth-hero__avatar" />
-                <span className="ikas-auth-hero__avatar" />
-              </div>
-              <div className="ikas-auth-hero__proof-text">
-                {socialProofTitle && (
-                  <span className="ikas-auth-hero__proof-title">{socialProofTitle}</span>
-                )}
-                {socialProofSubtitle && (
-                  <span className="ikas-auth-hero__proof-sub">
-                    ★★★★★ {socialProofSubtitle}
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
+          <SocialProofChip
+            className="ikas-auth-hero__chip"
+            title={socialProofTitle}
+            caption={socialProofSubtitle}
+          />
         </div>
       </div>
     </aside>
